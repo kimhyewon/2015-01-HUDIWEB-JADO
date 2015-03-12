@@ -12,6 +12,7 @@
 
 		<eclipse.plugin.version>2.9</eclipse.plugin.version>
 		<war.plugin.version>2.6</war.plugin.version>
+		<maven.compiler.version>3.2</maven.compiler.version>
 
 		<logger.version>1.1.2</logger.version>
 		<mockito.version>1.10.19</mockito.version>
@@ -49,6 +50,15 @@
 				<version>${war.plugin.version}</version>
 				<configuration>
 					<webappDirectory>webapps</webappDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
