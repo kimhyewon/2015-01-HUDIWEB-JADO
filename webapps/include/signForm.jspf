@@ -6,14 +6,14 @@
 				<div class="page-header">
 					<c:set var="pageName" value="회원가입" />
 					<c:if test="${isUpdate}">
-					<c:set var="pageName" value="개인정보수정" />
+						<c:set var="pageName" value="개인정보수정" />
 					</c:if>
 					<h1>${pageName}</h1>
 				</div>
 				
 				<c:set var="actionUrl" value="/formServlet" />
 				<c:if test="${isUpdate}">
-				<c:set var="actionUrl" value="/updateServlet" />
+					<c:set var="actionUrl" value="/updateServlet" />
 				</c:if>
 				
 				<form class="form-horizontal" action="${actionUrl}" method="post">
@@ -23,47 +23,47 @@
 					</div>
 					</c:if>
 					<div class="control-group">
-						<label class="control-label" for="userEmail">email</label>
+						<label class="control-label" for="userId">email</label>
 						<div class="controls">
 							<c:choose>
-							<c:when test="${isUpdate}">
-							<input type="hidden" name="userEmail" value="${userId}" />
-							${userId}
-							</c:when>
-							<c:otherwise>
-							<input type="text" name="userEmail" value="${userId}" />
-							</c:otherwise>
+								<c:when test="${isUpdate}">
+									<input type="hidden" name="userId" value="${userId}" placeholder=""/>
+									${userId}
+								</c:when>
+								<c:otherwise>
+									<input type="text" name="userId" value="${userId}" placeholder=""/>
+								</c:otherwise>
 							</c:choose>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="password1">비밀번호</label>
 						<div class="controls">
-							<input type="password" id="password1" name="password1" value="${password}">
+							<input type="password" id="password1" name="password1" value="${password}" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="password2">비밀번호 확인</label>
 						<div class="controls">
-							<input type="password" id="password2" name="password2" value="${password}">
+							<input type="password" id="password2" name="password2" value="${password}" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="name">이름</label>
 						<div class="controls">
-							<input type="text" id="name" name="name" value="${name}">
+							<input type="text" id="name" name="name" value="${name}" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="phone">전화번호</label>
 						<div class="controls">
-							<input type="text" id="phone" name="phone" value="">
+							<input type="text" id="phone" name="phone" value="" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="address">주소</label>
 						<div class="controls">
-							<input type="text" id="address" name="address" value="">
+							<input type="text" id="address" name="address" value="" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
