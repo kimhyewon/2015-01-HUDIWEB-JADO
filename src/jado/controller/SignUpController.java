@@ -1,5 +1,6 @@
 package jado.controller;
 
+import jado.dao.UserDao;
 import jado.model.NormalUser;
 import jado.model.Seller;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/user")
 public class SignUpController extends HttpServlet {
+	UserDao userdao = new UserDao();
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -32,8 +34,11 @@ public class SignUpController extends HttpServlet {
 			String bank = req.getParameter("bank");
 			String bankAccount = req.getParameter("bankAccount");
 			user = new Seller(userId, password, name, phone, address, shopUrl, shopPhone, bank, bankAccount);
+			userdao.insert(user);
+			
 		} else {
 			user = new NormalUser(userId, password, name, phone, address);
+			userdao.insert(user);
 		}
 		
 		resp.sendRedirect("/");
