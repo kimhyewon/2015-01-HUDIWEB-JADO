@@ -13,7 +13,7 @@
 				
 				<c:set var="actionUrl" value="/user" />
 				<c:if test="${isUpdate}">
-					<c:set var="actionUrl" value="/updateServlet" />
+					<c:set var="actionUrl" value="/edit" />
 				</c:if>
 				
 				<form class="form-horizontal" action="${actionUrl}" method="post">
@@ -28,7 +28,6 @@
 							<c:choose>
 								<c:when test="${isUpdate}">
 									<input type="hidden" name="userId" value="${userId}" placeholder=""/>
-									${userId}
 								</c:when>
 								<c:otherwise>
 									<input type="text" name="userId" value="${userId}" placeholder=""/>
@@ -39,25 +38,25 @@
 					<div class="control-group">
 						<label class="control-label" for="password">비밀번호</label>
 						<div class="controls">
-							<input type="password" id="password" name="password" value="${password}" placeholder="">
+							<input type="password" id="password" name="password" value="" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="checkPassword">비밀번호 확인</label>
 						<div class="controls">
-							<input type="password" id="checkPassword" name="checkPassword" value="${password}" placeholder="">
+							<input type="password" id="checkPassword" name="checkPassword" value="" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="name">이름</label>
 						<div class="controls">
-							<input type="text" id="name" name="name" value="${name}" placeholder="">
+							<input type="text" id="name" name="name" value="${user.name}" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="phone">전화번호</label>
 						<div class="controls">
-							<input type="text" id="phone" name="phone" value="" placeholder="">
+							<input type="text" id="phone" name="phone" value="${user.phone}" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">

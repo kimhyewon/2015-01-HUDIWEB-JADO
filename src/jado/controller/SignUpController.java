@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/user")
 public class SignUpController extends HttpServlet {
 	UserDao userdao = new UserDao();
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		resp.sendRedirect("/");
+	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)

@@ -18,6 +18,20 @@ public class UserDao {
 		String sql = "INSERT INTO SELLER VALUES (?, ?, ?, ?)";
 		jdbcTemplate.update(sql, seller.getShopUrl(), seller.getShopPhone(),
 				seller.getBank(), seller.getBankAccount());
+	}
+	
+	public void update(NormalUser normalUser) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		//String sql = "UPDATE USER SET "
+	}
+	
+	public void update(Seller seller) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		
+	}
 
+	public NormalUser findUser(String userId) {
+		
+		return null;
 	}
 }
