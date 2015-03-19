@@ -140,5 +140,10 @@
 			<version>${tomcat.version}</version>
 			<scope>${tomcat.scope}</scope>
 		</dependency>
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
 	</dependencies>
 </project>
