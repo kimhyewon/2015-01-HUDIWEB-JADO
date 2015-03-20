@@ -24,7 +24,7 @@ public class SignUpController extends HttpServlet {
 		//현재 Url받아올 수 있으면 아래 코드를 주석 해제!!!
 		//String fromWhere = req.getParameter("fromWhere");
 		//forward(req, resp, fromWhere);
-		req.setAttribute("numberOfShops", numberOfShops());
+		req.setAttribute("numberOfShops", UserDao.numberOfSellers());
 		resp.sendRedirect("/signUp.jsp");
 	}
 	
@@ -78,9 +78,5 @@ public class SignUpController extends HttpServlet {
 		//top.jspf 수상함. 바꿔야 할 수도 있음.
 		RequestDispatcher rd = req.getRequestDispatcher("top.jspf");
 		rd.forward(req, resp);
-	}
-	
-	private int numberOfShops() {
-		return UserDao.numberOfSellers();
 	}
 }

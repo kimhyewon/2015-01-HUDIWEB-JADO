@@ -73,7 +73,7 @@ public class UserDao {
 	
 	public static int numberOfSellers() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "select count SELLER_ID from SELLER";
+		String sql = "select count(SELLER_ID) from SELLER";
 		return jdbcTemplate.update(sql);
 	}
 }
