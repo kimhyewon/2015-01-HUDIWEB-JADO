@@ -12,7 +12,7 @@ import core.jdbc.RowMapper;
 public class UserDao {
 	public static void insert(Customer normalUser) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "insert into USER values (?, ?, ?, ?, ? ,NOW(), null)";
+		String sql = "insert into user values(?, ?, ?, ?, ? ,now(), null)";
 		jdbcTemplate.update(sql, normalUser.getUserId(),
 				normalUser.getPassword(), normalUser.getName(),
 				normalUser.getPhone(), normalUser.getAddress());
@@ -20,19 +20,19 @@ public class UserDao {
 
 	public static void insert(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "insert into SELLER values (?, ?, ?, ?, ?)";
-		jdbcTemplate.update(sql, seller.getUserId(), seller.getShopUrl(), seller.getShopPhone(),
-				seller.getBank(), seller.getBankAccount());
+		String sql = "insert into seller values (?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, seller.getUserId(), seller.getShopUrl(),
+				seller.getShopPhone(), seller.getBank(),
+				seller.getBankAccount());
 	}
-	
 	public static void update(Customer normalUser) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		//String sql = "UPDATE USER SET "
+		// String sql = "UPDATE USER SET "
 	}
-	
+
 	public static void update(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		
+
 	}
 
 	public static Customer findUser(String userId) {

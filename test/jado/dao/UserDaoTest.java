@@ -1,6 +1,5 @@
 package jado.dao;
 
-import static org.junit.Assert.*;
 import jado.model.Customer;
 
 import org.junit.Test;
