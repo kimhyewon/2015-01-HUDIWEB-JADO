@@ -35,7 +35,14 @@ public class SignUpController extends HttpServlet {
 		String name = req.getParameter("name");
 		String phone = req.getParameter("phone");
 		String address = req.getParameter("address");
-		UserDao.insert(new Customer(userId, password, name, phone, address));
+		
+		Customer user = new Customer(userId, password, name, phone, address);
+		
+		if(UserDao.selectUsrById(user.getUserId())==null){
+			UserDao.insert(user);
+		}else{
+			// 아이디 중복입니다. 오류처리 코드 필요함 
+		}
 
 		//Seller
 		if (req.getParameter("isSeller") != null) {

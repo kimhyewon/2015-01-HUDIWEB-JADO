@@ -40,14 +40,14 @@ public class UserDao {
 		return null;
 	}
 	
-	public Customer selectUsrById(final String userId) {
+	public static Customer selectUsrById(final String userId) {
 		RowMapper<Customer> rm = resultSetOfUsr();
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "SELECT * FROM USER WHERE USER_ID=?";
 		return jdbcTemplate.queryForObject(sql, rm, userId);
 	}
 	
-	private RowMapper<Customer> resultSetOfUsr() {
+	private static RowMapper<Customer> resultSetOfUsr() {
 		return new RowMapper<Customer>() {
 			@Override
 			public Customer mapRow(ResultSet rs) throws SQLException {

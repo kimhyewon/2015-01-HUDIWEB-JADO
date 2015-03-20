@@ -15,8 +15,7 @@ public class Customer extends User {
 	public static boolean login(String userId, String password) 
 			throws UserNotFoundException, PasswordMismatchException {
 		
-		UserDao dao = new UserDao();
-		Customer user = dao.selectUsrById(userId);
+		Customer user = UserDao.selectUsrById(userId);
 		if(user == null){
 			throw new UserNotFoundException();
 		}
