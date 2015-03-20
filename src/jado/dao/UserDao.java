@@ -74,6 +74,7 @@ public class UserDao {
 	public static int numberOfSellers() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "select count(SELLER_ID) from SELLER";
+		System.out.println(jdbcTemplate.update(sql));
 		return jdbcTemplate.update(sql);
 	}
 }

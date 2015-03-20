@@ -24,7 +24,7 @@ public class SignUpController extends HttpServlet {
 		//현재 Url받아올 수 있으면 아래 코드를 주석 해제!!!
 		//String fromWhere = req.getParameter("fromWhere");
 		//forward(req, resp, fromWhere);
-		req.setAttribute("numberOfShops", UserDao.numberOfSellers());
+		//req.setAttribute("numberOfShops", UserDao.numberOfSellers());
 		resp.sendRedirect("/signUp.jsp");
 	}
 	
