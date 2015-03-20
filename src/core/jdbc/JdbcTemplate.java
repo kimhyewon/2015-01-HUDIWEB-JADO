@@ -8,20 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcTemplate {
-	public void update(String sql, PreparedStatementSetter pss)
+	public int update(String sql, PreparedStatementSetter pss)
 			throws DataAccessException {
 		try (Connection conn = ConnectionManager.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pss.setParameters(pstmt);
-			pstmt.executeUpdate();
+			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e);
 			throw new DataAccessException(e);
 		}
 	}
 
-	public void update(String sql, Object... parameters) {
-		update(sql, createPreparedStatementSetter(parameters));
+	public int update(String sql, Object... parameters) {
+		return update(sql, createPreparedStatementSetter(parameters));
 	}
 
 	public <T> T queryForObject(String sql, RowMapper<T> rm,
