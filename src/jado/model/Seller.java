@@ -1,15 +1,14 @@
 package jado.model;
 
-public class Seller extends NormalUser {
+public class Seller extends User {
 	private String shopUrl;
 	private String shopPhone;
 	private String bank;
 	private String bankAccount;
 	
 	//Constructor
-	public Seller(String userId, String password, String name,
-			String phone, String address, String shopUrl, String shopPhone, String bank, String bankAccount) {
-		super(userId, password, name, phone, address);
+	public Seller(String userId, String shopUrl, String shopPhone, String bank, String bankAccount) {
+		super(userId);
 		this.shopUrl = shopUrl;
 		this.shopPhone = shopPhone;
 		this.bank = bank;

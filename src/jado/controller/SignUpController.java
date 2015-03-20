@@ -1,8 +1,9 @@
 package jado.controller;
 
 import jado.dao.UserDao;
-import jado.model.NormalUser;
+import jado.model.Customer;
 import jado.model.Seller;
+import jado.model.User;
 
 import java.io.IOException;
 
@@ -28,13 +29,13 @@ public class SignUpController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		//Normal User
+		//Customer
 		String userId = req.getParameter("userId");
 		String password = req.getParameter("password");
 		String name = req.getParameter("name");
 		String phone = req.getParameter("phone");
 		String address = req.getParameter("address");
-		NormalUser user = null;
+		UserDao.insert(new Customer(userId, password, name, phone, address));
 
 		//Seller
 		if (req.getParameter("isSeller") != null) {
@@ -42,12 +43,7 @@ public class SignUpController extends HttpServlet {
 			String shopPhone = req.getParameter("shopPhone");
 			String bank = req.getParameter("bank");
 			String bankAccount = req.getParameter("bankAccount");
-			user = new Seller(userId, password, name, phone, address, shopUrl, shopPhone, bank, bankAccount);
-			UserDao.insert((Seller)user);
-			
-		} else {
-			user = new NormalUser(userId, password, name, phone, address);
-			UserDao.insert(user);
+			UserDao.insert(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
 		}
 		
 		resp.sendRedirect("/");

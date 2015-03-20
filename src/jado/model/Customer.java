@@ -5,8 +5,8 @@ import jado.controller.PasswordMismatchException;
 import jado.controller.UserNotFoundException;
 import jado.dao.UserDao;
 
-public class NormalUser {
-	private String userId;
+public class Customer extends User {
+
 	private String password;
 	private String name;
 	private String phone;
@@ -16,7 +16,7 @@ public class NormalUser {
 			throws UserNotFoundException, PasswordMismatchException {
 		
 		UserDao dao = new UserDao();
-		NormalUser user = dao.selectUsrById(userId);
+		Customer user = dao.selectUsrById(userId);
 		if(user == null){
 			throw new UserNotFoundException();
 		}
@@ -31,10 +31,9 @@ public class NormalUser {
 	}
 
 	//Constructor
-	public NormalUser(String userId, String password, String name,
+	public Customer(String userId, String password, String name,
 			String phone, String address) {
-		super();
-		this.userId = userId;
+		super(userId);
 		this.password = password;
 		this.name = name;
 		this.phone = phone;
@@ -42,10 +41,6 @@ public class NormalUser {
 	}
 	
 	//Getter
-	public String getUserId() {
-		return userId;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -60,9 +55,6 @@ public class NormalUser {
 	}
 	
 	//Setter
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -85,7 +77,6 @@ public class NormalUser {
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -97,7 +88,7 @@ public class NormalUser {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		NormalUser other = (NormalUser) obj;
+		Customer other = (Customer) obj;
 		if (address == null) {
 			if (other.address != null)
 				return false;
@@ -117,11 +108,6 @@ public class NormalUser {
 			if (other.phone != null)
 				return false;
 		} else if (!phone.equals(other.phone))
-			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}

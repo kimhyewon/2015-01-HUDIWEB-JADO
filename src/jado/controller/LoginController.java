@@ -1,6 +1,6 @@
 package jado.controller;
 
-import jado.model.NormalUser;
+import jado.model.Customer;
 
 import java.io.IOException;
 
@@ -30,7 +30,7 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 
 		try {
-			NormalUser.login(userId, password);
+			Customer.login(userId, password);
 			HttpSession session = request.getSession(); //이 줄 추가 
 			session.setAttribute("userId", userId); 
 			

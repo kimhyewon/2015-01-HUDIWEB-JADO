@@ -1,8 +1,9 @@
 package jado.controller;
 
 import jado.dao.UserDao;
-import jado.model.NormalUser;
+import jado.model.Customer;
 import jado.model.Seller;
+import jado.model.User;
 
 import java.io.IOException;
 
@@ -22,7 +23,7 @@ public class EditUserController extends HttpServlet{
 		HttpSession session = req.getSession();
 		String userId = (String)session.getAttribute("userId");
 
-		NormalUser user = UserDao.findUser(userId); 
+		Customer user = UserDao.findUser(userId); 
 		req.setAttribute("user", user);
 		resp.sendRedirect("/");
 	}
@@ -37,7 +38,7 @@ public class EditUserController extends HttpServlet{
 		String name = req.getParameter("name");
 		String phone = req.getParameter("phone");
 		String address = req.getParameter("address");
-		NormalUser user = null;
+		User user = null;
 
 		//Seller
 		if (req.getParameter("isSeller") != null) {
@@ -45,12 +46,12 @@ public class EditUserController extends HttpServlet{
 			String shopPhone = req.getParameter("shopPhone");
 			String bank = req.getParameter("bank");
 			String bankAccount = req.getParameter("bankAccount");
-			user = new Seller(userId, password, name, phone, address, shopUrl, shopPhone, bank, bankAccount);
-			UserDao.update(user);
+			user = new Seller(userId, shopUrl, shopPhone, bank, bankAccount);
+			//UserDao.update(user);
 			
 		} else {
-			user = new NormalUser(userId, password, name, phone, address);
-			UserDao.update(user);
+			user = new Customer(userId, password, name, phone, address);
+			//UserDao.update(user);
 		}
 		
 		resp.sendRedirect("/");
