@@ -1,5 +1,10 @@
 package jado.model;
 
+import core.jdbc.JdbcTemplate;
+import jado.controller.PasswordMismatchException;
+import jado.controller.UserNotFoundException;
+import jado.dao.UserDao;
+
 public class NormalUser {
 	private String userId;
 	private String password;
@@ -7,10 +12,24 @@ public class NormalUser {
 	private String phone;
 	private String address;
 	
-	public static boolean login(String userId, String password) {
-		return false;
+	public static boolean login(String userId, String password) 
+			throws UserNotFoundException, PasswordMismatchException {
+		
+		UserDao dao = new UserDao();
+		NormalUser user = dao.selectUsrById(userId);
+		if(user == null){
+			throw new UserNotFoundException();
+		}
+		if(!user.matchPassword(password)) {
+			throw new PasswordMismatchException();
+		}
+		return true;
 	}
 	
+	private boolean matchPassword(String newPassword) {
+		return this.password.equals(newPassword);
+	}
+
 	//Constructor
 	public NormalUser(String userId, String password, String name,
 			String phone, String address) {

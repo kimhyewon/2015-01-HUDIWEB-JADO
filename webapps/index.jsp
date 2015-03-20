@@ -9,7 +9,11 @@
 </head>
 <body>
     <%@ include file="/include/top.jspf" %>
-	
+	<% if(session.getAttribute("userId") != null)
+		System.out.println("로그인중");
+		else
+			System.out.println("로그아웃");
+	%>
 	<%@ include file="/include/signForm.jspf" %>
 	
 </body>

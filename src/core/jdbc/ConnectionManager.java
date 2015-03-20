@@ -6,8 +6,8 @@ import java.sql.DriverManager;
 public class ConnectionManager {
 	public static Connection getConnection() {
 		String address = "jdbc:mysql://127.0.0.1/jado_dev";
-		String id = "jado_developer";
-		String pw = "1111";
+		String id = "root";
+		String pw = "gpdnjs26";
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

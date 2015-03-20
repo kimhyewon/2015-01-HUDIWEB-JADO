@@ -1,8 +1,15 @@
 package jado.dao;
 
-import core.jdbc.JdbcTemplate;
 import jado.model.NormalUser;
 import jado.model.Seller;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+
+import core.jdbc.JdbcTemplate;
+import core.jdbc.RowMapper;
 
 public class UserDao {
 	public void insert(NormalUser normalUser) {
@@ -20,4 +27,22 @@ public class UserDao {
 				seller.getBank(), seller.getBankAccount());
 
 	}
+	
+	public NormalUser selectUsrById(final String userId) {
+		RowMapper<NormalUser> rm = resultSetOfUsr();
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		String sql = "SELECT * FROM USER WHERE USER_ID=?";
+		return jdbcTemplate.queryForObject(sql, rm, userId);
+	}
+	
+	private RowMapper<NormalUser> resultSetOfUsr() {
+		return new RowMapper<NormalUser>() {
+			@Override
+			public NormalUser mapRow(ResultSet rs) throws SQLException {
+				return new NormalUser(rs.getString("USER_ID"), rs.getString("PASSWORD"), rs.getString("NAME"),
+						rs.getString("PHONE"), rs.getString("ADDRESS"));
+			}
+		};
+	}
+
 }
