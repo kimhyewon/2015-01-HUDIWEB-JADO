@@ -3,6 +3,7 @@ package jado.controller;
 import jado.dao.UserDao;
 import jado.model.Customer;
 import jado.model.Seller;
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import core.exception.DuplicateUserException;
 
@@ -39,9 +41,11 @@ public class SignUpController extends HttpServlet {
 		String address = req.getParameter("address");
 		
 		Customer user = new Customer(userId, password, name, phone, address);
+		HttpSession session = req.getSession(); //이 줄 추가 
 		
 		try{
 			user.signUp(checkPassword);
+			session.setAttribute("userId", userId); 
 		} catch(DuplicateUserException e){
 			req.setAttribute("errorMessage", "이미 아이디가 존재 합니다. ");
 			RequestDispatcher rd = req.getRequestDispatcher("/");
@@ -61,9 +65,11 @@ public class SignUpController extends HttpServlet {
 			String bank = req.getParameter("bank");
 			String bankAccount = req.getParameter("bankAccount");
 			UserDao.insert(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
+			session.setAttribute("isSeller", true);
 		}
 		
-		resp.sendRedirect("/user/login");
+		
+		resp.sendRedirect("/");
 	}
 
 	private void forward(HttpServletRequest req, HttpServletResponse resp, String fromWhere)
