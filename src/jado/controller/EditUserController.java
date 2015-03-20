@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/edit")
+@WebServlet("/user/edit")
 public class EditUserController extends HttpServlet{
 
 	@Override
@@ -25,8 +25,9 @@ public class EditUserController extends HttpServlet{
 
 		Customer user = UserDao.findUser(userId); 
 		req.setAttribute("user", user);
-		resp.sendRedirect("/");
+		resp.sendRedirect("/editUser.jsp");
 	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -47,7 +48,7 @@ public class EditUserController extends HttpServlet{
 			String bank = req.getParameter("bank");
 			String bankAccount = req.getParameter("bankAccount");
 			user = new Seller(userId, shopUrl, shopPhone, bank, bankAccount);
-			//UserDao.update(user);
+			//UserDao.update((Seller)user);
 			
 		} else {
 			user = new Customer(userId, password, name, phone, address);

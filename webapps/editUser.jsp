@@ -1,13 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Jado</title>
+</head>
+<body>
+	<%@ include file="/include/top.jspf" %>
+	
 	<div class="container">
 		<div class="row">
 			<div class="span12">
 				<section id="typography"></section>
 				<div class="page-header">
-					<h1>회원가입</h1>
+					<h1>개인정보수정</h1>
 				</div>
 				
-				<form class="form-horizontal" action="/user" method="post">
+				<form class="form-horizontal" action="/user/edit" method="post">
 					<c:if test="${not empty errorMessage}">
 					<div class="control-group">
 						<label class="error">${errorMessage}</label>
@@ -16,54 +26,63 @@
 					<div class="control-group">
 						<label class="control-label" for="userId">email</label>
 						<div class="controls">
-							<input type="text" name="userId" placeholder=""/>
+							<input type="hidden" name="userId" value="${userId}" placeholder=""/>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="password">비밀번호</label>
 						<div class="controls">
-							<input type="password" id="password" name="password" placeholder="">
+							<input type="password" id="password" name="password" value="" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="checkPassword">비밀번호 확인</label>
 						<div class="controls">
-							<input type="password" id="checkPassword" name="checkPassword" placeholder="">
+							<input type="password" id="checkPassword" name="checkPassword" value="" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="name">이름</label>
 						<div class="controls">
-							<input type="text" id="name" name="name" placeholder=""/>
+							<input type="hidden" name="name" value="${user.name}" placeholder=""/>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="phone">전화번호</label>
 						<div class="controls">
-							<input type="text" id="phone" name="phone" placeholder="">
+							<input type="text" id="phone" name="phone" value="${user.phone}" placeholder="${user.phone}">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="address">주소</label>
 						<div class="controls">
-							<input type="text" id="address" name="address" placeholder="">
+							<input type="text" id="address" name="address" value="${user.address}" placeholder="${user.address}">
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<input type="checkbox"  id="isSeller" name="isSeller" value="true" />
+							<c:choose>
+								<c:when test="${isSeller}">
+									<input type="checkbox"  id="isSeller" name="isSeller" value="true" checked/>
+									<p>판매자 등록을 원하시면 체크해주세요.</p>
+								</c:when>
+								<c:otherwise>
+									<input type="checkbox"  id="isSeller" name="isSeller" value="true" />
+									<p>판매자 등록을 원하시면 체크해주세요.</p>
+								</c:otherwise>
+							</c:choose>
 						</div>			
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="shopUrl">쇼핑몰 URL</label>
 						<div class="controls">
-							<input type="text" id="shopUrl" name="shopUrl" placeholder="">
+							<input type="text" id="shopUrl" name="shopUrl" value="${user.shopUrl}" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="shopPhone">쇼핑몰 대표전화</label>
 						<div class="controls">
-							<input type="text" id="shopPhone" name="shopPhone" placeholder="">
+							<input type="text" id="shopPhone" name="shopPhone" value="${user.shopPhone}" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
@@ -98,16 +117,18 @@
 					<div class="control-group">
 						<label class="control-label" for="bankAccount">계좌번호</label>
 						<div class="controls">
-							<input type="text" id="bankAccount" name="bankAccount" placeholder="">
+							<input type="text" id="bankAccount" name="bankAccount" value="${user.bankAccount}" placeholder="">
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" class="btn btn-primary">원가입</button>
+							<button type="submit" class="btn btn-primary">수정</button>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+</body>
+</html>
