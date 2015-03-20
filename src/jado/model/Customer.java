@@ -1,5 +1,6 @@
 package jado.model;
 
+import core.exception.DuplicateUserException;
 import core.jdbc.JdbcTemplate;
 import jado.controller.PasswordMismatchException;
 import jado.controller.UserNotFoundException;
@@ -24,6 +25,19 @@ public class Customer extends User {
 		}
 		return true;
 	}
+	
+	public void signUp(String password2) throws DuplicateUserException, PasswordMismatchException{
+		
+		Customer tempUser = UserDao.selectUsrById(this.userId);
+		if(tempUser != null){
+			throw new DuplicateUserException();
+		}
+		if(!matchPassword(password2)){
+			throw new PasswordMismatchException();
+		}
+		UserDao.insert(this);
+	}
+	
 	
 	private boolean matchPassword(String newPassword) {
 		return this.password.equals(newPassword);

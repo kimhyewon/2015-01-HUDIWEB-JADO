@@ -3,8 +3,6 @@ package jado.controller;
 import jado.dao.UserDao;
 import jado.model.Customer;
 import jado.model.Seller;
-import jado.model.User;
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import core.exception.DuplicateUserException;
 
 @WebServlet("/user")
 public class SignUpController extends HttpServlet {
@@ -32,16 +32,19 @@ public class SignUpController extends HttpServlet {
 		//Customer
 		String userId = req.getParameter("userId");
 		String password = req.getParameter("password");
+		String checkPassword = req.getParameter("checkPassword");
 		String name = req.getParameter("name");
 		String phone = req.getParameter("phone");
 		String address = req.getParameter("address");
 		
 		Customer user = new Customer(userId, password, name, phone, address);
 		
-		if(UserDao.selectUsrById(user.getUserId())==null){
-			UserDao.insert(user);
-		}else{
-			// 아이디 중복입니다. 오류처리 코드 필요함 
+		try{
+			user.signUp(checkPassword);
+		} catch(DuplicateUserException e){
+			req.setAttribute("errorMessage", "이미 아이디가 존재 합니다. ");
+		} catch(PasswordMismatchException e){
+			req.setAttribute("errorMessage", "비밀번호가 일치하지 않습니다. 다시 입력해 주세요");			
 		}
 
 		//Seller
@@ -53,7 +56,7 @@ public class SignUpController extends HttpServlet {
 			UserDao.insert(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
 		}
 		
-		resp.sendRedirect("/");
+		resp.sendRedirect("/signUp.jsp");
 	}
 
 	private void forward(HttpServletRequest req, HttpServletResponse resp, String fromWhere)

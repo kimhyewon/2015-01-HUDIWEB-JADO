@@ -1,7 +1,7 @@
 package jado.model;
 
 public class User {
-	private String userId;
+	protected String userId;
 
 	public User(String userId) {
 		this.userId = userId;
