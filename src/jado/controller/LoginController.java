@@ -1,5 +1,6 @@
 package jado.controller;
 
+import jado.dao.UserDao;
 import jado.model.Customer;
 
 import java.io.IOException;
@@ -33,7 +34,9 @@ public class LoginController extends HttpServlet {
 			Customer.login(userId, password);
 			HttpSession session = request.getSession(); //이 줄 추가 
 			session.setAttribute("userId", userId); 
-			
+			if(UserDao.selectSellerById(userId) != null) {
+				session.setAttribute("isSeller", true);
+			}
 			response.sendRedirect("/");
 		} catch (UserNotFoundException e) {
 			request.setAttribute("errorMessage", "존재하지 않는 사용자 입니다. 다시 로그인하세요.");

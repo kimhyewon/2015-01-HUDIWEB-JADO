@@ -56,7 +56,7 @@ public class SignUpController extends HttpServlet {
 			UserDao.insert(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
 		}
 		
-		resp.sendRedirect("/signUp.jsp");
+		resp.sendRedirect("/user/login");
 	}
 
 	private void forward(HttpServletRequest req, HttpServletResponse resp, String fromWhere)

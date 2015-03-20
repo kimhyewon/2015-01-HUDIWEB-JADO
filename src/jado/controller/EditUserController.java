@@ -22,9 +22,12 @@ public class EditUserController extends HttpServlet{
 			throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String userId = (String)session.getAttribute("userId");
-
-		Customer user = UserDao.findUser(userId); 
-		req.setAttribute("user", user);
+		Customer customer = UserDao.selectUserById(userId);
+		req.setAttribute("customer", customer);
+		if(session.getAttribute("isSeller") != null) {
+			Seller seller = UserDao.selectSellerById(userId);
+			req.setAttribute("seller", seller);
+		}
 		resp.sendRedirect("/editUser.jsp");
 	}
 	

@@ -16,7 +16,7 @@ public class Customer extends User {
 	public static boolean login(String userId, String password) 
 			throws UserNotFoundException, PasswordMismatchException {
 		
-		Customer user = UserDao.selectUsrById(userId);
+		Customer user = UserDao.selectUserById(userId);
 		if(user == null){
 			throw new UserNotFoundException();
 		}
@@ -28,7 +28,7 @@ public class Customer extends User {
 	
 	public void signUp(String password2) throws DuplicateUserException, PasswordMismatchException{
 		
-		Customer tempUser = UserDao.selectUsrById(this.userId);
+		Customer tempUser = UserDao.selectUserById(this.userId);
 		if(tempUser != null){
 			throw new DuplicateUserException();
 		}

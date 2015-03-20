@@ -9,5 +9,13 @@
 <body>
     <%@ include file="/include/top.jspf" %>
     <h1>SHOPPING!!!</h1>
+    <c:choose>
+    <c:when test="${empty userId}">
+		<%@ include file="/include/signForm.jspf" %>
+	</c:when>
+	<c:otherwise>
+		<h1>WELCOME!!!</h1>
+	</c:otherwise>
+	</c:choose>
 </body>
 </html>

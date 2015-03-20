@@ -10,12 +10,12 @@ import core.jdbc.JdbcTemplate;
 import core.jdbc.RowMapper;
 
 public class UserDao {
-	public static void insert(Customer normalUser) {
+	public static void insert(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "insert into user values(?, ?, ?, ?, ? ,now(), null)";
-		jdbcTemplate.update(sql, normalUser.getUserId(),
-				normalUser.getPassword(), normalUser.getName(),
-				normalUser.getPhone(), normalUser.getAddress());
+		jdbcTemplate.update(sql, customer.getUserId(),
+				customer.getPassword(), customer.getName(),
+				customer.getPhone(), customer.getAddress());
 	}
 
 	public static void insert(Seller seller) {
@@ -25,22 +25,19 @@ public class UserDao {
 				seller.getShopPhone(), seller.getBank(),
 				seller.getBankAccount());
 	}
-	public static void update(Customer normalUser) {
+	public static void updateCustomer(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		// String sql = "UPDATE USER SET "
+		String sql = "update USER set (PHONE, ADDRESS) values (?, ?)";
+		jdbcTemplate.update(sql, customer.getPhone(), customer.getAddress());
 	}
 
-	public static void update(Seller seller) {
+	public static void updateSeller(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-
-	}
-
-	public static Customer findUser(String userId) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		return null;
+		String sql = "update SELLER set (SHOP_URL, SHOP_PHONE, BANK, BANK_ACCOUNT) values (?, ?, ?, ?)";
+		jdbcTemplate.update(sql, seller.getShopUrl(), seller.getShopPhone(), seller.getBank(), seller.getBankAccount());
 	}
 	
-	public static Customer selectUsrById(final String userId) {
+	public static Customer selectUserById(final String userId) {
 		RowMapper<Customer> rm = resultSetOfUsr();
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "SELECT * FROM USER WHERE USER_ID=?";
@@ -57,20 +54,19 @@ public class UserDao {
 		};
 	}
 	
-	public Seller selectSellerById(final String userId) {
-		RowMapper<Customer> rm = resultSetOfUsr();
+	public static Seller selectSellerById(final String userId) {
+		RowMapper<Seller> rm = resultSetOfSeller();
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "SELECT * FROM USER WHERE USER_ID=?";
-		//return jdbcTemplate.queryForObject(sql, rm, userId);
-		return null;
+		String sql = "SELECT * FROM SELLER WHERE SELLER_ID=?";
+		return jdbcTemplate.queryForObject(sql, rm, userId);
 	}
 	
-	private RowMapper<Customer> resultSetOfSeller() {
-		return new RowMapper<Customer>() {
+	private static RowMapper<Seller> resultSetOfSeller() {
+		return new RowMapper<Seller>() {
 			@Override
-			public Customer mapRow(ResultSet rs) throws SQLException {
-				return new Customer(rs.getString("USER_ID"), rs.getString("PASSWORD"), rs.getString("NAME"),
-						rs.getString("PHONE"), rs.getString("ADDRESS"));
+			public Seller mapRow(ResultSet rs) throws SQLException {
+				return new Seller(rs.getString("SELLER_ID"), rs.getString("SHOP_URL"), rs.getString("SHOP_PHONE"),
+						rs.getString("BANK"), rs.getString("BANK_ACCOUNT"));
 			}
 		};
 	}
