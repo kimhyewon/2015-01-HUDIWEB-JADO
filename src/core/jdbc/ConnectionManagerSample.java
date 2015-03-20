@@ -3,11 +3,11 @@ package core.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class ConnectionManager {
+public class ConnectionManagerSample {
 	public static Connection getConnection() {
-		String address = "jdbc:mysql://127.0.0.1/jado_dev";
-		String id = "jado_developer";
-		String pw = "1111";
+		String address = "jdbc:mysql://ipAdress/Database";
+		String id = "your_id";
+		String pw = "your_pw";
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
