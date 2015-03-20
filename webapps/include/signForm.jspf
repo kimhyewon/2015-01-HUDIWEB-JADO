@@ -52,9 +52,10 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<input type="checkbox"  id="isSeller" name="isSeller" value="true" />
+							<input type="checkbox"  onclick = "showSellerEnroll()"  id="isSeller" name="isSeller" value="true" />
 						</div>			
 					</div>
+				<div class="seller-container" style="display:none;">	
 					<div class="control-group">
 						<label class="control-label" for="shopUrl">쇼핑몰 URL</label>
 						<div class="controls">
@@ -102,7 +103,7 @@
 							<input type="text" id="bankAccount" name="bankAccount" placeholder="">
 						</div>
 					</div>
-					
+				</div>
 					<div class="control-group">
 						<div class="controls">
 							<button type="submit" class="btn btn-primary">회원가입</button>
