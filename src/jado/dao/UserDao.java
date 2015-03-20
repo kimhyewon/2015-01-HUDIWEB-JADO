@@ -7,7 +7,7 @@ import jado.model.Seller;
 public class UserDao {
 	public static void insert(NormalUser normalUser) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "INSERT INTO USER VALUES (?, ?, ?, ?, ? ,NOW(), null)";
+		String sql = "insert into USER values (?, ?, ?, ?, ? ,NOW(), null)";
 		jdbcTemplate.update(sql, normalUser.getUserId(),
 				normalUser.getPassword(), normalUser.getName(),
 				normalUser.getPhone(), normalUser.getAddress());
@@ -15,8 +15,8 @@ public class UserDao {
 
 	public static void insert(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "INSERT INTO SELLER VALUES (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, seller.getShopUrl(), seller.getShopPhone(),
+		String sql = "insert into SELLER values (?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, seller.getUserId(), seller.getShopUrl(), seller.getShopPhone(),
 				seller.getBank(), seller.getBankAccount());
 	}
 	
