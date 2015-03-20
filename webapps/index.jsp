@@ -15,6 +15,7 @@
 			System.out.println("로그아웃");
 	%>
 	<%@ include file="/include/signForm.jspf" %>
+	<button><a href="/user/login">로그인</a></button>
 	
 </body>
 </html>
