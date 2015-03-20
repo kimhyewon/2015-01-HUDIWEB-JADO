@@ -14,15 +14,14 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/edit")
 public class EditUserController extends HttpServlet{
-	UserDao userdao = new UserDao();
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String userId = (String)session.getAttribute("userId");
 
-		NormalUser user = userdao.findUser(userId); 
+		NormalUser user = UserDao.findUser(userId); 
 		req.setAttribute("user", user);
 		
 	}

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/user")
 public class SignUpController extends HttpServlet {
-	UserDao userdao = new UserDao();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -39,11 +39,11 @@ public class SignUpController extends HttpServlet {
 			String bank = req.getParameter("bank");
 			String bankAccount = req.getParameter("bankAccount");
 			user = new Seller(userId, password, name, phone, address, shopUrl, shopPhone, bank, bankAccount);
-			userdao.insert(user);
+			UserDao.insert(user);
 			
 		} else {
 			user = new NormalUser(userId, password, name, phone, address);
-			userdao.insert(user);
+			UserDao.insert(user);
 		}
 		
 		resp.sendRedirect("/");
