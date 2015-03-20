@@ -40,7 +40,7 @@ public class UserDao {
 	public static Customer selectUserById(final String userId) {
 		RowMapper<Customer> rm = resultSetOfUsr();
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "SELECT * FROM USER WHERE USER_ID=?";
+		String sql = "select * from USER where USER_ID=?";
 		return jdbcTemplate.queryForObject(sql, rm, userId);
 	}
 	
@@ -57,7 +57,7 @@ public class UserDao {
 	public static Seller selectSellerById(final String userId) {
 		RowMapper<Seller> rm = resultSetOfSeller();
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "SELECT * FROM SELLER WHERE SELLER_ID=?";
+		String sql = "select * from SELLER where SELLER_ID=?";
 		return jdbcTemplate.queryForObject(sql, rm, userId);
 	}
 	
@@ -69,5 +69,11 @@ public class UserDao {
 						rs.getString("BANK"), rs.getString("BANK_ACCOUNT"));
 			}
 		};
+	}
+	
+	public static int numberOfSellers() {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		String sql = "select count SELLER_ID from SELLER";
+		return jdbcTemplate.update(sql);
 	}
 }
