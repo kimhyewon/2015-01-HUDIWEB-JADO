@@ -43,8 +43,14 @@ public class SignUpController extends HttpServlet {
 			user.signUp(checkPassword);
 		} catch(DuplicateUserException e){
 			req.setAttribute("errorMessage", "이미 아이디가 존재 합니다. ");
+			RequestDispatcher rd = req.getRequestDispatcher("/");
+			rd.forward(req, resp);
+			return;
 		} catch(PasswordMismatchException e){
-			req.setAttribute("errorMessage", "비밀번호가 일치하지 않습니다. 다시 입력해 주세요");			
+			req.setAttribute("errorMessage", "비밀번호가 일치하지 않습니다. 다시 입력해 주세요");
+			RequestDispatcher rd = req.getRequestDispatcher("/");
+			rd.forward(req, resp);
+			return;
 		}
 
 		//Seller
