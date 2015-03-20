@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
 			if(UserDao.selectSellerById(userId) != null) {
 				session.setAttribute("isSeller", true);
 			}
-			response.sendRedirect("/html/blogDummy.html");
+			response.sendRedirect("/blogDummy.jsp");
 		} catch (UserNotFoundException e) {
 			request.setAttribute("errorMessage", "존재하지 않는 사용자 입니다. 다시 로그인하세요.");
 			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");

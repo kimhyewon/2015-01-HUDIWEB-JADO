@@ -16,6 +16,6 @@ public class LogoutController extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = req.getSession(); //이 줄 추가 
 		session.invalidate();
-		resp.sendRedirect("/html/blogDummy.html");
+		resp.sendRedirect("/blogDummy.jsp");
 	}
 }
