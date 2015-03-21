@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import core.exception.DuplicateUserException;
+import core.exception.PasswordMismatchException;
 
 @WebServlet("/user")
 public class SignUpController extends HttpServlet {

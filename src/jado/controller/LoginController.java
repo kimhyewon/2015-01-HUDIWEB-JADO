@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import core.exception.PasswordMismatchException;
+import core.exception.UserNotFoundException;
+
 
 
 @WebServlet("/user/login")
@@ -39,14 +42,16 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("isSeller", true);
 			}
 			response.sendRedirect("/blogDummy.jsp");
-		} catch (UserNotFoundException e) {
-			request.setAttribute("errorMessage", "존재하지 않는 사용자 입니다. 다시 로그인하세요.");
-			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-			rd.forward(request, response);
-		} catch (PasswordMismatchException e) {
-			request.setAttribute("errorMessage", "비밀번호가 틀렸습니다. 다시 로그인하세요.");
-			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-			rd.forward(request, response);
+		} catch (UserNotFoundException | PasswordMismatchException e) {
+			forward(request, response, e.getMessage());
 		}
+	}
+
+	private void forward(HttpServletRequest request, HttpServletResponse response, String errorMessage)
+		throws ServletException, IOException {
+			request.setAttribute("errorMessage", errorMessage);
+			RequestDispatcher rd = request.getRequestDispatcher("/");
+			rd.forward(request, response);
+		
 	}
 }

@@ -1,9 +1,9 @@
 package jado.model;
 
 import core.exception.DuplicateUserException;
+import core.exception.PasswordMismatchException;
+import core.exception.UserNotFoundException;
 import core.jdbc.JdbcTemplate;
-import jado.controller.PasswordMismatchException;
-import jado.controller.UserNotFoundException;
 import jado.dao.UserDao;
 
 public class Customer extends User {

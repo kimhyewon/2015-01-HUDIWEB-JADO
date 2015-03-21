@@ -1,4 +1,4 @@
-package jado.controller;
+package core.exception;
 
 public class PasswordMismatchException extends Exception {
 
