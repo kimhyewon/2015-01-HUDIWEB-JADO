@@ -21,10 +21,7 @@ public class SignUpController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		//현재 Url받아올 수 있으면 아래 코드를 주석 해제!!!
-		//String fromWhere = req.getParameter("fromWhere");
-		//forward(req, resp, fromWhere);
-		//req.setAttribute("numberOfShops", UserDao.numberOfSellers());
+		
 		resp.sendRedirect("/signUp.jsp");
 	}
 	
@@ -41,22 +38,14 @@ public class SignUpController extends HttpServlet {
 		String address = req.getParameter("address");
 		
 		Customer user = new Customer(userId, password, name, phone, address);
-		HttpSession session = req.getSession(); //이 줄 추가 
+		HttpSession session = req.getSession();
 		
 		try{
 			user.signUp(checkPassword);
 			session.setAttribute("userId", userId); 
-		} catch(DuplicateUserException e){
-			req.setAttribute("errorMessage", "이미 아이디가 존재 합니다. ");
-			RequestDispatcher rd = req.getRequestDispatcher("/");
-			rd.forward(req, resp);
-			return;
-		} catch(PasswordMismatchException e){
-			req.setAttribute("errorMessage", "비밀번호가 일치하지 않습니다. 다시 입력해 주세요");
-			RequestDispatcher rd = req.getRequestDispatcher("/");
-			rd.forward(req, resp);
-			return;
-		}
+		} catch(DuplicateUserException | PasswordMismatchException e){
+			forward(req, resp, e.getMessage());
+		} 
 
 		//Seller
 		if (req.getParameter("isSeller") != null) {
@@ -67,16 +56,13 @@ public class SignUpController extends HttpServlet {
 			UserDao.insert(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
 			session.setAttribute("isSeller", true);
 		}
-		
-		
 		resp.sendRedirect("/");
 	}
 
-	private void forward(HttpServletRequest req, HttpServletResponse resp, String fromWhere)
+	private void forward(HttpServletRequest req, HttpServletResponse resp, String errorMessage)
 			throws ServletException, IOException {
-		req.setAttribute("fromWhere", fromWhere);
-		//top.jspf 수상함. 바꿔야 할 수도 있음.
-		RequestDispatcher rd = req.getRequestDispatcher("top.jspf");
+		req.setAttribute("errorMessage", errorMessage);
+		RequestDispatcher rd = req.getRequestDispatcher("/");
 		rd.forward(req, resp);
 	}
 }

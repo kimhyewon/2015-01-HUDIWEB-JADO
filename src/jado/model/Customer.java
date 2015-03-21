@@ -18,10 +18,10 @@ public class Customer extends User {
 		
 		Customer user = UserDao.selectUserById(userId);
 		if(user == null){
-			throw new UserNotFoundException();
+			throw new UserNotFoundException("존재하지 않는 ID입니다.");
 		}
 		if(!user.matchPassword(password)) {
-			throw new PasswordMismatchException();
+			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. 다시 로그인 해주세요.");
 		}
 		return true;
 	}
@@ -33,7 +33,7 @@ public class Customer extends User {
 			throw new DuplicateUserException();
 		}
 		if(!matchPassword(password2)){
-			throw new PasswordMismatchException();
+			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. 다시 로그인 해주세요.");
 		}
 		UserDao.insert(this);
 	}
