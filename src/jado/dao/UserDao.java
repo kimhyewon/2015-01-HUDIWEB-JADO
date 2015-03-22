@@ -27,14 +27,15 @@ public class UserDao {
 	}
 	public static void updateCustomer(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "update USER set (PHONE, ADDRESS) values (?, ?)";
-		jdbcTemplate.update(sql, customer.getPhone(), customer.getAddress());
+		String sql = "update USER set (PHONE, ADDRESS) values (?, ?) where USER_ID = ?";
+		jdbcTemplate.update(sql, customer.getPhone(), customer.getAddress(), customer.getUserId());
 	}
 
 	public static void updateSeller(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "update SELLER set (SHOP_URL, SHOP_PHONE, BANK, BANK_ACCOUNT) values (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, seller.getShopUrl(), seller.getShopPhone(), seller.getBank(), seller.getBankAccount());
+		String sql = "update SELLER set (SHOP_URL, SHOP_PHONE, BANK, BANK_ACCOUNT) values (?, ?, ?, ?) where SELLER_ID = ?";
+		jdbcTemplate.update(sql, seller.getShopUrl(), seller.getShopPhone(),
+				seller.getBank(), seller.getBankAccount(), seller.getUserId());
 	}
 	
 	public static Customer selectUserById(final String userId) {

@@ -51,15 +51,13 @@ public class EditUserController extends HttpServlet{
 			String bank = req.getParameter("bank");
 			String bankAccount = req.getParameter("bankAccount");
 			user = new Seller(userId, shopUrl, shopPhone, bank, bankAccount);
-			//UserDao.update((Seller)user);
+			//UserDao.updateSeller((Seller)user);
 			
 		} else {
 			user = new Customer(userId, password, name, phone, address);
-			//UserDao.update(user);
+			//UserDao.updateCustomer((Customer)user);
 		}
 		
 		resp.sendRedirect("/");
-		//userdao.update();
-		
 	}
 }
