@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import core.exception.DuplicateUserException;
 import core.exception.PasswordMismatchException;
+import core.util.ServletRequestUtils;
 
 @WebServlet("/user")
 public class SignUpController extends HttpServlet {
@@ -31,12 +32,12 @@ public class SignUpController extends HttpServlet {
 			throws ServletException, IOException {
 
 		//Customer
-		String userId = req.getParameter("userId");
-		String password = req.getParameter("password");
-		String checkPassword = req.getParameter("checkPassword");
-		String name = req.getParameter("name");
-		String phone = req.getParameter("phone");
-		String address = req.getParameter("address");
+		String userId = ServletRequestUtils.getRequiredStringParameter(req,"userId");
+		String password = ServletRequestUtils.getRequiredStringParameter(req,"password");
+		String checkPassword = ServletRequestUtils.getRequiredStringParameter(req,"checkPassword");
+		String name = ServletRequestUtils.getRequiredStringParameter(req,"name");
+		String phone = ServletRequestUtils.getRequiredStringParameter(req,"phone");
+		String address = ServletRequestUtils.getRequiredStringParameter(req,"address");
 		
 		Customer user = new Customer(userId, password, name, phone, address);
 		HttpSession session = req.getSession();
@@ -50,10 +51,10 @@ public class SignUpController extends HttpServlet {
 
 		//Seller
 		if (req.getParameter("isSeller") != null) {
-			String shopUrl = req.getParameter("shopUrl");
-			String shopPhone = req.getParameter("shopPhone");
-			String bank = req.getParameter("bank");
-			String bankAccount = req.getParameter("bankAccount");
+			String shopUrl = ServletRequestUtils.getRequiredStringParameter(req,"shopUrl");
+			String shopPhone = ServletRequestUtils.getRequiredStringParameter(req,"shopPhone");
+			String bank = ServletRequestUtils.getRequiredStringParameter(req,"bank");
+			String bankAccount = ServletRequestUtils.getRequiredStringParameter(req,"bankAccount");
 			UserDao.insert(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
 			session.setAttribute("isSeller", true);
 		}

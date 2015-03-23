@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import core.exception.PasswordMismatchException;
 import core.exception.UserNotFoundException;
+import core.util.ServletRequestUtils;
 
 
 
@@ -30,8 +31,8 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
+		String userId = ServletRequestUtils.getRequiredStringParameter(request, "userId");
+		String password = ServletRequestUtils.getRequiredStringParameter(request, "password");
 
 		try {
 			Customer.login(userId, password);

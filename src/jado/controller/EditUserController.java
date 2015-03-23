@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import core.util.ServletRequestUtils;
+
 @WebServlet("/user/edit")
 public class EditUserController extends HttpServlet{
 
@@ -38,18 +40,18 @@ public class EditUserController extends HttpServlet{
 		
 		//Normal User
 		String userId = (String)session.getAttribute("userId");
-		String password = req.getParameter("password");
-		String name = req.getParameter("name");
-		String phone = req.getParameter("phone");
-		String address = req.getParameter("address");
+		String password = ServletRequestUtils.getRequiredStringParameter(req, "password");
+		String name = ServletRequestUtils.getRequiredStringParameter(req, "name");
+		String phone = ServletRequestUtils.getRequiredStringParameter(req, "phone");
+		String address = ServletRequestUtils.getRequiredStringParameter(req, "address");
 		User user = null;
 
 		//Seller
 		if (req.getParameter("isSeller") != null) {
-			String shopUrl = req.getParameter("shopUrl");
-			String shopPhone = req.getParameter("shopPhone");
-			String bank = req.getParameter("bank");
-			String bankAccount = req.getParameter("bankAccount");
+			String shopUrl = ServletRequestUtils.getRequiredStringParameter(req, "shopUrl");
+			String shopPhone = ServletRequestUtils.getRequiredStringParameter(req, "shopPhone");
+			String bank = ServletRequestUtils.getRequiredStringParameter(req, "bank");
+			String bankAccount = ServletRequestUtils.getRequiredStringParameter(req, "bankAccount");
 			user = new Seller(userId, shopUrl, shopPhone, bank, bankAccount);
 			//UserDao.updateSeller((Seller)user);
 			
