@@ -1,13 +1,13 @@
-var formList = document.querySelectorAll('.form_recent input[type=submit]');
-for (var j = 0; j < formList.length; j++) {
-    formList[j].addEventListener('click', submit, false);
-}
+var form_temp = document.querySelector('.form_recent input[type=submit]');
+form_temp.addEventListener('click', submit_form, false);
 
-
-function submit() {
+function submit_form(e) {
 	e.preventDefault();
-	console.log("1111");
-	var questionForm = document.formList;
-	questionForm.action = "/user/login";
-	questionForm.submit();
+	var myform = e.currentTarget.form;
+	// myform.elements["url"].value = window.location.pathname;
+	myform.action = "/user/login";
+	myform.submit();
 }
+
+
+
