@@ -128,6 +128,11 @@
 						</div>
 					</div>
 				</form>
+				<form class="form-horizontal" action="/user/delete" method="get">
+					<div class="control-group">
+						<button type="submit" name="deleteUser" value="true">회원탈퇴</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
