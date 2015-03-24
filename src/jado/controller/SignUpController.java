@@ -23,13 +23,15 @@ public class SignUpController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		resp.sendRedirect("/signUp.jsp");
+		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");
+		req.setAttribute("url", url);
+		req.getRequestDispatcher("/signUp.jsp").forward(req,  resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");
 
 		//Customer
 		String userId = ServletRequestUtils.getRequiredStringParameter(req,"userId");
@@ -58,7 +60,7 @@ public class SignUpController extends HttpServlet {
 			UserDao.insert(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
 			session.setAttribute("isSeller", true);
 		}
-		resp.sendRedirect("/");
+		resp.sendRedirect(url);
 	}
 
 	private void forward(HttpServletRequest req, HttpServletResponse resp, String errorMessage)
