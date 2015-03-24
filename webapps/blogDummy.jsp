@@ -17,6 +17,7 @@
 </ul>
 <button><a href="/user/logout">로그아웃</a></button>
 </body>
+<script src="/javascripts/submit.js"></script>
 </html>
 
 

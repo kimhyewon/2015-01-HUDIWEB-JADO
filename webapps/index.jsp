@@ -19,6 +19,7 @@
 	</c:otherwise>
 	</c:choose>
 </body>
+<script src="/javascripts/submit.js"></script>
 <script>
 	function showSellerEnroll() {
     	var contentSection = document.querySelector(".seller-container");

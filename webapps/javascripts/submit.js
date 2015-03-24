@@ -1,13 +1,5 @@
-var form_temp = document.querySelector('.form_recent input[type=submit]');
-form_temp.addEventListener('click', submit_form, false);
-
-function submit_form(e) {
-	e.preventDefault();
-	var myform = e.currentTarget.form;
-	// myform.elements["url"].value = window.location.pathname;
-	myform.action = "/user/login";
-	myform.submit();
+var url_list= document.querySelectorAll('input[name=url]');
+for (var j = 0; j < url_list.length; j++) {
+	console.log(url_list[j].value)
+    url_list[j].value = window.location.pathname;
 }
-
-
-

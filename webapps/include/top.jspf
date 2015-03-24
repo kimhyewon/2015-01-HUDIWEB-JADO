@@ -7,8 +7,18 @@
 			<li><a href = "/user/logout"> 로그아웃 </a></li>
 		</c:when>
 		<c:otherwise>
-			<li><a href = "/user"> 회원가입</a></li>
-			<li><a href = "/login.jsp"> 로그인 </a></li>
+			<li>
+			<form action="/user" method="get">
+				<input type="hidden" name="url" value="">
+			    <input type="submit" value="회원가입"/>
+	    	</form>
+	    	</li>
+	    	<li>
+	    	<form action="/user/login" method="get">
+				<input type="hidden" name="url" value="">
+			    <input type="submit" value="로그인"/>
+	    	</form>
+	    	</li>
 		</c:otherwise>
 		</c:choose>
 	</ul>
