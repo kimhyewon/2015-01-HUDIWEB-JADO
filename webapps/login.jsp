@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form class="form_horizontal form_recent" name="form_recent" method="post">
+	<form class="form_horizontal" action="/user/login"  method="post">
 	 	<c:if test="${not empty errorMessage}">
 		<div class="control-group">
 			<label class="error">${errorMessage}</label>
@@ -31,11 +31,11 @@
 		</div>
 		<div class="control-group">
 			<div class="controls">
-				<button type ="submit" class="btn btn-primary">로그인</button>
+				<input type="hidden" name="url" value="${url}">
+				<input type="submit" class="btn btn-primary" value="로그인"/>	
 				<a href = "/user"> 회원가입</a>
 			</div>
 		</div>
 	</form>
-	<script src="/javascripts/submit.js"></script>
 </body>
 </html>
