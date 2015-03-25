@@ -44,7 +44,8 @@ public class EditUserController extends HttpServlet{
 		String name = ServletRequestUtils.getRequiredStringParameter(req, "name");
 		String phone = ServletRequestUtils.getRequiredStringParameter(req, "phone");
 		String address = ServletRequestUtils.getRequiredStringParameter(req, "address");
-		User user = null;
+
+		UserDao.updateCustomer(new Customer(userId, password, name, phone, address));
 
 		//Seller
 		if (req.getParameter("isSeller") != null) {
@@ -52,14 +53,9 @@ public class EditUserController extends HttpServlet{
 			String shopPhone = ServletRequestUtils.getRequiredStringParameter(req, "shopPhone");
 			String bank = ServletRequestUtils.getRequiredStringParameter(req, "bank");
 			String bankAccount = ServletRequestUtils.getRequiredStringParameter(req, "bankAccount");
-			user = new Seller(userId, shopUrl, shopPhone, bank, bankAccount);
-			//UserDao.updateSeller((Seller)user);
-			
-		} else {
-			user = new Customer(userId, password, name, phone, address);
-			//UserDao.updateCustomer((Customer)user);
+			UserDao.updateSeller(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
 		}
-		
+
 		resp.sendRedirect("/");
 	}
 }

@@ -28,30 +28,32 @@
 						<label class="control-label" for="userId">email</label>
 						<div class="controls">
 							<input type="hidden" name="userId" value="${userId}" placeholder=""/>
+							${userId}
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="password">비밀번호</label>
 						<div class="controls">
-							<input type="password" id="password" name="password" value="" placeholder="">
+							<input type="password" id="password" name="password" value="" placeholder="" />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="checkPassword">비밀번호 확인</label>
 						<div class="controls">
-							<input type="password" id="checkPassword" name="checkPassword" value="" placeholder="">
+							<input type="password" id="checkPassword" name="checkPassword" value="" placeholder="" />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="name">이름</label>
 						<div class="controls">
-							<input type="hidden" name="name" value="${user.name}" placeholder=""/>
+							<input type="hidden" name="name" value="${customer.name}" placeholder="${customer.name}"/>
+							${customer.name}
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="phone">전화번호</label>
 						<div class="controls">
-							<input type="text" id="phone" name="phone" value="${user.phone}" placeholder="${user.phone}">
+							<input type="text" id="phone" name="phone" value="${customer.phone}" placeholder="${customer.phone}"/>
 						</div>
 					</div>
 					<div class="control-group">
@@ -77,13 +79,13 @@
 					<div class="control-group">
 						<label class="control-label" for="shopUrl">쇼핑몰 URL</label>
 						<div class="controls">
-							<input type="text" id="shopUrl" name="shopUrl" value="${user.shopUrl}" placeholder="">
+							<input type="text" id="shopUrl" name="shopUrl" value="${seller.shopUrl}" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="shopPhone">쇼핑몰 대표전화</label>
 						<div class="controls">
-							<input type="text" id="shopPhone" name="shopPhone" value="${user.shopPhone}" placeholder="">
+							<input type="text" id="shopPhone" name="shopPhone" value="${seller.shopPhone}" placeholder="">
 						</div>
 					</div>
 					<div class="control-group">
@@ -118,7 +120,7 @@
 					<div class="control-group">
 						<label class="control-label" for="bankAccount">계좌번호</label>
 						<div class="controls">
-							<input type="text" id="bankAccount" name="bankAccount" value="${user.bankAccount}" placeholder="">
+							<input type="text" id="bankAccount" name="bankAccount" value="${seller.bankAccount}" placeholder="">
 						</div>
 					</div>
 					
