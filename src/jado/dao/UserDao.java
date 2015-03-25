@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+
 import jado.model.Customer;
 import jado.model.Seller;
 import core.jdbc.JdbcTemplate;
@@ -62,13 +63,13 @@ public class UserDao {
 	
 	public void removeUser(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
-		String sql = "delete from USERS where userId = ?";
+		String sql = "delete from SELLER where USER_ID = ?";
 		jdbcTemplate.executeUpdate(sql, seller.getUserId());		
 	}
 	
 	public void removeUser(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
-		String sql = "delete from USERS where userId = ?";
+		String sql = "delete from USER where USER_ID = ?";
 		jdbcTemplate.executeUpdate(sql, customer.getUserId());		
 	}
 }

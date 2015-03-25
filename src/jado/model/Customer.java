@@ -43,6 +43,7 @@ public class Customer extends User {
 		return this.password.equals(newPassword);
 	}
 
+
 	//Constructor
 	public Customer(String userId, String password, String name,
 			String phone, String address) {

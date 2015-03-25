@@ -106,6 +106,15 @@
 				</div>
 					<div class="control-group">
 						<div class="controls">
+							<c:choose>
+						    <c:when test="${empty url}">
+								<input type="hidden" name="url" value="">
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" name="url" value="${url}">
+							</c:otherwise>
+							</c:choose>
+							
 							<button type="submit" class="btn btn-primary">회원가입</button>
 						</div>
 					</div>

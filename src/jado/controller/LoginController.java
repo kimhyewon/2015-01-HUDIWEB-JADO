@@ -24,6 +24,9 @@ public class LoginController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");
+		
+		req.setAttribute("url", url);
 		req.getRequestDispatcher("/login.jsp").forward(req,  resp);
 	}
 	
@@ -33,7 +36,7 @@ public class LoginController extends HttpServlet {
 		
 		String userId = ServletRequestUtils.getRequiredStringParameter(request, "userId");
 		String password = ServletRequestUtils.getRequiredStringParameter(request, "password");
-
+		String url = ServletRequestUtils.getRequiredStringParameter(request, "url");
 		try {
 			Customer.login(userId, password);
 			HttpSession session = request.getSession(); //이 줄 추가 
@@ -42,7 +45,7 @@ public class LoginController extends HttpServlet {
 			if(UserDao.selectSellerById(userId) != null) {
 				session.setAttribute("isSeller", true);
 			}
-			response.sendRedirect("/blogDummy.jsp");
+			response.sendRedirect(url);
 		} catch (UserNotFoundException | PasswordMismatchException e) {
 			forward(request, response, e.getMessage());
 		}
