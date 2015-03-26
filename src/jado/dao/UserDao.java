@@ -65,4 +65,10 @@ public class UserDao {
 		String sql = "delete from SELLER where USER_ID = ?";
 		jdbcTemplate.executeUpdate(sql, seller.getUserId());		
 	}
+	
+	public void updateMailAuthStatus() {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		String sql = "update USER set IS_VALIDATED = ?";
+		jdbcTemplate.executeUpdate(sql, "T");
+	}
 }
