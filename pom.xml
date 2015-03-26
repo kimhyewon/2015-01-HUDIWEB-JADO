@@ -167,6 +167,12 @@
 			<artifactId>mail</artifactId>
 			<version>${javax.mail.version}</version>
 		</dependency>
+		<!-- logger -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.2</version>
+		</dependency>
 	</dependencies>
 
 </project>
