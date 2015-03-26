@@ -38,8 +38,8 @@ public class UserDao {
 
 	public static Customer selectUserById(final String userId) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "select * from USER where USER_ID=?";
-		RowMapper<Customer> rm = rs -> new Customer(rs.getString("USER_ID"), rs.getString("PASSWORD"),
+		String sql = "select * from USER where ID=?";
+		RowMapper<Customer> rm = rs -> new Customer(rs.getString("ID"), rs.getString("PASSWORD"),
 				rs.getString("NAME"), rs.getString("PHONE"), rs.getString("ADDRESS"));
 		return jdbcTemplate.executeQuery(sql, rm, userId);
 	}
