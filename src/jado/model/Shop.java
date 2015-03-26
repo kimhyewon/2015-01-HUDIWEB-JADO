@@ -11,8 +11,8 @@ public class Shop {
 	private String footer;
 	
 
-	public Shop(String url, String title, String phone, String banner_url,
-			String logo_url, String theme, String address, String footer) {
+	public Shop(String url, String phone, String address, String title,String banner_url,
+			String logo_url, String theme, String footer) {
 		super();
 		this.url = url;
 		this.title = title;
@@ -22,6 +22,11 @@ public class Shop {
 		this.theme = theme;
 		this.address = address;
 		this.footer = footer;
+	}
+
+
+	public Shop(String url, String phone, String address) {
+		this(url, phone, address, "제목을 입력해 주세요", "default", "default", "theme1", "입력해 주세요");
 	}
 
 

@@ -1,5 +1,6 @@
 package jado.controller;
 
+import jado.dao.ShopDao;
 import jado.dao.UserDao;
 import jado.model.Customer;
 import jado.model.Seller;
@@ -43,11 +44,10 @@ public class SignUpController extends HttpServlet {
 		String address = ServletRequestUtils.getRequiredStringParameter(req,"address");
 		
 		Customer user = new Customer(userId, password, name, phone, address);
-		HttpSession session = req.getSession();
 		
 		try{
 			user.signUp(checkPassword);
-			session.setAttribute("userId", userId); 
+			req.setAttribute("userId", userId); 
 		} catch(DuplicateUserException | PasswordMismatchException e){
 			forward(req, resp, e.getMessage());
 		} 
@@ -60,12 +60,11 @@ public class SignUpController extends HttpServlet {
 			String bank = ServletRequestUtils.getRequiredStringParameter(req,"bank");
 			String bankAccount = ServletRequestUtils.getRequiredStringParameter(req,"bankAccount");
 			
-//			public Shop(String url, String title, String phone, String banner_url,
-//					String logo_url, String theme, String address, String footer) {
-//			Shop shop = new Shop(shopUrl, shopPhone)
+			Shop shop = new Shop(shopUrl, shopPhone, shopAddress);
 			Seller seller = new Seller(userId, shopUrl, bank, bankAccount);
-//			UserDao.insert(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));		//고쳐야함
-			session.setAttribute("isSeller", true);
+			
+			ShopDao.insert(shop);
+			UserDao.insert(seller);
 		}
 		resp.sendRedirect(url);
 	}
