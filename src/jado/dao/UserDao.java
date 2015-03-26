@@ -1,10 +1,5 @@
 package jado.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-
 import jado.model.Customer;
 import jado.model.Seller;
 import core.jdbc.JdbcTemplate;
