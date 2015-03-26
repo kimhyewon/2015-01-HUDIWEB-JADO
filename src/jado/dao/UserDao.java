@@ -13,7 +13,7 @@ import core.jdbc.RowMapper;
 public class UserDao {
 	public static void insert(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "insert into user values(?, ?, ?, ?, ? ,now(), null)";
+		String sql = "insert into user values(?, ?, ?, ?, ? ,now(), null, F)";
 		jdbcTemplate.executeUpdate(sql, customer.getUserId(), customer.getPassword(), customer.getName(),
 				customer.getPhone(), customer.getAddress());
 	}
