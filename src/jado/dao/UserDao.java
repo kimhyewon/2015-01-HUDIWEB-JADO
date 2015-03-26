@@ -8,14 +8,14 @@ import core.jdbc.RowMapper;
 public class UserDao {
 	public static void insert(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "insert into user values(?, ?, ?, ?, ? ,now(), null, 'F')";
+		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F')";
 		jdbcTemplate.executeUpdate(sql, customer.getUserId(), customer.getPassword(), customer.getName(),
 				customer.getPhone(), customer.getAddress());
 	}
 
 	public static void insert(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "insert into seller values (?, ?, ?, ?)";
+		String sql = "insert into SELLER values (?, ?, ?, ?)";
 		jdbcTemplate.executeUpdate(sql, seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
 	}
 
