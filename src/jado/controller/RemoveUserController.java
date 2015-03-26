@@ -47,7 +47,7 @@ public class RemoveUserController extends HttpServlet{
 		UserDao userDao = new UserDao();
 		
 		if(isSeller=="true"){
-			userDao.removeUser(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
+//			userDao.removeUser(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));    고쳐야함
 		} else userDao.removeUser(new Customer(userId, password, name, phone, address));
 		
 

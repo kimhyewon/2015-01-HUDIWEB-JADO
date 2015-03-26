@@ -13,16 +13,15 @@ import core.jdbc.RowMapper;
 public class UserDao {
 	public static void insert(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "insert into user values(?, ?, ?, ?, ? ,now(), null, F)";
+		String sql = "insert into user values(?, ?, ?, ?, ? ,now(), null, 'F')";
 		jdbcTemplate.executeUpdate(sql, customer.getUserId(), customer.getPassword(), customer.getName(),
 				customer.getPhone(), customer.getAddress());
 	}
 
 	public static void insert(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "insert into seller values (?, ?, ?, ?, ?)";
-		jdbcTemplate.executeUpdate(sql, seller.getUserId(), seller.getShopUrl(), seller.getShopPhone(), seller.getBank(),
-				seller.getBankAccount());
+		String sql = "insert into seller values (?, ?, ?, ?)";
+		jdbcTemplate.executeUpdate(sql, seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
 	}
 
 	public static void updateCustomer(Customer customer) {
@@ -34,8 +33,7 @@ public class UserDao {
 	public static void updateSeller(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "update SELLER set (SHOP_URL, SHOP_PHONE, BANK, BANK_ACCOUNT) values (?, ?, ?, ?) where SELLER_ID = ?";
-		jdbcTemplate.executeUpdate(sql, seller.getShopUrl(), seller.getShopPhone(), seller.getBank(),
-				seller.getBankAccount(), seller.getUserId());
+		jdbcTemplate.executeUpdate(sql);	////재우오빠 고쳐줘용~ 
 	}
 
 	public static Customer selectUserById(final String userId) {
@@ -49,8 +47,7 @@ public class UserDao {
 	public static Seller selectSellerById(final String userId) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "select * from SELLER where SELLER_ID=?";
-		RowMapper<Seller> rm = rs -> new Seller(rs.getString("SELLER_ID"), rs.getString("SHOP_URL"),
-				rs.getString("SHOP_PHONE"), rs.getString("BANK"), rs.getString("BANK_ACCOUNT"));
+		RowMapper<Seller> rm = rs -> new Seller(sql, sql, sql, sql);	//재우오빠 고쳐줘용~ 
 		return jdbcTemplate.executeQuery(sql, rm, userId);
 	}
 

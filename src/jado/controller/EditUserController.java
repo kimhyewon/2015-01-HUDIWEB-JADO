@@ -53,7 +53,7 @@ public class EditUserController extends HttpServlet{
 			String shopPhone = ServletRequestUtils.getRequiredStringParameter(req, "shopPhone");
 			String bank = ServletRequestUtils.getRequiredStringParameter(req, "bank");
 			String bankAccount = ServletRequestUtils.getRequiredStringParameter(req, "bankAccount");
-			UserDao.updateSeller(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
+//			UserDao.updateSeller(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));	//고쳐야함   
 		}
 
 		resp.sendRedirect("/");

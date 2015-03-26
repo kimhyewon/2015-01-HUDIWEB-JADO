@@ -3,6 +3,7 @@ package jado.controller;
 import jado.dao.UserDao;
 import jado.model.Customer;
 import jado.model.Seller;
+import jado.model.Shop;
 
 import java.io.IOException;
 
@@ -55,9 +56,15 @@ public class SignUpController extends HttpServlet {
 		if (req.getParameter("isSeller") != null) {
 			String shopUrl = ServletRequestUtils.getRequiredStringParameter(req,"shopUrl");
 			String shopPhone = ServletRequestUtils.getRequiredStringParameter(req,"shopPhone");
+			String shopAddress = ServletRequestUtils.getRequiredStringParameter(req,"shopAddress");
 			String bank = ServletRequestUtils.getRequiredStringParameter(req,"bank");
 			String bankAccount = ServletRequestUtils.getRequiredStringParameter(req,"bankAccount");
-			UserDao.insert(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
+			
+//			public Shop(String url, String title, String phone, String banner_url,
+//					String logo_url, String theme, String address, String footer) {
+//			Shop shop = new Shop(shopUrl, shopPhone)
+			Seller seller = new Seller(userId, shopUrl, bank, bankAccount);
+//			UserDao.insert(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));		//고쳐야함
 			session.setAttribute("isSeller", true);
 		}
 		resp.sendRedirect(url);
