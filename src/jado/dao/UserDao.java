@@ -21,14 +21,14 @@ public class UserDao {
 
 	public static void updateCustomer(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "update USER set (PHONE, ADDRESS) values (?, ?) where USER_ID = ?";
+		String sql = "update USER set PHONE = ?, ADDRESS = ? where ID = ?";
 		jdbcTemplate.executeUpdate(sql, customer.getPhone(), customer.getAddress(), customer.getUserId());
 	}
 
 	public static void updateSeller(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "update SELLER set (SHOP_URL, SHOP_PHONE, BANK, BANK_ACCOUNT) values (?, ?, ?, ?) where SELLER_ID = ?";
-		jdbcTemplate.executeUpdate(sql);	////재우오빠 고쳐줘용~ 
+		String sql = "update SELLER set BANK = ?, BANK_ACCOUNT = ? where ID = ?";
+		jdbcTemplate.executeUpdate(sql, seller.getBank(), seller.getBankAccount(), seller.getUserId()); 
 	}
 
 	public static Customer selectUserById(final String userId) {
@@ -41,8 +41,9 @@ public class UserDao {
 
 	public static Seller selectSellerById(final String userId) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "select * from SELLER where SELLER_ID=?";
-		RowMapper<Seller> rm = rs -> new Seller(sql, sql, sql, sql);	//재우오빠 고쳐줘용~ 
+		String sql = "select * from SELLER where ID=?";
+		RowMapper<Seller> rm = rs -> new Seller(rs.getString("ID"), rs.getString("SHOP_URL"),
+				rs.getString("BANK"), rs.getString("BANK_ACCOUNT")); 
 		return jdbcTemplate.executeQuery(sql, rm, userId);
 	}
 
@@ -53,15 +54,15 @@ public class UserDao {
 		return jdbcTemplate.executeQuery(sql, rm);
 	}
 	
-	public void removeUser(Seller seller) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
-		String sql = "delete from SELLER where USER_ID = ?";
-		jdbcTemplate.executeUpdate(sql, seller.getUserId());		
-	}
-	
 	public void removeUser(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
 		String sql = "delete from USER where USER_ID = ?";
 		jdbcTemplate.executeUpdate(sql, customer.getUserId());		
+	}
+
+	public void removeUser(Seller seller) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
+		String sql = "delete from SELLER where USER_ID = ?";
+		jdbcTemplate.executeUpdate(sql, seller.getUserId());		
 	}
 }
