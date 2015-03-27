@@ -35,7 +35,7 @@ public class LoginController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String userId = ServletRequestUtils.getRequiredStringParameter(request, "userId");
-		String password = ServletRequestUtils.getRequiredStringParameter(request, "password");
+		String password = ServletRequestUtils.getRequiredStringParameter(request, "pwEncryption");
 		String url = ServletRequestUtils.getRequiredStringParameter(request, "url");
 		try {
 			Customer.login(userId, password);

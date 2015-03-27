@@ -40,7 +40,7 @@ public class EditUserController extends HttpServlet{
 		
 		//Normal User
 		String userId = (String)session.getAttribute("userId");
-		String password = ServletRequestUtils.getRequiredStringParameter(req, "password");
+		String password = ServletRequestUtils.getRequiredStringParameter(req, "pwEncryption");
 		String name = ServletRequestUtils.getRequiredStringParameter(req, "name");
 		String phone = ServletRequestUtils.getRequiredStringParameter(req, "phone");
 		String address = ServletRequestUtils.getRequiredStringParameter(req, "address");

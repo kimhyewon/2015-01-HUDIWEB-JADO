@@ -37,8 +37,7 @@ public class SignUpController extends HttpServlet {
 
 		//Customer
 		String userId = ServletRequestUtils.getRequiredStringParameter(req,"userId");
-		String password = ServletRequestUtils.getRequiredStringParameter(req,"password");
-		String checkPassword = ServletRequestUtils.getRequiredStringParameter(req,"checkPassword");
+		String password = ServletRequestUtils.getRequiredStringParameter(req,"pwEncryption");
 		String name = ServletRequestUtils.getRequiredStringParameter(req,"name");
 		String phone = ServletRequestUtils.getRequiredStringParameter(req,"phone");
 		String address = ServletRequestUtils.getRequiredStringParameter(req,"address");
@@ -46,7 +45,7 @@ public class SignUpController extends HttpServlet {
 		Customer user = new Customer(userId, password, name, phone, address);
 		
 		try{
-			user.signUp(checkPassword);
+			user.signUp();
 			req.setAttribute("userId", userId); 
 		} catch(DuplicateUserException | PasswordMismatchException e){
 			forward(req, resp, e.getMessage());

@@ -18,7 +18,7 @@
 					<h1>개인정보수정</h1>
 				</div>
 				
-				<form class="form-horizontal" action="/user/edit" method="post">
+				<form id="signup_form" class="form-horizontal encrypt_form" action="/user/edit" method="post">
 					<c:if test="${not empty errorMessage}">
 					<div class="control-group">
 						<label class="error">${errorMessage}</label>
@@ -35,6 +35,7 @@
 						<label class="control-label" for="password">비밀번호</label>
 						<div class="controls">
 							<input type="password" id="password" name="password" value="" placeholder="" />
+							<input type="hidden" name="pwEncryption" value="">
 						</div>
 					</div>
 					<div class="control-group">
@@ -126,17 +127,24 @@
 					
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" class="btn btn-primary">수정</button>
+							<input type="submit" class="btn btn-primary">수정</button>
 						</div>
 					</div>
 				</form>
 				<form class="form-horizontal" action="/user/delete" method="post">
 					<div class="control-group">
-						<button type="submit" name="deleteUser" value="true">회원탈퇴</button>
+						<input type="submit" name="deleteUser" value="true">회원탈퇴</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 </body>
+<!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
+<script src="/javascripts/sha256.js"></script>
+<script src="/javascripts/encrypt_password.js"></script>
+
+<!-- index.jsp && sinUp.jsp 필요 -->
+<script src="/javascripts/form_verify.js"></script>
+<script src="/javascripts/show_seller_enroll.js"></script>
 </html>
