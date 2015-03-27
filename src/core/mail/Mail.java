@@ -12,7 +12,7 @@ public class Mail {
 		MailTemplate mt = MailTemplateStorage.getMail(mailTemplate);
 		
 		this.mailRecipient = mailRecipient;
-		this.mailSubject = mt.getSubject();
+		this.mailSubject = mt.getSubject(mailTemplate);
 		this.mailBody = mt.getBody(mailRecipient);
 	}
 	

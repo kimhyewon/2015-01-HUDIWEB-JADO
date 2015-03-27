@@ -42,7 +42,7 @@ public class MailSender {
 			transport.close();
 			
 			logger.info("메일이 정상적으로 발송되었습니다. email:{} uuid:{} verifyAddress:{}", mailRecipient, "uuid",
-					RequestResult.MailingRequestAddress);
+					EmailRequestResult.MailingRequestAddress);
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
