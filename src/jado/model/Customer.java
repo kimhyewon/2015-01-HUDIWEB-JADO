@@ -26,14 +26,11 @@ public class Customer extends User {
 		return true;
 	}
 	
-	public void signUp(String password2) throws DuplicateUserException, PasswordMismatchException{
+	public void signUp() throws DuplicateUserException, PasswordMismatchException{
 		
 		Customer tempUser = UserDao.selectUserById(this.userId);
 		if(tempUser != null){
 			throw new DuplicateUserException();
-		}
-		if(!matchPassword(password2)){
-			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. 다시 로그인 해주세요.");
 		}
 		UserDao.insert(this);
 	}

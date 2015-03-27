@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form class="form_horizontal" action="/user/login"  method="post">
+	<form class="form_horizontal encrypt_form"  action="/user/login"  method="post">
 	 	<c:if test="${not empty errorMessage}">
 		<div class="control-group">
 			<label class="error">${errorMessage}</label>
@@ -27,6 +27,8 @@
 			<label class="control-label" for="password">비밀번호</label>
 			<div class="controls">
 				<input type ="password" id="password" name="password" placeholder="">
+				<input type="hidden" name="pwEncryption" value="">
+
 			</div>
 		</div>
 		<div class="control-group">
@@ -38,4 +40,7 @@
 		</div>
 	</form>
 </body>
+<!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
+<script src="/javascripts/sha256.js"></script>
+<script src="/javascripts/encrypt_password.js"></script>
 </html>
