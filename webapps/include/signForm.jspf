@@ -8,7 +8,7 @@
 					<h1>회원가입</h1>
 				</div>
 				
-				<form id ="signup_form" class="form-horizontal" action="/user" method="post">
+				<form id ="signup_form" class="encrypt_form form-horizontal" action="/user" method="post">
 					<c:if test="${not empty errorMessage}">
 					<div class="control-group">
 						<label class="error">${errorMessage}</label>
