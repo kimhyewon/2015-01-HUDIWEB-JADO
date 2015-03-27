@@ -34,19 +34,19 @@ public class RemoveUserController extends HttpServlet{
 		String phone = (String)session.getAttribute("phone");
 		String address = (String)session.getAttribute("address");
 		
-		
+		String sellerId = (String)session.getAttribute("sellerId");
 		String shopUrl = (String)session.getAttribute("shopUrl");
 		String shopPhone = (String)session.getAttribute("shopPhone");
 		String bank = (String)session.getAttribute("bank");
 		String bankAccount = (String)session.getAttribute("bankAccount");
 		
 		
-		String isSeller = (String)session.getAttribute("isSeller");
+		Boolean isSeller = (Boolean)session.getAttribute("isSeller");
 		System.out.println(isSeller);
 		
 		UserDao userDao = new UserDao();
 		
-		if(isSeller=="true"){
+		if(isSeller==true){
 			userDao.removeUser(new Seller(userId, shopUrl, shopPhone, bank, bankAccount));
 		} else userDao.removeUser(new Customer(userId, password, name, phone, address));
 		
