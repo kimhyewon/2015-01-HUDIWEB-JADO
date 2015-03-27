@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet {
 		String url = ServletRequestUtils.getRequiredStringParameter(request, "url");
 		try {
 			Customer.login(userId, password);
-			HttpSession session = request.getSession(); //이 줄 추가 
+			HttpSession session = request.getSession();
 			session.setAttribute("userId", userId); 
 
 			if(UserDao.selectSellerById(userId) != null) {

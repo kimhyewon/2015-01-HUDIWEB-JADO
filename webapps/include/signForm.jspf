@@ -69,6 +69,12 @@
 						</div>
 					</div>
 					<div class="control-group">
+						<label class="control-label" for="shopAddress">쇼핑몰 주소</label>
+						<div class="controls">
+							<input type="text" id="shopAddress" name="shopAddress" placeholder="">
+						</div>
+					</div>
+					<div class="control-group">
 						<label class="control-label" for="bank">은행</label>
 						<div class="controls">
 							<select name="bank">
