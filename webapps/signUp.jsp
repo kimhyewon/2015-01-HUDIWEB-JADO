@@ -11,13 +11,13 @@
     <h1>SHOPPING!!!</h1>
     <h2>지금 가입하시면<br>JADO에서 운영하는<p>&{numberOfShops}</p>개의 쇼핑블로그를<br>이용할 수 있습니다!</h2>
     <c:choose>
-    <c:when test="${empty userId}">
-		<%@ include file="/include/signForm.jspf" %>
-	</c:when>
-	<c:otherwise>
-		<h1>WELCOME!!!</h1>
-	</c:otherwise>
-	</c:choose>
+     <c:when test="${empty userId}">
+		 <%@ include file="/include/signForm.jspf" %>
+	   </c:when>
+	   <c:otherwise>
+		 <h1>WELCOME!!!</h1>
+	   </c:otherwise>
+	  </c:choose>
 </body>
 <script>
 	function showSellerEnroll() {

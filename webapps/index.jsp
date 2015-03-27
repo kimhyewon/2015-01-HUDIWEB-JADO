@@ -19,24 +19,14 @@
 	</c:otherwise>
 	</c:choose>
 </body>
+<!-- index.jsp && dummp blog 필요 -->
 <script src="/javascripts/submit.js"></script>
-<script>
-	function showSellerEnroll() {
-    	var contentSection = document.querySelector(".seller-container");
-       	
-       	if(contentSection.style.display == "none") {
-            contentSection.style.display = "block";
- 			contentSection.style.height = 0;
+<!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
+<script src="/javascripts/sha256.js"></script>
+<script src="/javascripts/form_verify.js"></script>
+<script src="/javascripts/show_seller_enroll.js"></script>
 
-    		var nTime = setInterval(function() {
-     			var _nPre = parseFloat(contentSection.style.height);
-      			if(_nPre > 150) clearInterval(nTime);
-      			contentSection.style.height = _nPre + 10 + "px";
-   			}, 10);
-        }
-        else {
-            contentSection.style.display="none";
-        }
-	}
+<script>
+
 </script>
 </html>
