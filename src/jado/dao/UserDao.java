@@ -54,15 +54,15 @@ public class UserDao {
 		return jdbcTemplate.executeQuery(sql, rm);
 	}
 	
-	public void removeUser(Customer customer) {
+	public static void removeUser(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
-		String sql = "delete from USER where USER_ID = ?";
+		String sql = "delete from USER where ID = ?";
 		jdbcTemplate.executeUpdate(sql, customer.getUserId());		
 	}
 
-	public void removeUser(Seller seller) {
+	public static void removeUser(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
-		String sql = "delete from SELLER where USER_ID = ?";
+		String sql = "delete from SELLER where ID = ?";
 		jdbcTemplate.executeUpdate(sql, seller.getUserId());		
 	}
 }
