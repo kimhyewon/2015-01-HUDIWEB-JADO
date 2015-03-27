@@ -8,14 +8,14 @@ import core.jdbc.RowMapper;
 public class UserDao {
 	public static void insert(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "insert into user values(?, ?, ?, ?, ? ,now(), null, 'F')";
+		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F')";
 		jdbcTemplate.executeUpdate(sql, customer.getUserId(), customer.getPassword(), customer.getName(),
 				customer.getPhone(), customer.getAddress());
 	}
 
 	public static void insert(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "insert into seller values (?, ?, ?, ?)";
+		String sql = "insert into SELLER values (?, ?, ?, ?)";
 		jdbcTemplate.executeUpdate(sql, seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
 	}
 
@@ -49,20 +49,20 @@ public class UserDao {
 
 	public static int numberOfSellers() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "select count(SELLER_ID) AS count from SELLER";
+		String sql = "select count(ID) AS count from SELLER";
 		RowMapper<Integer> rm = rs -> rs.getInt("count");
 		return jdbcTemplate.executeQuery(sql, rm);
 	}
 	
 	public void removeUser(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
-		String sql = "delete from USER where USER_ID = ?";
+		String sql = "delete from USER where ID = ?";
 		jdbcTemplate.executeUpdate(sql, customer.getUserId());		
 	}
 
 	public void removeUser(Seller seller) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
-		String sql = "delete from SELLER where USER_ID = ?";
+		String sql = "delete from SELLER where ID = ?";
 		jdbcTemplate.executeUpdate(sql, seller.getUserId());		
 	}
 }
