@@ -30,7 +30,7 @@ public class Customer extends User {
 		
 		Customer tempUser = UserDao.selectUserById(this.userId);
 		if(tempUser != null){
-			throw new DuplicateUserException();
+			throw new DuplicateUserException("이미 가입된 사용자입니다.");
 		}
 		UserDao.insert(this);
 	}
