@@ -14,8 +14,8 @@ public class MailTemplateStorage {
 	}
 	
 	static {
-		mailSubjects.put("joinVerify", "[JADO] 서비스 가입을 위한 이메일 인증 메일입니다");
-		mailSubjects.put("joinWelcome", "[JADO] 서비스 가입을 축하합니다");
+		mailSubjects.put("joinVerify", "[Ne #] 서비스 가입을 위한 이메일 인증 메일입니다");
+		mailSubjects.put("joinWelcome", "[Ne #] 서비스 가입을 축하합니다");
 	}
 	
 	public static String getSubject(String mailType) {
