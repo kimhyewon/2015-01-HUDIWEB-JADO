@@ -19,10 +19,15 @@
 	</c:otherwise>
 	</c:choose>
 </body>
+
 <!-- index.jsp && dummp blog 필요 -->
 <script src="/javascripts/submit.js"></script>
+
 <!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
 <script src="/javascripts/sha256.js"></script>
+<script src="/javascripts/encrypt_password.js"></script>
+
+<!-- index.jsp && sinUp.jsp 필요 -->
 <script src="/javascripts/form_verify.js"></script>
 <script src="/javascripts/show_seller_enroll.js"></script>
 
