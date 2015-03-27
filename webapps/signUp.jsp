@@ -19,23 +19,9 @@
 	   </c:otherwise>
 	  </c:choose>
 </body>
-<script>
-	function showSellerEnroll() {
-    	var contentSection = document.querySelector(".seller-container");
-       	
-       	if(contentSection.style.display == "none") {
-            contentSection.style.display = "block";
- 			contentSection.style.height = 0;
+<script src="/javascripts/lib/sha256.js"></script>
+<script src="/javascripts/encrypt_password.js"></script>
 
-    		var nTime = setInterval(function() {
-     			var _nPre = parseFloat(contentSection.style.height);
-      			if(_nPre > 150) clearInterval(nTime);
-      			contentSection.style.height = _nPre + 10 + "px";
-   			}, 10);
-        }
-        else {
-            contentSection.style.display="none";
-        }
-	}
-</script>
+<script src="/javascripts/form_verify.js"></script>
+<script src="/javascripts/show_seller_enroll.js"></script>
 </html>

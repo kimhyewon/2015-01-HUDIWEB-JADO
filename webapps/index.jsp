@@ -24,7 +24,7 @@
 <script src="/javascripts/submit.js"></script>
 
 <!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
-<script src="/javascripts/sha256.js"></script>
+<script src="/javascripts/lib/sha256.js"></script>
 <script src="/javascripts/encrypt_password.js"></script>
 
 <!-- index.jsp && sinUp.jsp 필요 -->
