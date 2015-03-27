@@ -9,7 +9,7 @@ public class Mail {
 	String mailBody;
 	
 	public Mail(String mailRecipient, String mailTemplate) {
-		MailTemplate mt = MailTemplateStorage.getMail(mailTemplate);
+		MailTemplate mt = MailTemplateStorage.getBody(mailTemplate);
 		
 		this.mailRecipient = mailRecipient;
 		this.mailSubject = mt.getSubject(mailTemplate);
