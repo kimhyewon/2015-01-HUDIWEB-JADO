@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body onClick='rng_seed_time();' onKeyPress='rng_seed_time();'>
 	<form class="form_horizontal encrypt_form"  action="/user/login"  method="post">
 	 	<c:if test="${not empty errorMessage}">
 		<div class="control-group">
@@ -20,7 +20,8 @@
 		<div class="control-group">
 			<label class="control-label" for="userId">사용자 아이디</label>
 			<div class="controls">
-				<input type ="text" name="userId" value="" />
+				<input type ="text" name="userId">
+				<input type="hidden" name="idEncryption" value="">
 			</div>
 		</div>
 		<div class="control-group">
@@ -33,6 +34,8 @@
 		</div>
 		<div class="control-group">
 			<div class="controls">
+				<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}>" />
+            	<input type="hidden" name="rsaPublicKeyExponent" value="${publicKeyExponent}>" />
 				<input type="hidden" name="url" value="${url}">
 				<input type="submit" class="btn btn-primary" value="로그인"/>	
 				<a href = "/user"> 회원가입</a>
@@ -41,6 +44,15 @@
 	</form>
 </body>
 <!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
-<script src="/javascripts/sha256.js"></script>
+<script src="/javascripts/lib/sha256.js"></script>
 <script src="/javascripts/encrypt_password.js"></script>
+
+<!-- rsa 추가 -->
+<script src="/javascripts/lib/jsbn.js"></script>
+<script src="/javascripts/lib/rsa.js"></script>
+<script src="/javascripts/lib/ec.js"></script>
+<script src="/javascripts/lib/rng.js"></script>
+<script src="/javascripts/lib/prng4.js"></script>
+<script src="/javascripts/lib/base64.js"></script>
+
 </html>

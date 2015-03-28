@@ -12,69 +12,78 @@ public class Customer extends User {
 	private String name;
 	private String phone;
 	private String address;
-	
-	public static boolean login(String userId, String password) 
-			throws UserNotFoundException, PasswordMismatchException {
-		
+
+	public boolean login() throws UserNotFoundException,
+			PasswordMismatchException {
+
 		Customer user = UserDao.selectUserById(userId);
-		if(user == null){
+		if (user == null) {
 			throw new UserNotFoundException("존재하지 않는 ID입니다.");
 		}
-		if(!user.matchPassword(password)) {
+		if (!user.matchPassword(password)) {
 			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. 다시 로그인 해주세요.");
 		}
 		return true;
 	}
-	
-	public void signUp() throws DuplicateUserException, PasswordMismatchException{
-		
+
+	public void signUp() throws DuplicateUserException,
+			PasswordMismatchException {
+
 		Customer tempUser = UserDao.selectUserById(this.userId);
-		if(tempUser != null){
+		if (tempUser != null) {
 			throw new DuplicateUserException("이미 가입된 사용자입니다.");
 		}
 		UserDao.insert(this);
 	}
-	
-	
+
 	private boolean matchPassword(String newPassword) {
 		return this.password.equals(newPassword);
 	}
 
-
-	//Constructor
-	public Customer(String userId, String password, String name,
-			String phone, String address) {
+	// Constructor
+	public Customer(String userId, String password, String name, String phone,
+			String address) {
 		super(userId);
 		this.password = password;
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
 	}
-	
-	//Getter
+
+	public Customer(String userId, String password) {
+		this(userId, password, null, null, null);
+	}
+
+	// Getter
 	public String getPassword() {
 		return password;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public String getAddress() {
 		return address;
 	}
-	
-	//Setter
+
+	// Setter
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
