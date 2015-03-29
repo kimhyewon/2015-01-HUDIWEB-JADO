@@ -7,7 +7,7 @@ import core.mail.MailType;
 
 public class MailTemplateStorage {
 	
-	private static Map<String, MailTemplate> templates = new HashMap<>();
+	private static Map<String, AbstractMailTemplate> templates = new HashMap<>();
 	private static Map<String, String> mailSubjects = new HashMap<>();
 	
 	static {
@@ -24,7 +24,7 @@ public class MailTemplateStorage {
 		return mailSubjects.get(mailType.getValue());
 	}
 	
-	public static MailTemplate getBody(MailType joinVerify) {
+	public static AbstractMailTemplate getBody(MailType joinVerify) {
 		return templates.get(joinVerify.getValue());
 	}
 }

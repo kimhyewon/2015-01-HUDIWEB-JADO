@@ -1,9 +1,9 @@
 package core.mail.template;
 
-public class JoinWelcomeMail extends MailTemplate {
+public class JoinWelcomeMail extends AbstractMailTemplate {
 
 	@Override
-	protected String getTemplate(String mailRecipient) {
+	public String getTemplate(String mailRecipient) {
 		return  ""
 				+"<div class='mail' style='box-sizing: border-box;width: 100%;margin: 0 auto;min-width: 320px !important;'>"
 				+"	<div class='top-line' style='box-sizing: border-box;width: 100%;height: 15px;background-color: #AD1457;'></div>"

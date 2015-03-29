@@ -1,6 +1,6 @@
 package core.mail;
 
-import core.mail.template.MailTemplate;
+import core.mail.template.AbstractMailTemplate;
 import core.mail.template.MailTemplateStorage;
 
 public class Mail {
@@ -9,7 +9,7 @@ public class Mail {
 	String mailBody;
 	
 	public Mail(String mailRecipient, MailType joinVerify) {
-		MailTemplate mt = MailTemplateStorage.getBody(joinVerify);
+		AbstractMailTemplate mt = MailTemplateStorage.getBody(joinVerify);
 		
 		this.mailRecipient = mailRecipient;
 		this.mailSubject = mt.getSubject(joinVerify);

@@ -20,7 +20,7 @@ import core.exception.PasswordMismatchException;
 import core.mail.Mail;
 import core.mail.MailSender;
 import core.mail.MailType;
-import core.mail.template.MailTemplate;
+import core.mail.template.AbstractMailTemplate;
 import core.mail.template.MailTemplateStorage;
 import core.util.ServletRequestUtils;
 

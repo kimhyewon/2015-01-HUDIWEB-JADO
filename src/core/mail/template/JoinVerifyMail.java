@@ -4,10 +4,10 @@ import jado.dao.MailAuthDao;
 import core.mail.EmailRequestResult;
 import core.mail.UUIDGenerator;
 
-public class JoinVerifyMail extends MailTemplate {
+public class JoinVerifyMail extends AbstractMailTemplate {
 	
 	@Override
-	protected String getTemplate(String mailRecipient) {
+	public String getTemplate(String mailRecipient) {
 		String uuid = setVerifyKeyOnDB(mailRecipient);
 		return getTemplate(mailRecipient, uuid);
 	}
