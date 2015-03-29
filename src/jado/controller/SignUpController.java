@@ -19,7 +19,6 @@ import core.exception.DuplicateUserException;
 import core.exception.PasswordMismatchException;
 import core.mail.Mail;
 import core.mail.MailSender;
-import core.mail.template.MailTemplate;
 import core.mail.template.MailTemplateStorage;
 import core.util.ServletRequestUtils;
 
@@ -70,8 +69,7 @@ public class SignUpController extends HttpServlet {
 			UserDao.insert(seller);
 		}
 		
-		// TODO 상수로 변경 
-		MailSender.send(new Mail(userId, "joinVerify"));
+		MailSender.send(new Mail(userId, MailTemplateStorage.Type.JOIN_VERIFY));
 		
 		resp.sendRedirect(url);
 	}
