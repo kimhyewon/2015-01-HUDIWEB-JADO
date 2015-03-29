@@ -18,4 +18,13 @@ public class MailAuthDao {
 			return true;
 		return false;
 	}
+
+	public boolean isAlreadyVerified(String userEmail) {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		String sql = "select IS_VALIDATED from USER where ID=?";
+		RowMapper<String> rm = rs -> rs.getString("IS_VALIDATED");
+		if (jdbcTemplate.executeQuery(sql, rm, userEmail).equals("T"))
+			return true;
+		return false;
+	}
 }

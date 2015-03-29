@@ -36,17 +36,27 @@ public class MailAuthController extends HttpServlet {
 		String userEmail = ServletRequestUtils.getRequiredStringParameter(request, "requestemail");
 		String uuid = ServletRequestUtils.getRequiredStringParameter(request, "requestuuid");
 		
-		if(new MailAuthDao().verify(userEmail, uuid))
+		MailAuthDao mailAuthDao = new MailAuthDao();
+		
+		if(mailAuthDao.isAlreadyVerified(userEmail)) {
+			response.getWriter().print("<h1>Your email is Already authenticated</h1>");
+			logger.debug("메일 중복 인증 시도가 발생함");
+			return;
+		}
+		
+		if(mailAuthDao.verify(userEmail, uuid))
 		{
 			new UserDao().updateMailAuthStatus();
 			MailSender.send(new Mail(userEmail, "joinWelcome"));
 
 			// TODO 인증 성공 페이지로 이동
-			logger.debug("인증성공");
+			response.getWriter().print("<h1>Your email is successfully authenticated</h1>");
+			logger.debug("메일 인증 성공");
 			
 		} else {
 			// TODO 인증 실패 페이지로 이동
-			logger.debug("인증실패");
+			response.getWriter().print("<h1>Your e-mail authentication failed</h1>");
+			logger.debug("메일 인증 실패");
 		}
 	}
 }
