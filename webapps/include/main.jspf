@@ -12,17 +12,14 @@
 		<div id = "background_con">
 			<img alt="" style="position: absolute; width: 100%; height: 100%; opacity: 1; min-width: 700px;" src="http://stylonica.com/wp-content/uploads/2014/03/HD-Colorful-Spring-Wallpaper-1.jpg" >	
 		</div>
-<<<<<<< HEAD
 		<a href= "" style="color:white">
 		<div id = "logo">
 			<img alt="" style="width: 100%; height: 100%; opacity: 1;" src="http://www.bluefirebroadband.com/images/apple-logo.png" >
 		</div>
 		</a>
-=======
 		<a href= "" style="color:white"><div id = "logo">
 			<img src="http://i.imgur.com/ewai3EQ.png" style="width: 83%; height: 83%;">
 		</div></a>
->>>>>>> 1d8b3922c7e1a7fddb5658b724f13d15474a3df7
 		<!-- <div id = "top">
 			<a href= "" style="color:black" ><li class = "top_button login">로그인</li></a>
 			<li class = "top_bar"></li>

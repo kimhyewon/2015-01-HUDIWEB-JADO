@@ -1,5 +1,10 @@
+#signUpContainer {
+	float: left;
+	margin-left: 35%;
+	margin-top: 600px;
+}
+
 #signUpContainer h2 {
-	margin-bottom: 12px;
 	font-size: 24px;
 }
 
