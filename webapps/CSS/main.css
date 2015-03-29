@@ -78,17 +78,15 @@ button {
 	text-align: center;
 	color: black;
 	font-size: 6em;
-	opacity: 0.25;
 	margin-left: -43px;
 }
 
 #explanation {
-	margin-top: 0px;
+	margin-top: 17px;
 	text-align: center;
 	color: black;
 	font-size: 2.7em;
-	opacity: 0.6;
-	margin-left: -21px;
+	margin-left: -40px;
 }
 
 .main_btn {
@@ -101,7 +99,7 @@ button {
 	font-size: 16px;
 	border: none;
 	border-radius: 2px;	 
-	margin-top: 10px;
+	margin-top: 13px;
 }
 
 .signup_btn {
