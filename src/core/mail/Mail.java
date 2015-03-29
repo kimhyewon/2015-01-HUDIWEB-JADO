@@ -8,7 +8,7 @@ public class Mail {
 	String mailSubject;
 	String mailBody;
 	
-	public Mail(String mailRecipient, MailType joinVerify) {
+	public Mail(String mailRecipient, MailTemplateStorage.Type joinVerify) {
 		AbstractMailTemplate mt = MailTemplateStorage.getBody(joinVerify);
 		
 		this.mailRecipient = mailRecipient;

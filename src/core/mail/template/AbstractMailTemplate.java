@@ -1,9 +1,9 @@
 package core.mail.template;
 
-import core.mail.MailType;
+import core.mail.template.MailTemplateStorage.Type;
 
 public abstract class AbstractMailTemplate implements MailTemplate {
-	public String getSubject(MailType joinVerify) {
+	public String getSubject(Type joinVerify) {
 		return MailTemplateStorage.getSubject(joinVerify);
 	}
 	
