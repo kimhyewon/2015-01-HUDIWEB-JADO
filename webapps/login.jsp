@@ -4,18 +4,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Ne#</title>
+	<title>Ne#</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/css/top.css" />
+	<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen">
 </head>
 <body onClick='rng_seed_time();' onKeyPress='rng_seed_time();'>
+	<%@ include file="/include/top.jspf" %>
 	<form class="form_horizontal encrypt_form"  action="/user/login"  method="post">
 	 	<c:if test="${not empty errorMessage}">
 		<div class="control-group">
 			<label class="error">${errorMessage}</label>
 		</div>
 		</c:if> 
-
-		
 		<div class="title"><h1>로그인</h1></div>
 		<div class="control-group">
 			<label class="control-label" for="userId">사용자 아이디</label>
@@ -43,6 +45,7 @@
 		</div>
 	</form>
 </body>
+
 <!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
 <script src="/javascripts/lib/sha256.js"></script>
 <script src="/javascripts/encrypt_password.js"></script>

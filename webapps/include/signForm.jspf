@@ -70,6 +70,7 @@
 				<input type="hidden" name="url" value="${url}">
 			</c:otherwise>
 		</c:choose>
+		<input type="hidden" name="shopAddress" value="NULL">
 		<input type="submit" value="회 원  가 입">
 	</form>
 </div>		

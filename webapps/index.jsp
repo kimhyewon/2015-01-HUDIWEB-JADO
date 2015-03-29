@@ -6,20 +6,22 @@
 <head>
 	<title>Ne#</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="css/signForm.css" />
+	<link rel="stylesheet" type="text/css" href="/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/css/top.css" />
+	<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="/css/signForm.css" />
 </head>
 <body>
     <%@ include file="/include/top.jspf" %>
     <c:choose>
     <c:when test="${empty userId}">
     	<%@ include file="/include/main.jspf" %>
+    	<%@ include file="/include/signForm.jspf" %>
 	</c:when>
 	<c:otherwise>
-		<h1>WELCOME!!!</h1>
+		<h1>Welcome!! Redirect 처리 추가 예정</h1>
 	</c:otherwise>
 	</c:choose>
-	<%@ include file="/include/signForm.jspf" %>
 </body>
 
 <!-- index.jsp && dummp blog 필요 -->

@@ -1,0 +1,12 @@
+#top {
+	position: fixed;
+  	top: 35px;
+	width: 100%;
+	opacity: 0.8;
+}
+
+.top_button {
+	float: right;
+	margin: 15px;
+	font-size: 14.8px;
+}

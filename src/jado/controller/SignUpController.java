@@ -28,8 +28,9 @@ public class SignUpController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");
-		
-		req.setAttribute("url", url);
+		if (url != null) {
+			req.setAttribute("url", url);
+		}
 		req.getRequestDispatcher("/signUp.jsp").forward(req,  resp);
 	}
 	
