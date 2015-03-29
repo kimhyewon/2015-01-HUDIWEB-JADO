@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import core.mail.Mail;
 import core.mail.MailSender;
+import core.mail.MailType;
 import core.util.ServletRequestUtils;
 
 @WebServlet("/user/mailAuth")
@@ -47,7 +48,7 @@ public class MailAuthController extends HttpServlet {
 		if(mailAuthDao.verify(userEmail, uuid))
 		{
 			new UserDao().updateMailAuthStatus();
-			MailSender.send(new Mail(userEmail, "joinWelcome"));
+			MailSender.send(new Mail(userEmail, MailType.JOIN_WELCOME));
 
 			// TODO 인증 성공 페이지로 이동
 			response.getWriter().print("<h1>Your email is successfully authenticated</h1>");

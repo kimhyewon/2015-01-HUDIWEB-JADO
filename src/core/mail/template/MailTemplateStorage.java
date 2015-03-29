@@ -3,6 +3,8 @@ package core.mail.template;
 import java.util.HashMap;
 import java.util.Map;
 
+import core.mail.MailType;
+
 public class MailTemplateStorage {
 	
 	private static Map<String, MailTemplate> templates = new HashMap<>();
@@ -18,11 +20,11 @@ public class MailTemplateStorage {
 		mailSubjects.put("joinWelcome", "[Ne #] 서비스 가입을 축하합니다");
 	}
 	
-	public static String getSubject(String mailType) {
-		return mailSubjects.get(mailType);
+	public static String getSubject(MailType mailType) {
+		return mailSubjects.get(mailType.getValue());
 	}
 	
-	public static MailTemplate getBody(String type) {
-		return templates.get(type);
+	public static MailTemplate getBody(MailType joinVerify) {
+		return templates.get(joinVerify.getValue());
 	}
 }

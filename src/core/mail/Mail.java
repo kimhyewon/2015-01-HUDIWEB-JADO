@@ -8,11 +8,11 @@ public class Mail {
 	String mailSubject;
 	String mailBody;
 	
-	public Mail(String mailRecipient, String mailTemplate) {
-		MailTemplate mt = MailTemplateStorage.getBody(mailTemplate);
+	public Mail(String mailRecipient, MailType joinVerify) {
+		MailTemplate mt = MailTemplateStorage.getBody(joinVerify);
 		
 		this.mailRecipient = mailRecipient;
-		this.mailSubject = mt.getSubject(mailTemplate);
+		this.mailSubject = mt.getSubject(joinVerify);
 		this.mailBody = mt.getBody(mailRecipient);
 	}
 	
