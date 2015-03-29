@@ -14,7 +14,6 @@
     <c:choose>
     <c:when test="${empty userId}">
     	<%@ include file="/include/main.jspf" %>
-		<%-- <%@ include file="/include/signForm.jspf" %> --%>
 	</c:when>
 	<c:otherwise>
 		<h1>WELCOME!!!</h1>
