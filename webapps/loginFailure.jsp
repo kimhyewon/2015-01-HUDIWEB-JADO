@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Insert title here</title>
+		<title>Ne#</title>
 	</head>
 	<body>
 		로그인에 실폐하셨습니다.

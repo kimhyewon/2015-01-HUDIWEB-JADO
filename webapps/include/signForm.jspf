@@ -1,131 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<div class="container">
-		<div class="row">
-			<div class="span12">
-				<section id="typography"></section>
-				<div class="page-header">
-					<h1>회원가입</h1>
-				</div>
-				
-				<form id ="signup_form" class="encrypt_form form-horizontal" action="/user" method="post">
-					<c:if test="${not empty errorMessage}">
-					<div class="control-group">
-						<label class="error">${errorMessage}</label>
-					</div>
-					</c:if>
-					<div class="control-group">
-						<label class="control-label" for="userId">email</label>
-						<div class="controls">
-							<input type="text" name="userId" placeholder=""/>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="password">비밀번호</label>
-						<div class="controls">
-							<input type="password" id="password" name="password" placeholder="">
-							<input type="hidden" name="pwEncryption" >
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="checkPassword">비밀번호 확인</label>
-						<div class="controls">
-							<input type="password" id="checkPassword" name="checkPassword" placeholder="">
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="name">이름</label>
-						<div class="controls">
-							<input type="text" id="name" name="name" placeholder=""/>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="phone">전화번호</label>
-						<div class="controls">
-							<input type="text" id="phone" name="phone" placeholder="">
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="address">주소</label>
-						<div class="controls">
-							<input type="text" id="address" name="address" placeholder="">
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="controls">
-							<input type="checkbox"  onclick = "showSellerEnroll()"  id="isSeller" name="isSeller" value="true" />
-						</div>			
-					</div>
-				<div class="seller-container" style="display:none;">	
-					<div class="control-group">
-						<label class="control-label" for="shopUrl">쇼핑몰 URL</label>
-						<div class="controls">
-							<input type="text" id="shopUrl" name="shopUrl" placeholder="">
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="shopPhone">쇼핑몰 대표전화</label>
-						<div class="controls">
-							<input type="text" id="shopPhone" name="shopPhone" placeholder="">
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="shopAddress">쇼핑몰 주소</label>
-						<div class="controls">
-							<input type="text" id="shopAddress" name="shopAddress" placeholder="">
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="bank">은행</label>
-						<div class="controls">
-							<select name="bank">
-								<option value="국민">국민</option>
-								<option value="신한">신한</option>
-								<option value="하나">하나</option>
-								<option value="우리">우리</option>
-								<option value="외환">외환</option>
-								<option value="기업">기업</option>
-								<option value="농협">농협</option>
-								<option value="산업">산업</option>
-								<option value="수협">수협</option>
-								<option value="한국수출입">한국수출입</option>
-								<option value="씨티">씨티</option>
-								<option value="SC제일">SC제일</option>
-								<option value="새마을">새마을</option>
-								<option value="신협">신협</option>
-								<option value="우체국">우체국</option>
-								<option value="경남">경남</option>
-								<option value="광주">광주</option>
-								<option value="대구">대구</option>
-								<option value="부산">부산</option>
-								<option value="전북">전북</option>
-								<option value="제주">제주</option>
-								<option value="기타">기타</option>
-							</select>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="bankAccount">계좌번호</label>
-						<div class="controls">
-							<input type="text" id="bankAccount" name="bankAccount" placeholder="">
-						</div>
-					</div>
-				</div>
-					<div class="control-group">
-						<div class="controls">
-							<c:choose>
-						    <c:when test="${empty url}">
-								<input type="hidden" name="url" value="">
-							</c:when>
-							<c:otherwise>
-								<input type="hidden" name="url" value="${url}">
-							</c:otherwise>
-							</c:choose>
-							
-							<input type="submit" class="btn btn-primary">회원가입</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<div id="signUpContainer">
+	<form id ="signupForm" action="/user" method="post" autocomplete="off">
+		<h2>Sign Up</h2>
+		<ul>
+			<li>
+				<input type="text" name="userId" placeholder="E-mail">
+			</li>
+			<li>
+				<input type="password" name="password" placeholder="비밀번호">
+			</li>
+			<li>
+				<input type="password" name="checkPassword" placeholder="비밀번호 확인">
+			</li>
+			<li>
+				<input type="text" name="name" placeholder="이  름">
+			</li>
+			<li>
+				<input type="text" name="phone" placeholder="전화번호">
+			</li>
+			<li>
+				<input type="text" name="address" placeholder="주  소">
+			</li>
+			<li>
+				<input type="checkbox" onclick = "showSellerEnroll()" name="isSeller" value="true">
+				<span>판매자 등록을 원하시는 분은 체크해주세요.</span>
+			</li>
+			<li>
+				<span>www.neshop.com/</span>
+				<input type="text" name="shopUrl" placeholder="쇼핑몰 URL">
+				<p>주의: Shop URL은 한 번 정하면 바꾸실 수 없습니다.</p>
+			</li>
+			<li>
+				<input type="text" name="address" placeholder="쇼핑몰 대표전화">
+			</li>
+			<li>
+				<select name="bank">
+					<option value="국민">국민</option>
+					<option value="신한">신한</option>
+					<option value="하나">하나</option>
+					<option value="우리">우리</option>
+					<option value="외환">외환</option>
+					<option value="기업">기업</option>
+					<option value="농협">농협</option>
+					<option value="산업">산업</option>
+					<option value="수협">수협</option>
+					<option value="한국수출입">한국수출입</option>
+					<option value="씨티">씨티</option>
+					<option value="SC제일">SC제일</option>
+					<option value="새마을">새마을</option>
+					<option value="신협">신협</option>
+					<option value="우체국">우체국</option>
+					<option value="경남">경남</option>
+					<option value="광주">광주</option>
+					<option value="대구">대구</option>
+					<option value="부산">부산</option>
+					<option value="전북">전북</option>
+					<option value="제주">제주</option>
+					<option value="기타">기타</option>
+				</select>
+				<input type="text" id="bankAccount" name="bankAccount" placeholder="계좌번호">
+			</li>
+		</ul>
+		<c:choose>
+		    <c:when test="${empty url}">
+				<input type="hidden" name="url" value="">
+			</c:when>
+			<c:otherwise>
+				<input type="hidden" name="url" value="${url}">
+			</c:otherwise>
+		</c:choose>
+		<input type="submit" value="회 원  가 입">
+	</form>
+</div>		

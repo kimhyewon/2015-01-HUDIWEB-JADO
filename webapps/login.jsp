@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Ne#</title>
 </head>
 <body onClick='rng_seed_time();' onKeyPress='rng_seed_time();'>
 	<form class="form_horizontal encrypt_form"  action="/user/login"  method="post">
