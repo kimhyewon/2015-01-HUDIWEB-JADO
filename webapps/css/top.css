@@ -10,3 +10,11 @@
 	margin: 15px;
 	font-size: 14.8px;
 }
+
+.top_bar {
+	margin-top : 15px;
+	float: right;
+	height: 15px;
+	width: 1.2px;
+	background-color: black;
+}
