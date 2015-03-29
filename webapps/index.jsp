@@ -6,13 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Jado</title>
+
 </head>
 <body>
     <%@ include file="/include/top.jspf" %>
-    <h1>MAKE YOUR OWN SHOP!!!</h1>
     <c:choose>
     <c:when test="${empty userId}">
-		<%@ include file="/include/signForm.jspf" %>
+    	<%@ include file="/include/main.jspf" %>
+		<%-- <%@ include file="/include/signForm.jspf" %> --%>
 	</c:when>
 	<c:otherwise>
 		<h1>WELCOME!!!</h1>
