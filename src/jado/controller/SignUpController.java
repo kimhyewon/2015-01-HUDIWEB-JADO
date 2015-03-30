@@ -71,7 +71,9 @@ public class SignUpController extends HttpServlet {
 		}
 		
 		MailSender.send(new Mail(userId, MailTemplateStorage.Type.JOIN_VERIFY));
-		
+		if (url == null || url == "") {
+			resp.sendRedirect("/");
+		}
 		resp.sendRedirect(url);
 	}
 
