@@ -4,9 +4,24 @@
 	<c:choose>
 		<c:when test="${empty userId}">
 			<ul>
-		    	<li class = "top_button signup"><a href="/user" style="color:black"> 회원가입</a></li>
+				<li class = "top_button signup">
+					<form action="/user" method="get">
+						<input type="hidden" name="url" value="">
+					    <input type="submit" value="회원가입"/>
+			    	</form>
+		    	</li>
 		    	<li class = "top_bar"></li>
-				<li class = "top_button login"><a href="/user/login" style="color:black;"> 로그인</a></li>
+		    	<li class = "top_button login">
+			    	<form action="/user/login" method="get">
+						<input type="hidden" name="url" value="">
+					    <input type="submit" value="로그인"/>
+			    	</form>
+		    	</li>
+		    	<!--
+		    	<li class = "top_button signup"><a name="url" href="/user" style="color:black"> 회원가입</a></li>
+		    	
+				<li class = "top_button login"><a name="url" href="/user/login" style="color:black;"> 로그인</a></li>
+				-->
 			</ul>
 		</c:when>
 		<c:otherwise>

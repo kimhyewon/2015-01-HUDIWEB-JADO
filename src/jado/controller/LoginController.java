@@ -85,7 +85,11 @@ public class LoginController extends HttpServlet {
 			if (UserDao.selectSellerById(userId) != null) {
 				session.setAttribute("isSeller", true);
 			}
+			if (url == null || url == "") {
+				response.sendRedirect("/");
+			}
 			response.sendRedirect(url);
+
 		} catch (UserNotFoundException | PasswordMismatchException e) {
 			forward(request, response, e.getMessage());
 		}
