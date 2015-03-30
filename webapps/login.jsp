@@ -9,41 +9,44 @@
 	<link rel="stylesheet" type="text/css" href="/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="/css/top.css" />
 	<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="/css/login.css" media="screen">
 </head>
 <body onClick='rng_seed_time();' onKeyPress='rng_seed_time();'>
 	<%@ include file="/include/top.jspf" %>
-	<form class="form_horizontal encrypt_form"  action="/user/login"  method="post">
-	 	<c:if test="${not empty errorMessage}">
-		<div class="control-group">
-			<label class="error">${errorMessage}</label>
-		</div>
-		</c:if> 
-		<div class="title"><h1>로그인</h1></div>
-		<div class="control-group">
-			<label class="control-label" for="userId">사용자 아이디</label>
-			<div class="controls">
-				<input type ="text" name="userId">
-				<input type="hidden" name="idEncryption" value="">
+	<div class="login_form">
+		<form class="form_horizontal encrypt_form"  action="/user/login"  method="post">
+		 	<c:if test="${not empty errorMessage}">
+			<div class="control-group">
+				<label class="error">${errorMessage}</label>
 			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="password">비밀번호</label>
-			<div class="controls">
-				<input type ="password" id="password" name="password" placeholder="">
-				<input type="hidden" name="pwEncryption" value="">
+			</c:if> 
+			<div class="title"><h1>로그인</h1></div>
+			<div class="control-group">
+				<label class="control-label" for="userId">사용자 아이디</label>
+				<div class="controls">
+					<input type ="text" name="userId">
+					<input type="hidden" name="idEncryption" value="">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="password">비밀번호</label>
+				<div class="controls">
+					<input type ="password" id="password" name="password" placeholder="">
+					<input type="hidden" name="pwEncryption" value="">
 
+				</div>
 			</div>
-		</div>
-		<div class="control-group">
-			<div class="controls">
-				<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}>" />
-            	<input type="hidden" name="rsaPublicKeyExponent" value="${publicKeyExponent}>" />
-				<input type="hidden" name="url" value="${url}">
-				<input type="submit" class="btn btn-primary" value="로그인"/>	
-				<a href = "/user"> 회원가입</a>
+			<div class="control-group">
+				<div class="controls">
+					<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}>" />
+	            	<input type="hidden" name="rsaPublicKeyExponent" value="${publicKeyExponent}>" />
+					<input type="hidden" name="url" value="${url}">
+					<input type="submit" class="btn btn-primary" value="로그인"/>	
+					<a href = "/user"> 회원가입</a>
+				</div>
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 </body>
 
 <!-- index.jsp && sinUp.jsp && login.jsp 필요 -->

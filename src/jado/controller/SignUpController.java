@@ -27,11 +27,13 @@ public class SignUpController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");
-		if (url != null) {
-			req.setAttribute("url", url);
+//		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");
+		String url = req.getParameter("url");
+		if(url == null || url ==""){
+			req.getRequestDispatcher("/signUp.jsp").forward(req,  resp);
 		}
-		req.getRequestDispatcher("/signUp.jsp").forward(req,  resp);
+			req.setAttribute("url", url);
+			req.getRequestDispatcher("/signUp.jsp").forward(req,  resp);
 	}
 	
 	@Override
@@ -40,7 +42,7 @@ public class SignUpController extends HttpServlet {
 		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");
 
 		//Customer
-		String userId = ServletRequestUtils.getRequiredStringParameter(req,"userId");
+		String userId = ServletRequestUtils.getRequiredStringParameter(req,"idEncryprion");
 		String password = ServletRequestUtils.getRequiredStringParameter(req,"pwEncryption");
 		String name = ServletRequestUtils.getRequiredStringParameter(req,"name");
 		String phone = ServletRequestUtils.getRequiredStringParameter(req,"phone");

@@ -30,7 +30,8 @@ var EP = (function() {
         if (this.elId !== undefined && this.elId !== null) {
             this.elId.value = "";
         }
-        this.elform.submit();
+        console.log(this.elForm)
+        this.elForm.submit();
     }
 
     var put_secured_rsa = function () {
