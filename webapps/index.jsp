@@ -13,6 +13,9 @@
 </head>
 <body>
     <%@ include file="/include/top.jspf" %>
+    <c:if test="${not empty errorMessage}">
+		<label class="error">${errorMessage}</label>
+	</c:if>
     <c:choose>
     <c:when test="${empty userId}">
     	<%@ include file="/include/main.jspf" %>
