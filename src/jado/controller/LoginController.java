@@ -99,7 +99,7 @@ public class LoginController extends HttpServlet {
 			HttpServletResponse response, String errorMessage)
 			throws ServletException, IOException {
 		request.setAttribute("errorMessage", errorMessage);
-		RequestDispatcher rd = request.getRequestDispatcher("/");
+		RequestDispatcher rd = request.getRequestDispatcher("/loginFailure.jsp");
 		rd.forward(request, response);
 
 	}

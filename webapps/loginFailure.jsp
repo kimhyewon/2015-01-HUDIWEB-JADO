@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -5,11 +8,9 @@
 		<title>Ne#</title>
 	</head>
 	<body>
-		로그인에 실폐하셨습니다.
-		원인 : 우리 사이트 문제 있음  or 사용자가 나쁜놈임
-
-		<a href="/">홈으로</a>
-		<a href="/login">로그인 다시하기</a>
-		
+	${errorMessage}
+		로그인에 실패하셨습니다.
+		<a href="/">홈으로 </a>
+		<a href="/login">로그인 다시 하기</a>
 	</body>
 </html>
