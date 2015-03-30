@@ -7,12 +7,12 @@
 			<ul>
 				<li>
 					<input type="hidden" name="url" value="">
-					<input type="submit" formaction="/user" value="회원가입"/>
+					<input type="submit" formaction="/user/login" value="로그인"/>
 		    	</li>
 		    	<li>|</li>
 		    	<li>
-					<input type="hidden" name="url" value="">
-					<input type="submit" formaction="/user/login" value="로그인"/>
+		    		<input type="hidden" name="url" value="">
+					<input type="submit" formaction="/user" value="회원가입"/>
 			    </li>
 			</ul>
 			</form>
@@ -21,10 +21,11 @@
 			<form method="get">
 				<ul>
 					<li>
-						<input type="submit" formaction="/user/edit" value="회원 정보 수정"/>
-					</li>
-					<li>
 						<input type="submit" formaction="/user/logout" value="로그아웃"/>
+					</li>
+					<li>|</li>
+					<li>
+						<input type="submit" formaction="/user/edit" value="회원 정보 수정"/>
 					</li>
 				</ul>
 			</form>

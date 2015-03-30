@@ -22,6 +22,7 @@ var FV = (function() {
 //service code
 (function() {
     var elTarget = document.querySelector("#signup_form");
+    if (elTarget == null || elTarget == undefined) return;
     var oFV = new FV(elTarget);
     oFV.validate_when_submit();
 

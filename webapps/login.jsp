@@ -16,7 +16,7 @@
 		<c:if test="${not empty errorMessage}">
 			<label class="error">${errorMessage}</label>
 		</c:if> 
-		<form method="post">
+		<form class="encrypt_form" method="post">
 			<h2>로그인</h2>
 			<ul>
 				<li>

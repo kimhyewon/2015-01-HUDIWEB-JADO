@@ -33,6 +33,7 @@ public class LoginController extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String url = req.getParameter("url");
+		System.out.println(url);
 
 		try {
 			EncryptRSA rsa = new EncryptRSA();
@@ -85,10 +86,10 @@ public class LoginController extends HttpServlet {
 			if (UserDao.selectSellerById(userId) != null) {
 				session.setAttribute("isSeller", true);
 			}
-			if (url == null || url == "") {
-				response.sendRedirect("/");
-			}
-			response.sendRedirect(url);
+//			if (url == null || url == "") {
+//				response.sendRedirect("/");
+//			}
+			response.sendRedirect("/");
 
 		} catch (UserNotFoundException | PasswordMismatchException e) {
 			forward(request, response, e.getMessage());

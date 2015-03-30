@@ -60,8 +60,8 @@ var EP = (function() {
 (function() {
 
     var elTarget = document.querySelector(".encrypt_form");
+    if (elTarget == null || elTarget == undefined) return;
+
     var oEP = new EP(elTarget);
     oEP.validate_when_submit();
-
-
 })();

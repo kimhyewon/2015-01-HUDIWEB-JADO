@@ -12,7 +12,8 @@
 </head>
 <body>
     <%@ include file="/include/top.jspf" %>
-    <h2>지금 가입하시면<br>Ne#에서 운영하는<br>모든 쇼핑블로그를<br>이용할 수 있습니다!</h2>
+    <%@ include file="/include/main.jspf" %>
+    <!-- <h2>지금 가입하시면<br>Ne#에서 운영하는<br>모든 쇼핑블로그를<br>이용할 수 있습니다!</h2> -->
     <c:choose>
      <c:when test="${empty userId}">
 		 <%@ include file="/include/signForm.jspf" %>
@@ -27,4 +28,13 @@
 
 <script src="/javascripts/form_verify.js"></script>
 <script src="/javascripts/show_seller_enroll.js"></script>
+
+
+<!-- rsa 추가 -->
+<script src="/javascripts/lib/jsbn.js"></script>
+<script src="/javascripts/lib/rsa.js"></script>
+<script src="/javascripts/lib/ec.js"></script>
+<script src="/javascripts/lib/rng.js"></script>
+<script src="/javascripts/lib/prng4.js"></script>
+<script src="/javascripts/lib/base64.js"></script>
 </html>
