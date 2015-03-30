@@ -3,32 +3,31 @@
 <div id = "top">
 	<c:choose>
 		<c:when test="${empty userId}">
+			<form method="get">
 			<ul>
-				<li class = "top_button signup">
-					<form action="/user" method="get">
-						<input type="hidden" name="url" value="">
-					    <input type="submit" value="회원가입"/>
-			    	</form>
+				<li>
+					<input type="hidden" name="url" value="">
+					<input type="submit" formaction="/user" value="회원가입"/>
 		    	</li>
-		    	<li class = "top_bar"></li>
-		    	<li class = "top_button login">
-			    	<form action="/user/login" method="get">
-						<input type="hidden" name="url" value="">
-					    <input type="submit" value="로그인"/>
-			    	</form>
-		    	</li>
-		    	<!--
-		    	<li class = "top_button signup"><a name="url" href="/user" style="color:black"> 회원가입</a></li>
-		    	
-				<li class = "top_button login"><a name="url" href="/user/login" style="color:black;"> 로그인</a></li>
-				-->
+		    	<li>|</li>
+		    	<li>
+					<input type="hidden" name="url" value="">
+					<input type="submit" formaction="/user/login" value="로그인"/>
+			    </li>
 			</ul>
+			</form>
 		</c:when>
 		<c:otherwise>
-			<ul>
-				<li><a href = "/user/edit"> 회원가입 수정</a></li>
-				<li><a href = "/user/logout"> 로그아웃 </a></li>
-			</ul>
+			<form method="get">
+				<ul>
+					<li>
+						<input type="submit" formaction="/user/edit" value="회원 정보 수정"/>
+					</li>
+					<li>
+						<input type="submit" formaction="/user/logout" value="로그아웃"/>
+					</li>
+				</ul>
+			</form>
 		</c:otherwise>
 	</c:choose>
 </div>
