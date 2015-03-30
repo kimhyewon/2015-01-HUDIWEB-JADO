@@ -35,7 +35,7 @@ public class UserDao {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "select * from USER where ID=?";
 		RowMapper<Customer> rm = rs -> new Customer(rs.getString("ID"), rs.getString("PASSWORD"),
-				rs.getString("NAME"), rs.getString("PHONE"), rs.getString("ADDRESS"));
+				rs.getString("NAME"), rs.getString("PHONE"), rs.getString("ADDRESS"), rs.getString("IS_VALIDATED"));
 		return jdbcTemplate.executeQuery(sql, rm, userId);
 	}
 

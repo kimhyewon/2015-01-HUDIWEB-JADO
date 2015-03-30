@@ -27,7 +27,7 @@
 <script src="/javascripts/encrypt_password.js"></script>
 
 <script src="/javascripts/form_verify.js"></script>
-<script src="/javascripts/show_seller_enroll.js"></script>
+<!-- <script src="/javascripts/show_seller_enroll.js"></script> -->
 
 
 <!-- rsa 추가 -->

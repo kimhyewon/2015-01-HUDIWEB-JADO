@@ -11,6 +11,6 @@
 	${errorMessage}
 		로그인에 실패하셨습니다.
 		<a href="/">홈으로 </a>
-		<a href="/login">로그인 다시 하기</a>
+		<a href="/user/login">로그인 다시 하기</a>
 	</body>
 </html>

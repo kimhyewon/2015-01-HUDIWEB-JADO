@@ -33,7 +33,15 @@
 
 <!-- index.jsp && sinUp.jsp 필요 -->
 <script src="/javascripts/form_verify.js"></script>
-<script src="/javascripts/show_seller_enroll.js"></script>
+<!-- <script src="/javascripts/show_seller_enroll.js"></script> -->
+
+<!-- rsa 추가 -->
+<script src="/javascripts/lib/jsbn.js"></script>
+<script src="/javascripts/lib/rsa.js"></script>
+<script src="/javascripts/lib/ec.js"></script>
+<script src="/javascripts/lib/rng.js"></script>
+<script src="/javascripts/lib/prng4.js"></script>
+<script src="/javascripts/lib/base64.js"></script>
 
 <script>
 
