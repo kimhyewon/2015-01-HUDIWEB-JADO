@@ -6,11 +6,11 @@
 		<ul>
 			<li>
 				<input type="text" name="userId" placeholder="E-mail">
-				<input type="text" name="idEncryption" placeholder="E-mail">
+				<input type="hidden" name="idEncryption" placeholder="E-mail">
 			</li>
 			<li>
 				<input type="password" name="password" placeholder="비밀번호">
-				<input type="password" name="pwEncryption" placeholder="비밀번호">
+				<input type="hidden" name="pwEncryption" placeholder="비밀번호">
 			</li>
 			<li>
 				<input type="password" name="checkPassword" placeholder="비밀번호 확인">
