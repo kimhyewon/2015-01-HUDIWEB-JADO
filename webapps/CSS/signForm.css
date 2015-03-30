@@ -1,0 +1,74 @@
+#signUpContainer {
+	float: left;
+	margin-left: 35%;
+	margin-top: 650px;
+}
+
+#signUpContainer h2 {
+	font-size: 24px;
+}
+
+#signUpContainer form {
+	background: -webkit-linear-gradient(#FFF8E3, #FFEBBA);
+	background: -o-linear-gradient(#FFF8E3, #FFEBBA);
+	background: linear-gradient(#FFF8E3, #FFEBBA);
+	width: 280px;
+	height: 540px;
+	padding: 30px 35px;
+	border-radius: 12px;
+	box-shadow: 1px 5px 10px #CCC;
+}
+
+#signUpContainer li { margin: 10px 0; }
+#signUpContainer li:nth-child(7) { margin: 20px 0; padding-left: 5px;}
+#signUpContainer li:nth-child(7) span { font-size: 14px; margin-left: 5px;}
+#signUpContainer li:nth-child(8) input { width: 140px; }
+#signUpContainer li:nth-child(8) p { font-size: 12px; color: red; margin: 10px 10px;}
+#signUpContainer li:nth-child(10) input { width: 180px; }
+
+#signUpContainer input {
+	width: 270px;
+	height: 30px;
+    background: -webkit-linear-gradient(#f0f0f0, #fff, #fff, #fff);
+    background: -o-linear-gradient(#f0f0f0, #fff, #fff, #fff);
+    background: linear-gradient(#f0f0f0, #fff, #fff, #fff);
+	border-radius: 5px;
+	outline: none;
+	text-indent: 10px;
+	font-size: 12px;
+	border: #ddd solid 1px;
+}
+
+#signUpContainer input[type=checkbox] {
+	-ms-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	-webkit-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	width: 12px;
+	height: 12px;
+}
+
+#signUpContainer select {
+	background: #FFBF42;
+	width: 87px;
+	height: 33px;
+	line-height: 30px;
+	border: 0;
+	border-radius: 5px;
+	color: #fff;
+	text-indent: 5px;
+	font-size: 12px;
+	outline: none;
+	-webkit-appearance: menulist;
+}
+
+#signUpContainer input[type=submit] {
+	width: 275px;
+	height: 40px;
+	background: #FFBF42;
+	border: 0;
+	text-indent: 0;
+	color: #fff;
+	font-size: 16px;
+	margin-top: 10px;
+}
