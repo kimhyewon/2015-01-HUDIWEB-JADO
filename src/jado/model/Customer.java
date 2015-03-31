@@ -15,16 +15,12 @@ public class Customer extends User {
 	private String address;
 	private String isValidated;
 
-	public boolean login() throws UserNotFoundException,
+	public boolean login(String checkedPassword) throws UserNotFoundException,
 			PasswordMismatchException, IsNotValidatedMail {
-		Customer user = UserDao.selectUserById(userId);
-		if (user == null) {
-			throw new UserNotFoundException("존재하지 않는 ID입니다.");
-		}
-		if (!user.matchPassword(password)) {
+		if (!password.equals(checkedPassword)) {
 			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. 다시 로그인 해주세요.");
 		}
-		if(user.isValidated.equals("F")){
+		if(!isValidated.equals("T")){
 			throw new IsNotValidatedMail("이메일 인증이 와료 되지 않았습니다. 회원가입 하신 아이디로 이메일이 발송 되었으니 인증해 주시기 바랍니다.");
 		}
 		return true;
@@ -38,10 +34,6 @@ public class Customer extends User {
 			throw new DuplicateUserException("이미 가입된 사용자입니다.");
 		}
 		UserDao.insert(this);
-	}
-
-	private boolean matchPassword(String newPassword) {
-		return this.password.equals(newPassword);
 	}
 
 	// Constructor

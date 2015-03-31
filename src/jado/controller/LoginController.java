@@ -79,10 +79,10 @@ public class LoginController extends HttpServlet {
 			forward(request, response, e.getMessage());
 		}
 		
-		Customer customer = new Customer(userId, password);
 		try {
-			customer.login();
-			session.setAttribute("userId", customer.getUserId());
+			Customer user = UserDao.selectCustomerById(userId);
+			user.login(password);
+			session.setAttribute("userId", userId);
 
 			if (UserDao.selectSellerById(userId) != null) {
 				session.setAttribute("isSeller", true);

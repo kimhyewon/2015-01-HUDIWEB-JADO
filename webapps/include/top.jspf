@@ -6,12 +6,14 @@
 			<form method="get">
 			<ul>
 				<li>
-					<input type="hidden" name="url" value="">
+					<!--${url} << 여기에 뭔가 나와야 함-->
+					<input type="hidden" name="url" value="${url}">
+				</li>
+				<li>
 					<input type="submit" formaction="/user/login" value="로그인"/>
 		    	</li>
 		    	<li>|</li>
 		    	<li>
-		    		<input type="hidden" name="url" value="">
 					<input type="submit" formaction="/user" value="회원가입"/>
 			    </li>
 			</ul>
