@@ -1,46 +1,27 @@
 package jado.model;
 
-public class Seller extends NormalUser {
-	private String shopUrl;
-	private String shopPhone;
+public class Seller extends User {
+	private String url;
 	private String bank;
 	private String bankAccount;
-	
-	//Constructor
-	public Seller(String userId, String password, String name,
-			String phone, String address, String shopUrl, String shopPhone, String bank, String bankAccount) {
-		super(userId, password, name, phone, address);
-		this.shopUrl = shopUrl;
-		this.shopPhone = shopPhone;
+
+	public Seller(String userId, String url, String bank, String bankAccount) {
+		super(userId);
+		this.url = url;
 		this.bank = bank;
 		this.bankAccount = bankAccount;
 	}
-	
-	//Getter
-	public String getShopUrl() {
-		return shopUrl;
+
+	public String getUrl() {
+		return url;
 	}
-	public String getShopPhone() {
-		return shopPhone;
-	}
+
 	public String getBank() {
 		return bank;
 	}
+
 	public String getBankAccount() {
 		return bankAccount;
 	}
-	
-	//Setter
-	public void setShopUrl(String shopUrl) {
-		this.shopUrl = shopUrl;
-	}
-	public void setShopPhone(String shopPhone) {
-		this.shopPhone = shopPhone;
-	}
-	public void setBank(String bank) {
-		this.bank = bank;
-	}
-	public void setBankAccount(String bankAccount) {
-		this.bankAccount = bankAccount;
-	}
+
 }

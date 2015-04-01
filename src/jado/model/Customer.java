@@ -1,58 +1,92 @@
 package jado.model;
 
-public class NormalUser {
-	private String userId;
+import core.exception.DuplicateUserException;
+import core.exception.IsNotValidatedMail;
+import core.exception.PasswordMismatchException;
+import core.exception.UserNotFoundException;
+import core.jdbc.JdbcTemplate;
+import jado.dao.UserDao;
+
+public class Customer extends User {
+
 	private String password;
 	private String name;
 	private String phone;
 	private String address;
-	
-	public static boolean login(String userId, String password) {
-		return false;
+	private String isValidated;
+
+	public boolean login(String checkedPassword) throws UserNotFoundException,
+			PasswordMismatchException, IsNotValidatedMail {
+		if (!password.equals(checkedPassword)) {
+			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. 다시 로그인 해주세요.");
+		}
+		if(!isValidated.equals("T")){
+			throw new IsNotValidatedMail("이메일 인증이 와료 되지 않았습니다. 회원가입 하신 아이디로 이메일이 발송 되었으니 인증해 주시기 바랍니다.");
+		}
+		return true;
 	}
-	
-	//Constructor
-	public NormalUser(String userId, String password, String name,
-			String phone, String address) {
-		super();
-		this.userId = userId;
+
+	public void signUp() throws DuplicateUserException,
+			PasswordMismatchException {
+
+		Customer tempUser = UserDao.selectUserById(this.userId);
+		if (tempUser != null) {
+			throw new DuplicateUserException("이미 가입된 사용자입니다.");
+		}
+		UserDao.insert(this);
+	}
+
+	// Constructor
+	public Customer(String userId, String password, String name, String phone,
+			String address, String isValidated) {
+		super(userId);
 		this.password = password;
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
+		this.isValidated = isValidated;
 	}
 	
-	//Getter
-	public String getUserId() {
-		return userId;
+	public Customer(String userId, String password, String name, String phone,
+			String address) {
+		this(userId, password, name, phone, address, null);
+
 	}
 
+	public Customer(String userId, String password) {
+		this(userId, password, null, null, null);
+	}
+
+	// Getter
 	public String getPassword() {
 		return password;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public String getAddress() {
 		return address;
 	}
-	
-	//Setter
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+
+	// Setter
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
@@ -66,7 +100,6 @@ public class NormalUser {
 		result = prime * result
 				+ ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -78,7 +111,7 @@ public class NormalUser {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		NormalUser other = (NormalUser) obj;
+		Customer other = (Customer) obj;
 		if (address == null) {
 			if (other.address != null)
 				return false;
@@ -98,11 +131,6 @@ public class NormalUser {
 			if (other.phone != null)
 				return false;
 		} else if (!phone.equals(other.phone))
-			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}

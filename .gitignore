@@ -7,9 +7,9 @@
 .settings/
 
 target/
-lib/
 classes/
 tomcat.8080/
 
 # DB
 src/core/jdbc/ConnectionManager.java
+MailConfig.java

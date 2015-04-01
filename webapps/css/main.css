@@ -1,0 +1,130 @@
+@CHARSET "UTF-8";
+body {
+	margin: 0;
+	1font-family: 'Jeju Gothic';
+	1font-family: Apple SD Gothic Neo,'Apple SD 산돌고딕 Neo',NanumGothic,'나눔고딕',ng,sans-serif;
+	font-family: dotum, dotumche, '돋움', '돋움체', sans-serif
+}
+
+a { text-decoration:none }
+
+li {
+	list-style:none;
+   	padding-left:0px;
+}
+
+button {
+	border: 0;
+	outline: 0;
+}
+
+#container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#background_con img {
+	z-index: -1;
+}
+
+#logo {
+  	position: absolute;
+  	left: 32px;
+  	top: 31px;
+  	z-index: 1;
+  	font-size: 2em;
+  	font-weight: bold;
+  	opacity: 0.9;
+}
+
+.login {
+	margin-right: 40px;
+}
+
+#center_con {
+	position: absolute;
+  	top: 20%;
+  	left: 50%;
+  	width: 700px;
+  	margin: 0 0 0 -350px;
+  	z-index: 22;
+}
+
+#title {
+	text-align: center;
+	font-size: 6em;
+	opacity: 0.6;
+	margin-left: -43px;
+	margin-top: 8px;
+}
+
+#explanation {
+	margin-top: 24px;
+	text-align: center;
+	color: black;
+	font-size: 2.7em;
+	1opacity: 0.7;
+	margin-left: -40px;
+}
+
+.main_btn {
+	float: left;
+}
+
+.btn {
+	width: 168px;
+	height: 50px;
+	font-size: 16px;
+	border: none;
+	border-radius: 2px;	 
+	margin-top: 13px;
+}
+
+.signup_btn {
+	margin-left: 152px;
+	1background-color: #D3EB8B;
+	background-color: #DCEB82;
+	opacity: 0.7;
+	box-shadow: 10px 10px 20px gray;
+}
+
+.login_btn {
+	margin-left: 18px;
+	1background-color: #93CC87;
+	1background-color: #D6E28B;
+	1background-color: #FFF000;
+	1background-color: #A25C80;
+	background-color: #E6A193;
+	opacity: 0.7;
+	box-shadow: 10px 10px 20px gray;
+}
+/*erin's code*/
+#container section {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.section2 {
+	background-color: #ffffff;
+}
+.section4{
+	background-color: #ffffff;
+}
+@media (max-width: 480px)  {
+	.main_btn {
+		float: none;
+		width: auto;
+		margin: auto;
+	}
+	.signup_btn {
+		float: none;
+		
+	}
+
+	.login_btn {
+		float: none;
+		
+	}
+}
+
