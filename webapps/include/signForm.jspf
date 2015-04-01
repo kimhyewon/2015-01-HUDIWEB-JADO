@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="signUpContainer">
-	<section class = "section5">		
+	<section>		
 	<form id ="signup_form" class="encrypt_form" action="/user" method="post" autocomplete="off">
 		<h2>Sign Up</h2>
 		<ul>

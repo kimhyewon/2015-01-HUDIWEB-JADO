@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-	<section class ="section2">
+	<section>
 		<article class="info info1">
 			<div class="img">
 				<img src="" alt="">
@@ -9,7 +9,7 @@
 			</div>
 		</article>
 	</section>
-	<section class ="section3">
+	<section>
 		<article class="info info1">
 			<div class="img">
 				<img src="" alt="">
@@ -19,7 +19,7 @@
 			</div>
 		</article>
 	</section>
-	<section class ="section4">
+	<section>
 		<article class="info info1">
 			<div class="img">
 				<img src="" alt="">
