@@ -1,11 +1,14 @@
 package jado.dao;
 
+
 import jado.model.Customer;
 import jado.model.Seller;
 import core.jdbc.JdbcTemplate;
 import core.jdbc.RowMapper;
-
+import core.exception.UserNotFoundException;
 public class UserDao {
+	private static final Exception UserNotFoundException = null;
+
 	public static void insert(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F')";
@@ -35,7 +38,7 @@ public class UserDao {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "select * from USER where ID=?";
 		RowMapper<Customer> rm = rs -> new Customer(rs.getString("ID"), rs.getString("PASSWORD"),
-				rs.getString("NAME"), rs.getString("PHONE"), rs.getString("ADDRESS"));
+				rs.getString("NAME"), rs.getString("PHONE"), rs.getString("ADDRESS"), rs.getString("IS_VALIDATED"));
 		return jdbcTemplate.executeQuery(sql, rm, userId);
 	}
 
@@ -70,5 +73,11 @@ public class UserDao {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "update USER set IS_VALIDATED = ?";
 		jdbcTemplate.executeUpdate(sql, "T");
+	}
+
+	public static Customer selectCustomerById(String userId) throws core.exception.UserNotFoundException {
+		Customer user = selectUserById(userId);
+		if(user == null) throw new UserNotFoundException("아이디가 존재하지 않습니다 다시 로그인 해주세요");
+		return user;
 	}
 }

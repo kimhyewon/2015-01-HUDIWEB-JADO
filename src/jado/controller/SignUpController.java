@@ -52,13 +52,8 @@ public class SignUpController extends HttpServlet {
 			forward(req, resp, e.getMessage());
 		}
 		
-		
-		
-		if(url == null || url ==""){
-			req.getRequestDispatcher("/signUp.jsp").forward(req,  resp);
-		}
-			req.setAttribute("url", url);
-			req.getRequestDispatcher("/signUp.jsp").forward(req,  resp);
+		req.setAttribute("url", url);
+		req.getRequestDispatcher("/signUp.jsp").forward(req,  resp);
 	}
 	
 	@Override
@@ -117,9 +112,6 @@ public class SignUpController extends HttpServlet {
 		}
 		
 		MailSender.send(new Mail(userId, MailTemplateStorage.Type.JOIN_VERIFY));
-//		if (url == null || url == "") {
-//			resp.sendRedirect("/");
-//		}
 		resp.sendRedirect("/");
 	}
 

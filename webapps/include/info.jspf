@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<section class ="section2">
+		<article class="info info1">
+			<div class="img">
+				<img src="" alt="">
+			</div>
+			<div class="text">
+				
+			</div>
+		</article>
+	</section>
+	<section class ="section3">
+		<article class="info info1">
+			<div class="img">
+				<img src="" alt="">
+			</div>
+			<div class="text">
+				
+			</div>
+		</article>
+	</section>
+	<section class ="section4">
+		<article class="info info1">
+			<div class="img">
+				<img src="" alt="">
+			</div>
+			<div class="text">
+				
+			</div>
+		</article>
+	</section>

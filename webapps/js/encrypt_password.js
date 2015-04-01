@@ -20,7 +20,7 @@ var EP = (function() {
         };
     };
 
-    var remove_input = function () {
+    var remove_input = function() {
         if (this.elPw1 !== undefined && this.elPw1 !== null) {
             this.elPw1.value = "";
         }
@@ -34,7 +34,7 @@ var EP = (function() {
         this.elForm.submit();
     }
 
-    var put_secured_rsa = function () {
+    var put_secured_rsa = function() {
         var rsaPublicKeyModulus = this.elForm.querySelector("input[name=rsaPublicKeyModulus]").value;
         var rsaPublicKeyExponent = this.elForm.querySelector("input[name=rsaPublicKeyExponent]").value;
 

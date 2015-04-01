@@ -1,6 +1,7 @@
 package jado.model;
 
 import core.exception.DuplicateUserException;
+import core.exception.IsNotValidatedMail;
 import core.exception.PasswordMismatchException;
 import core.exception.UserNotFoundException;
 import core.jdbc.JdbcTemplate;
@@ -12,16 +13,15 @@ public class Customer extends User {
 	private String name;
 	private String phone;
 	private String address;
+	private String isValidated;
 
-	public boolean login() throws UserNotFoundException,
-			PasswordMismatchException {
-
-		Customer user = UserDao.selectUserById(userId);
-		if (user == null) {
-			throw new UserNotFoundException("존재하지 않는 ID입니다.");
-		}
-		if (!user.matchPassword(password)) {
+	public boolean login(String checkedPassword) throws UserNotFoundException,
+			PasswordMismatchException, IsNotValidatedMail {
+		if (!password.equals(checkedPassword)) {
 			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. 다시 로그인 해주세요.");
+		}
+		if(!isValidated.equals("T")){
+			throw new IsNotValidatedMail("이메일 인증이 와료 되지 않았습니다. 회원가입 하신 아이디로 이메일이 발송 되었으니 인증해 주시기 바랍니다.");
 		}
 		return true;
 	}
@@ -36,18 +36,21 @@ public class Customer extends User {
 		UserDao.insert(this);
 	}
 
-	private boolean matchPassword(String newPassword) {
-		return this.password.equals(newPassword);
-	}
-
 	// Constructor
 	public Customer(String userId, String password, String name, String phone,
-			String address) {
+			String address, String isValidated) {
 		super(userId);
 		this.password = password;
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
+		this.isValidated = isValidated;
+	}
+	
+	public Customer(String userId, String password, String name, String phone,
+			String address) {
+		this(userId, password, name, phone, address, null);
+
 	}
 
 	public Customer(String userId, String password) {

@@ -38,16 +38,19 @@
 	</div>
 </body>
 
+<!-- index.jsp && dummp blog 필요 && top.jspf 있는곳 에서 필요-->
+<script src="/js/submit.js"></script>
+
 <!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
-<script src="/javascripts/lib/sha256.js"></script>
-<script src="/javascripts/encrypt_password.js"></script>
+<script src="/js/lib/sha256.js"></script>
+<script src="/js/encrypt_password.js"></script>
 
 <!-- rsa 추가 -->
-<script src="/javascripts/lib/jsbn.js"></script>
-<script src="/javascripts/lib/rsa.js"></script>
-<script src="/javascripts/lib/ec.js"></script>
-<script src="/javascripts/lib/rng.js"></script>
-<script src="/javascripts/lib/prng4.js"></script>
-<script src="/javascripts/lib/base64.js"></script>
+<script src="/js/lib/jsbn.js"></script>
+<script src="/js/lib/rsa.js"></script>
+<script src="/js/lib/ec.js"></script>
+<script src="/js/lib/rng.js"></script>
+<script src="/js/lib/prng4.js"></script>
+<script src="/js/lib/base64.js"></script>
 
 </html>

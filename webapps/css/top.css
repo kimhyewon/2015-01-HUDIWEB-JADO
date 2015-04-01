@@ -15,10 +15,6 @@
 	margin-right: 15px;
 }
 
-#top li:nth-child(2) {
-	margin-top: 4px;
-}
-
 #top input {
 	background: transparent;
 	border: 0;

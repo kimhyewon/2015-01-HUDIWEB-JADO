@@ -17,7 +17,8 @@
 </ul>
 <button><a href="/user/logout">로그아웃</a></button>
 </body>
-<script src="/javascripts/submit.js"></script>
+<!-- index.jsp && dummp blog 필요 && top.jspf 있는곳 에서 필요-->
+<script src="/js/submit.js"></script>
 </html>
 
 

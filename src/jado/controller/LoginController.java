@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import core.exception.IsNotValidatedMail;
 import core.exception.PasswordMismatchException;
 import core.exception.UserNotFoundException;
 import core.util.DecryptRSA;
@@ -78,10 +79,10 @@ public class LoginController extends HttpServlet {
 			forward(request, response, e.getMessage());
 		}
 		
-		Customer customer = new Customer(userId, password);
 		try {
-			customer.login();
-			session.setAttribute("userId", customer.getUserId());
+			Customer user = UserDao.selectCustomerById(userId);
+			user.login(password);
+			session.setAttribute("userId", userId);
 
 			if (UserDao.selectSellerById(userId) != null) {
 				session.setAttribute("isSeller", true);
@@ -91,7 +92,7 @@ public class LoginController extends HttpServlet {
 //			}
 			response.sendRedirect("/");
 
-		} catch (UserNotFoundException | PasswordMismatchException e) {
+		} catch (UserNotFoundException | PasswordMismatchException | IsNotValidatedMail e) {
 			forward(request, response, e.getMessage());
 		}
 	}
