@@ -22,7 +22,7 @@
 #signUpContainer li { margin: 10px 0; }
 #signUpContainer li:nth-child(7) { margin: 20px 0; padding-left: 5px;}
 #signUpContainer li:nth-child(7) span { font-size: 14px; margin-left: 5px;}
-#signUpContainer li:nth-child(8) input { width: 140px; }
+#signUpContainer li:nth-child(8) input { width: 120px; }
 #signUpContainer li:nth-child(8) p { font-size: 12px; color: red; margin: 10px 10px;}
 #signUpContainer li:nth-child(10) input { width: 180px; }
 
