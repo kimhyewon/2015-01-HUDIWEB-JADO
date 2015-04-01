@@ -13,4 +13,3 @@ tomcat.8080/
 # DB
 src/core/jdbc/ConnectionManager.java
 MailConfig.java
-src/core/mail/EmailRequestResult.java
