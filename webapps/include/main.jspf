@@ -1,23 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<a href= "" style="color:white"><div id = "logo">
+	<img src="http://i.imgur.com/ewai3EQ.png" style="width: 83%; height: 83%;">
+</div></a>
+<div id = "center_con">
+	<div id = "title">
+		<img src="http://i.imgur.com/3DTh2Cx.png">
+	</div>
+	<div id = "explanation">
+		<img src="http://i.imgur.com/n3heOEe.png" width="51%" height="50%">
+	</div>
 	
-	<section >
-		<a href= "" style="color:white"><div id = "logo">
-			<img src="http://i.imgur.com/ewai3EQ.png" style="width: 83%; height: 83%;">
-		</div></a>
-		<div id = "center_con">
-			<div id = "title">
-				<img src="http://i.imgur.com/3DTh2Cx.png">
-			</div>
-			<div id = "explanation">
-				<img src="http://i.imgur.com/n3heOEe.png" width="51%" height="50%">
-			</div>
-			
-			<div id = "main_btn">
-				<form method="get">
-					<button type="submit" class="btn signup_btn" style="cursor:pointer;">회원가입</button>
-					<button type="submit" class="btn login_btn" style="cursor:pointer;" formaction="/user/login">로그인</button>
-				</form>
-			</div>
-		</div>
-	</section>
+	<div id = "main_btn">
+		<form method="get">
+			<button type="submit" class="btn signup_btn" style="cursor:pointer;">회원가입</button>
+			<button type="submit" class="btn login_btn" style="cursor:pointer;" formaction="/user/login">로그인</button>
+		</form>
+	</div>
+</div>
