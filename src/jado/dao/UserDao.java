@@ -57,16 +57,16 @@ public class UserDao {
 		return jdbcTemplate.executeQuery(sql, rm);
 	}
 	
-	public static void removeUser(Customer customer) {
+	public static void removeCustomer(String userId) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
 		String sql = "delete from USER where ID = ?";
-		jdbcTemplate.executeUpdate(sql, customer.getUserId());		
+		jdbcTemplate.executeUpdate(sql);		
 	}
 
-	public static void removeUser(Seller seller) {
+	public static void removeSeller(String userId) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
 		String sql = "delete from SELLER where ID = ?";
-		jdbcTemplate.executeUpdate(sql, seller.getUserId());		
+		jdbcTemplate.executeUpdate(sql,userId);		
 	}
 	
 	public void updateMailAuthStatus() {

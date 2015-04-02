@@ -24,4 +24,15 @@ public class Seller extends User {
 		return bankAccount;
 	}
 
+	public boolean update(Seller seller) {
+		boolean result = false;
+		if (this.bank.equals(seller.bank)) {
+			result = true;
+		}
+		if (this.bankAccount.equals(seller.bankAccount)) {
+			result = true;
+		}
+		return result;
+	}
+
 }
