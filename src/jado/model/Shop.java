@@ -5,23 +5,25 @@ public class Shop {
 	private String title;
 	private String phone;
 	private String banner_url;
+	private String main_url;
 	private String logo_url;
 	private String theme;
 	private String footer;
 
-	public Shop(String url, String title, String phone, String banner_url, String logo_url, String theme, String footer) {
+	
+	public Shop(String url, String title, String phone, String banner_url, String main_url, String logo_url, String theme, String footer) {
 		super();
 		this.url = url;
 		this.title = title;
 		this.phone = phone;
 		this.banner_url = banner_url;
+		this.main_url = main_url;
 		this.logo_url = logo_url;
 		this.theme = theme;
 		this.footer = footer;
 	}
-
 	public Shop(String url, String phone) {
-		this(url, "제목을 입력해 주세요", phone, "default", "default", "theme1", "입력해 주세요");
+		this(url, "제목을 입력해 주세요", phone, "/userImg/shop/banner/default.png", "/userImg/shop/main/default.png", "/userImg/shop/logo/default.png", "theme1", "입력해 주세요");
 	}
 
 	public String getUrl() {
@@ -39,6 +41,10 @@ public class Shop {
 	public String getBanner_url() {
 		return banner_url;
 	}
+	
+	public String getMain_url() {
+		return main_url;
+	}
 
 	public String getLogo_url() {
 		return logo_url;
@@ -51,5 +57,5 @@ public class Shop {
 	public String getFooter() {
 		return footer;
 	}
-
+	
 }
