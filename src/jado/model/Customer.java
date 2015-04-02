@@ -4,7 +4,6 @@ import core.exception.DuplicateUserException;
 import core.exception.IsNotValidatedMail;
 import core.exception.PasswordMismatchException;
 import core.exception.UserNotFoundException;
-import core.jdbc.JdbcTemplate;
 import jado.dao.UserDao;
 
 public class Customer extends User {
