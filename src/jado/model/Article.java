@@ -45,4 +45,9 @@ public class Article {
 		return content;
 	}
 
+	@Override
+	public String toString() {
+		return "Article [shopUrl=" + shopUrl + ", boardName=" + boardName + ", title=" + title + ", content=" + content + ", articleTime=" + articleTime + ", comment=" + comment + "]";
+	}
+
 }

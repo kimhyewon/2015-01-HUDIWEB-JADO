@@ -44,4 +44,10 @@ public class ArticleComment {
 		return content;
 	}
 
+	@Override
+	public String toString() {
+		return "ArticleComment [shopUrl=" + shopUrl + ", articleTitle=" + articleTitle + ", boardName=" + boardName + ", userId=" + userId + ", commentTime=" + commentTime + ", content=" + content
+				+ "]";
+	}
+
 }

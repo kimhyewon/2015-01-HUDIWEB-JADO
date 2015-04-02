@@ -1,5 +1,7 @@
 package jado.model;
 
+import java.util.List;
+
 import core.jdbc.PreparedStatementSetter;
 
 public class Product {
@@ -11,8 +13,9 @@ public class Product {
 	private String imgUrl;
 	private String desc;
 	private String insertTime;
+	private List<ProductComment> comments;
 
-	public Product(int id, int categoryId, String name, int price, int stock, String imgUrl, String desc, String insertTime) {
+	public Product(int id, int categoryId, String name, int price, int stock, String imgUrl, String desc, String insertTime, List<ProductComment> comments) {
 		super();
 		this.id = id;
 		this.categoryId = categoryId;
@@ -22,10 +25,15 @@ public class Product {
 		this.imgUrl = imgUrl;
 		this.desc = desc;
 		this.insertTime = insertTime;
+		this.comments = comments;
+	}
+
+	public Product(int id, int categoryId, String name, int price, int stock, String imgUrl, String desc, String insertTime) {
+		this(0, categoryId, name, price, stock, imgUrl, desc, insertTime, null);
 	}
 
 	public Product(int categoryId, String name, int price, int stock, String imgUrl, String desc) {
-		this(0, categoryId, name, price, stock, imgUrl, desc, null);
+		this(0, categoryId, name, price, stock, imgUrl, desc, null, null);
 	}
 
 	public int getCategoryId() {
@@ -55,7 +63,7 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", categoryId=" + categoryId + ", name=" + name + ", price=" + price + ", stock=" + stock + ", imgUrl=" + imgUrl + ", desc=" + desc + ", insertTime=" + insertTime
-				+ "]";
+				+ ", comments=" + comments + "]";
 	}
 
 }
