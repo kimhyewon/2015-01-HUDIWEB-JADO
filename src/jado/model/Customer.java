@@ -12,6 +12,8 @@ public class Customer extends User {
 	private String name;
 	private String phone;
 	private String address;
+	private String insertTime;
+	private String updateTime;
 	private String isValidated;
 
 	public boolean login(String checkedPassword) throws UserNotFoundException,
@@ -36,16 +38,24 @@ public class Customer extends User {
 	}
 
 	// Constructor
-	public Customer(String userId, String password, String name, String phone,
-			String address, String isValidated) {
+	
+	
+	
+	public Customer(String userId, String password, String name, String phone, String address, String insertTime, String updateTime, String isValidated) {
 		super(userId);
 		this.password = password;
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
+		this.insertTime = insertTime;
+		this.updateTime = updateTime;
 		this.isValidated = isValidated;
 	}
 	
+	public Customer(String userId, String password, String name, String phone, String address, String isValidated) {
+		this(userId, password, name, phone, address, null, null,"F");
+	}
+
 	public Customer(String userId, String password, String name, String phone,
 			String address) {
 		this(userId, password, name, phone, address, null);

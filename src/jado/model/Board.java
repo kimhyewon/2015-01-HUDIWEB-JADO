@@ -1,22 +1,33 @@
 package jado.model;
 
-import java.util.List;
-
 public class Board {
-	String url;
-	String name;
-	List<Article> articles;
+
+	private String shopUrl;
+	private String name;
 	
-	public Board(String url, String name, List<Article> articles) {
+	
+	public Board(String shopUrl, String name) {
 		super();
-		this.url = url;
+		this.shopUrl = shopUrl;
 		this.name = name;
-		this.articles = articles;
 	}
-
-	public Board(String url, String name) {
-		this(url, name, null);
-	}
-
 	
+	
+	public String getShopUrl() {
+		return shopUrl;
+	}
+	public String getName() {
+		return name;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Board [shopUrl=" + shopUrl + ", name=" + name + "]";
+	}
+	
+	
+	
+	
+
 }
