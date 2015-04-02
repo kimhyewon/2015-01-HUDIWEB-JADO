@@ -1,30 +1,31 @@
 #signUpContainer {
-	float: left;
-	margin-left: 35%;
-	margin-top: 100px;
+	display: inline-block;
 }
 
-#signUpContainer h2 {
-	font-size: 24px;
-}
-
-#signUpContainer form {
+#signUpContainer form div {
 	background: -webkit-linear-gradient(#FFF8E3, #FFEBBA);
 	background: -o-linear-gradient(#FFF8E3, #FFEBBA);
 	background: linear-gradient(#FFF8E3, #FFEBBA);
-	width: 280px;
+	width: 335px;
 	height: 540px;
-	padding: 30px 35px;
+	padding: 30px 30px;
 	border-radius: 12px;
 	box-shadow: 1px 5px 10px #CCC;
+	text-align: left;
 }
 
-#signUpContainer li { margin: 10px 0; }
-#signUpContainer li:nth-child(7) { margin: 20px 0; padding-left: 5px;}
-#signUpContainer li:nth-child(7) span { font-size: 14px; margin-left: 5px;}
-#signUpContainer li:nth-child(8) input { width: 120px; }
-#signUpContainer li:nth-child(8) p { font-size: 12px; color: red; margin: 10px 10px;}
-#signUpContainer li:nth-child(10) input { width: 180px; }
+#signUpContainer h2 { font-size: 24px; }
+
+#signUpContainer li {
+	margin: 10px 0;
+	width: 280px;
+}
+#signUpUser li:nth-child(7) { margin: 20px 0; padding-left: 5px;}
+#signUpUser li:nth-child(7) span { font-size: 14px; margin-left: 5px;}
+#signUpSeller li:nth-child(1) span { font-size: 16px; margin-left: 5px;}
+#signUpSeller li:nth-child(1) input { width: 120px; margin-left: 10px;}
+#signUpSeller li:nth-child(1) p { font-size: 12px; color: red; margin: 10px 5px 20px 5px;}
+#signUpSeller li:nth-child(3) input { width: 180px; }
 
 #signUpContainer input {
 	width: 270px;
@@ -33,7 +34,6 @@
     background: -o-linear-gradient(#f0f0f0, #fff, #fff, #fff);
     background: linear-gradient(#f0f0f0, #fff, #fff, #fff);
 	border-radius: 5px;
-	outline: none;
 	text-indent: 10px;
 	font-size: 12px;
 	border: #ddd solid 1px;
