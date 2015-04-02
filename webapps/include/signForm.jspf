@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="signUpContainer">
-	<section>		
 	<form id ="signup_form" class="encrypt_form" action="/user" method="post" autocomplete="off">
 		<h2>Sign Up</h2>
 		<ul>
@@ -80,5 +79,4 @@
 		<input type="hidden" name="shopAddress" value="NULL">
 		<input type="submit" value="회 원  가 입">
 	</form>
-	</section>
 </div>		
