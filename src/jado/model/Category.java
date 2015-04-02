@@ -5,22 +5,38 @@ import java.util.List;
 public class Category {
 	private int id;
 	private String name;
-	private String shop_url;
+	private String shopUrl;
 	private List<Product> products;
-	
-	public Category(int id, String name, String shop_url, List<Product> products) {
+
+	public Category(int id, String name, String shopUrl, List<Product> products) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.shop_url = shop_url;
+		this.shopUrl = shopUrl;
 		this.products = products;
 	}
+	
 
-	public Category(String name, String shop_url) {
-		this(0, name, shop_url, null);
+	public Category(int id, String name, String shopUrl) {
+		this(id, name, shopUrl, null);
 	}
-	
-	
-	
-	
+
+
+	public Category(String name, String shopUrl) {
+		this(0, name, shopUrl, null);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getShopUrl() {
+		return shopUrl;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + ", shopUrl=" + shopUrl + ", products=" + products + "]";
+	}
+
 }
