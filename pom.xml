@@ -21,6 +21,7 @@
 		<logger.version>1.1.2</logger.version>
 		<spring-webmvc.version>4.1.6.RELEASE</spring-webmvc.version>
 		<spring-test.version>4.1.6.RELEASE</spring-test.version>
+		<spring-jdbc.version>4.1.6.RELEASE</spring-jdbc.version>
 		<h2.version>1.4.186</h2.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 
@@ -190,6 +191,11 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring-test.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring-jdbc.version}</version>
 		</dependency>
 		
 		<!-- h2 database -->
