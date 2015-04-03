@@ -7,16 +7,24 @@ import java.security.spec.InvalidKeySpecException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import core.util.EncryptRSA;
 
-@WebServlet("/main")
+@Controller
 public class MainController extends HttpServlet {
+
+	@RequestMapping("/main")
+	public String firstSpringTest() {
+		return "main";
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
