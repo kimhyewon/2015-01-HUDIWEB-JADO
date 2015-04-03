@@ -1,5 +1,12 @@
 package jado.model;
 
+import javax.sql.DataSource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import core.exception.DuplicateUserException;
 import core.exception.IsNotValidatedMail;
 import core.exception.PasswordMismatchException;
@@ -7,7 +14,9 @@ import core.exception.UserNotFoundException;
 import jado.dao.UserDao;
 
 public class Customer extends User {
-
+	private static final Logger logger = LoggerFactory.getLogger(Customer.class);
+//	return new Customer(rs.getString("ID"), rs.getString("PASSWORD"),
+//			rs.getString("NAME"), rs.getString("PHONE"), rs.getString("ADDRESS"), rs.getString("IS_VALIDATED"));
 	private String password;
 	private String name;
 	private String phone;
@@ -16,25 +25,39 @@ public class Customer extends User {
 	private String updateTime;
 	private String isValidated;
 
+	@Autowired
+	public UserDao userDao;
+	
+//	@Autowired
+//	public void setUserDao(UserDao userDao) {
+//		this.userDao = userDao;
+//		logger.debug("실행되나");
+//	}
+	
 	public boolean login(String checkedPassword) throws UserNotFoundException,
 			PasswordMismatchException, IsNotValidatedMail {
 		if (!password.equals(checkedPassword)) {
 			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. 다시 로그인 해주세요.");
 		}
 		if(!isValidated.equals("T")){
-			throw new IsNotValidatedMail("이메일 인증이 와료 되지 않았습니다. 회원가입 하신 아이디로 이메일이 발송 되었으니 인증해 주시기 바랍니다.");
+			throw new IsNotValidatedMail("이메일 인증이 완료 되지 않았습니다. 회원가입 하신 아이디로 이메일이 발송 되었으니 인증해 주시기 바랍니다.");
 		}
 		return true;
 	}
 
 	public void signUp() throws DuplicateUserException,
 			PasswordMismatchException {
-
-		Customer tempUser = UserDao.selectUserById(this.userId);
-		if (tempUser != null) {
-			throw new DuplicateUserException("이미 가입된 사용자입니다.");
-		}
-		UserDao.insert(this);
+		logger.debug(this.userId+"");
+		
+		//TODO 이거 되살려야 함
+//		Customer tempUser = userDao.selectUserById(this.userId);
+//		if (tempUser != null) {
+//			throw new DuplicateUserException("이미 가입된 사용자입니다.");
+//		}
+		logger.debug("this는 과연 무엇일까? {}", this);
+		userDao.insert(
+				this
+				);
 	}
 
 	// Constructor

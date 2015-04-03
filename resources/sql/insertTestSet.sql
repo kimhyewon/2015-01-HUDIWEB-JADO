@@ -4,7 +4,7 @@
 -- Table `jado_dev`.`USER`
 -- -----------------------------------------------------
 
-insert into USER VALUES('testuser1@testuser.com', 'testuserPassword','name','phone','address','2015-03-26 12:34:56','2015-03-26 12:34:56','F');
+insert into USER VALUES('111', '111','name','phone','address','2015-03-26 12:34:56','2015-03-26 12:34:56','F');
 
 insert into USER VALUES('testuser2@testuser.com', 'testuserPassword','name','phone','address','2015-03-26 12:34:56','2015-03-26 12:34:56','F');
 insert into SHOP VALUES('testurl', 'testtitle,','testphone', '/userImg/shop/main/default.png','/userImg/shop/main/default.png' ,'/userImg/shop/main/default.png','thema1','footer_test');

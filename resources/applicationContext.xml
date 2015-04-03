@@ -17,6 +17,6 @@
 		p:password="${database.password}"
 	/>
 	
-	<bean id="userDao" class="jado.dao.UserDao"
-		p:dataSource-ref="dataSource" />
+	<bean id="userDao" class="jado.dao.UserDao" p:dataSource-ref="dataSource" />
+	<bean id="shopDao" class="jado.dao.ShopDao" p:dataSource-ref="dataSource" />
 </beans>

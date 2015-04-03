@@ -20,7 +20,7 @@ import core.util.EncryptRSA;
 @Controller
 public class MainController extends HttpServlet {
 
-	@RequestMapping("/main")
+	@RequestMapping("/")
 	public String firstSpringTest() {
 		return "main";
 	}

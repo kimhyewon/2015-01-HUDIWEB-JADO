@@ -17,7 +17,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +24,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import core.exception.DuplicateUserException;
 import core.exception.PasswordMismatchException;
@@ -39,14 +40,17 @@ import core.util.ServletRequestUtils;
 @Controller
 public class SignUpController extends HttpServlet {
 	
-	@Autowired
 	private ShopDao shopDao;
-	@Autowired
 	private UserDao userDao;
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	@Autowired
+	public void setDataSource(ShopDao shopDao, UserDao userDao) {
+		this.shopDao = shopDao;
+	        this.userDao = userDao;
+	}
+	
+	@RequestMapping("/user")
+	public String userGet(HttpServletRequest req, HttpServletResponse resp) {
 		HttpSession session = req.getSession();
 //		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");
 		String url = req.getParameter("url");
@@ -59,15 +63,15 @@ public class SignUpController extends HttpServlet {
 
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
 			e.printStackTrace();
-			forward(req, resp, e.getMessage());
+			req.setAttribute("errorMessage", e.getMessage());
+//			forward(req, resp, e.getMessage());
 		}
-		
 		req.setAttribute("url", url);
-		req.getRequestDispatcher("/signUp.jsp").forward(req,  resp);
+		return "signUp";
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	@RequestMapping(value="/user", method=RequestMethod.POST)
+	protected void userPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");

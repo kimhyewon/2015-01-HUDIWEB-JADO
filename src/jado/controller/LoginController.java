@@ -14,11 +14,17 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import core.exception.IsNotValidatedMail;
 import core.exception.PasswordMismatchException;
@@ -27,11 +33,20 @@ import core.util.DecryptRSA;
 import core.util.EncryptRSA;
 import core.util.ServletRequestUtils;
 
-@WebServlet("/user/login")
+//@WebServlet("/user/login")
+@Controller
 public class LoginController extends HttpServlet {
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	
+	private UserDao userDao;
+	
+	@Autowired
+	public void setDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+	
+	@RequestMapping("/user/login")
+	public String firstSpringTest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String url = req.getParameter("url");
 		System.out.println(url);
@@ -41,23 +56,21 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("__rsaPrivateKey__", rsa.getPrivateKey());
 			req.setAttribute("publicKeyModulus", rsa.getPublicKeyModulus());
 			req.setAttribute("publicKeyExponent", rsa.getPublicKeyExponent());
-
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-			e.printStackTrace();
 			forward(req, resp, e.getMessage());
 		}
 
 		req.setAttribute("url", url);
-		req.getRequestDispatcher("/login.jsp").forward(req, resp);
+		return "login";
 	}
-
-	@Override
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	
+	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
+	public String loginPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 
 		String userId = ServletRequestUtils.getRequiredStringParameter(request,
 				"idEncryption");
+		logger.debug("받은상태 바로 : 복호화 전 {}", userId);
 		String password = ServletRequestUtils.getRequiredStringParameter(
 				request, "pwEncryption");
 		String url = ServletRequestUtils.getRequiredStringParameter(request,
@@ -80,21 +93,26 @@ public class LoginController extends HttpServlet {
 		}
 		
 		try {
-			Customer user = UserDao.selectCustomerById(userId);
+			logger.debug("문자열인가요? {} ", userId );
+			Customer user = userDao.selectCustomerById(userId);
 			user.login(password);
 			session.setAttribute("userId", userId);
 
-			if (UserDao.selectSellerById(userId) != null) {
+			if (userDao.selectSellerById(userId) != null) {
 				session.setAttribute("isSeller", true);
 			}
 //			if (url == null || url == "") {
 //				response.sendRedirect("/");
 //			}
-			response.sendRedirect("/");
-
+//			response.sendRedirect("/");
+			
 		} catch (UserNotFoundException | PasswordMismatchException | IsNotValidatedMail e) {
-			forward(request, response, e.getMessage());
+			request.setAttribute("errorMessage", e.getMessage());
+			return "loginFailure";
+		} catch (Exception e) {
+			return "loginFailure";
 		}
+		return "main";
 	}
 
 	private void forward(HttpServletRequest request,
