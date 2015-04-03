@@ -3,12 +3,33 @@ package jado.dao;
 
 import jado.model.Customer;
 import jado.model.Seller;
+
+import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+
+import com.google.common.annotations.Beta;
+
+import core.exception.UserNotFoundException;
 import core.jdbc.JdbcTemplate;
 import core.jdbc.RowMapper;
-import core.exception.UserNotFoundException;
-public class UserDao {
-	private static final Exception UserNotFoundException = null;
 
+public class UserDao {
+	
+	@Autowired
+	private DataSource datasource;
+	
+	@PostConstruct
+	public void initialize() {
+		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		populator.addScripts(new ClassPathResource("sql/initDbSchema.sql"), new ClassPathResource("sql/insertTestSet.sql"));
+		DatabasePopulatorUtils.execute(populator, datasource);
+	}
+	
 	public static void insert(Customer customer) {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F')";
@@ -75,7 +96,7 @@ public class UserDao {
 		jdbcTemplate.executeUpdate(sql, "T");
 	}
 
-	public static Customer selectCustomerById(String userId) throws core.exception.UserNotFoundException {
+	public static Customer selectCustomerById(String userId) throws UserNotFoundException {
 		Customer user = selectUserById(userId);
 		if(user == null) throw new UserNotFoundException("아이디가 존재하지 않습니다 다시 로그인 해주세요");
 		return user;
