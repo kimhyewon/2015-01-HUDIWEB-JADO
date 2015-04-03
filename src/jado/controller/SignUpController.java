@@ -23,6 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import core.exception.DuplicateUserException;
 import core.exception.PasswordMismatchException;
 import core.mail.Mail;
@@ -32,8 +35,15 @@ import core.util.DecryptRSA;
 import core.util.EncryptRSA;
 import core.util.ServletRequestUtils;
 
-@WebServlet("/user")
+//@WebServlet("/user")
+@Controller
 public class SignUpController extends HttpServlet {
+	
+	@Autowired
+	private ShopDao shopDao;
+	@Autowired
+	private UserDao userDao;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -106,8 +116,8 @@ public class SignUpController extends HttpServlet {
 			Shop shop = new Shop(shopUrl, shopPhone);
 			Seller seller = new Seller(userId, shopUrl, bank, bankAccount);
 			
-			ShopDao.insert(shop);
-			UserDao.insert(seller);
+			shopDao.insert(shop);
+			userDao.insert(seller);
 		}
 		
 		MailSender.send(new Mail(userId, MailTemplateStorage.Type.JOIN_VERIFY));
