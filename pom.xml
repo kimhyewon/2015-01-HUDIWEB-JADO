@@ -32,6 +32,7 @@
 		<!-- scope -->
 		<tomcat.scope>provided</tomcat.scope>
 		<junit.scope>test</junit.scope>
+		<h2database.scope>provided</h2database.scope>
 
 		<!-- etc -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -196,6 +197,7 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>${h2.version}</version>
+			<scope>${h2database.scope}</scope>
 		</dependency>
 
 		<!--  commons-dbcp  / Connection Pooling -->
