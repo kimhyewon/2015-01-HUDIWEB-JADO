@@ -22,14 +22,20 @@ public class LoginService {
 	@Autowired private UserDao userDao;
 
 	public boolean logIn(String userId, String password, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
+		Boolean loginAllowed = true;  
 		try {
 			checkIsUserExist(request, response, userId);
 			checkIsPasswordCorrect(request, response, userId, password);
 			checkIsEmailValidated(request, response, userId);
 		} catch (UserNotFoundException | PasswordMismatchException | IsNotValidatedMail e) {
+			loginAllowed = false;
 			forward(request, response, e.getMessage());
 		}
-		setUserInformationToSessionScope(userId, session);
+
+		if(loginAllowed) {
+			setUserInformationToSessionScope(userId, session);
+		}
+		
 		return true;
 	}
 
