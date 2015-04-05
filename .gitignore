@@ -9,6 +9,7 @@
 target/
 classes/
 tomcat.8080/
+**/WEB-INF/lib/*
 
 # DB
 src/core/jdbc/ConnectionManager.java
