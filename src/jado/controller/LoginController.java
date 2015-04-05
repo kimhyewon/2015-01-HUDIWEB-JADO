@@ -3,15 +3,10 @@ package jado.controller;
 import jado.service.LoginService;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.spec.InvalidKeySpecException;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -61,8 +56,10 @@ public class LoginController extends HttpServlet {
 		userId = decryptString(privateKey, request, response, userId);
 		password = decryptString(privateKey, request, response, password);
 
-		loginService.logIn(userId, password, request, session);
-		return "main";
+		if(loginService.logIn(userId, password, request, response, session))
+			return "main";
+		else
+			return "loginFailure";
 	}
 
 	private String decryptString(PrivateKey privateKey, HttpServletRequest request, HttpServletResponse response, String decryptTargetString) throws ServletException, IOException  {
@@ -71,7 +68,6 @@ public class LoginController extends HttpServlet {
 			DecryptRSA rsa = new DecryptRSA(privateKey);
 			decryptedString = rsa.decryptRsa(decryptTargetString);
 		} catch (Exception e) {
-			logger.debug("여긴가?");
 			forward(request, response, e.getMessage());
 		}
 		return decryptedString;
@@ -99,6 +95,5 @@ public class LoginController extends HttpServlet {
 		request.setAttribute("errorMessage", errorMessage);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/loginFailure.jsp");
 		rd.forward(request, response);
-
 	}
 }

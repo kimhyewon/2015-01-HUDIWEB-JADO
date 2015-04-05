@@ -1,12 +1,7 @@
 package jado.model;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class Customer extends User {
-	private static final Logger logger = LoggerFactory.getLogger(Customer.class);
-//	return new Customer(rs.getString("ID"), rs.getString("PASSWORD"),
-//			rs.getString("NAME"), rs.getString("PHONE"), rs.getString("ADDRESS"), rs.getString("IS_VALIDATED"));
+
 	private String password;
 	private String name;
 	private String phone;
@@ -14,6 +9,8 @@ public class Customer extends User {
 	private String insertTime;
 	private String updateTime;
 	private String emailValidateStatus;
+
+	public Customer() { }
 	
 	public Customer(String userId, String password, String name, String phone, String address, String insertTime, String updateTime, String isValidated) {
 		super(userId);
@@ -25,13 +22,12 @@ public class Customer extends User {
 		this.updateTime = updateTime;
 		this.emailValidateStatus = isValidated;
 	}
-	
+
 	public Customer(String userId, String password, String name, String phone, String address, String isValidated) {
-		this(userId, password, name, phone, address, null, null,"F");
+		this(userId, password, name, phone, address, null, null, "F");
 	}
 
-	public Customer(String userId, String password, String name, String phone,
-			String address) {
+	public Customer(String userId, String password, String name, String phone, String address) {
 		this(userId, password, name, phone, address, null);
 
 	}
@@ -98,15 +94,15 @@ public class Customer extends User {
 
 	public boolean update(Customer customer2) {
 		boolean result = false;
-		if(!this.phone.equals(customer2.phone)){
+		if (!this.phone.equals(customer2.phone)) {
 			this.phone = customer2.phone;
 			result = true;
 		}
-		if(!this.address.equals(customer2.address)){
+		if (!this.address.equals(customer2.address)) {
 			this.address = customer2.address;
 			result = true;
 		}
-		if(!this.address.equals(customer2.address)){
+		if (!this.address.equals(customer2.address)) {
 			this.address = customer2.address;
 			result = true;
 		}

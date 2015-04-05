@@ -59,7 +59,7 @@ public class UserDao {
 	public Customer selectUserById(final String userId) {
 		String sql = "select * from USER where ID=?";
 		try {
-			return (Customer) jdbcTemplate.queryForObject(sql, new Object[]{userId}, Customer.class);
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Customer>(Customer.class), userId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -100,8 +100,7 @@ public class UserDao {
 	}
 
 	public  Customer selectCustomerById(String userId) {
-		Customer user = selectUserById(userId);
-		return user;
+		 return selectUserById(userId);
 	}
 
 	public void insert(Customer customer) {
