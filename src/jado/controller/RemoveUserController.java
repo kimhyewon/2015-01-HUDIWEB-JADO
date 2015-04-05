@@ -1,45 +1,42 @@
 package jado.controller;
 
-import jado.dao.UserDao;
-import jado.model.Customer;
-import jado.model.Seller;
+import jado.service.RemoveUserService;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import core.util.ServletRequestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-@WebServlet("/user/delete")
-public class RemoveUserController extends HttpServlet{
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+@Controller
+public class RemoveUserController  {
+	
+	@Autowired private RemoveUserService removeUserService;
+	
+	@RequestMapping(value = "/user/delete", method = RequestMethod.GET)
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("/blogDummy.jsp").forward(req,  resp);
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {		
+	@RequestMapping(value = "/user/delete", method = RequestMethod.POST)
+	protected void processUserDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		HttpSession session = req.getSession();
 		
+		// TODO 여기 조금 이상한것 같음
+		// TODO 여기 개발 담당했던 @kimhyewon 확인요청드림
 		String userId = (String)session.getAttribute("userId");
-		String password = (String)session.getAttribute("password");
-		
 		Boolean isSeller = (Boolean)session.getAttribute("isSeller");
-//		System.out.println(isSeller);
 		
 		if(req.getParameter("isSeller") != null){
-			UserDao.removeSeller(userId);
+			removeUserService.removeSeller(userId);
 		}
-		UserDao.removeCustomer(userId);
-		
-
+		removeUserService.removeCustomer(userId);
 		
 		resp.sendRedirect("/blogDummy.jsp");
 	}

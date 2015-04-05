@@ -1,11 +1,5 @@
 package jado.model;
 
-import core.exception.DuplicateUserException;
-import core.exception.IsNotValidatedMail;
-import core.exception.PasswordMismatchException;
-import core.exception.UserNotFoundException;
-import jado.dao.UserDao;
-
 public class Customer extends User {
 
 	private String password;
@@ -14,34 +8,11 @@ public class Customer extends User {
 	private String address;
 	private String insertTime;
 	private String updateTime;
-	private String isValidated;
+	private String emailValidateStatus;
 
-	public boolean login(String checkedPassword) throws UserNotFoundException,
-			PasswordMismatchException, IsNotValidatedMail {
-		if (!password.equals(checkedPassword)) {
-			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. 다시 로그인 해주세요.");
-		}
-		if(!isValidated.equals("T")){
-			throw new IsNotValidatedMail("이메일 인증이 와료 되지 않았습니다. 회원가입 하신 아이디로 이메일이 발송 되었으니 인증해 주시기 바랍니다.");
-		}
-		return true;
-	}
-
-	public void signUp() throws DuplicateUserException,
-			PasswordMismatchException {
-
-		Customer tempUser = UserDao.selectUserById(this.userId);
-		if (tempUser != null) {
-			throw new DuplicateUserException("이미 가입된 사용자입니다.");
-		}
-		UserDao.insert(this);
-	}
-
-	// Constructor
+	public Customer() { }
 	
-	
-	
-	public Customer(String userId, String password, String name, String phone, String address, String insertTime, String updateTime, String isValidated) {
+	public Customer(String userId, String password, String name, String phone, String address, String insertTime, String updateTime, String emailValidateStatus) {
 		super(userId);
 		this.password = password;
 		this.name = name;
@@ -49,15 +20,14 @@ public class Customer extends User {
 		this.address = address;
 		this.insertTime = insertTime;
 		this.updateTime = updateTime;
-		this.isValidated = isValidated;
-	}
-	
-	public Customer(String userId, String password, String name, String phone, String address, String isValidated) {
-		this(userId, password, name, phone, address, null, null,"F");
+		this.emailValidateStatus = emailValidateStatus;
 	}
 
-	public Customer(String userId, String password, String name, String phone,
-			String address) {
+	public Customer(String userId, String password, String name, String phone, String address, String isValidated) {
+		this(userId, password, name, phone, address, null, null, "F");
+	}
+
+	public Customer(String userId, String password, String name, String phone, String address) {
 		this(userId, password, name, phone, address, null);
 
 	}
@@ -66,35 +36,73 @@ public class Customer extends User {
 		this(userId, password, null, null, null);
 	}
 
-	// Getter
 	public String getPassword() {
 		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getPhone() {
 		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getAddress() {
 		return address;
 	}
 
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getInsertTime() {
+		return insertTime;
+	}
+
+	public void setInsertTime(String insertTime) {
+		this.insertTime = insertTime;
+	}
+
+	public String getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getEmailValidateStatus() {
+		return emailValidateStatus;
+	}
+	
+	public void setEmailValidateStatus(String emailValidateStatus) {
+		this.emailValidateStatus = emailValidateStatus;
+	}
 
 	public boolean update(Customer customer2) {
 		boolean result = false;
-		if(!this.phone.equals(customer2.phone)){
+		if (!this.phone.equals(customer2.phone)) {
 			this.phone = customer2.phone;
 			result = true;
 		}
-		if(!this.address.equals(customer2.address)){
+		if (!this.address.equals(customer2.address)) {
 			this.address = customer2.address;
 			result = true;
 		}
-		if(!this.address.equals(customer2.address)){
+		if (!this.address.equals(customer2.address)) {
 			this.address = customer2.address;
 			result = true;
 		}

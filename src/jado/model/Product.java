@@ -2,8 +2,6 @@ package jado.model;
 
 import java.util.List;
 
-import core.jdbc.PreparedStatementSetter;
-
 public class Product {
 	private int id;
 	private int categoryId;

@@ -6,23 +6,22 @@
 <head>
 	<title>Ne#</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="/css/lib/reset.css">
-	<link rel="stylesheet" type="text/css" href="/css/lib/grid.css">
-	<link rel="stylesheet" type="text/css" href="/css/top.css">
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/css/signForm.css">
+	<link rel="stylesheet" type="text/css" href="/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="/css/top.css" />
+	<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="/css/signForm.css" />
 </head>
 <body>
-    <%@ include file="/include/top.jspf" %>
+    <%@ include file="include/top.jspf" %>
     <c:choose>
     <c:when test="${empty userId}">
 		<div id = "background_con">
 			<img alt="" style="position: fixed; width: 100%; opacity: 1; min-width: 700px; min-height:100%;" src="http://stylonica.com/wp-content/uploads/2014/03/HD-Colorful-Spring-Wallpaper-1.jpg" >	
 		</div>
 		<div id = "container">
-	    	<%@ include file="/include/main.jspf" %>
-	    	<%@ include file="/include/info.jspf" %>
-	    	<%@ include file="/include/signForm.jspf" %>
+	    	<%@ include file="include/main.jspf" %>
+	    	<%@ include file="include/info.jspf" %>
+	    	<%@ include file="include/signForm.jspf" %>
 		</div>
 	</c:when>
 	<c:otherwise>
