@@ -24,8 +24,12 @@ public class MailAuthDao {
 
 	public boolean isAlreadyVerified(String userEmail) {
 		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();
-		String sql = "select IS_VALIDATED from USER where ID=?";
-		RowMapper<String> rm = rs -> rs.getString("IS_VALIDATED");
+		String sql = "select EMAIL_VALIDATE_STATUS from USER where ID=?";
+		RowMapper<String> rm = rs -> rs.getString("EMAIL_VALIDATE_STATUS");
+		
+		// 회원가입 한 적 없는 회원이 부정한 방법으로 메일 인증을 시도할 경우 
+		if(jdbcTemplate.executeQuery(sql, rm, userEmail) == null) return false;
+		
 		if (jdbcTemplate.executeQuery(sql, rm, userEmail).equals("T"))
 			return true;
 		return false;

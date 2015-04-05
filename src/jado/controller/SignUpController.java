@@ -16,7 +16,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,26 +34,15 @@ import core.util.DecryptRSA;
 import core.util.EncryptRSA;
 import core.util.ServletRequestUtils;
 
-//@WebServlet("/user")
 @Controller
-public class SignUpController extends HttpServlet {
+public class SignUpController  {
 	
 	@Autowired
 	private SignUpService signUpService;
 	
-//	private ShopDao shopDao;
-//	private UserDao userDao;
-	
-//	@Autowired
-//	public void setDataSource(ShopDao shopDao, UserDao userDao) {
-//		this.shopDao = shopDao;
-//	        this.userDao = userDao;
-//	}
-	
-	@RequestMapping("/user")
-	public String userGet(HttpServletRequest req, HttpServletResponse resp) {
+	@RequestMapping(value="/user", method=RequestMethod.GET)
+	public String userGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-//		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");
 		String url = req.getParameter("url");
 		
 		try {
@@ -66,7 +54,7 @@ public class SignUpController extends HttpServlet {
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
 			e.printStackTrace();
 			req.setAttribute("errorMessage", e.getMessage());
-//			forward(req, resp, e.getMessage());
+			forward(req, resp, e.getMessage());
 		}
 		req.setAttribute("url", url);
 		return "signUp";
@@ -100,7 +88,6 @@ public class SignUpController extends HttpServlet {
 			e.printStackTrace();
 			forward(req, resp, e.getMessage());
 		}
-		
 		
 		Customer user = new Customer(userId, password, name, phone, address);
 		

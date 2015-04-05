@@ -40,7 +40,7 @@ public class ShopDao {
 		jdbcTemplate.update(sql, shop.getTitle(), shop.getPhone(), shop.getBanner_url(), shop.getMain_url(), shop.getLogo_url(), shop.getTheme(), shop.getFooter(), shop.getUrl());
 	}
 	
-	//TODO 고쳐
+	//TODO 고쳐야 함 
 	public  Shop selectByUrl(final String url) {
 		String sql = "select * from SHOP where URL=?";
 //		RowMapper<Shop> rm = rs -> new Shop(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));

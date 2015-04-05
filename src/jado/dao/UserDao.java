@@ -76,7 +76,7 @@ public class UserDao {
 		}
 	}
 
-	// TODO 고쳐
+	// TODO 고쳐야 함
 	public  Integer numberOfSellers() {
 		String sql = "select count(ID) AS count from SELLER";
 		return jdbcTemplate.queryForObject(sql, Integer.class);
