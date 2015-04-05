@@ -1,9 +1,13 @@
 package jado.dao;
 
 import jado.model.Article;
+
+import org.springframework.stereotype.Repository;
+
 import core.jdbc.JdbcTemplate222;
 import core.jdbc.RowMapper;
 
+@Repository
 public class ArticleDao {
 	public static void insert(final Article article) {
 		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();

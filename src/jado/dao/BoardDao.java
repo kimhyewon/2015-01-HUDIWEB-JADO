@@ -1,9 +1,13 @@
 package jado.dao;
 
-import core.jdbc.JdbcTemplate222;
-import core.jdbc.RowMapper;
 import jado.model.Board;
 
+import org.springframework.stereotype.Repository;
+
+import core.jdbc.JdbcTemplate222;
+import core.jdbc.RowMapper;
+
+@Repository
 public class BoardDao {
 	public static void insert(final Board board) {
 		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();

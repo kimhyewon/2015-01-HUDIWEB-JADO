@@ -8,8 +8,6 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -97,7 +95,7 @@ public class UserDao {
 	}
 	
 	public void updateMailAuthStatus() {
-		String sql = "update USER set IS_VALIDATED = ?";
+		String sql = "update USER set EMAIL_VALIDATE_STATUS = ?";
 		jdbcTemplate.update(sql, "T");
 	}
 

@@ -1,8 +1,11 @@
 package jado.dao;
 
+import org.springframework.stereotype.Repository;
+
 import core.jdbc.JdbcTemplate222;
 import core.jdbc.RowMapper;
 
+@Repository
 public class MailAuthDao {
 	public void insert(String mailRecipient, String uuid) {
 		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();

@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import core.exception.IsNotValidatedMail;
 import core.exception.PasswordMismatchException;
 import core.exception.UserNotFoundException;
 
+@Service
 public class LoginService {
 	
 	@Autowired private UserDao userDao;

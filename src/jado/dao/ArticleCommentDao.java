@@ -1,12 +1,16 @@
 package jado.dao;
 
+import jado.model.ArticleComment;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import jado.model.ArticleComment;
+import org.springframework.stereotype.Repository;
+
 import core.jdbc.JdbcTemplate222;
 import core.jdbc.RowMapper;
 
+@Repository
 public class ArticleCommentDao {
 	public static void insert(final ArticleComment articleComment) {
 		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();

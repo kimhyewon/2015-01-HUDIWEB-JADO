@@ -6,9 +6,12 @@ import jado.model.ProductComment;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import core.jdbc.JdbcTemplate222;
 import core.jdbc.RowMapper;
 
+@Repository
 public class ProductCommentDao {
 	public static void insert(final ProductComment productComment) {
 		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();

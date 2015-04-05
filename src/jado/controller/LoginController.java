@@ -9,7 +9,6 @@ import java.security.spec.InvalidKeySpecException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,8 +25,7 @@ import core.util.EncryptRSA;
 import core.util.ServletRequestUtils;
 
 @Controller
-public class LoginController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired

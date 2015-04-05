@@ -1,8 +1,6 @@
 package jado.controller;
 
 import jado.dao.UserDao;
-import jado.model.Customer;
-import jado.model.Seller;
 
 import java.io.IOException;
 
@@ -12,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import core.util.ServletRequestUtils;
 
 @WebServlet("/user/delete")
 public class RemoveUserController extends HttpServlet{

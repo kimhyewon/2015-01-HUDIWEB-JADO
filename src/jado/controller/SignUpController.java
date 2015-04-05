@@ -1,7 +1,5 @@
 package jado.controller;
 
-import jado.dao.ShopDao;
-import jado.dao.UserDao;
 import jado.model.Customer;
 import jado.model.Seller;
 import jado.model.Shop;
