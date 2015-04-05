@@ -3,6 +3,7 @@ package jado.controller;
 import jado.service.LoginService;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
@@ -31,52 +32,60 @@ import core.util.ServletRequestUtils;
 
 @Controller
 public class LoginController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping("/user/login")
-	public String firstSpringTest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
+	public String viewLoginPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		// TODO 로그인한 사용자가 로그인 페이지에 접속하기 이전 주소로 돌려주기 위한 기능에 오류가 존재함 - 수정 필요
 		logger.debug("접속한 회원의 이전 주소 {}", req.getParameter("url"));
-
-		HttpSession session = req.getSession();
-		encryptPrepareProcess(req, resp, session);
-
 		req.setAttribute("url", req.getParameter("url"));
+
+		encryptPrepareProcess(req, resp);
 		return "login";
 	}
 
 	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
-	public String loginPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	public String processLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String userId = ServletRequestUtils.getRequiredStringParameter(request, "idEncryption");
 		String password = ServletRequestUtils.getRequiredStringParameter(request, "pwEncryption");
-		String url = ServletRequestUtils.getRequiredStringParameter(request, "url");
-
-		PrivateKey privateKey = (PrivateKey) session.getAttribute("__rsaPrivateKey__");
-		session.removeAttribute("__rsaPrivateKey__");
-
-		try {
-			DecryptRSA rsa = new DecryptRSA(privateKey);
-			userId = rsa.decryptRsa(userId);
-			password = rsa.decryptRsa(password);
-
-		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException e) {
-			e.printStackTrace();
-			forward(request, response, e.getMessage());
-		} catch (IllegalBlockSizeException | BadPaddingException e) {
-			e.printStackTrace();
-			forward(request, response, e.getMessage());
-		}
+		
+		HttpSession session = request.getSession();
+		PrivateKey privateKey = getPrivateKeyAndDestroyKey(request, session);
+		
+		userId = decryptString(privateKey, request, response, userId);
+		password = decryptString(privateKey, request, response, password);
 
 		loginService.logIn(userId, password, request, session);
 		return "main";
 	}
-	
-	private void encryptPrepareProcess(HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws ServletException, IOException {
+
+	private String decryptString(PrivateKey privateKey, HttpServletRequest request, HttpServletResponse response, String decryptTargetString) throws ServletException, IOException  {
+		String decryptedString = null;
 		try {
+			DecryptRSA rsa = new DecryptRSA(privateKey);
+			decryptedString = rsa.decryptRsa(decryptTargetString);
+		} catch (Exception e) {
+			logger.debug("여긴가?");
+			forward(request, response, e.getMessage());
+		}
+		return decryptedString;
+	}
+
+	private PrivateKey getPrivateKeyAndDestroyKey(HttpServletRequest request, HttpSession session) {
+		PrivateKey privateKey = (PrivateKey) session.getAttribute("__rsaPrivateKey__");
+		session.removeAttribute("__rsaPrivateKey__");
+		return privateKey;
+	}
+
+	private void encryptPrepareProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			HttpSession session = req.getSession();
 			EncryptRSA rsa = new EncryptRSA();
 			session.setAttribute("__rsaPrivateKey__", rsa.getPrivateKey());
 			req.setAttribute("publicKeyModulus", rsa.getPublicKeyModulus());
@@ -86,10 +95,9 @@ public class LoginController extends HttpServlet {
 		}
 	}
 
-	private void forward(HttpServletRequest request, HttpServletResponse response, String errorMessage)
-			throws ServletException, IOException {
+	private void forward(HttpServletRequest request, HttpServletResponse response, String errorMessage) throws ServletException, IOException {
 		request.setAttribute("errorMessage", errorMessage);
-		RequestDispatcher rd = request.getRequestDispatcher("/loginFailure.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/loginFailure.jsp");
 		rd.forward(request, response);
 
 	}
