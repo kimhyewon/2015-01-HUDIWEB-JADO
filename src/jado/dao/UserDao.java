@@ -1,10 +1,9 @@
 package jado.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import jado.model.Customer;
 import jado.model.Seller;
+
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -14,15 +13,14 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.stereotype.Repository;
 
-import core.exception.UserNotFoundException;
-
+@Repository
 public class UserDao {
-	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
+	private DataSource dataSource;
 	
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
@@ -37,7 +35,7 @@ public class UserDao {
 		DatabasePopulatorUtils.execute(populator, dataSource);
 	}
 	
-	public  void insert(Customer customer) {
+	public  void d(Customer customer) {
 		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F')";
 		jdbcTemplate.update(sql, customer.getUserId(), customer.getPassword(), customer.getName(),
 				customer.getPhone(), customer.getAddress());
@@ -60,17 +58,22 @@ public class UserDao {
 
 	public Customer selectUserById(final String userId) {
 		String sql = "select * from USER where ID=?";
-		return (Customer) jdbcTemplate.queryForObject(sql, new Object[]{userId}, new BeanPropertyRowMapper<Customer>(Customer.class));  
+		try {
+			return (Customer) jdbcTemplate.queryForObject(sql, new Object[]{userId}, Customer.class);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 //			return new Customer(rs.getString("ID"), rs.getString("PASSWORD"),
 //					rs.getString("NAME"), rs.getString("PHONE"), rs.getString("ADDRESS"), rs.getString("IS_VALIDATED"));
 	}
 
-	// TODO 고쳐
 	public  Seller selectSellerById(final String userId) {
 		String sql = "select * from SELLER where ID=?";
-//		RowMapper<Seller> rm = rs -> new Seller(rs.getString("ID"), rs.getString("SHOP_URL"),
-//				rs.getString("BANK"), rs.getString("BANK_ACCOUNT")); 
-		return (Seller) jdbcTemplate.queryForObject(sql, new Object [] {userId}, Seller.class);
+		try {
+			return (Seller) jdbcTemplate.queryForObject(sql, new Object [] {userId}, Seller.class);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	// TODO 고쳐
@@ -96,9 +99,31 @@ public class UserDao {
 		jdbcTemplate.update(sql, "T");
 	}
 
-	public  Customer selectCustomerById(String userId) throws UserNotFoundException {
+	public  Customer selectCustomerById(String userId) {
 		Customer user = selectUserById(userId);
-		if(user == null) throw new UserNotFoundException("아이디가 존재하지 않습니다 다시 로그인 해주세요");
 		return user;
+	}
+
+	public void insert(Customer customer) {
+		String sql = "insert into USER values (?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress(), new Date(), null, "F");
+	}
+
+	public boolean IsPasswordCorrect(String userId, String password) {
+		if(selectUserById(userId) != null)
+			return selectUserById(userId).getPassword().equals(password);
+		return false;
+	}
+
+	public boolean IsEmailValidated(String userId) {
+		if(selectUserById(userId) != null)
+			return selectUserById(userId).getEmailValidateStatus().equals("T");
+		return false;
+	}
+
+	public boolean isExistSeller(String userId) {
+		if(selectSellerById(userId) != null) 
+			return true;
+		return false;
 	}
 }

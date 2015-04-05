@@ -1,17 +1,7 @@
 package jado.model;
 
-import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-
-import core.exception.DuplicateUserException;
-import core.exception.IsNotValidatedMail;
-import core.exception.PasswordMismatchException;
-import core.exception.UserNotFoundException;
-import jado.dao.UserDao;
 
 public class Customer extends User {
 	private static final Logger logger = LoggerFactory.getLogger(Customer.class);
@@ -23,46 +13,7 @@ public class Customer extends User {
 	private String address;
 	private String insertTime;
 	private String updateTime;
-	private String isValidated;
-
-	@Autowired
-	public UserDao userDao;
-	
-//	@Autowired
-//	public void setUserDao(UserDao userDao) {
-//		this.userDao = userDao;
-//		logger.debug("실행되나");
-//	}
-	
-	public boolean login(String checkedPassword) throws UserNotFoundException,
-			PasswordMismatchException, IsNotValidatedMail {
-		if (!password.equals(checkedPassword)) {
-			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. 다시 로그인 해주세요.");
-		}
-		if(!isValidated.equals("T")){
-			throw new IsNotValidatedMail("이메일 인증이 완료 되지 않았습니다. 회원가입 하신 아이디로 이메일이 발송 되었으니 인증해 주시기 바랍니다.");
-		}
-		return true;
-	}
-
-	public void signUp() throws DuplicateUserException,
-			PasswordMismatchException {
-		logger.debug(this.userId+"");
-		
-		//TODO 이거 되살려야 함
-//		Customer tempUser = userDao.selectUserById(this.userId);
-//		if (tempUser != null) {
-//			throw new DuplicateUserException("이미 가입된 사용자입니다.");
-//		}
-		logger.debug("this는 과연 무엇일까? {}", this);
-		userDao.insert(
-				this
-				);
-	}
-
-	// Constructor
-	
-	
+	private String emailValidateStatus;
 	
 	public Customer(String userId, String password, String name, String phone, String address, String insertTime, String updateTime, String isValidated) {
 		super(userId);
@@ -72,7 +23,7 @@ public class Customer extends User {
 		this.address = address;
 		this.insertTime = insertTime;
 		this.updateTime = updateTime;
-		this.isValidated = isValidated;
+		this.emailValidateStatus = isValidated;
 	}
 	
 	public Customer(String userId, String password, String name, String phone, String address, String isValidated) {
@@ -89,23 +40,61 @@ public class Customer extends User {
 		this(userId, password, null, null, null);
 	}
 
-	// Getter
 	public String getPassword() {
 		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getPhone() {
 		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getAddress() {
 		return address;
 	}
 
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getInsertTime() {
+		return insertTime;
+	}
+
+	public void setInsertTime(String insertTime) {
+		this.insertTime = insertTime;
+	}
+
+	public String getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getEmailValidateStatus() {
+		return emailValidateStatus;
+	}
+
+	public void setEmailValidateStatus(String emailValidateStatus) {
+		this.emailValidateStatus = emailValidateStatus;
+	}
 
 	public boolean update(Customer customer2) {
 		boolean result = false;

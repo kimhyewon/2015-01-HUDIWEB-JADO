@@ -19,4 +19,7 @@
 	
 	<bean id="userDao" class="jado.dao.UserDao" p:dataSource-ref="dataSource" />
 	<bean id="shopDao" class="jado.dao.ShopDao" p:dataSource-ref="dataSource" />
+	
+	<bean id="signUpService" class="jado.service.SignUpService" />
+	<bean id="loginService" class="jado.service.LoginService" />
 </beans>

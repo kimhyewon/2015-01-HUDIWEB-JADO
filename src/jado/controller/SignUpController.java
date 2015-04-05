@@ -5,6 +5,7 @@ import jado.dao.UserDao;
 import jado.model.Customer;
 import jado.model.Seller;
 import jado.model.Shop;
+import jado.service.SignUpService;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -40,14 +41,17 @@ import core.util.ServletRequestUtils;
 @Controller
 public class SignUpController extends HttpServlet {
 	
-	private ShopDao shopDao;
-	private UserDao userDao;
-	
 	@Autowired
-	public void setDataSource(ShopDao shopDao, UserDao userDao) {
-		this.shopDao = shopDao;
-	        this.userDao = userDao;
-	}
+	private SignUpService signUpService;
+	
+//	private ShopDao shopDao;
+//	private UserDao userDao;
+	
+//	@Autowired
+//	public void setDataSource(ShopDao shopDao, UserDao userDao) {
+//		this.shopDao = shopDao;
+//	        this.userDao = userDao;
+//	}
 	
 	@RequestMapping("/user")
 	public String userGet(HttpServletRequest req, HttpServletResponse resp) {
@@ -100,11 +104,10 @@ public class SignUpController extends HttpServlet {
 		}
 		
 		
-		
 		Customer user = new Customer(userId, password, name, phone, address);
 		
 		try{
-			user.signUp();
+			signUpService.insertCustomer(user);
 			req.setAttribute("userId", userId); 
 		} catch(DuplicateUserException | PasswordMismatchException e){
 			forward(req, resp, e.getMessage());
@@ -120,8 +123,8 @@ public class SignUpController extends HttpServlet {
 			Shop shop = new Shop(shopUrl, shopPhone);
 			Seller seller = new Seller(userId, shopUrl, bank, bankAccount);
 			
-			shopDao.insert(shop);
-			userDao.insert(seller);
+			signUpService.insertShop(shop);
+			signUpService.insertSeller(seller);
 		}
 		
 		MailSender.send(new Mail(userId, MailTemplateStorage.Type.JOIN_VERIFY));
