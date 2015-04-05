@@ -12,7 +12,7 @@ public class Customer extends User {
 
 	public Customer() { }
 	
-	public Customer(String userId, String password, String name, String phone, String address, String insertTime, String updateTime, String isValidated) {
+	public Customer(String userId, String password, String name, String phone, String address, String insertTime, String updateTime, String emailValidateStatus) {
 		super(userId);
 		this.password = password;
 		this.name = name;
@@ -20,7 +20,7 @@ public class Customer extends User {
 		this.address = address;
 		this.insertTime = insertTime;
 		this.updateTime = updateTime;
-		this.emailValidateStatus = isValidated;
+		this.emailValidateStatus = emailValidateStatus;
 	}
 
 	public Customer(String userId, String password, String name, String phone, String address, String isValidated) {
@@ -87,7 +87,7 @@ public class Customer extends User {
 	public String getEmailValidateStatus() {
 		return emailValidateStatus;
 	}
-
+	
 	public void setEmailValidateStatus(String emailValidateStatus) {
 		this.emailValidateStatus = emailValidateStatus;
 	}
