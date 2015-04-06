@@ -1,31 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<section>
-		<article class="info info1">
-			<div class="img">
-				<img src="" alt="">
-			</div>
-			<div class="text">
-				
-			</div>
-		</article>
+		<div class="img scroll left">
+		</div>
+		<div class="text scroll right">
+		어쩜 이렇게 하늘은 더 파란건지 <br>
+		오늘따라 왜 바람은 또 완벽한지 <br>
+		그냥 모르는척 하나 못들은척 <br>
+		지워버린척 딴 얘길 시작할까 <br>
+		아무 말 못하게 입맞출까 <br>
+		눈물이 차올라서 고갤 들어 <br>
+		흐르지 못하게 또 살짝 웃어 <br>
+		내게 왜 이러는지 무슨 말을 하는지<br> 
+		오늘 했던 모든 말 저 하늘 위로 <br>
+		한번도 못했던 말 <br>
+		울면서 할 줄은 나 몰랐던 말 <br>
+		나는요 오빠가 좋은걸 어떡해 <br>	
+		</div>
 	</section>
 	<section>
-		<article class="info info1">
-			<div class="img">
-				<img src="" alt="">
-			</div>
-			<div class="text">
-				
-			</div>
-		</article>
+		<div class="img scroll right">
+		</div>
+		<div class="text scroll left">
+		어쩜 이렇게 하늘은 더 파란건지 <br>
+		오늘따라 왜 바람은 또 완벽한지 <br>
+		그냥 모르는척 하나 못들은척 <br>
+		지워버린척 딴 얘길 시작할까 <br>
+		아무 말 못하게 입맞출까 <br>
+		눈물이 차올라서 고갤 들어 <br>
+		흐르지 못하게 또 살짝 웃어 <br>
+		내게 왜 이러는지 무슨 말을 하는지<br> 
+		오늘 했던 모든 말 저 하늘 위로 <br>
+		한번도 못했던 말 <br>
+		울면서 할 줄은 나 몰랐던 말 <br>
+		나는요 오빠가 좋은걸 어떡해 <br>
+		</div>
 	</section>
 	<section>
-		<article class="info info1">
-			<div class="img">
-				<img src="" alt="">
-			</div>
-			<div class="text">
-				
-			</div>
-		</article>
+		<div class="img scroll left">
+		</div>
+		<div class="text scroll right">
+		어쩜 이렇게 하늘은 더 파란건지 <br>
+		오늘따라 왜 바람은 또 완벽한지 <br>
+		그냥 모르는척 하나 못들은척 <br>
+		지워버린척 딴 얘길 시작할까 <br>
+		아무 말 못하게 입맞출까 <br>
+		눈물이 차올라서 고갤 들어 <br>
+		흐르지 못하게 또 살짝 웃어 <br>
+		내게 왜 이러는지 무슨 말을 하는지<br> 
+		오늘 했던 모든 말 저 하늘 위로 <br>
+		한번도 못했던 말 <br>
+		울면서 할 줄은 나 몰랐던 말 <br>
+		나는요 오빠가 좋은걸 어떡해 <br>	
+		</div>
 	</section>
