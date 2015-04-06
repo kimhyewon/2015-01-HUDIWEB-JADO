@@ -36,7 +36,7 @@ public class EditUserController {
 		resp.sendRedirect("/editUser.jsp");
 	}
 	
-	@RequestMapping(value = "/user/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/edit", method = RequestMethod.POST)
 	protected void editUserInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		
