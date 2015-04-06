@@ -14,15 +14,15 @@
 	<link rel="stylesheet" type="text/css" href="/css/signForm.css">
 </head>
 <body>
-    <%@ include file="/include/top.jspf" %>
+    <%@ include file="include/top.jspf" %>
     <c:choose>
     <c:when test="${empty userId}">
 		<div id="background_con">
 			<img alt="" src="http://stylonica.com/wp-content/uploads/2014/03/HD-Colorful-Spring-Wallpaper-1.jpg" >
 		</div>
-    	<%@ include file="/include/main.jspf" %>
-    	<%@ include file="/include/info.jspf" %>
-    	<%@ include file="/include/signForm.jspf" %>
+    	<%@ include file="include/main.jspf" %>
+    	<%@ include file="include/info.jspf" %>
+    	<%@ include file="include/signForm.jspf" %>
 	</c:when>
 	<c:otherwise>
 		<h1>Welcome!! Redirect 처리 추가 예정</h1>
