@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import core.util.DecryptRSA;
 import core.util.EncryptRSA;
@@ -43,14 +44,10 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
-	public String processLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String userId = ServletRequestUtils.getRequiredStringParameter(request, "idEncryption");
-		String password = ServletRequestUtils.getRequiredStringParameter(request, "pwEncryption");
+	public String processLogin(@RequestParam("idEncryption") String userId, @RequestParam("pwEncryption") String password, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		HttpSession session = request.getSession();
-		PrivateKey privateKey = getPrivateKeyAndDestroyKey(request, session);
-		
+		PrivateKey privateKey = getPrivateKeyAndDestroyKey(session);
 		userId = decryptString(privateKey, request, response, userId);
 		password = decryptString(privateKey, request, response, password);
 
@@ -71,7 +68,7 @@ public class LoginController {
 		return decryptedString;
 	}
 
-	private PrivateKey getPrivateKeyAndDestroyKey(HttpServletRequest request, HttpSession session) {
+	private PrivateKey getPrivateKeyAndDestroyKey(HttpSession session) {
 		PrivateKey privateKey = (PrivateKey) session.getAttribute("__rsaPrivateKey__");
 		session.removeAttribute("__rsaPrivateKey__");
 		return privateKey;
