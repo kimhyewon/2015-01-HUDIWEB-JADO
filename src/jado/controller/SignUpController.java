@@ -1,10 +1,9 @@
 package jado.controller;
 
-import jado.dao.ShopDao;
-import jado.dao.UserDao;
 import jado.model.Customer;
 import jado.model.Seller;
 import jado.model.Shop;
+import jado.service.SignUpService;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -17,11 +16,14 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import core.exception.DuplicateUserException;
 import core.exception.PasswordMismatchException;
@@ -32,13 +34,15 @@ import core.util.DecryptRSA;
 import core.util.EncryptRSA;
 import core.util.ServletRequestUtils;
 
-@WebServlet("/user")
-public class SignUpController extends HttpServlet {
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+@Controller
+public class SignUpController  {
+	
+	@Autowired
+	private SignUpService signUpService;
+	
+	@RequestMapping(value="/user", method=RequestMethod.GET)
+	public String userGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-//		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");
 		String url = req.getParameter("url");
 		
 		try {
@@ -49,15 +53,15 @@ public class SignUpController extends HttpServlet {
 
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
 			e.printStackTrace();
+			req.setAttribute("errorMessage", e.getMessage());
 			forward(req, resp, e.getMessage());
 		}
-		
 		req.setAttribute("url", url);
-		req.getRequestDispatcher("/signUp.jsp").forward(req,  resp);
+		return "signUp";
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	@RequestMapping(value="/user", method=RequestMethod.POST)
+	protected void userPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String url = ServletRequestUtils.getRequiredStringParameter(req, "url");
@@ -85,12 +89,10 @@ public class SignUpController extends HttpServlet {
 			forward(req, resp, e.getMessage());
 		}
 		
-		
-		
 		Customer user = new Customer(userId, password, name, phone, address);
 		
 		try{
-			user.signUp();
+			signUpService.insertCustomer(user);
 			req.setAttribute("userId", userId); 
 		} catch(DuplicateUserException | PasswordMismatchException e){
 			forward(req, resp, e.getMessage());
@@ -100,15 +102,14 @@ public class SignUpController extends HttpServlet {
 		if (req.getParameter("isSeller") != null) {
 			String shopUrl = ServletRequestUtils.getRequiredStringParameter(req,"shopUrl");
 			String shopPhone = ServletRequestUtils.getRequiredStringParameter(req,"shopPhone");
-			String shopAddress = ServletRequestUtils.getRequiredStringParameter(req,"shopAddress");
 			String bank = ServletRequestUtils.getRequiredStringParameter(req,"bank");
 			String bankAccount = ServletRequestUtils.getRequiredStringParameter(req,"bankAccount");
 			
-			Shop shop = new Shop(shopUrl, shopPhone, shopAddress);
+			Shop shop = new Shop(shopUrl, shopPhone);
 			Seller seller = new Seller(userId, shopUrl, bank, bankAccount);
 			
-			ShopDao.insert(shop);
-			UserDao.insert(seller);
+			signUpService.insertShop(shop);
+			signUpService.insertSeller(seller);
 		}
 		
 		MailSender.send(new Mail(userId, MailTemplateStorage.Type.JOIN_VERIFY));

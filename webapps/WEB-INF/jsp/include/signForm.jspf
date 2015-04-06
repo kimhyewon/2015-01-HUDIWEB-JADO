@@ -8,11 +8,11 @@
 		<ul>
 			<li>
 				<input type="text" name="userId" placeholder="E-mail">
-				<input type="hidden" name="idEncryption">
+				<input type="" name="idEncryption">
 			</li>
 			<li>
 				<input type="password" name="password" placeholder="비밀번호">
-				<input type="hidden" name="pwEncryption">
+				<input type="" name="pwEncryption">
 			</li>
 			<li>
 				<input type="password" name="checkPassword" placeholder="비밀번호 확인">
@@ -77,7 +77,6 @@
 				<input type="hidden" name="url" value="${url}">
 			</c:otherwise>
 		</c:choose>
-		<input type="hidden" name="shopAddress" value="NULL">
 		<input type="submit" value="회 원  가 입">
 	</form>
 	</section>

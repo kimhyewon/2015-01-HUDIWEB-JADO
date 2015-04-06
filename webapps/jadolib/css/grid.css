@@ -78,6 +78,10 @@
 	padding: 0 0.75rem;
 }
 
+.row .shide {
+		display:none;
+}
+
 .row .col.s1 {
 	width: 8.33333%;
 	margin-left: 0;
@@ -187,6 +191,9 @@
 }
 
 @media only screen and (min-width : 601px) {
+	.row .mhide {
+		display:none;
+	}
 	.row .col.m1 {
 		width: 8.33333%;
 		margin-left: 0;
@@ -274,6 +281,9 @@
 }
 
 @media only screen and (min-width : 993px) {
+	.row .lhide {
+		display:none;
+	}
 	.row .col.l1 {
 		width: 8.33333%;
 		margin-left: 0;

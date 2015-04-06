@@ -1,83 +1,128 @@
 package jado.dao;
 
-
 import jado.model.Customer;
 import jado.model.Seller;
-import core.jdbc.JdbcTemplate;
-import core.jdbc.RowMapper;
-import core.exception.UserNotFoundException;
-public class UserDao {
-	private static final Exception UserNotFoundException = null;
 
-	public static void insert(Customer customer) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+import java.util.Date;
+
+import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class UserDao {
+	private JdbcTemplate jdbcTemplate;
+	private DataSource dataSource;
+	
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	        this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
+	@PostConstruct
+	public void initialize() {
+		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		populator.addScripts(new ClassPathResource("sql/initDbSchema.sql"), new ClassPathResource("sql/insertTestSet.sql"));
+		DatabasePopulatorUtils.execute(populator, dataSource);
+	}
+	
+	public  void d(Customer customer) {
 		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F')";
-		jdbcTemplate.executeUpdate(sql, customer.getUserId(), customer.getPassword(), customer.getName(),
+		jdbcTemplate.update(sql, customer.getUserId(), customer.getPassword(), customer.getName(),
 				customer.getPhone(), customer.getAddress());
 	}
 
-	public static void insert(Seller seller) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+	public  void insert(Seller seller) {
 		String sql = "insert into SELLER values (?, ?, ?, ?)";
-		jdbcTemplate.executeUpdate(sql, seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
+		jdbcTemplate.update(sql, seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
 	}
 
-	public static void updateCustomer(Customer customer) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+	public  void updateCustomer(Customer customer) {
 		String sql = "update USER set PHONE = ?, ADDRESS = ? where ID = ?";
-		jdbcTemplate.executeUpdate(sql, customer.getPhone(), customer.getAddress(), customer.getUserId());
+		jdbcTemplate.update(sql, customer.getPhone(), customer.getAddress(), customer.getUserId());
 	}
 
-	public static void updateSeller(Seller seller) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+	public  void updateSeller(Seller seller) {
 		String sql = "update SELLER set BANK = ?, BANK_ACCOUNT = ? where ID = ?";
-		jdbcTemplate.executeUpdate(sql, seller.getBank(), seller.getBankAccount(), seller.getUserId()); 
+		jdbcTemplate.update(sql, seller.getBank(), seller.getBankAccount(), seller.getUserId()); 
 	}
 
-	public static Customer selectUserById(final String userId) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+	public Customer selectUserById(final String userId) {
 		String sql = "select * from USER where ID=?";
-		RowMapper<Customer> rm = rs -> new Customer(rs.getString("ID"), rs.getString("PASSWORD"),
-				rs.getString("NAME"), rs.getString("PHONE"), rs.getString("ADDRESS"), rs.getString("IS_VALIDATED"));
-		return jdbcTemplate.executeQuery(sql, rm, userId);
+		try {
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Customer>(Customer.class), userId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+//			return new Customer(rs.getString("ID"), rs.getString("PASSWORD"),
+//					rs.getString("NAME"), rs.getString("PHONE"), rs.getString("ADDRESS"), rs.getString("IS_VALIDATED"));
 	}
 
-	public static Seller selectSellerById(final String userId) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+	public  Seller selectSellerById(final String userId) {
 		String sql = "select * from SELLER where ID=?";
-		RowMapper<Seller> rm = rs -> new Seller(rs.getString("ID"), rs.getString("SHOP_URL"),
-				rs.getString("BANK"), rs.getString("BANK_ACCOUNT")); 
-		return jdbcTemplate.executeQuery(sql, rm, userId);
+		try {
+			return (Seller) jdbcTemplate.queryForObject(sql, new Object [] {userId}, Seller.class);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
-	public static int numberOfSellers() {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+	// TODO 고쳐야 함
+	public  Integer numberOfSellers() {
 		String sql = "select count(ID) AS count from SELLER";
-		RowMapper<Integer> rm = rs -> rs.getInt("count");
-		return jdbcTemplate.executeQuery(sql, rm);
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+//		RowMapper<Integer> rm = rs -> rs.getInt("count");
+//		return jdbcTemplate.executeQuery(sql, rm);
 	}
 	
-	public static void removeUser(Customer customer) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
+	public  void removeCustomer(String userId) {
 		String sql = "delete from USER where ID = ?";
-		jdbcTemplate.executeUpdate(sql, customer.getUserId());		
+		jdbcTemplate.update(sql);		
 	}
 
-	public static void removeUser(Seller seller) {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();	
+	public  void removeSeller(String userId) {
 		String sql = "delete from SELLER where ID = ?";
-		jdbcTemplate.executeUpdate(sql, seller.getUserId());		
+		jdbcTemplate.update(sql,userId);		
 	}
 	
 	public void updateMailAuthStatus() {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		String sql = "update USER set IS_VALIDATED = ?";
-		jdbcTemplate.executeUpdate(sql, "T");
+		String sql = "update USER set EMAIL_VALIDATE_STATUS = ?";
+		jdbcTemplate.update(sql, "T");
 	}
 
-	public static Customer selectCustomerById(String userId) throws core.exception.UserNotFoundException {
-		Customer user = selectUserById(userId);
-		if(user == null) throw new UserNotFoundException("아이디가 존재하지 않습니다 다시 로그인 해주세요");
-		return user;
+	public  Customer selectCustomerById(String userId) {
+		 return selectUserById(userId);
+	}
+
+	public void insert(Customer customer) {
+		String sql = "insert into USER values (?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress(), new Date(), null, "F");
+	}
+
+	public boolean IsPasswordCorrect(String userId, String password) {
+		if(selectUserById(userId) != null)
+			return selectUserById(userId).getPassword().equals(password);
+		return false;
+	}
+
+	public boolean IsEmailValidated(String userId) {
+		if(selectUserById(userId) != null)
+			return selectUserById(userId).getEmailValidateStatus().equals("T");
+		return false;
+	}
+
+	public boolean isExistSeller(String userId) {
+		if(selectSellerById(userId) != null) 
+			return true;
+		return false;
 	}
 }

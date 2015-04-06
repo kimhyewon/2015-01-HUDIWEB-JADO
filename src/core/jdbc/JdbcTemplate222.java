@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcTemplate {
+public class JdbcTemplate222 {
 	public void executeUpdate(String sql, PreparedStatementSetter pss) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
