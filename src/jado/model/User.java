@@ -3,6 +3,8 @@ package jado.model;
 public class User {
 	protected String userId;
 
+	public User() { }
+	
 	public User(String userId) {
 		this.userId = userId;
 	}

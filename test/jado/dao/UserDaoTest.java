@@ -4,25 +4,61 @@ import jado.model.Customer;
 import jado.model.Seller;
 import jado.model.Shop;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class UserDaoTest {
 
+	private UserDao userdao;
+	
+	@Before
+	public void setup() {
+		userdao = new UserDao();
+	}
 	@Test
-	public void insertCustomer() {
-		Customer user = new Customer("erin3141", "1111", "이경륜" , "01027723883", "경기도 안양시 동안구 비산1동");
-		UserDao.insert(user);
+	public void insertUser() throws Exception {
+		Customer customer = new Customer("userId1", "password", "name", "phone", "address");
+		userdao.insert(customer);
 	}
 
 	@Test
-	public void insertShop(){
-		Shop shop = new Shop("erin314", "르네상스 옷가게", "01033334444", "/web-inf/image/erin314_banner", "/web-inf/image/erin314_logo", "theme1", "address", "footer: 안녕하세요 우리 가게는 물건을 팔아요 히야~ 죽인다!!@_@");
+	public void insertSeller() throws Exception {
+		Customer customer = new Customer("userId2", "password", "name", "phone", "address");
+		Shop shop = new Shop("url2", "phone");
+		Seller seller = new Seller("userId2", "url2", "bank", "bankAccount");
+		userdao.insert(customer);
 		ShopDao.insert(shop);
-	}
-	@Test
-	public void insertSeller() {
-		Seller user = new Seller("erin3141", "erin314", "신한은행", "1111111111");
-		UserDao.insert(user);
+		userdao.insert(seller);
 	}
 	
+	@Test
+	public void updateCustomer() throws Exception {
+		Customer customer1 = new Customer("userId5", "password", "name", "phone", "address");
+		userdao.insert(customer1);
+		
+		Customer customer2 = new Customer("userId5", "password2", "name", "phone2", "address");
+		
+		Customer dbCustomer = userdao.selectUserById(customer1.getUserId());
+		if(dbCustomer.update(customer2)){
+			userdao.updateCustomer(dbCustomer);
+		}
+	}
+	@Test
+	public void updateSeller() throws Exception {
+		Customer customer1 = new Customer("userId6", "password", "name", "phone", "address");
+		Shop shop = new Shop("url3", "phone");
+		Seller seller = new Seller("userId6", "url3", "bank", "bankAccount");
+		
+		userdao.insert(customer1);
+		userdao.insert(seller);
+		ShopDao.insert(shop);
+		
+		Seller dbSeller = userdao.selectSellerById(customer1.getUserId());
+		Seller conSeller = new Seller("userId6", "url2", "bank2", "bankAccount2");
+		
+		if(dbSeller.update(conSeller)){
+			userdao.updateCustomer(customer1);
+		}
+	}
+
 }
