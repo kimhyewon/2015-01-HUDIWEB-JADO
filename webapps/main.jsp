@@ -6,8 +6,9 @@
 	<title>Ne#</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="/css/top.css">
+	<link rel="stylesheet" type="text/css" href="/css/grid.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/top.css">
 	<link rel="stylesheet" type="text/css" href="/css/mainFront.css">
 	<link rel="stylesheet" type="text/css" href="/css/signForm.css">
 </head>
