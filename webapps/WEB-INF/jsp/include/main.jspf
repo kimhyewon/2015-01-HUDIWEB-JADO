@@ -1,22 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<section>
-	<a href= "" style="color:white"><div id = "logo">
-		<img src="http://i.imgur.com/ewai3EQ.png" style="width: 83%; height: 83%;">
-	</div></a>
-	<div id = "center_con">
-		<div id = "title">
+<div id="center_con">
+	<div class="row">
+		<div class="col s12 m12 l12">
 			<img src="http://i.imgur.com/3DTh2Cx.png">
 		</div>
-		<div id = "explanation">
-			<img src="http://i.imgur.com/n3heOEe.png" width="51%" height="50%">
-		</div>
-		
-		<div id = "main_btn">
-			<form method="get">
-				<button type="submit" class="btn signup_btn" style="cursor:pointer;">회원가입</button>
-				<button type="submit" class="btn login_btn" style="cursor:pointer;" formaction="/user/login">로그인</button>
-			</form>
+	</div>
+	<div class="row">
+		<div class="col s12 m12 l12 center">
+			<img src="http://i.imgur.com/n3heOEe.png" width="50%" height="50%">
 		</div>
 	</div>
-</section>
+	<div id="main_btn" class="row center">
+		<form method="get">
+			<div class="col s12 m6 l6">
+				<button type="submit" class="signup_btn" formaction="">회원가입</button>
+			</div>
+			<div class="col s12 m6 l6">
+				<button type="submit" class="login_btn" formaction="">로그인</button>
+			</div>
+		</form>
+	</div>
+</div>

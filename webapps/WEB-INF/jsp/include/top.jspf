@@ -10,7 +10,7 @@
 					<li>
 						<input type="submit" formaction="/user/login" value="로그인"/>
 			    	</li>
-			    	<li>|</li>
+			    	<li class="topLine">|</li>
 			    	<li>
 						<input type="submit" formaction="/user" value="회원가입"/>
 				    </li>
@@ -19,7 +19,7 @@
 					<li>
 						<input type="submit" formaction="/user/logout" value="로그아웃"/>
 					</li>
-					<li>|</li>
+					<li class="topLine">|</li>
 					<li>
 						<input type="submit" formaction="/user/edit" value="회원 정보 수정"/>
 					</li>
