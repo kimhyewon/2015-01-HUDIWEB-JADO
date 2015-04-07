@@ -2,13 +2,14 @@ package jado.dao;
 
 import jado.model.Board;
 
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import core.jdbc.JdbcTemplate222;
 import core.jdbc.RowMapper;
 
 @Repository
-public class BoardDao {
+public class BoardDao extends JdbcDaoSupport{
 	public static void insert(final Board board) {
 		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();
 		String sql = "insert into BOARD values(?, ?)";

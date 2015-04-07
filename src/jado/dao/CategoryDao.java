@@ -2,13 +2,14 @@ package jado.dao;
 
 import jado.model.Category;
 
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import core.jdbc.JdbcTemplate222;
 import core.jdbc.RowMapper;
 
 @Repository
-public class CategoryDao {
+public class CategoryDao extends JdbcDaoSupport{ 
 	
 	public static void insert(final Category category) {
 		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();

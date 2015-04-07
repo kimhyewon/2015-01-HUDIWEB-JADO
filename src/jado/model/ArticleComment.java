@@ -1,14 +1,16 @@
 package jado.model;
 
+import java.sql.Date;
+
 public class ArticleComment {
 	private String shopUrl;
 	private String articleTitle;
 	private String boardName;
 	private String userId;
-	private String commentTime;
+	private Date commentTime;
 	private String content;
 
-	public ArticleComment(String shopUrl, String articleTitle, String boardName, String userId, String commentTime, String content) {
+	public ArticleComment(String shopUrl, String articleTitle, String boardName, String userId, Date commentTime, String content) {
 		super();
 		this.shopUrl = shopUrl;
 		this.articleTitle = articleTitle;
@@ -16,13 +18,12 @@ public class ArticleComment {
 		this.userId = userId;
 		this.commentTime = commentTime;
 		this.content = content;
-
-		toString();
 	}
 
 	public ArticleComment(String shopUrl, String articleTitle, String boardName, String userId, String content) {
 		this(shopUrl, articleTitle, boardName, userId, null, content);
 	}
+
 
 	public String getShopUrl() {
 		return shopUrl;
