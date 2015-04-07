@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="/include/top.jspf" %>
+	<%@ include file="include/top.jspf" %>
 	<h1>WELCOME TO MY SHOP!!</h1>
 <ul>
 	<li>공지사항</li>

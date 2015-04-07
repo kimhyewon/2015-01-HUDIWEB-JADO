@@ -49,6 +49,9 @@
 <script src="/js/lib/prng4.js"></script>
 <script src="/js/lib/base64.js"></script>
 
+<!-- main.jsp만 필요 -->
+<script src="/js/scroll_action.js"></script>
+
 <script>
 
 </script>

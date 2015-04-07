@@ -34,6 +34,7 @@ public class UserDaoTest {
 	@Test
 	public void insertSeller() throws Exception {
 		Customer customer = new Customer("userId2", "password", "name", "phone", "address");
+
 		Shop shop = new Shop("url344", "phone");
 		Seller seller = new Seller("userId2", "url344", "bank", "bankAccount");
 		log.debug("insert CUSTOMER2_1 : {}", customer);
