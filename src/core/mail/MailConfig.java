@@ -1,6 +1,6 @@
 package core.mail;
 
-public class MailConfigSample {
+public class MailConfig {
 	private final static String host = "smtp.gmail.com";
 	private final static String from = "user_ID";
 	private final static String password = "user_PW";

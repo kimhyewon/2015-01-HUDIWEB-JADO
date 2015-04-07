@@ -27,7 +27,7 @@ public class UserDaoTest {
 		Shop shop = new Shop("url2", "phone");
 		Seller seller = new Seller("userId2", "url2", "bank", "bankAccount");
 		userdao.insert(customer);
-		ShopDao.insert(shop);
+		//ShopDao.insert(shop);
 		userdao.insert(seller);
 	}
 	
@@ -51,7 +51,7 @@ public class UserDaoTest {
 		
 		userdao.insert(customer1);
 		userdao.insert(seller);
-		ShopDao.insert(shop);
+		//ShopDao.insert(shop);
 		
 		Seller dbSeller = userdao.selectSellerById(customer1.getUserId());
 		Seller conSeller = new Seller("userId6", "url2", "bank2", "bankAccount2");

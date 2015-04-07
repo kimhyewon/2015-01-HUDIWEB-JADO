@@ -6,10 +6,10 @@ import jado.model.Seller;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,20 +19,26 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDao {
-	private JdbcTemplate jdbcTemplate;
-	private DataSource dataSource;
-	
+	/*
+	 * jdbcTemplate은 bean으로 등록되었으므로 DI받아 사용합니다.
+	 */
 	@Autowired
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	        this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+	private JdbcTemplate jdbcTemplate;
+	
+	/*
+	 * import org.springframework.core.io.Resource; spring-beans 의존성 필요	
+	 */
+	@Value("classpath:sql/initDbSchema.sql")
+	private Resource dbSchema;
+	
+	@Value("classpath:sql/insertTestSet.sql")
+	private Resource testSet;
 
 	@PostConstruct
 	public void initialize() {
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		populator.addScripts(new ClassPathResource("sql/initDbSchema.sql"), new ClassPathResource("sql/insertTestSet.sql"));
-		DatabasePopulatorUtils.execute(populator, dataSource);
+		populator.addScripts(dbSchema, testSet);
+		DatabasePopulatorUtils.execute(populator, this.jdbcTemplate.getDataSource());
 	}
 	
 	public  void d(Customer customer) {
