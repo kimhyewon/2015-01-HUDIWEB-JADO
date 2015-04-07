@@ -1,38 +1,58 @@
 package jado.dao;
 
-import jado.model.ArticleComment;
 import jado.model.ProductComment;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
-import core.jdbc.JdbcTemplate222;
-import core.jdbc.RowMapper;
 
 @Repository
-public class ProductCommentDao extends JdbcDaoSupport{
-	public static void insert(final ProductComment productComment) {
-		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();
-		String sql = "insert into PRODUCT_COMMENT values(?, ?, null, ?)";
-		jdbcTemplate.executeUpdate(sql,productComment.getProductId(), productComment.getUserId(), productComment.getContent());
+public class ProductCommentDao extends JdbcDaoSupport {
+
+	@PostConstruct
+	public void initialize() {
+		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		DatabasePopulatorUtils.execute(populator, getDataSource());
 	}
 
-	public static ProductComment select(final ProductComment productComment) {
-		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();
-		String sql = "select * from PRODUCT_COMMENT where PRODUCT_ID=? and USER_ID=?";
-		RowMapper<ProductComment> rm = rs -> new ProductComment(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4));
-		return jdbcTemplate.executeQuery(sql, rm, productComment.getProductId(), productComment.getUserId());
+	public void insert(final ProductComment productComment){
+		String sql = "insert into PRODUCT_COMMENT values(?, ?, null, ?)";
+		Object[] args = new Object[] { productComment.getProductId(), productComment.getUserId(), productComment.getContent()};
+		getJdbcTemplate().update(sql, args);
+	}
+
+	public ProductComment findtByPK(final ProductComment productComment) {
+		String sql = "select * from PRODUCT_COMMENT where PRODUCT_ID=? and USER_ID=? and COMMENT_TIME=?";
+		Object[] args = new Object[] { productComment.getProductId(), productComment.getUserId(), productComment.getCommentTime()};
+		try {
+			return getJdbcTemplate().queryForObject(sql, args, new BeanPropertyRowMapper<ProductComment>(ProductComment.class));
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	public List<ProductComment> findByProduct(final ProductComment productComment) {
+		String sql = "select * from PRODUCT_COMMENT where PRODUCT_ID=?";
+		Object[] args = new Object[] { productComment.getProductId() };
+
+		try {
+			return getJdbcTemplate().query(sql, args, new BeanPropertyRowMapper<ProductComment>(ProductComment.class));
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 	
-//	select all
-	public static List<ArticleComment> selectAll(ArticleComment articleComment) {
-		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();
-		String sql = "select * from ARTICLE_COMMENT where SHOP_URL=? and BOARD_NAME=? and ARTICLE_TITLE=? and USER_ID=?";
-		RowMapper<List> rm = rs -> new ArrayList<ArticleComment>();
-		return jdbcTemplate.executeQuery(sql, rm, articleComment.getShopUrl(), articleComment.getBoardName(), articleComment.getArticleTitle(), articleComment.getUserId());
+	public void remove(final ProductComment productComment) {
+		String sql = "delete from PRODUCT_COMMENT where PRODUCT_ID=? and USER_ID=? and COMMENT_TIME=?";
+		Object[] args = new Object[] { productComment.getProductId(), productComment.getUserId(), productComment.getCommentTime()};
+		getJdbcTemplate().update(sql, args);
 	}
 
 }

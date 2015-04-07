@@ -4,7 +4,6 @@ import jado.model.Shop;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
