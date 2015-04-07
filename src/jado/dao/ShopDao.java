@@ -18,7 +18,6 @@ public class ShopDao extends JdbcDaoSupport {
 	@PostConstruct
 	public void initialize() {
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		populator.addScripts(new ClassPathResource("sql/initDbSchema.sql"), new ClassPathResource("sql/insertTestSet.sql"));
 		DatabasePopulatorUtils.execute(populator, getDataSource());
 	}
 

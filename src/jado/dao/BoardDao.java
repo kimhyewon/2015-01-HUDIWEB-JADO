@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 
 import jado.model.Board;
 
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -20,7 +19,6 @@ public class BoardDao extends JdbcDaoSupport {
 	@PostConstruct
 	public void initialize() {
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		populator.addScripts(new ClassPathResource("sql/initDbSchema.sql"), new ClassPathResource("sql/insertTestSet.sql"));
 		DatabasePopulatorUtils.execute(populator, getDataSource());
 	}
 
