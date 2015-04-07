@@ -2,23 +2,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="center_con">
 	<div class="row">
-		<div class="col s12 m12 l12">
-			<img src="http://i.imgur.com/3DTh2Cx.png">
+		<div class="col s12 m12 l12 center">
+			<img src="/img/mainTitle.png">
 		</div>
 	</div>
 	<div class="row">
 		<div class="col s12 m12 l12 center">
-			<img src="http://i.imgur.com/n3heOEe.png" width="50%" height="50%">
+			<img src="/img/mainSubtitle.png" width="50%" height="50%">
 		</div>
 	</div>
 	<div id="main_btn" class="row center">
 		<form method="get">
-			<div class="col s12 m6 l6">
+			<div class="col m2 l3 dummy">dummy</div>
+			<div class="col s12 m4 l3">
 				<button type="submit" class="signup_btn" formaction="">회원가입</button>
 			</div>
-			<div class="col s12 m6 l6">
+			<div class="col s12 m4 l3">
 				<button type="submit" class="login_btn" formaction="">로그인</button>
 			</div>
+			<div class="col m2 l3 dummy">dummy</div>
 		</form>
 	</div>
 </div>

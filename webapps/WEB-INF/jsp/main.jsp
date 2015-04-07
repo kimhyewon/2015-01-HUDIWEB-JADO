@@ -6,20 +6,18 @@
 	<title>Ne#</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="shortcut icon" type="image/x-icon" href="">
-	<link rel="stylesheet" type="text/css" href="/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="/css/grid.css">
+	<link rel="stylesheet" type="text/css" href="/css/lib/reset.css">
+	<link rel="stylesheet" type="text/css" href="/css/lib/grid.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/css/top.css">
 	<link rel="stylesheet" type="text/css" href="/css/mainFront.css">
+	<link rel="stylesheet" type="text/css" href="/css/mainInfo.css">
 	<link rel="stylesheet" type="text/css" href="/css/signForm.css">
 </head>
 <body>
     <%@ include file="include/top.jspf" %>
     <c:choose>
     <c:when test="${empty userId}">
-		<div id="background_con">
-			<img alt="" src="http://stylonica.com/wp-content/uploads/2014/03/HD-Colorful-Spring-Wallpaper-1.jpg" >
-		</div>
     	<%@ include file="include/main.jspf" %>
     	<%@ include file="include/info.jspf" %>
     	<%@ include file="include/signForm.jspf" %>
@@ -44,4 +42,6 @@
 <script src="/js/lib/rng.js"></script>
 <script src="/js/lib/prng4.js"></script>
 <script src="/js/lib/base64.js"></script>
+<!-- scroll Animation -->
+<script src="/js/scroll_action.js"></script>
 </html>

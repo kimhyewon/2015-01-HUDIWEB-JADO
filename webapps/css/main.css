@@ -1,11 +1,14 @@
 @CHARSET "UTF-8";
 body {
 	font-family: dotum, dotumche, '돋움', '돋움체', sans-serif;
+	background-image : url("/img/mainImg.jpg");
+	background-repeat : no-repeat;
+	background-attachment : fixed;
+	min-width: 320px;
 }
 
-#background_con img {
+#backgroundImg {
 	position: fixed;
 	width: 100%;
 	z-index: -1;
-
 }

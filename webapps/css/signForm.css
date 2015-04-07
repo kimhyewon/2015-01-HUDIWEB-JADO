@@ -1,13 +1,8 @@
-#signUpContainer {
-	display: inline-block;
-}
-
 #signUpContainer form div {
 	background: -webkit-linear-gradient(#FFF8E3, #FFEBBA);
 	background: -o-linear-gradient(#FFF8E3, #FFEBBA);
 	background: linear-gradient(#FFF8E3, #FFEBBA);
-	width: 335px;
-	height: 540px;
+	width: 320px;
 	padding: 30px 30px;
 	border-radius: 12px;
 	box-shadow: 1px 5px 10px #CCC;
@@ -18,7 +13,7 @@
 
 #signUpContainer li {
 	margin: 10px 0;
-	width: 280px;
+	width: 240px;
 }
 #signUpUser li:nth-child(7) { margin: 20px 0; padding-left: 5px;}
 #signUpUser li:nth-child(7) span { font-size: 14px; margin-left: 5px;}
@@ -28,7 +23,7 @@
 #signUpSeller li:nth-child(3) input { width: 180px; }
 
 #signUpContainer input {
-	width: 270px;
+	width: 240px;
 	height: 30px;
     background: -webkit-linear-gradient(#f0f0f0, #fff, #fff, #fff);
     background: -o-linear-gradient(#f0f0f0, #fff, #fff, #fff);
@@ -63,7 +58,7 @@
 }
 
 #signUpContainer input[type=submit] {
-	width: 275px;
+	width: 240px;
 	height: 40px;
 	background: #FFBF42;
 	border: 0;

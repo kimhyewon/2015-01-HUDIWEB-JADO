@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div>
 <div id="signUpContainer" class="row center">
 	<form id ="signup_form" class="encrypt_form" action="/user" method="post" autocomplete="off">
-		<div id="signUpUser" class="col s12 m4 l4">
+		<div class="col m1 l2 dummy">dummy</div>
+		<div id="signUpUser" class="col s12 m5 l4">
 			<h2>Sign Up</h2>
 			<ul>
 				<li>
@@ -29,12 +29,12 @@
 				</li>
 				<li>
 					<input type="checkbox" onclick = "showSellerEnroll()" name="isSeller" value="true">
-					<span>판매자 등록을 원하시는 분은 체크해주세요.</span>
+					<span>판매자로 등록하기</span>
 				</li>
 			</ul>
 			<input type="submit" value="회 원  가 입">
 		</div>
-		<div id="signUpSeller" class="col s12 m4 l4">
+		<div id="signUpSeller" class="col s12 m5 l4">
 			<ul>
 				<li>
 					<span>www.neshop.com/</span>
@@ -73,6 +73,8 @@
 				</li>
 			</ul>
 		</div>
+		<div class="col m1 l2 dummy">dummy</div>
+
 		<c:choose>
 		    <c:when test="${empty url}">
 				<input type="hidden" name="url" value="">
@@ -85,5 +87,4 @@
 		<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}>" />
 		<input type="hidden" name="shopAddress" value="NULL">
 	</form>
-</div>
 </div>
