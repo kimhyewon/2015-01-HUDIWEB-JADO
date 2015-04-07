@@ -1,5 +1,6 @@
 package jado.dao;
 
+import static org.junit.Assert.*;
 import jado.model.Customer;
 import jado.model.Seller;
 import jado.model.Shop;
@@ -26,9 +27,9 @@ public class UserDaoTest {
 	public void insertUSER() {
 		Customer customer = new Customer("userId1", "password", "name", "phone", "address");
 		userDao.insert(customer);
-		log.debug("insert CUSTOMER1 : {}", customer);
+		log.debug("insert CUSTOMER1_1 : {}", customer);
 		customer = userDao.selectCustomerById(customer.getUserId());
-		log.debug("insert CUSTOMER1 : {}", customer);
+		log.debug("insert CUSTOMER1_2 : {}", customer);
 	}
 
 	@Test
@@ -36,9 +37,9 @@ public class UserDaoTest {
 		Customer customer = new Customer("userId2", "password", "name", "phone", "address");
 		Shop shop = new Shop("url344", "phone");
 		Seller seller = new Seller("userId2", "url344", "bank", "bankAccount");
-		log.debug("insert CUSTOMER2 : {}", customer);
-		log.debug("insert CUSTSHOP2 : {}", shop);
-		log.debug("insert CUSELLER2 : {}", seller);
+		log.debug("insert CUSTOMER2_1 : {}", customer);
+		log.debug("insert CUSTSHOP2_2 : {}", shop);
+		log.debug("insert CUSELLER2_3 : {}", seller);
 
 		userDao.insert(customer);
 		shopDao.insert(shop);
@@ -48,9 +49,9 @@ public class UserDaoTest {
 		shop = shopDao.selectByUrl(shop.getUrl());
 		seller = userDao.selectSellerById(seller.getUserId());
 
-		log.debug("insert CUSTOMER3 : {}", customer);
-		log.debug("insert CUSTSHOP3 : {}", shop);
-		log.debug("insert CUSELLER3 : {}", seller);
+		log.debug("insert CUSTOMER3_1 : {}", customer);
+		log.debug("insert CUSTSHOP3_2 : {}", shop);
+		log.debug("insert CUSELLER3_3 : {}", seller);
 	}
 
 	@Test
@@ -58,7 +59,7 @@ public class UserDaoTest {
 		Customer customer1 = new Customer("userId5", "password", "name", "phone", "address");
 		userDao.insert(customer1);
 		Customer customer2 = new Customer("userId5", "password2", "name", "phone2", "address");
-		Customer dbCustomer = userDao.selectUserById(customer1.getUserId());
+		Customer dbCustomer = userDao.selectCustomerById(customer1.getUserId());
 		if (dbCustomer.update(customer2)) {
 			userDao.updateCustomer(dbCustomer);
 		}
@@ -70,21 +71,24 @@ public class UserDaoTest {
 		Shop shop = new Shop("url3", "phone");
 		Seller seller = new Seller("userId6", "url3", "bank", "bankAccount");
 
-		
 		userDao.insert(customer1);
 		shopDao.insert(shop);
 		userDao.insert(seller);
 
 		Seller dbSeller = userDao.selectSellerById(customer1.getUserId());
 		Seller conSeller = new Seller("userId6", "url2", "bank2", "bankAccount2");
-		log.debug("insert CUSTOMER4 : {}", dbSeller);
-		log.debug("insert CUSTOMER4 : {}", conSeller);
+		log.debug("insert CUSTOMER4_1 : {}", dbSeller);
+		log.debug("insert CUSTOMER4_2 : {}", conSeller);
 
 		if (dbSeller.update(conSeller)) {
 			userDao.updateCustomer(customer1);
 		}
-		
-		
+	}
+
+	@Test
+	public void countSeller() throws Exception {
+		int count = userDao.numberOfSellers();
+		log.debug("count : {}", count);
 	}
 
 }

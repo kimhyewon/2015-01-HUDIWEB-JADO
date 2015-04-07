@@ -31,21 +31,20 @@ public class ArticleCommentDaoTest {
 		List<ArticleComment> articleComment2 = articleCommentDao.findByArticle(articleComment);
 		log.debug("articleComment2 : {}", articleComment2);
 	}
-	
+
 	@Test
 	public void selectAll() throws Exception {
 		ArticleComment articleComment = new ArticleComment("testUrl", "오픈 기념 이벤트", "공지사항", "erin314@naver.com", "감사합니다2222");
 		articleCommentDao.insert(articleComment);
-		
+
 		List<ArticleComment> comments = articleCommentDao.findByArticle(articleComment);
 		System.out.println("comments");
 		System.out.println(comments.size());
 		System.out.println(comments.get(0));
 		ArticleComment comment = articleCommentDao.findByPk(comments.get(0));
-		
 		System.out.println("comments");
 		System.out.println(comment);
-		
+
 	}
 
 }

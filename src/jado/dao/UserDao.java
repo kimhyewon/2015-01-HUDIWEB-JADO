@@ -3,16 +3,11 @@ package jado.dao;
 import jado.model.Customer;
 import jado.model.Seller;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Date;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
@@ -28,24 +23,28 @@ public class UserDao extends JdbcDaoSupport {
 		DatabasePopulatorUtils.execute(populator, getDataSource());
 	}
 
-	public void d(Customer customer) {
-		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F')";
-		getJdbcTemplate().update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress());
+	public void insert(Customer customer) {
+		String sql = "insert into USER values (?, ?, ?, ?, ?, now(), null, 'F')";
+		Object[] args = new Object[] { customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress() };
+		getJdbcTemplate().update(sql, args);
 	}
 
 	public void insert(Seller seller) {
 		String sql = "insert into SELLER values (?, ?, ?, ?)";
-		getJdbcTemplate().update(sql, seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
+		Object[] args = new Object[] { seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount() };
+		getJdbcTemplate().update(sql, args);
 	}
 
 	public void updateCustomer(Customer customer) {
 		String sql = "update USER set PHONE = ?, ADDRESS = ? where ID = ?";
-		getJdbcTemplate().update(sql, customer.getPhone(), customer.getAddress(), customer.getUserId());
+		Object[] args = new Object[] { customer.getPhone(), customer.getAddress(), customer.getUserId() };
+		getJdbcTemplate().update(sql, args);
 	}
 
 	public void updateSeller(Seller seller) {
 		String sql = "update SELLER set BANK = ?, BANK_ACCOUNT = ? where ID = ?";
-		getJdbcTemplate().update(sql, seller.getBank(), seller.getBankAccount(), seller.getUserId());
+		Object[] args = new Object[] { seller.getBank(), seller.getBankAccount(), seller.getUserId() };
+		getJdbcTemplate().update(sql, args);
 	}
 
 	public Customer selectUserById(final String userId) {
@@ -59,36 +58,21 @@ public class UserDao extends JdbcDaoSupport {
 
 	public Seller selectSellerById(final String userId) {
 		String sql = "select * from SELLER where ID=?";
-
-		RowMapper<Seller> rm = new RowMapper<Seller>() {
-			@Override
-			public Seller mapRow(ResultSet rs, int rowNum) throws SQLException {
-				return new Seller(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
-			}
-		};
-		
 		try {
-			return getJdbcTemplate().queryForObject(sql, rm, userId);
-			// } catch ()
-			// try {
-			// return (Seller)jdbcTemplate.queryForObject(sql, new
-			// BeanPropertyRowMapper<Seller>(Seller.class), userId);
+			return getJdbcTemplate().queryForObject(sql, new BeanPropertyRowMapper<Seller>(Seller.class), userId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
 	}
 
-	// TODO 고쳐야 함
 	public Integer numberOfSellers() {
-		String sql = "select count(ID) AS count from SELLER";
+		String sql = "select count(*) from SELLER";
 		return getJdbcTemplate().queryForObject(sql, Integer.class);
-		// RowMapper<Integer> rm = rs -> rs.getInt("count");
-		// return jdbcTemplate.executeQuery(sql, rm);
 	}
 
 	public void removeCustomer(String userId) {
 		String sql = "delete from USER where ID = ?";
-		getJdbcTemplate().update(sql);
+		getJdbcTemplate().update(sql, userId);
 	}
 
 	public void removeSeller(String userId) {
@@ -98,27 +82,24 @@ public class UserDao extends JdbcDaoSupport {
 
 	public void updateMailAuthStatus() {
 		String sql = "update USER set EMAIL_VALIDATE_STATUS = ?";
+		// TODO @태호 sql where절이 필요할것 같아요!
 		getJdbcTemplate().update(sql, "T");
 	}
 
+	// TODO 이메소드 필요 없는것 같아요!
 	public Customer selectCustomerById(String userId) {
 		return selectUserById(userId);
 	}
 
-	public void insert(Customer customer) {
-		String sql = "insert into USER values (?, ?, ?, ?, ?, ?, ?, ?)";
-		getJdbcTemplate().update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress(), new Date(), null, "F");
-	}
-
 	public boolean IsPasswordCorrect(String userId, String password) {
-		if (selectUserById(userId) != null)
-			return selectUserById(userId).getPassword().equals(password);
+		if (selectCustomerById(userId) != null)
+			return selectCustomerById(userId).getPassword().equals(password);
 		return false;
 	}
 
 	public boolean IsEmailValidated(String userId) {
-		if (selectUserById(userId) != null)
-			return selectUserById(userId).getEmailValidateStatus().equals("T");
+		if (selectCustomerById(userId) != null)
+			return selectCustomerById(userId).getEmailValidateStatus().equals("T");
 		return false;
 	}
 
