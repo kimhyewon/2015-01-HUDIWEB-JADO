@@ -23,12 +23,12 @@ public class BoardDao extends JdbcDaoSupport {
 	}
 
 	public void insert(final Board board) {
-		String sql = "insert into BOARD values(?, ?)";
+		String sql = "insert into BOARD values(?, ?, ?)";
 		Object[] args = new Object[] { board.getShopUrl(), board.getName() };
 		getJdbcTemplate().update(sql, args);
 	}
 
-	public Board selectByPk(Board board) {
+	public Board selectByPk(final Board board) {
 		String sql = "select * from BOARD where SHOP_URL=? and Name=?";
 		Object[] args = new Object[] { board.getShopUrl(), board.getName() };
 		try {
@@ -38,7 +38,7 @@ public class BoardDao extends JdbcDaoSupport {
 		}
 	}
 
-	public List<Board> selectAllByUrl(Board board) {
+	public List<Board> selectAllByUrl(final Board board) {
 		String sql = "select * from BOARD where SHOP_URL=?";
 		Object[] args = new Object[] { board.getShopUrl() };
 		try {
@@ -48,7 +48,7 @@ public class BoardDao extends JdbcDaoSupport {
 		}
 	}
 
-	public void remove(Board board) {
+	public void remove(final Board board) {
 		String sql = "delete from BOARD where SHOP_URL=? and NAME=?";
 		Object[] args = new Object[] { board.getShopUrl(), board.getName() };
 		getJdbcTemplate().update(sql, args);
