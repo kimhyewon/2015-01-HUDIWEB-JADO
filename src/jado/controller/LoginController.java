@@ -91,6 +91,7 @@ public class LoginController {
 			model.addAttribute("publicKeyModulus", rsa.getPublicKeyModulus());
 			model.addAttribute("publicKeyExponent", rsa.getPublicKeyExponent());
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			session.removeAttribute("__rsaPrivateKey__");
 			model.addAttribute("errorMessage", e.getMessage());
 			return new Result(false, e.getMessage());
 		}

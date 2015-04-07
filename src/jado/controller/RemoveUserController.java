@@ -2,17 +2,13 @@ package jado.controller;
 
 import jado.service.RemoveUserService;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RemoveUserController  {
@@ -20,24 +16,21 @@ public class RemoveUserController  {
 	@Autowired private RemoveUserService removeUserService;
 	
 	@RequestMapping(value = "/user/delete", method = RequestMethod.GET)
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/blogDummy.jsp").forward(req,  resp);
+	public String viewRemoveUserPage() {
+		// TODO [우선순위 : 보통] - 이부분은 추후 블로그 개설이 가능해지게 되면 수정이 필요한 부분입니다.
+		return "blogDummy";
 	}
 	
 	@RequestMapping(value = "/user/delete", method = RequestMethod.POST)
-	protected void processUserDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
-		HttpSession session = req.getSession();
-		
-		// TODO 여기 조금 이상한것 같음
-		// TODO 여기 개발 담당했던 @kimhyewon 확인요청드림
-		String userId = (String)session.getAttribute("userId");
-		Boolean isSeller = (Boolean)session.getAttribute("isSeller");
-		
-		if(req.getParameter("isSeller") != null){
+	public String processUserDelete(@RequestParam("userId") String userId, HttpSession session) {
+		if(session.getAttribute("isSeller") != null){
 			removeUserService.removeSeller(userId);
 		}
 		removeUserService.removeCustomer(userId);
 		
-		resp.sendRedirect("/blogDummy.jsp");
+		// TODO [우선순위 : 보통] - 회원 탈퇴 후에는 Session에 있는 모든 정보를 삭제하는것이 더 좋을것 같다는 생각이 듬
+		// 또한 그냥 blog로 돌아가는것이 아니라 회원탈퇴가 성공적으로 처리되었음을 알려주는 페이지로 이동하는것이 좋을 듯
+		session.invalidate();
+		return "blogDummy";
 	}
 }
