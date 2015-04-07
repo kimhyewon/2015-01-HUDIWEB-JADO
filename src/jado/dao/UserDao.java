@@ -73,7 +73,7 @@ public class UserDao {
 	public Seller selectSellerById(final String userId) {
 		String sql = "select * from SELLER where ID=?";
 		try {
-			return jdbcTemplate.queryForObject(sql, rm, userId);
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Seller>(Seller.class), userId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
