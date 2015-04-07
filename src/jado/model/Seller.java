@@ -5,6 +5,7 @@ public class Seller extends User {
 	private String bank;
 	private String bankAccount;
 
+	public Seller() { }
 	public Seller(String userId, String url, String bank, String bankAccount) {
 		super(userId);
 		this.url = url;
@@ -26,13 +27,21 @@ public class Seller extends User {
 
 	public boolean update(Seller seller) {
 		boolean result = false;
-		if (this.bank.equals(seller.bank)) {
+		if (!this.bank.equals(seller.bank)) {
+			this.bank = seller.bank;
 			result = true;
 		}
-		if (this.bankAccount.equals(seller.bankAccount)) {
+		if (!this.bankAccount.equals(seller.bankAccount)) {
+			this.bankAccount = seller.bankAccount;
 			result = true;
 		}
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "Seller [bank=" + bank + ", bankAccount=" + bankAccount + "]";
+	}
+	
+	
 }
