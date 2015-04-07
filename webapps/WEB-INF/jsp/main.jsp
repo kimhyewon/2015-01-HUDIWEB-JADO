@@ -44,4 +44,5 @@
 <script src="/js/lib/base64.js"></script>
 <!-- scroll Animation -->
 <script src="/js/scroll_action.js"></script>
+<script src="/js/show_seller_enroll.js"></script>
 </html>

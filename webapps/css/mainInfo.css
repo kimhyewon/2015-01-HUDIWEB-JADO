@@ -1,7 +1,6 @@
 /*erin's code*/
 #mainInfo {
-	background-color: #fff;
-	opacity: 0.35;
+	background: rgba(255,255,255,0.3);
 }
 
 #mainInfo p { font-size: 20px; margin-top: 100px;}

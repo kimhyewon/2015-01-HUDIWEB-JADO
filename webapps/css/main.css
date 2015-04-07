@@ -6,9 +6,3 @@ body {
 	background-attachment : fixed;
 	min-width: 320px;
 }
-
-#backgroundImg {
-	position: fixed;
-	width: 100%;
-	z-index: -1;
-}
