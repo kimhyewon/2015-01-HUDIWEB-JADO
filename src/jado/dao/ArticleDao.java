@@ -55,9 +55,9 @@ public class ArticleDao extends JdbcDaoSupport {
 	}
 
 	public void remove(Article article) {
-		String sql = "delete from SELLER where SHOP_URL=? and BOARD_NAME=? and TITLE=?";
+		String sql = "delete from ARTICLE where SHOP_URL=? and BOARD_NAME=? and TITLE=?";
 		Object[] args = new Object[] { article.getShopUrl(), article.getBoardName(), article.getTitle()};
-		getJdbcTemplate().update(sql, args);	
+		getJdbcTemplate().update(sql, args);
 	}
 	
 	

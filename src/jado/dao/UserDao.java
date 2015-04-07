@@ -23,25 +23,25 @@ public class UserDao extends JdbcDaoSupport {
 		DatabasePopulatorUtils.execute(populator, getDataSource());
 	}
 
-	public void insert(Customer customer) {
+	public void insert(final Customer customer) {
 		String sql = "insert into USER values (?, ?, ?, ?, ?, now(), null, 'F')";
 		Object[] args = new Object[] { customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress() };
 		getJdbcTemplate().update(sql, args);
 	}
 
-	public void insert(Seller seller) {
+	public void insert(final Seller seller) {
 		String sql = "insert into SELLER values (?, ?, ?, ?)";
 		Object[] args = new Object[] { seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount() };
 		getJdbcTemplate().update(sql, args);
 	}
 
-	public void updateCustomer(Customer customer) {
+	public void updateCustomer(final Customer customer) {
 		String sql = "update USER set PHONE = ?, ADDRESS = ? where ID = ?";
 		Object[] args = new Object[] { customer.getPhone(), customer.getAddress(), customer.getUserId() };
 		getJdbcTemplate().update(sql, args);
 	}
 
-	public void updateSeller(Seller seller) {
+	public void updateSeller(final Seller seller) {
 		String sql = "update SELLER set BANK = ?, BANK_ACCOUNT = ? where ID = ?";
 		Object[] args = new Object[] { seller.getBank(), seller.getBankAccount(), seller.getUserId() };
 		getJdbcTemplate().update(sql, args);
@@ -70,12 +70,12 @@ public class UserDao extends JdbcDaoSupport {
 		return getJdbcTemplate().queryForObject(sql, Integer.class);
 	}
 
-	public void removeCustomer(String userId) {
+	public void removeCustomer(final String userId) {
 		String sql = "delete from USER where ID = ?";
 		getJdbcTemplate().update(sql, userId);
 	}
 
-	public void removeSeller(String userId) {
+	public void removeSeller(final String userId) {
 		String sql = "delete from SELLER where ID = ?";
 		getJdbcTemplate().update(sql, userId);
 	}

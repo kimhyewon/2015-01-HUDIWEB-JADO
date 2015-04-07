@@ -8,6 +8,9 @@ public class Board {
 	private String name;
 	private List<Article> articles;
 
+	public Board() {
+	}
+
 	public Board(String shopUrl, String name, List<Article> articles) {
 		super();
 		this.shopUrl = shopUrl;
@@ -23,8 +26,24 @@ public class Board {
 		return shopUrl;
 	}
 
+	public void setShopUrl(String shopUrl) {
+		this.shopUrl = shopUrl;
+	}
+
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
 	}
 
 	@Override

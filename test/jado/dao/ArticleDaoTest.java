@@ -5,7 +5,6 @@ package jado.dao;
 import java.util.List;
 
 import jado.model.Article;
-import junit.framework.Assert;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,25 +26,25 @@ public class ArticleDaoTest {
 	public void insertAndSelectTest() {
 		Article article = new Article( "testUrl", "공지사항", "title4", "content");
 		articleDao.insert(article);
-		log.debug("articleComment1 : {}", article);
+		log.debug("article : {}", article);
 		List<Article> articles = articleDao.selectAllByBoard(article);
 		article = articleDao.selectByPk(article);
-		log.debug("articleComment1 : {}", article);		
-		log.debug("articleComment1 : {}", articles);
+		log.debug("article : {}", article);		
+		log.debug("articles : {}", articles);
 	}
 	@Test
 	public void updateTest() throws Exception {
 		Article article = new Article( "testUrl", "공지사항", "title5", "content111");
 		articleDao.insert(article);
-		log.debug("articleComment1_notinsert : {}", article);
+		log.debug("article_notinsert : {}", article);
 		article = articleDao.selectByPk(article);
-		log.debug("articleComment1_insert    : {}", article);
+		log.debug("article_insert    : {}", article);
 		
 		Article temp = new Article("testUrl", "공지사항", "title4", "updated"); 
 		article.update(temp);
 		articleDao.update(article);
 		article = articleDao.selectByPk(article);
-		log.debug("articleComment1_update    : {}", article);
+		log.debug("article_update    : {}", article);
 		
 		articleDao.remove(article);
 		article = articleDao.selectByPk(article);
