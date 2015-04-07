@@ -3,7 +3,7 @@ package core.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class ConnectionManagerSample {
+public class ConnectionManager {
 	public static Connection getConnection() {
 		String address = "jdbc:mysql://ipAdress/Database";
 		String id = "your_id";

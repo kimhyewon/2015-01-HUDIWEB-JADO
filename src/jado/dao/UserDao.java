@@ -9,49 +9,67 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDao extends JdbcDaoSupport {
+public class UserDao {
+	/*
+	 * jdbcTemplate은 bean으로 등록되었으므로 DI받아 사용합니다.
+	 * 글쎄요.. JdbcDaoSupport를 상속받을 필요는 없을 것 같습니다.
+	 */
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+	/*
+	 * import org.springframework.core.io.Resource; spring-beans 의존성 필요	
+	 */
+	@Value("classpath:sql/initDbSchema.sql")
+	private Resource dbSchema;
+	
+	@Value("classpath:sql/insertTestSet.sql")
+	private Resource testSet;
 
 	@PostConstruct
 	public void initialize() {
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		populator.addScripts(new ClassPathResource("sql/initDbSchema.sql"), new ClassPathResource("sql/insertTestSet.sql"));
-		DatabasePopulatorUtils.execute(populator, getDataSource());
+		populator.addScripts(dbSchema, testSet);
+		DatabasePopulatorUtils.execute(populator, jdbcTemplate.getDataSource());
+
 	}
 
 	public void d(Customer customer) {
 		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F')";
-		getJdbcTemplate().update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress());
+		jdbcTemplate.update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress());
 	}
 
 	public void insert(Seller seller) {
 		String sql = "insert into SELLER values (?, ?, ?, ?)";
-		getJdbcTemplate().update(sql, seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
+		jdbcTemplate.update(sql, seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
 	}
 
 	public void updateCustomer(Customer customer) {
 		String sql = "update USER set PHONE = ?, ADDRESS = ? where ID = ?";
-		getJdbcTemplate().update(sql, customer.getPhone(), customer.getAddress(), customer.getUserId());
+		jdbcTemplate.update(sql, customer.getPhone(), customer.getAddress(), customer.getUserId());
 	}
 
 	public void updateSeller(Seller seller) {
 		String sql = "update SELLER set BANK = ?, BANK_ACCOUNT = ? where ID = ?";
-		getJdbcTemplate().update(sql, seller.getBank(), seller.getBankAccount(), seller.getUserId());
+		jdbcTemplate.update(sql, seller.getBank(), seller.getBankAccount(), seller.getUserId());
 	}
 
 	public Customer selectUserById(final String userId) {
 		String sql = "select * from USER where ID=?";
 		try {
-			return getJdbcTemplate().queryForObject(sql, new BeanPropertyRowMapper<Customer>(Customer.class), userId);
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Customer>(Customer.class), userId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -68,7 +86,7 @@ public class UserDao extends JdbcDaoSupport {
 		};
 		
 		try {
-			return getJdbcTemplate().queryForObject(sql, rm, userId);
+			return jdbcTemplate.queryForObject(sql, rm, userId);
 			// } catch ()
 			// try {
 			// return (Seller)jdbcTemplate.queryForObject(sql, new
@@ -81,24 +99,24 @@ public class UserDao extends JdbcDaoSupport {
 	// TODO 고쳐야 함
 	public Integer numberOfSellers() {
 		String sql = "select count(ID) AS count from SELLER";
-		return getJdbcTemplate().queryForObject(sql, Integer.class);
+		return jdbcTemplate.queryForObject(sql, Integer.class);
 		// RowMapper<Integer> rm = rs -> rs.getInt("count");
 		// return jdbcTemplate.executeQuery(sql, rm);
 	}
 
 	public void removeCustomer(String userId) {
 		String sql = "delete from USER where ID = ?";
-		getJdbcTemplate().update(sql);
+		jdbcTemplate.update(sql);
 	}
 
 	public void removeSeller(String userId) {
 		String sql = "delete from SELLER where ID = ?";
-		getJdbcTemplate().update(sql, userId);
+		jdbcTemplate.update(sql, userId);
 	}
 
 	public void updateMailAuthStatus() {
 		String sql = "update USER set EMAIL_VALIDATE_STATUS = ?";
-		getJdbcTemplate().update(sql, "T");
+		jdbcTemplate.update(sql, "T");
 	}
 
 	public Customer selectCustomerById(String userId) {
@@ -107,7 +125,7 @@ public class UserDao extends JdbcDaoSupport {
 
 	public void insert(Customer customer) {
 		String sql = "insert into USER values (?, ?, ?, ?, ?, ?, ?, ?)";
-		getJdbcTemplate().update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress(), new Date(), null, "F");
+		jdbcTemplate.update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress(), new Date(), null, "F");
 	}
 
 	public boolean IsPasswordCorrect(String userId, String password) {
