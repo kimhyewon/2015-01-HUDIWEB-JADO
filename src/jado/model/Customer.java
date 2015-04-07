@@ -92,20 +92,28 @@ public class Customer extends User {
 		this.emailValidateStatus = emailValidateStatus;
 	}
 
-	public boolean update(Customer customer2) {
+	public boolean update(Customer customer) {
 		boolean result = false;
-		if (!this.phone.equals(customer2.phone)) {
-			this.phone = customer2.phone;
+		if (!this.phone.equals(customer.phone)) {
+			this.phone = customer.phone;
 			result = true;
 		}
-		if (!this.address.equals(customer2.address)) {
-			this.address = customer2.address;
+		if (!this.address.equals(customer.address)) {
+			this.address = customer.address;
 			result = true;
 		}
-		if (!this.address.equals(customer2.address)) {
-			this.address = customer2.address;
+		if (!this.address.equals(customer.address)) {
+			this.address = customer.address;
 			result = true;
 		}
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return "Customer [password=" + password + ", name=" + name + ", phone=" + phone + ", address=" + address + "]";
+	}
+	
+	
+	
 }

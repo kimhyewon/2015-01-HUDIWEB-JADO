@@ -23,7 +23,7 @@ public class Shop {
 		this.footer = footer;
 	}
 	public Shop(String url, String phone) {
-		this(url, "제목을 입력해 주세요", phone, "/userImg/shop/banner/default.png", "/userImg/shop/main/default.png", "/userImg/shop/logo/default.png", "theme1", "입력해 주세요");
+		this(url, null, phone, null, null, null, null, null);
 	}
 
 	public String getUrl() {
@@ -57,5 +57,10 @@ public class Shop {
 	public String getFooter() {
 		return footer;
 	}
+	@Override
+	public String toString() {
+		return "Shop [url=" + url + ", phone=" + phone + "]";
+	}
+	
 	
 }

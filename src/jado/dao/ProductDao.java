@@ -2,13 +2,14 @@ package jado.dao;
 
 import jado.model.Product;
 
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import core.jdbc.JdbcTemplate222;
 import core.jdbc.RowMapper;
 
 @Repository
-public class ProductDao {
+public class ProductDao extends JdbcDaoSupport{
 
 	public static void insert(final Product product) {
 		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();

@@ -4,15 +4,16 @@
 <properties>
 	<comment>application-properties</comment>
 	
-	<!--  Database -->
-	<!-- <entry key="database.driverClassName">org.h2.Driver</entry>
-	<entry key="database.url">jdbc:h2:~/2015-01-HUDIWEB-JADO</entry>
+  	<!--  Database -->
+  	<!--  
+	<entry key="database.driverClassName">org.h2.Driver</entry>
+	<entry key="database.url">jdbc:h2:~/127.0.0.1:3360</entry>
 	<entry key="database.username">sa</entry>
-	<entry key="database.password"></entry>	 -->
-	
-	<!--  Database -->
+	<entry key="database.password"></entry>	
+	 -->
+ 	<!--  Database -->
 	<entry key="database.driverClassName">com.mysql.jdbc.Driver</entry>
-	<entry key="database.url">jdbc:mysql://172.16.93.153:3306/jado_dev</entry>
-	<entry key="database.username">popi</entry>
-	<entry key="database.password">db1004</entry>
+	<entry key="database.url">jdbc:mysql://127.0.0.1:3306/jado_dev</entry>
+	<entry key="database.username">jado_developer</entry>
+	<entry key="database.password">1111</entry>
 </properties>
