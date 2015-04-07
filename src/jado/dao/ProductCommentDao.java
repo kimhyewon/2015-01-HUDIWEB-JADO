@@ -6,13 +6,14 @@ import jado.model.ProductComment;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import core.jdbc.JdbcTemplate222;
 import core.jdbc.RowMapper;
 
 @Repository
-public class ProductCommentDao {
+public class ProductCommentDao extends JdbcDaoSupport{
 	public static void insert(final ProductComment productComment) {
 		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();
 		String sql = "insert into PRODUCT_COMMENT values(?, ?, null, ?)";
