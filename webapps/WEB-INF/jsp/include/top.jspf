@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="top" class="row">
-	<div class="col s12 m12 l12">
+	<div class="col s1 m7 l9 dummy">dummy</div>
+	<div class="col s11 m5 l3">
 		<form method="get">
 		<ul>
 			<input type="hidden" name="url" value="${url}">
@@ -10,7 +11,7 @@
 					<li>
 						<input type="submit" formaction="/user/login" value="로그인"/>
 			    	</li>
-			    	<li>|</li>
+			    	<li class="topLine">|</li>
 			    	<li>
 						<input type="submit" formaction="/user" value="회원가입"/>
 				    </li>
@@ -19,7 +20,7 @@
 					<li>
 						<input type="submit" formaction="/user/logout" value="로그아웃"/>
 					</li>
-					<li>|</li>
+					<li class="topLine">|</li>
 					<li>
 						<input type="submit" formaction="/user/edit" value="회원 정보 수정"/>
 					</li>

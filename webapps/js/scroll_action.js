@@ -23,16 +23,13 @@ var SA = (function() {
     };
 
     ScrollAction.prototype.removePage = function() {
-        if (this.lastPage <1 || this.lastPage >3) return;
-        this.elSections[this.lastPage].classList.remove( 'animation' );
-        console.log(this.elSections[this.lastPage]);
-        
+        if (this.lastPage < 1 || this.lastPage > 3) return;
+        this.elSections[this.lastPage-1].classList.remove( 'animation' );
     };
 
     ScrollAction.prototype.startPage = function() {
-        if (this.recentPage <1 || this.recentPage >3) return;
-        this.elSections[this.recentPage].classList.add( 'animation' );
-        console.log(this.elSections[this.recentPage]);
+        if (this.recentPage < 1 || this.recentPage > 3) return;
+        this.elSections[this.recentPage-1].classList.add( 'animation' );
     };
 
     var run = function() {
@@ -48,16 +45,13 @@ var SA = (function() {
         var temp = (view + posY - 30) / view;
         return parseInt(temp);
     };
-
     return ScrollAction;
-
 })();
 
 window.addEventListener("load", function() {
-    var elSections = document.querySelectorAll('section');
+    var elSections = document.querySelectorAll('article');
     if (elSections == null || elSections == undefined) return;
     var oSA = new SA(elSections);
     oSA.getViewportH();
     oSA.runOnScroll();
-
 })
