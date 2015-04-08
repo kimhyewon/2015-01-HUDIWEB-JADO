@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div id="mainInfo">
+	<article class="row">
+		<div class="col s12 m6 l6">
+			<img src="" alt="No Image">
+		</div>
+		<div class="col s12 m6 l6">
+			<p>하늘은 더 파란건지<br>오늘따라 왜 바람은 또 완벽한지</p>
+		</div>
+	</article>
+	<article class="row">
+		<div class="col s12 m6 l6">
+			<p>하늘은 더 파란건지<br>오늘따라 왜 바람은 또 완벽한지</p>
+		</div>
+		<div class="col s12 m6 l6">
+			<img src="" alt="No Image">
+		</div>
+	</article>
+	<article class="row">
+		<div class="col s12 m6 l6">
+			<img src="" alt="No Image">
+		</div>
+		<div class="col s12 m6 l6">
+			<p>하늘은 더 파란건지<br>오늘따라 왜 바람은 또 완벽한지</p>
+		</div>
+	</article>
+</div>

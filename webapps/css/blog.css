@@ -1,0 +1,169 @@
+html {
+	font-size:8px;
+}
+
+@media only screen and (min-width : 601px) {
+	html {
+		font-size:10px;
+	}
+}
+
+@media only screen and (min-width : 993px) {
+	html {
+		font-size:13px;
+	}
+}
+
+body {
+	font-family: 'Corbel',sans-serif;
+	text-align: center;	 /*TODO 나중에 고쳐야 함*/
+}
+
+#header {
+	height: 100%;
+	max-height: 160px;
+	width: 100%;
+}
+
+#title {
+	text-align: center;
+	font-size: 6.5rem;
+	margin-top: 30px;
+}
+
+#nav_bar {
+	height: 100%;
+	max-height: 55px;
+	width: 100%;
+}
+
+#white_block {
+	background-color: white;
+	height: 10px;
+}
+
+#body_con {
+	max-height: 522px;
+}
+
+#category {
+}
+
+.category_list {
+	font-size: 18px;
+	text-align: left;
+	margin-top: 2px;
+}
+
+#profile_con {
+	margin-top: 20%;
+}
+
+#profile_img {
+	height: 80px;
+	border: 1px solid black;
+}
+
+#profile_con img {
+	margin-top: 23%;
+}
+
+#profile_name {
+	margin-top: 5px;
+	font-size: 1.3rem;
+}
+
+
+#main_img_con {
+	height: 100%;
+}
+
+#main_img {
+	width: 100%;
+	height: 100%;
+	margin-left: -33px;
+}
+
+#special_product_con {
+	max-height: 290px;
+	width: 100%;
+	margin-top: 12px;
+}
+.special_product {
+	height: 100%;
+	margin-right: -2px;
+}
+
+.special_product img:hover {
+	opacity: 0.3;
+}
+
+#side_block {
+	margin-left: -13px;
+}
+
+#product_con {
+	max-height: 1750px;
+	width: 100%;
+	margin-top: 60px;
+	margin-bottom: 200px;
+}
+
+#black_line {
+	height: 100%;
+	height: 1px;
+	max-height: 1px;
+	width: 100%;
+	background-color: black;
+}
+
+#product_text {
+	font-size: 40px;
+	padding-top: 80px;
+}
+
+#white_block2 {
+	background-color: white;
+	height: 1000px;
+}
+
+#product_section {
+	height: 100%;
+	max-height: 510px;
+}
+
+.product {
+	margin-top: 60px;
+	margin-right: 2.734375%;
+}
+
+.product_text_con {
+	margin-top: 20px;
+	font-size: 13px;
+}
+
+.price {
+	margin-top: 10px;
+	font-size: 13px;
+}
+
+#footer {
+	height: 100%;
+	max-height: 80px;
+	width: 100%;
+	margin-top: 80px;
+}
+
+#mobile_white_block {
+	display: none;
+}
+
+@media only screen and (max-width : 601px) {
+	body {
+		margin: auto;
+	}
+
+	#main_img {
+		margin-left: 0px;
+	}
+}

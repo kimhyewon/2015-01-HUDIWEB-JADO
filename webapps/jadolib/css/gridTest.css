@@ -1,0 +1,23 @@
+#top {background-color: red;height: 100px;}
+
+#a {background-color: blue;height: 80px;}
+#b {background-color: green;height: 80px;padding: 0;}
+
+#c {background-color: purple;height: 40px;}
+#d {background-color: yellow;height: 40px;}
+#e {background-color: blue;height: 40px;}
+#f {background-color: yellow;height: 40px;}
+
+section {background-color: yellow;height: 100px;}
+
+.dummy {
+	visibility: hidden;
+}
+
+#g {background-color: green;height: 70px;}
+#h {background-color: blue;height: 70px;}
+
+#i {background-color: purple;height: 40px;}
+#j {background-color: yellow;height: 40px;}
+#k {background-color: blue;height: 40px;}
+#l {background-color: yellow;height: 40px;}

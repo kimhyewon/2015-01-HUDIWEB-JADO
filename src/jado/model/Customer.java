@@ -1,11 +1,6 @@
 package jado.model;
 
-import core.exception.DuplicateUserException;
-import core.exception.IsNotValidatedMail;
-import core.exception.PasswordMismatchException;
-import core.exception.UserNotFoundException;
-import core.jdbc.JdbcTemplate;
-import jado.dao.UserDao;
+import java.sql.Timestamp;
 
 public class Customer extends User {
 
@@ -13,42 +8,28 @@ public class Customer extends User {
 	private String name;
 	private String phone;
 	private String address;
-	private String isValidated;
+	private Timestamp insertTime;
+	private Timestamp updateTime;
+	private String emailValidateStatus;
 
-	public boolean login(String checkedPassword) throws UserNotFoundException,
-			PasswordMismatchException, IsNotValidatedMail {
-		if (!password.equals(checkedPassword)) {
-			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다. 다시 로그인 해주세요.");
-		}
-		if(!isValidated.equals("T")){
-			throw new IsNotValidatedMail("이메일 인증이 와료 되지 않았습니다. 회원가입 하신 아이디로 이메일이 발송 되었으니 인증해 주시기 바랍니다.");
-		}
-		return true;
-	}
-
-	public void signUp() throws DuplicateUserException,
-			PasswordMismatchException {
-
-		Customer tempUser = UserDao.selectUserById(this.userId);
-		if (tempUser != null) {
-			throw new DuplicateUserException("이미 가입된 사용자입니다.");
-		}
-		UserDao.insert(this);
-	}
-
-	// Constructor
-	public Customer(String userId, String password, String name, String phone,
-			String address, String isValidated) {
+	public Customer() { }
+	
+	public Customer(String userId, String password, String name, String phone, String address, Timestamp insertTime, Timestamp updateTime, String emailValidateStatus) {
 		super(userId);
 		this.password = password;
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
-		this.isValidated = isValidated;
+		this.insertTime = insertTime;
+		this.updateTime = updateTime;
+		this.emailValidateStatus = emailValidateStatus;
 	}
-	
-	public Customer(String userId, String password, String name, String phone,
-			String address) {
+
+	public Customer(String userId, String password, String name, String phone, String address, String isValidated) {
+		this(userId, password, name, phone, address, null, null, null);
+	}
+
+	public Customer(String userId, String password, String name, String phone, String address) {
 		this(userId, password, name, phone, address, null);
 
 	}
@@ -57,81 +38,85 @@ public class Customer extends User {
 		this(userId, password, null, null, null);
 	}
 
-	// Getter
 	public String getPassword() {
 		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	// Setter
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
 	}
 
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+	public Timestamp getInsertTime() {
+		return insertTime;
+	}
+
+	public void setInsertTime(Timestamp insertTime) {
+		this.insertTime = insertTime;
+	}
+
+	public Timestamp getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getEmailValidateStatus() {
+		return emailValidateStatus;
+	}
+	
+	public void setEmailValidateStatus(String emailValidateStatus) {
+		this.emailValidateStatus = emailValidateStatus;
+	}
+
+	public boolean update(Customer customer) {
+		boolean result = false;
+		if (!this.phone.equals(customer.phone)) {
+			this.phone = customer.phone;
+			result = true;
+		}
+		if (!this.address.equals(customer.address)) {
+			this.address = customer.address;
+			result = true;
+		}
+		if (!this.address.equals(customer.address)) {
+			this.address = customer.address;
+			result = true;
+		}
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Customer other = (Customer) obj;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		} else if (!address.equals(other.address))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (phone == null) {
-			if (other.phone != null)
-				return false;
-		} else if (!phone.equals(other.phone))
-			return false;
-		return true;
+	public String toString() {
+		return "Customer [password=" + password + ", name=" + name + ", phone=" + phone + ", address=" + address + ", insertTime=" + insertTime + ", updateTime=" + updateTime
+				+ ", emailValidateStatus=" + emailValidateStatus + "]";
 	}
+	
+	
+	
 }

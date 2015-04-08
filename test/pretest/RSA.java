@@ -1,13 +1,15 @@
 package pretest;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-
 import java.math.BigInteger;
-import java.security.*;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
+
+import org.junit.Test;
 
 public class RSA {
 	String publicKeyModulus;
