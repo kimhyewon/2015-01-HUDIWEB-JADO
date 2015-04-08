@@ -5,7 +5,7 @@
 <head>
 	<title>Ne#</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="shortcut icon" type="image/x-icon" href="">
+	<!-- <link rel="shortcut icon" type="image/x-icon" href=""> -->
 	<link rel="stylesheet" type="text/css" href="/css/lib/reset.css">
 	<link rel="stylesheet" type="text/css" href="/css/lib/grid.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
