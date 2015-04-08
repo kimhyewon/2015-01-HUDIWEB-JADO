@@ -78,6 +78,18 @@
 	padding: 0 0.75rem;
 }
 
+.shide {
+		display:none;
+}
+
+.mhide {
+		display:none;
+}
+
+.lhide {
+		display:none;
+}
+
 .row .col.s1 {
 	width: 8.33333%;
 	margin-left: 0;
@@ -187,6 +199,15 @@
 }
 
 @media only screen and (min-width : 601px) {
+	.shide {
+		display:block;
+	}
+	.mhide {
+		display:none;
+	}
+	.lhide {
+		display:block;
+	}
 	.row .col.m1 {
 		width: 8.33333%;
 		margin-left: 0;
@@ -274,6 +295,15 @@
 }
 
 @media only screen and (min-width : 993px) {
+	.shide {
+		display:block;
+	}
+	.mhide {
+		display:block;
+	}
+	.lhide {
+		display:none;
+	}
 	.row .col.l1 {
 		width: 8.33333%;
 		margin-left: 0;
