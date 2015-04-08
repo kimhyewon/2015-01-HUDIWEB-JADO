@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/login.css" media="screen">
 </head>
 <body onClick='rng_seed_time();' onKeyPress='rng_seed_time();'>
-	<%@ include file="/include/top.jspf" %>
+	<%@ include file="include/top.jspf" %>
 	<div id="loginContainer">
 		<c:if test="${not empty errorMessage}">
 			<label class="error">${errorMessage}</label>
