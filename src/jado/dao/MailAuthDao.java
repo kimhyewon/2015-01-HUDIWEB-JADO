@@ -7,6 +7,7 @@ import core.jdbc.RowMapper;
 
 @Repository
 public class MailAuthDao {
+	
 	public void insert(String mailRecipient, String uuid) {
 		JdbcTemplate222 jdbcTemplate = new JdbcTemplate222();
 		String sql = "insert into MAIL_AUTH values(?, ?, ?)";

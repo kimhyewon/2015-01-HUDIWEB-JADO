@@ -4,6 +4,7 @@ import jado.model.Customer;
 import jado.model.Seller;
 
 import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,28 +18,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDao {
-	/*
-	 * jdbcTemplate은 bean으로 등록되었으므로 DI받아 사용합니다.
-	 * 글쎄요.. JdbcDaoSupport를 상속받을 필요는 없을 것 같습니다.
-	 */
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
-	/*
-	 * import org.springframework.core.io.Resource; spring-beans 의존성 필요	
-	 */
-	@Value("classpath:sql/initDbSchema.sql")
-	private Resource dbSchema;
-	
-	@Value("classpath:sql/insertTestSet.sql")
-	private Resource testSet;
 
 	@PostConstruct
 	public void initialize() {
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		populator.addScripts(dbSchema, testSet);
 		DatabasePopulatorUtils.execute(populator, jdbcTemplate.getDataSource());
-
 	}
 
 	public void insert(final Customer customer) {

@@ -23,15 +23,4 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
 		p:dataSource-ref="dataSource" />
 	
-	
-	<bean id="ArticleCommentDao" class="jado.dao.ArticleCommentDao" p:dataSource-ref="dataSource" />
-	<bean id="ArticleDao" class="jado.dao.ArticleDao" p:dataSource-ref="dataSource" />
-	<bean id="BoardDao" class="jado.dao.BoardDao" p:dataSource-ref="dataSource" />
-	<bean id="CategoryDao" class="jado.dao.CategoryDao" p:dataSource-ref="dataSource" />
-	<bean id="MailAuthDao" class="jado.dao.MailAuthDao" p:dataSource-ref="dataSource" />
-	<bean id="ProductCommentDao" class="jado.dao.ProductCommentDao" p:dataSource-ref="dataSource" />
-	<bean id="ProductDao" class="jado.dao.ProductDao" p:dataSource-ref="dataSource" />
-	<bean id="UserDao" class="jado.dao.UserDao" p:dataSource-ref="dataSource" />
-	<bean id="ShopDao" class="jado.dao.ShopDao" p:dataSource-ref="dataSource" /> 
-	
 </beans>
