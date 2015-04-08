@@ -12,20 +12,21 @@ public class MailTemplateStorage {
 		// Join Type
 		JOIN_VERIFY(1), JOIN_WELCOME(2);
 
+		// 이곳에 새로운 타입의 메일들의 상수를 추가하면 됨
+		// Ex) BUY_VERIFY(3), BUY_RECEIPT(4)
+		
 		private int value;
 
 		private Type(int value) {
 			this.value = value;
 		}
 
-//		public int getValue() {
-//			return value;
-//		}
+		public int getValue() {
+			return value;
+		}
 	}
 	
 	static {
-//		templates.put("joinVerify", new JoinVerifyMail());
-//		templates.put("joinWelcome", new JoinWelcomeMail());
 		templates.put(Type.JOIN_VERIFY, new JoinVerifyMail());
 		templates.put(Type.JOIN_WELCOME, new JoinWelcomeMail());
 	}
