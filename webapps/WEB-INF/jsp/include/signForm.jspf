@@ -83,8 +83,8 @@
 				<input type="hidden" name="url" value="${url}">
 			</c:otherwise>
 		</c:choose>
-		<input type="hidden" name="rsaPublicKeyExponent" value="${publicKeyExponent}>" />
-		<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}>" />
+		<input type="hidden" name="rsaPublicKeyExponent" value="${publicKeyExponent}" />
+		<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}" />
 		<input type="hidden" name="shopAddress" value="NULL">
 	</form>
 </div>

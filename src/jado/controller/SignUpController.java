@@ -38,7 +38,7 @@ public class SignUpController  {
 		model.addAttribute("url", returnUrl);
 		
 		if(!encryptPrepareProcess(session, model).isSuccess()) {
-			return "loginFailure";
+			return "errorCommon";
 		}
 		return "signUp";
 	}
