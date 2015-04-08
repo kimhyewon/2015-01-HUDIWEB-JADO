@@ -1,6 +1,6 @@
 package core.mail;
 
-public class EmailRequestResult {
+public class EmailRequestResultSample {
 	public final static String Success = "Success";
 	public final static String Fail = "Fail";
 

@@ -15,3 +15,4 @@ tomcat.8080/
 src/core/jdbc/ConnectionManager.java
 MailConfig.java
 application-properties.xml
+EmailRequestResult.java
