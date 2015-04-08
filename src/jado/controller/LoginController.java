@@ -28,7 +28,7 @@ public class LoginController {
 	private LoginService loginService;
 
 	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
-	public String viewLoginPage(@RequestParam("url") String returnUrl, Model model, HttpSession session) {
+	public String viewLoginPage(String returnUrl, Model model, HttpSession session) {
 
 		// TODO 로그인한 사용자가 로그인 페이지에 접속하기 이전 주소로 돌려주기 위한 기능에 오류가 존재함 - 수정 필요
 		logger.debug("접속한 회원의 이전 주소 {}", returnUrl);
@@ -91,6 +91,7 @@ public class LoginController {
 			model.addAttribute("publicKeyModulus", rsa.getPublicKeyModulus());
 			model.addAttribute("publicKeyExponent", rsa.getPublicKeyExponent());
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			session.removeAttribute("__rsaPrivateKey__");
 			model.addAttribute("errorMessage", e.getMessage());
 			return new Result(false, e.getMessage());
 		}

@@ -4,19 +4,14 @@ import jado.model.Customer;
 import jado.model.Seller;
 import jado.service.EditUserService;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import core.util.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class EditUserController {
@@ -24,41 +19,36 @@ public class EditUserController {
 	@Autowired private EditUserService editUserService;
 
 	@RequestMapping(value = "/user/edit", method = RequestMethod.GET)
-	public void viewEditUserInfoPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		String userId = (String)session.getAttribute("userId");
+	public String viewEditUserInfoPage(HttpSession session, Model model) {
+		String userId = (String) session.getAttribute("userId");
 		Customer customer = editUserService.selectUserById(userId);
-		req.setAttribute("customer", customer);
+		model.addAttribute("customer", customer);
+		
 		if(session.getAttribute("isSeller") != null) {
 			Seller seller = editUserService.selectSellerById(userId);
-			req.setAttribute("seller", seller);
+			model.addAttribute("seller", seller);
 		}
-		resp.sendRedirect("/editUser.jsp");
+		
+		return "editUser";
 	}
 	
+	// TODO [To. 우재우님] - 우재우님 아래에 기재된 사항 확인부탁드립니다.
+	// EditUserController 최초 생성시 shopPhone이라는 변수를 사용하셨는데
+	// 실제로 수정하면서 보니 해당변수가 unused상태임을 확인하였습니다.
+	// 그런데 DB 스키마를 보면 필요할 것 같은 데이터인데 어떻게 처리해야 할 지 모르겠습니다. 확인부탁드립니다.
 	@RequestMapping(value = "/user/edit", method = RequestMethod.POST)
-	protected void editUserInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		
-		//Normal User
+	protected String editUserInfo(@RequestParam("pwEncryption") String password, @RequestParam("name") String name, 
+			@RequestParam("phone") String phone, @RequestParam("address") String address, 
+			String shopUrl, String shopPhone, String bank, String bankAccount, HttpSession session) {
+		// Normal User
 		String userId = (String)session.getAttribute("userId");
-		String password = ServletRequestUtils.getRequiredStringParameter(req, "pwEncryption");
-		String name = ServletRequestUtils.getRequiredStringParameter(req, "name");
-		String phone = ServletRequestUtils.getRequiredStringParameter(req, "phone");
-		String address = ServletRequestUtils.getRequiredStringParameter(req, "address");
 		editUserService.updateCustomer(new Customer(userId, password, name, phone, address));
 
-		//Seller
-		if (req.getParameter("isSeller") != null) {
-			String shopUrl = ServletRequestUtils.getRequiredStringParameter(req, "shopUrl");
-			//TODO 아래 변수 사용하지 않지만 DB 스키마를 보면 필요할 것 같은 데이터이다.
-			//@WooJaeWoo 수정요청드림
-			String shopPhone = ServletRequestUtils.getRequiredStringParameter(req, "shopPhone");
-			String bank = ServletRequestUtils.getRequiredStringParameter(req, "bank");
-			String bankAccount = ServletRequestUtils.getRequiredStringParameter(req, "bankAccount");
+		// Seller
+		if (session.getAttribute("isSeller") != null) {
 			editUserService.updateSeller(new Seller(userId, shopUrl, bank, bankAccount));
 		}
 
-		resp.sendRedirect("/");
+		return "main";
 	}
 }

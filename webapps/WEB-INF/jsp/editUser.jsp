@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/top.css" />
 </head>
 <body>
-	<%@ include file="/include/top.jspf" %>
+	<%@ include file="include/top.jspf" %>
 	
 	<div class="container">
 		<div class="row">

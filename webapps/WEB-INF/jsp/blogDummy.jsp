@@ -13,6 +13,7 @@
 
 </head>
 <body>
+<<<<<<< HEAD
 	<div id = "header" class="row">
 		<div id = "title" class="col s12 m12 l12">HEY, JADO
 		</div>
@@ -58,6 +59,21 @@
 		<div class = "special_product col shide m3 l3"><img src="img/3.jpg" style="width:100%; height=100%;"></div>
 		<div id = "side_block" class="col shide m1 l1"><img src="img/side_block.png" style="width:76%; height=70%;"></div>
 	</div>
+=======
+	<%@ include file="include/top.jspf" %>
+	<h1>WELCOME TO MY SHOP!!</h1>
+<ul>
+	<li>공지사항</li>
+	<li>상품보기</li>
+	<li>게시판</li>
+	<li>장바구니</li>
+</ul>
+<button><a href="/user/logout">로그아웃</a></button>
+</body>
+<!-- index.jsp && dummp blog 필요 && top.jspf 있는곳 에서 필요-->
+<script src="/js/submit.js"></script>
+</html>
+>>>>>>> da860d6d3e6fede56e2ff0c7cb7e77842aefa093
 
 	<div id = "product_con" class="row">
 		<div id = "black_line" class="row col s12 m12 l12"></div>

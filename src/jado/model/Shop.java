@@ -7,11 +7,11 @@ public class Shop {
 	private String banner_url;
 	private String main_url;
 	private String logo_url;
-	private String theme;
 	private String footer;
+	private String theme;
 
-	
-	public Shop(String url, String title, String phone, String banner_url, String main_url, String logo_url, String theme, String footer) {
+	public Shop() {	}
+	public Shop(String url, String title, String phone, String banner_url, String main_url, String logo_url, String footer, String theme) {
 		super();
 		this.url = url;
 		this.title = title;
@@ -22,8 +22,9 @@ public class Shop {
 		this.theme = theme;
 		this.footer = footer;
 	}
+
 	public Shop(String url, String phone) {
-		this(url, null, phone, null, null, null, null, null);
+		this(url, null, phone, null, null, null, url, null);
 	}
 
 	public String getUrl() {
@@ -41,7 +42,7 @@ public class Shop {
 	public String getBanner_url() {
 		return banner_url;
 	}
-	
+
 	public String getMain_url() {
 		return main_url;
 	}
@@ -57,10 +58,44 @@ public class Shop {
 	public String getFooter() {
 		return footer;
 	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setBanner_url(String banner_url) {
+		this.banner_url = banner_url;
+	}
+
+	public void setMain_url(String main_url) {
+		this.main_url = main_url;
+	}
+
+	public void setLogo_url(String logo_url) {
+		this.logo_url = logo_url;
+	}
+
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
+
+	public void setFooter(String footer) {
+		this.footer = footer;
+	}
+
 	@Override
 	public String toString() {
-		return "Shop [url=" + url + ", phone=" + phone + "]";
+		return "Shop [url=" + url + ", title=" + title + ", phone=" + phone + ", banner_url=" + banner_url + ", main_url=" + main_url + ", logo_url=" + logo_url + ", theme=" + theme + ", footer="
+				+ footer + "]";
 	}
-	
+
 	
 }

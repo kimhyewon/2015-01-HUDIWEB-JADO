@@ -1,18 +1,20 @@
 package jado.model;
 
+import java.sql.Timestamp;
+
 public class Customer extends User {
 
 	private String password;
 	private String name;
 	private String phone;
 	private String address;
-	private String insertTime;
-	private String updateTime;
+	private Timestamp insertTime;
+	private Timestamp updateTime;
 	private String emailValidateStatus;
 
 	public Customer() { }
 	
-	public Customer(String userId, String password, String name, String phone, String address, String insertTime, String updateTime, String emailValidateStatus) {
+	public Customer(String userId, String password, String name, String phone, String address, Timestamp insertTime, Timestamp updateTime, String emailValidateStatus) {
 		super(userId);
 		this.password = password;
 		this.name = name;
@@ -24,7 +26,7 @@ public class Customer extends User {
 	}
 
 	public Customer(String userId, String password, String name, String phone, String address, String isValidated) {
-		this(userId, password, name, phone, address, null, null, "F");
+		this(userId, password, name, phone, address, null, null, null);
 	}
 
 	public Customer(String userId, String password, String name, String phone, String address) {
@@ -68,19 +70,19 @@ public class Customer extends User {
 		this.address = address;
 	}
 
-	public String getInsertTime() {
+	public Timestamp getInsertTime() {
 		return insertTime;
 	}
 
-	public void setInsertTime(String insertTime) {
+	public void setInsertTime(Timestamp insertTime) {
 		this.insertTime = insertTime;
 	}
 
-	public String getUpdateTime() {
+	public Timestamp getUpdateTime() {
 		return updateTime;
 	}
 
-	public void setUpdateTime(String updateTime) {
+	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
 
@@ -111,7 +113,8 @@ public class Customer extends User {
 
 	@Override
 	public String toString() {
-		return "Customer [password=" + password + ", name=" + name + ", phone=" + phone + ", address=" + address + "]";
+		return "Customer [password=" + password + ", name=" + name + ", phone=" + phone + ", address=" + address + ", insertTime=" + insertTime + ", updateTime=" + updateTime
+				+ ", emailValidateStatus=" + emailValidateStatus + "]";
 	}
 	
 	

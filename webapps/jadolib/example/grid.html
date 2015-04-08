@@ -1,26 +1,35 @@
-<link rel="stylesheet" type="text/css" href="../css/reset.css">
-<link rel="stylesheet" type="text/css" href="../css/grid.css">
-<link rel="stylesheet" type="text/css" href="../css/button.css">
-
-<style type="text/css">
-	div {
-		outline:1px solid #000;
-	}
-</style>
-
-Grid example
-
-<!-- <div class="container"> -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GRID TEST</title>
+  <link rel="stylesheet" type="text/css" href="./../../css/lib/reset.css">
+  <link rel="stylesheet" type="text/css" href="./../css/grid.css">
+  <link rel="stylesheet" type="text/css" href="./../css/gridTest.css">
+</head>
+<body>
+  <!-- 그리드 시스템 기본 사용법 -->
   <div class="row">
-    <div class="col s12"><p>s12</p></div>
-    <div class="col s12 m3 l2"><p>s12 m4</p></div>
-    <div class="col s12 m6 l8"><p>s12 m4</p></div>
-    <div class="col s12 m3 l2"><p>s12 m4</p></div>
+      <div id="i" class="col s12 m2 l1"></div>
+      <div id="j" class="col s12 m1 l2"></div>
+      <div id="k" class="col s12 m6 l7"></div>
+      <div id="l" class="col s12 m3 l2"></div>
+    </div>
+  <!-- 그리드 안에서 또 다시 그리드를 나눌 때 -->
+  <div id="top" class="row">
+    <div id="a" class="col s3 m3 l3"></div>
+    <div id="b" class="col s9 m9 l9 row">
+      <div id="c" class="col s3 m3 l3"></div>
+      <div id="d" class="col s3 m3 l3"></div>
+      <div id="e" class="col s3 m3 l3"></div>
+      <div id="f" class="col s3 m3 l3"></div>
+    </div>
   </div>
-  <div class="row">
-    <div class="col s12 m6 l3"><p>s12 m6 l3</p></div>
-    <div class="col s12 m6 l3"><p>s12 m6 l3</p></div>
-    <div class="col s12 m6 l3"><p>s12 m6 l3</p></div>
-    <div class="col s12 m6 l3"><p>s12 m6 l3</p></div>
-  </div>
-<!-- </div> -->
+  <!-- 그리드 시스템에서 가운데 정렬은 더미를 이용한다! -->
+  <section class="row">
+    <div class="dummy col s12 m3 l3">dummy</div>
+    <div id="g" class="col s12 m3 l3"></div>
+    <div id="h" class="col s12 m3 l3"></div>
+    <div class="dummy col s12 m3 l3">dummy</div>
+  </section>
+</body>
+</html>
