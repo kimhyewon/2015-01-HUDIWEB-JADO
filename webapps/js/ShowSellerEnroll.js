@@ -1,24 +1,25 @@
+var ShowSellerEnroll = (function() {
+    var ShowSellerEnroll = function() {
+        var chkBox = document.querySelector("#chkBox");
+        if (!chkBox) return;
+        chkBox.addEventListener("click", function() {
+            var target = document.querySelector("#signUpContainer");
+            if (chkBox.checked) {
+                target.classList.add('scrollSellerEnroll');
+            } else {
+                target.classList.remove('scrollSellerEnroll');
+            }
+        })
+    }
+    return ShowSellerEnroll;
+})();
+
 window.addEventListener("load", function() {
-    var chkBox = document.querySelector("#chkBox");
-    if (!chkBox) return;
-    console.log(chkBox);
-    chkBox.addEventListener("click", function() {
-        var userForm = document.querySelector("#signUpUser");
-        if (chkBox.checked) {
-            userForm.style.borderTopRightRadius = "0px";
-            userForm.style.borderBottomRightRadius = "0px";
-            document.querySelector("#signUpSeller").style.visibility = "visible";
-        } else {
-            userForm.style.borderTopRightRadius = "12px";
-            userForm.style.borderBottomRightRadius = "12px";
-            document.querySelector("#signUpSeller").style.visibility = "hidden";
-        }
-    })
+    var oShowSellerEnroll = new ShowSellerEnroll();
 })
-
-
 /*
 var showSeller = (function() {
+
 	
 })
 

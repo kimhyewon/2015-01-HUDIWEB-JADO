@@ -12,7 +12,6 @@
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 }
-
 #signUpUser ul { width: 100%; }
 #signUpSeller ul { width: 100%; }
 
@@ -87,4 +86,12 @@
 		border-radius: 0px;
 		margin: 0;
 	}
+}
+
+#signUpContainer.scrollSellerEnroll #signUpUser {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+#signUpContainer.scrollSellerEnroll #signUpSeller {
+	visibility: visible;
 }

@@ -4,7 +4,7 @@
 <div id="signUpContainer" class="row center">
 	<form id ="signup_form" class="encrypt_form" action="/user" method="post" autocomplete="off">
 		<div class="col m1 l2 dummy">dummy</div>
-		<div id="signUpUser" class="col s12 m5 l4">
+		<div id="signUpUser" class="col s12 m5 l4 ">
 			<h2>Sign Up</h2>
 			<ul>
 				<li>

@@ -1,23 +1,19 @@
-function SaveUrl(url_list) {
-    this.url_list = url_list;
-}
+var SaveUrl = (function() {
+    var SaveUrl = function() {
+        this.urlList = document.querySelectorAll('input[name=url]');
+        if (!this.urlList) return;
 
-SaveUrl.prototype.save = function() {
-    for (var j = 0; j < this.url_list.length; j++) {
-        var stInput = this.url_list[j].value;
-		// 결국 if (!stInput) 과 같은 코드입니다.
-        if (stInput == "" || stInput == null || stInput == undefined) {
-            this.url_list[j].value = window.location.pathname;
-        };
+        for (var j = 0; j < this.urlList.length; j++) {
+            var stInput = this.urlList[j].value;
+            // 결국 if (!stInput) 과 같은 코드입니다.
+            if (stInput == "" || stInput == null || stInput == undefined) {
+                this.urlList[j].value = window.location.pathname;
+            };
+        }
     }
-};
+    return SaveUrl;
+})();
 
 window.addEventListener("load", function() {
-    var url_list = document.querySelectorAll('input[name=url]');
-    console.log("input tag");
-    console.log(url_list);
-
-    var oSU = new SaveUrl(url_list);
-    oSU.save();
-
+    var oSU = new SaveUrl();
 })
