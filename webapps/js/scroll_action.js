@@ -10,8 +10,11 @@ var SA = (function() {
 
     ScrollAction.prototype.getViewportH = function() {
         var docElem = window.document.documentElement;
+		// 변수 이름을 clientHeight 또는 clientH 처럼 조금 더 명시적으로 만드는 편이 좋을 것 같습니다.
+		// 점문법이 가능한데 굳이 각괄호 문법을 사용할 필요도 없을 것 같고요.
         var client = docElem['clientHeight'],
             inner = window['innerHeight'];
+		// this.viewHeight = Math.max(client, inner); 정도로 만들면 더 단순해 보입니다.
         if (client < inner)
             this.viewHeight = inner;
         else
