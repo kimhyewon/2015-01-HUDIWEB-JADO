@@ -32,7 +32,7 @@
 					<p>판매자로 등록하기</p>
 				</li>
 			</ul>
-			<input type="submit" value="회 원  가 입">
+			<input type="submit" name="submit" value="회 원  가 입">
 		</div>
 		<div id="signUpSeller" class="col s12 m5 l4">
 			<ul>

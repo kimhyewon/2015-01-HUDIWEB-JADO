@@ -1,4 +1,4 @@
-var SA = (function() {
+var ScrollAaction = (function() {
 
     var ScrollAction = function(elSections) {
         this.elSections = elSections;
@@ -54,7 +54,7 @@ var SA = (function() {
 window.addEventListener("load", function() {
     var elSections = document.querySelectorAll('article');
     if (elSections == null || elSections == undefined) return;
-    var oSA = new SA(elSections);
-    oSA.getViewportH();
-    oSA.runOnScroll();
+    var oScrollAaction = new ScrollAaction(elSections);
+    oScrollAaction.getViewportH();
+    oScrollAaction.runOnScroll();
 })

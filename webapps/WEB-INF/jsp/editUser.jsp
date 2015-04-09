@@ -143,12 +143,12 @@
 	</div>
 </body>
 <!-- index.jsp && dummp blog 필요 && top.jspf 있는곳 에서 필요-->
-<script src="/js/submit.js"></script>
+<script src="/js/Submit.js"></script>
 <!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
-<script src="/js/sha256.js"></script>
-<script src="/js/encrypt_password.js"></script>
+<script src="/js/EncryptPassword.js"></script>
+<script src="/js/lib/sha256.js"></script>
 
 <!-- index.jsp && sinUp.jsp 필요 -->
-<script src="/js/form_verify.js"></script>
-<script src="/js/show_seller_enroll.js"></script>
+<script src="/js/FormValidation.js"></script>
+<script src="/js/ShowSellerEnroll.js"></script>
 </html>

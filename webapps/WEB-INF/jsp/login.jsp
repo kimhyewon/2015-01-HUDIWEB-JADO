@@ -31,7 +31,7 @@
 					<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}>" />
 	            	<input type="hidden" name="rsaPublicKeyExponent" value="${publicKeyExponent}>" />
 					<input type="hidden" name="url" value="${url}">
-					<input type="submit" formaction="/user/login" value="로  그  인"/>
+					<input type="submit" name="submit" formaction="/user/login" value="로  그  인"/>
 				</li>
 			</ul>
 		</form>
@@ -39,11 +39,11 @@
 </body>
 
 <!-- index.jsp && dummp blog 필요 && top.jspf 있는곳 에서 필요-->
-<script src="/js/submit.js"></script>
+<script src="/js/Submit.js"></script>
 
 <!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
 <script src="/js/lib/sha256.js"></script>
-<script src="/js/encrypt_password.js"></script>
+<script src="/js/EncryptPassword.js"></script>
 
 <!-- rsa 추가 -->
 <script src="/js/lib/jsbn.js"></script>
