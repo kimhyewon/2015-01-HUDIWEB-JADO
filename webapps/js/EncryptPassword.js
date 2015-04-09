@@ -1,13 +1,16 @@
 var EncryptPassword = (function() {
     var EncryptPassword = function(elTarget) {
-        this.elForm = elTarget;
+        this.elForm = document.querySelector(elTarget);
+        if (!this.elForm) return;
         var elements = {
             elId: 'userId',
             elPw1: 'password',
             elPw2: 'checkPassword',
             elIdEncryption: 'idEncryption',
             elPwEncryption: 'pwEncryption',
-            elSubmit: 'submit'
+            elSubmit: 'submit',
+            rsaPublicKeyModulus:'rsaPublicKeyModulus',
+            rsaPublicKeyExponent:'rsaPublicKeyExponent'
         };
 
         for (var prop in elements) {
@@ -18,6 +21,7 @@ var EncryptPassword = (function() {
     }
 
     EncryptPassword.prototype.validateWhenSubmit = function() {
+        if (!this.elForm) return;
         this.elSubmit.addEventListener("click", (function(e) {
             // 아래의 세 함수는 아무리 봐도 method인데 왜 굳이 따로 빼둔 건가요?
             putSecuredPassword.call(this);
@@ -39,8 +43,8 @@ var EncryptPassword = (function() {
     }
 
     function putSecuredRsa() {
-        var rsaPublicKeyModulus = this.elForm.querySelector("input[name=rsaPublicKeyModulus]").value;
-        var rsaPublicKeyExponent = this.elForm.querySelector("input[name=rsaPublicKeyExponent]").value;
+        var rsaPublicKeyModulus = this.rsaPublicKeyModulus.value;
+        var rsaPublicKeyExponent = this.rsaPublicKeyExponent.value;
 
         var rsa = new RSAKey();
         rsa.setPublic(rsaPublicKeyModulus, rsaPublicKeyExponent);
@@ -61,10 +65,6 @@ var EncryptPassword = (function() {
 
 //service code
 (function() {
-
-    var elTarget = document.querySelector(".encrypt_form");
-    if (elTarget === null || elTarget === undefined) return;
-
-    var oEncryptPassword = new EncryptPassword(elTarget);
+    var oEncryptPassword = new EncryptPassword(".encrypt_form");
     oEncryptPassword.validateWhenSubmit();
 })();

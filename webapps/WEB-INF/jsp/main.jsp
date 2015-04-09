@@ -29,7 +29,7 @@
 </body>
 
 <!-- index.jsp && dummp blog 필요 && top.jspf 있는곳 에서 필요-->
-<script src="/js/Submit.js"></script>
+<script src="/js/SaveUrl.js"></script>
 <!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
 <script src="/js/lib/sha256.js"></script>
 <script src="/js/EncryptPassword.js"></script>
