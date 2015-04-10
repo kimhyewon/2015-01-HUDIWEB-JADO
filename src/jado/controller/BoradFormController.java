@@ -16,4 +16,10 @@ public class BoradFormController {
 	public String doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		return "boardForm";
 	}
+	
+	@RequestMapping(value="/write/board", method=RequestMethod.POST)
+	private void doPost() {
+		// TODO Auto-generated method stub
+
+	}
 }
