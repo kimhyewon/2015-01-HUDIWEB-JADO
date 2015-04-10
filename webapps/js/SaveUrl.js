@@ -5,8 +5,7 @@ var SaveUrl = (function() {
 
         for (var j = 0; j < this.urlList.length; j++) {
             var stInput = this.urlList[j].value;
-            // 결국 if (!stInput) 과 같은 코드입니다.
-            if (stInput == "" || stInput == null || stInput == undefined) {
+            if (!stInput) {
                 this.urlList[j].value = window.location.pathname;
             };
         }

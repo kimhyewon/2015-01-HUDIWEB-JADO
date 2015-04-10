@@ -1,7 +1,7 @@
 var ScrollAaction = (function() {
 
-    var ScrollAction = function(elSections) {
-        this.elSections = elSections;
+    var ScrollAction = function(elTarget) {
+        this.elSections = document.querySelectorAll('article');
         this.viewHeight = 0;
         this.scrollHeight = 0;
         this.lastPage = 0;
@@ -12,7 +12,7 @@ var ScrollAaction = (function() {
         var docElem = window.document.documentElement;
         var clientHeight = docElem.clientHeight,
             innerHeight = window.innerHeight;
-		this.viewHeight = Math.max(clientHeight, innerHeight);
+        this.viewHeight = Math.max(clientHeight, innerHeight);
     };
 
     ScrollAction.prototype.runOnScroll = function() {
@@ -21,12 +21,12 @@ var ScrollAaction = (function() {
 
     ScrollAction.prototype.removePage = function() {
         if (this.lastPage < 1 || this.lastPage > 3) return;
-        this.elSections[this.lastPage-1].classList.remove( 'animation' );
+        this.elSections[this.lastPage - 1].classList.remove('animation');
     };
 
     ScrollAction.prototype.startPage = function() {
         if (this.recentPage < 1 || this.recentPage > 3) return;
-        this.elSections[this.recentPage-1].classList.add( 'animation' );
+        this.elSections[this.recentPage - 1].classList.add('animation');
     };
 
     var run = function() {
@@ -46,9 +46,7 @@ var ScrollAaction = (function() {
 })();
 
 window.addEventListener("load", function() {
-    var elSections = document.querySelectorAll('article');
-    if (elSections == null || elSections == undefined) return;
-    var oScrollAaction = new ScrollAaction(elSections);
+    var oScrollAaction = new ScrollAaction('article');
     oScrollAaction.getViewportH();
     oScrollAaction.runOnScroll();
 })

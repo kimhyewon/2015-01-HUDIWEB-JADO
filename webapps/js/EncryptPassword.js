@@ -9,8 +9,8 @@ var EncryptPassword = (function() {
             elIdEncryption: 'idEncryption',
             elPwEncryption: 'pwEncryption',
             elSubmit: 'submit',
-            rsaPublicKeyModulus:'rsaPublicKeyModulus',
-            rsaPublicKeyExponent:'rsaPublicKeyExponent'
+            rsaPublicKeyModulus: 'rsaPublicKeyModulus',
+            rsaPublicKeyExponent: 'rsaPublicKeyExponent'
         };
 
         for (var prop in elements) {
