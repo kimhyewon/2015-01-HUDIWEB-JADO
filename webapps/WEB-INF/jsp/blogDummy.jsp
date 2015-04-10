@@ -24,7 +24,7 @@
 			<div class = "nav_content col s2 m2 l2">JOIN</div>
 			<div class = "nav_content col s2 m2 l2">MYPAGE</div>
 			<div class = "nav_content col s2 m2 l2">CART</div>
-			<div class = "nav_content col s2 m2 l2">INFO</div>
+			<div class = "nav_content col s2 m2 l2"><a href="/board">INFO</a></div>
 			<div id = "nav_content col s2 m2 l2">
 			</div>
 		</div>

@@ -1,37 +1,60 @@
-#center_con {
-  	width: 100%;
-  	z-index: 22;
-	opacity: 0.8;
-	padding-top: 150px;
+.dummy {
+	opacity : 0;
 }
 
-#center_con img {
-	margin-bottom: 10px;
+#center_con {
+	background-image : url("/img/mainImg.jpg");
+  	background-size: 100% 98%;
+  	background-repeat : no-repeat;
+  	height:85%;
+  	z-index: 22;
+	padding-top: 138px;
+	margin-bottom: -15px;
 }
+
+#center_con .col {
+	margin-bottom: 24px;
+}
+
+#center_con .col img {
+	opacity: 0.8;
+} 
+
+.sub_title {
+	margin-top: -5px;
+	text-align: center;
+	color: black;
+	font-size: 2.7em;
+}
+
+/* #main_btn .col{
+	opacity: none;
+	color:black
+} */
 
 #main_btn {
-	margin-bottom: 150px;
+	margin-bottom: 270px;
 }
 
 #main_btn button {
-	width: 150px;
+	width: 168px;
 	height: 50px;
-	margin-top: 25px;
+	margin-top: 12px;
 	font-size: 16px;
 	border: none;
-	opacity: 0.8;
-	border-radius: 4px;
+	opacity: 0.7;
+	border-radius: 3px;
 	box-shadow: 10px 10px 20px gray;
 }
 
 .signup_btn {
 	background-color: #DCEB82;
-	margin-left: 40px;
+	margin-left: 15px;
 }
 
 .login_btn {
 	background-color: #E6A193;
-	margin-right: 40px;
+	margin-right: 20px;
 }
 
 @media only screen and (max-width: 600px) {
