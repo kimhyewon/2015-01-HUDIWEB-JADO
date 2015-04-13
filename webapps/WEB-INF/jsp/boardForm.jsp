@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="boardForm" action="/write/board" method="post">
+	<form name="boardForm" action="board/write" method="post">
 		<div id = "board_name">공지사항</div>
 		<div id = "title"><input type="text" name="title" size="70"/></div>
 		<div id = "content"><textarea name="content" rows="5" cols="130"></textarea></div>
-		<div id = submit><input type="submit" a href="/write/board" value="등록하기" />	</div>
+		<div id = submit><input type="submit" a href="board/write" value="등록하기" />	</div>
 	</form>
 </body>
 </html>

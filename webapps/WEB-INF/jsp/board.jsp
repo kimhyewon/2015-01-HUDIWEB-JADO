@@ -10,7 +10,7 @@
 <body>
 	<div id = "board_name">공지사항</div>
 	<div id = "list">리스트</div>
-	<div id = "write_button"><a href="/write/board">글쓰기</a></div>
+	<div id = "write_button"><a href="board/write">글쓰기</a></div>
 	
 </body>
 </html>
