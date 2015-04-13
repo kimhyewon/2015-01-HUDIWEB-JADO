@@ -29,16 +29,21 @@ import core.util.EncryptRSA;
 @Controller
 public class SignUpController  {
 	
-	@Autowired
-	private SignUpService signUpService;
+	@Autowired private SignUpService signUpService;
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String viewMainPage(HttpSession session, Model model) {
+		if(!encryptPrepareProcess(session, model).isSuccess()) {
+			return "encryptedReadyFailure";
+		}
+		return "main";
+	}
 	
 	@RequestMapping(value="/user", method=RequestMethod.GET)
 	public String userGet(String returnUrl, Model model, HttpSession session){
-		
 		model.addAttribute("url", returnUrl);
-		
 		if(!encryptPrepareProcess(session, model).isSuccess()) {
-			return "errorCommon";
+			return "encrptedReadyFailure";
 		}
 		return "signUp";
 	}
