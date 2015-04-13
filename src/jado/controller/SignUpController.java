@@ -14,13 +14,13 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import core.exception.DuplicateUserException;
 import core.mail.Mail;
 import core.mail.MailSender;
 import core.mail.template.MailTemplateStorage;
@@ -78,7 +78,8 @@ public class SignUpController  {
 		try{
 			signUpService.insertCustomer(user);
 			model.addAttribute("userId", userId);
-		} catch(DuplicateUserException e){
+		} catch(DuplicateKeyException e){
+			model.addAttribute("errorMessage", e.getMessage());
 			return "errorCommon";
 		} 
 
@@ -86,9 +87,13 @@ public class SignUpController  {
 		if (session.getAttribute("isSeller") != null) {
 			Shop shop = new Shop(shopUrl, shopPhone);
 			Seller seller = new Seller(userId, shopUrl, bank, bankAccount);
-			
-			signUpService.insertShop(shop);
-			signUpService.insertSeller(seller);
+			try{
+				signUpService.insertShop(shop);
+				signUpService.insertSeller(seller);
+			} catch(DuplicateKeyException e){
+				model.addAttribute("errorMessage", e.getMessage());
+				return "errorCommon";
+			}
 		}
 		
 		MailSender.send(new Mail(userId, MailTemplateStorage.Type.JOIN_VERIFY));
@@ -96,16 +101,13 @@ public class SignUpController  {
 	}
 
 	private Result encryptPrepareProcess(HttpSession session, Model model) {
+		EncryptRSA rsa;
 		try {
-			EncryptRSA rsa = new EncryptRSA();
-			session.setAttribute("__rsaPrivateKey__", rsa.getPrivateKey());
-			model.addAttribute("publicKeyModulus", rsa.getPublicKeyModulus());
-			model.addAttribute("publicKeyExponent", rsa.getPublicKeyExponent());
+			rsa = new EncryptRSA();
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-			session.removeAttribute("__rsaPrivateKey__");
-			model.addAttribute("errorMessage", e.getMessage());
 			return new Result(false, e.getMessage());
 		}
+		rsa.encrypt(session, model);		
 		return new Result(true);
 	}
 }

@@ -9,6 +9,10 @@ import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.ui.Model;
+
 public class EncryptRSA {
 	final int keysize = 1024;
 
@@ -18,8 +22,7 @@ public class EncryptRSA {
 	private String publicKeyModulus;
 	private String publicKeyExponent;
 
-	public EncryptRSA() throws NoSuchAlgorithmException,
-			InvalidKeySpecException {
+	public EncryptRSA() throws NoSuchAlgorithmException, InvalidKeySpecException {
 		KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
 		generator.initialize(keysize);
 
@@ -29,11 +32,16 @@ public class EncryptRSA {
 		publicKey = keyPair.getPublic();
 		privateKey = keyPair.getPrivate();
 
-		RSAPublicKeySpec publicSpec = (RSAPublicKeySpec) keyFactory.getKeySpec(
-				publicKey, RSAPublicKeySpec.class);
+		RSAPublicKeySpec publicSpec = (RSAPublicKeySpec) keyFactory.getKeySpec(publicKey, RSAPublicKeySpec.class);
 
 		publicKeyModulus = publicSpec.getModulus().toString(16);
 		publicKeyExponent = publicSpec.getPublicExponent().toString(16);
+	}
+	
+	public void encrypt(HttpSession session, Model model){
+		session.setAttribute("__rsaPrivateKey__", privateKey);
+		model.addAttribute("publicKeyModulus", publicKeyModulus);
+		model.addAttribute("publicKeyExponent", publicKeyExponent);
 	}
 
 	public PrivateKey getPrivateKey() {
