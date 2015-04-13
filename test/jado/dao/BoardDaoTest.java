@@ -14,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/applicationContext.xml")
+@ContextConfiguration({"classpath:/applicationContext.xml","file:webapps/WEB-INF/jado-servlet.xml"})
 public class BoardDaoTest {
 	private static final Logger log = LoggerFactory.getLogger(BoardDaoTest.class);
 
