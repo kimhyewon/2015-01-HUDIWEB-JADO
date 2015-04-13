@@ -5,6 +5,7 @@ import java.security.spec.InvalidKeySpecException;
 
 import jado.model.Customer;
 import jado.model.Seller;
+import jado.model.Shop;
 import jado.service.EditUserService;
 import jado.service.RemoveUserService;
 
@@ -34,7 +35,9 @@ public class UserController  {
 				
 		if(session.getAttribute("isSeller") != null) {
 			Seller seller = editUserService.selectSellerById(userId);
+			Shop shop = editUserService.selectShopByUrl(seller.getShopUrl());
 			model.addAttribute("seller", seller);
+			model.addAttribute("shop", shop);
 		}
 		
 		if(!encryptPrepareProcess(session, model).isSuccess()) {

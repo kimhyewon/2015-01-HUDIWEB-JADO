@@ -2,13 +2,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="signUpContainer" class="row center">
-	<form id ="signup_form" class="encrypt_form" action="/user" method="post" autocomplete="off">
+	<c:choose>
+	<c:when test="${empty userId}">
+		<form id ="signup_form" class="encrypt_form" action="/user" method="post" autocomplete="off">
+	</c:when>
+	<c:otherwise>
+		<form id ="signup_form" class="encrypt_form" action="/user/edit" method="post" autocomplete="off">
+	</c:otherwise>
+	</c:choose>
 		<div class="col m1 l2 dummy">dummy</div>
 		<div id="signUpUser" class="col s12 m5 l4 ">
 			<h2>Sign Up</h2>
 			<ul>
 				<li>
-					<input type="text" name="userId" placeholder="E-mail">
+				 	<c:choose>
+				    <c:when test="${empty userId}">
+						<input type="text" name="userId" placeholder="E-mail">
+					</c:when>
+					<c:otherwise>
+						<input type="text" name="userId" value="${userId}" readonly>
+					</c:otherwise>
+					</c:choose>
 					<input type="hidden" name="idEncryption">
 				</li>
 				<li>
@@ -19,33 +33,54 @@
 					<input type="password" name="checkPassword" placeholder="비밀번호 확인">
 				</li>
 				<li>
-					<input type="text" name="name" placeholder="이  름">
+					<input type="text" name="name" placeholder="이  름" value="${customer.name}">
 				</li>
 				<li>
-					<input type="text" name="phone" placeholder="전화번호">
+					<input type="text" name="phone" placeholder="전화번호" value="${customer.phone}">
 				</li>
 				<li>
-					<input type="text" name="address" placeholder="주  소">
+					<input type="text" name="address" placeholder="주  소" value="${customer.address}">
 				</li>
 				<li>
 					<input id="chkBox" type="checkbox" name="isSeller" value="true">
-					<p>판매자로 등록하기</p>
+					<c:choose>
+				    <c:when test="${empty isSeller}">
+						<p>판매자로 등록하기</p>
+					</c:when>
+					<c:otherwise>
+						<p>판매자 정보 수정하기</p>
+					</c:otherwise>
+					</c:choose>
 				</li>
 			</ul>
-			<input type="submit" name="submit" value="회 원  가 입">
+			<c:choose>
+				    <c:when test="${empty userId}">
+						<input type="submit" name="submit" value="회 원  가 입">
+					</c:when>
+					<c:otherwise>
+						<input type="submit" name="submit" value="수 정  하 기">
+					</c:otherwise>
+					</c:choose>
 		</div>
 		<div id="signUpSeller" class="col s12 m5 l4">
 			<ul>
 				<li>
 					<p>www.neshop.com/</p>
-					<input type="text" name="shopUrl" placeholder="쇼핑몰 URL">
-					<p>주의: Shop URL은 한 번 정하면 바꾸실 수 없습니다.</p>
+					<c:choose>
+				    <c:when test="${empty isSeller}">
+						<input type="text" name="shopUrl" placeholder="쇼핑몰 URL">
+						<p>주의: Shop URL은 한 번 정하면 바꾸실 수 없습니다.</p>
+					</c:when>
+					<c:otherwise>
+						<input type="text" name="shopUrl" value="${shop.url}" readonly>
+					</c:otherwise>
+					</c:choose>
 				</li>
 				<li>
-					<input type="text" name="shopPhone" placeholder="쇼핑몰 대표전화">
+					<input type="text" name="shopPhone" placeholder="쇼핑몰 대표전화" value="${shop.phone}">
 				</li>
 				<li>
-					<select name="bank">
+					<select name="bank" value="${seller.bank}">
 						<option value="국민">국민</option>
 						<option value="신한">신한</option>
 						<option value="하나">하나</option>
@@ -69,7 +104,7 @@
 						<option value="제주">제주</option>
 						<option value="기타">기타</option>
 					</select>
-					<input type="text" id="bankAccount" name="bankAccount" placeholder="계좌번호">
+					<input type="text" id="bankAccount" name="bankAccount" placeholder="계좌번호" value="${seller.bankAccount}">
 				</li>
 			</ul>
 		</div>

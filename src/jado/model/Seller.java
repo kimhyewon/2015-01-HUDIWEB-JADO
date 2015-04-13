@@ -1,21 +1,21 @@
 package jado.model;
 
 public class Seller extends User {
-	private String url;
+	private String shopUrl;
 	private String bank;
 	private String bankAccount;
 
 	public Seller() { }
 
-	public Seller(String userId, String url, String bank, String bankAccount) {
+	public Seller(String userId, String shopUrl, String bank, String bankAccount) {
 		super(userId);
-		this.url = url;
+		this.shopUrl = shopUrl;
 		this.bank = bank;
 		this.bankAccount = bankAccount;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getShopUrl() {
+		return shopUrl;
 	}
 
 	public String getBank() {
@@ -26,8 +26,8 @@ public class Seller extends User {
 		return bankAccount;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setShopUrl(String shopUrl) {
+		this.shopUrl = shopUrl;
 	}
 
 	public void setBank(String bank) {
@@ -53,7 +53,7 @@ public class Seller extends User {
 
 	@Override
 	public String toString() {
-		return "Seller [url=" + url + ", bank=" + bank + ", bankAccount=" + bankAccount + "]";
+		return "Seller [url=" + shopUrl + ", bank=" + bank + ", bankAccount=" + bankAccount + "]";
 	}
 
 }

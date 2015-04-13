@@ -31,7 +31,7 @@ public class UserDao {
 
 	public void insert(final Seller seller) {
 		String sql = "insert into SELLER values (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
+		jdbcTemplate.update(sql, seller.getShopUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
 	}
 
 	public void updateCustomer(final Customer customer) {
