@@ -12,7 +12,14 @@
 	</c:choose>
 		<div class="col m1 l2 dummy">dummy</div>
 		<div id="signUpUser" class="col s12 m5 l4 ">
-			<h2>Sign Up</h2>
+			<c:choose>
+			<c:when test="${empty userId}">
+				<h2>Sign Up</h2>
+			</c:when>
+			<c:otherwise>
+				<h2>Edit User</h2>
+			</c:otherwise>
+			</c:choose>
 			<ul>
 				<li>
 				 	<c:choose>
