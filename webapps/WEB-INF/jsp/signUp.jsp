@@ -40,6 +40,5 @@
 <script src="/js/lib/prng4.js"></script>
 <script src="/js/lib/base64.js"></script>
 <!-- scroll Animation -->
-<script src="/js/ScrollAction.js"></script>
 <script src="/js/ShowSellerEnroll.js"></script>
 </html>
