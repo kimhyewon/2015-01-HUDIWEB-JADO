@@ -10,14 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import core.exception.DuplicateUserException;
-import core.exception.PasswordMismatchException;
 
 @Service
 public class SignUpService {
-	@Autowired private UserDao userDao;
-	@Autowired private ShopDao shopDao;
-	
-	public void insertCustomer(Customer customer) throws DuplicateUserException, PasswordMismatchException {
+	@Autowired
+	private UserDao userDao;
+	@Autowired
+	private ShopDao shopDao;
+
+	public void insertCustomer(Customer customer) throws DuplicateUserException {
 		Customer tempUser = userDao.selectUserById(customer.getUserId());
 		if (tempUser != null) {
 			throw new DuplicateUserException("이미 가입된 사용자입니다.");

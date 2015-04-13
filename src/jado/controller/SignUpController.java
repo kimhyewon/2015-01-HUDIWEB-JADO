@@ -11,6 +11,8 @@ import java.security.spec.InvalidKeySpecException;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import core.exception.DuplicateUserException;
-import core.exception.PasswordMismatchException;
 import core.mail.Mail;
 import core.mail.MailSender;
 import core.mail.template.MailTemplateStorage;
@@ -28,7 +29,7 @@ import core.util.EncryptRSA;
 
 @Controller
 public class SignUpController  {
-	
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired private SignUpService signUpService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -68,9 +69,8 @@ public class SignUpController  {
 			password = rsa.decryptRsa(password);
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", e.getMessage());
-			// TODO [우선순위 : 보통이상] - 암호화 준비 및 복호화시 오류 발생하면 이동할 공통적인 페이지가 필요할 듯
-			// 지금은 더 급한 작업들이 있어서 우선 loginFailure페이지로 보냈음
-			return "loginFailure";
+			logger.debug("error : ", e.getMessage());
+			return "errorCommon";
 		}
 		
 		Customer user = new Customer(userId, password, name, phone, address);
@@ -78,10 +78,8 @@ public class SignUpController  {
 		try{
 			signUpService.insertCustomer(user);
 			model.addAttribute("userId", userId);
-		} catch(DuplicateUserException | PasswordMismatchException e){
-			// TODO 오류 메시지만 출력해 줄 수 있는 공통 에러 처리 페이지를 만들 필요가 있을 듯
-			// 우선은 일단 loginFailure로 보냄
-			return "loginFailure";
+		} catch(DuplicateUserException e){
+			return "errorCommon";
 		} 
 
 		//Seller
