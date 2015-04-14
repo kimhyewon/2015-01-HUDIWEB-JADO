@@ -69,7 +69,7 @@ public class UserDao {
 
 	public void removeCustomer(final String userId) {
 		String sql = "delete from USER where ID = ?";
-		jdbcTemplate.update(sql);
+		jdbcTemplate.update(sql, userId);
 	}
 
 	public void removeSeller(final String userId) {

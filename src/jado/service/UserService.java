@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EditUserService {
+public class UserService {
 
 	@Autowired UserDao userDao;
 	@Autowired ShopDao shopDao;
@@ -46,6 +46,14 @@ public class EditUserService {
 		if(shop.updateFromUserPage(shopFromEdit)){
 			shopDao.update(shop);
 		}
+	}
+	
+	public void removeSeller(String userId) {
+		userDao.removeSeller(userId);
+	}
+
+	public void removeCustomer(String userId) {
+		userDao.removeCustomer(userId);
 	}
 
 }

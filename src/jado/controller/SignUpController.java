@@ -49,10 +49,6 @@ public class SignUpController  {
 		return "signUp";
 	}
 
-	// TODO [To. 우재우님] - 우재우님 아래에 기재된 사항 확인부탁드립니다.
-	// EditUserController 최초 생성시 shopPhone이라는 변수를 사용하셨는데
-	// 실제로 수정하면서 보니 해당변수가 unused상태임을 확인하였습니다.
-	// 그런데 DB 스키마를 보면 필요할 것 같은 데이터인데 어떻게 처리해야 할 지 모르겠습니다. 확인부탁드립니다.
 	@RequestMapping(value="/user", method=RequestMethod.POST)
 	protected String userPost(@RequestParam("idEncryption") String userId, @RequestParam("pwEncryption") String password,
 			@RequestParam("name") String name, @RequestParam("phone") String phone, @RequestParam("address") String address,
@@ -77,7 +73,6 @@ public class SignUpController  {
 		
 		try{
 			signUpService.insertCustomer(user);
-			model.addAttribute("userId", userId);
 		} catch(DuplicateKeyException e){
 			model.addAttribute("errorMessage", e.getMessage());
 			return "errorCommon";
