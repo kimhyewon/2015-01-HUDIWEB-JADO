@@ -96,6 +96,14 @@ public class Shop {
 		return "Shop [url=" + url + ", title=" + title + ", phone=" + phone + ", banner_url=" + banner_url + ", main_url=" + main_url + ", logo_url=" + logo_url + ", theme=" + theme + ", footer="
 				+ footer + "]";
 	}
+	public boolean updateFromUserPage(Shop shopFromEdit) {
+		boolean result = false;
+		if (!this.phone.equals(shopFromEdit.phone)) {
+			this.phone = shopFromEdit.phone;
+			result = true;
+		}
+		return result;
+	}
 
 	
 }

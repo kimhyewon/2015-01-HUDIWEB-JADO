@@ -4,11 +4,8 @@ import jado.model.Customer;
 import jado.model.Seller;
 
 import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,7 +31,7 @@ public class UserDao {
 
 	public void insert(final Seller seller) {
 		String sql = "insert into SELLER values (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, seller.getUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
+		jdbcTemplate.update(sql, seller.getShopUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
 	}
 
 	public void updateCustomer(final Customer customer) {
@@ -72,7 +69,7 @@ public class UserDao {
 
 	public void removeCustomer(final String userId) {
 		String sql = "delete from USER where ID = ?";
-		jdbcTemplate.update(sql);
+		jdbcTemplate.update(sql, userId);
 	}
 
 	public void removeSeller(final String userId) {

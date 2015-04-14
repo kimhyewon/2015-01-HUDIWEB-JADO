@@ -10,34 +10,42 @@
 	<link rel="stylesheet" type="text/css" href="/css/top.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/css/login.css">
+	<link rel="stylesheet" type="text/css" href="/css/userForm.css">
 </head>
 <body onClick='rng_seed_time();' onKeyPress='rng_seed_time();'>
 	<%@ include file="include/top.jspf" %>
-	<div id="loginContainer">
+	<div id="formContainer" class="row center">
 		<c:if test="${not empty errorMessage}">
 			<label class="error">${errorMessage}</label>
 		</c:if> 
-		<form class="encrypt_form" method="post">
+		<form class="encrypt_form" action="/user" method="post" autocomplete="off">
 			<div class="col m1 l2 dummy">dummy</div>
-			<div id="signUpUser" class="col s12 m5 l4">
+			<div id="formUser" class="col s12 m5 l4 ">
 				<h2>로그인</h2>
 				<ul>
 					<li>
-						<input type ="text" name="userId" placeholder="E-mail">
+					 	<input type ="text" name="userId" placeholder="E-mail">
 						<input type="hidden" name="idEncryption">
 					</li>
 					<li>
-						<input type ="password" id="password" name="password" placeholder="비밀번호">
-						<input type="hidden" name="pwEncryption" value="">
+						<input type="password" name="password" placeholder="비밀번호">
+						<input type="hidden" name="pwEncryption">
 					</li>
 					<li>
-						<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}>" />
-		            	<input type="hidden" name="rsaPublicKeyExponent" value="${publicKeyExponent}>" />
-						<input type="hidden" name="url" value="${url}">
 						<input type="submit" name="submit" formaction="/user/login" value="로  그  인"/>
 					</li>
 				</ul>
 			</div>
+			<c:choose>
+			    <c:when test="${empty url}">
+					<input type="hidden" name="url" value="">
+				</c:when>
+				<c:otherwise>
+					<input type="hidden" name="url" value="${url}">
+				</c:otherwise>
+			</c:choose>
+			<input type="hidden" name="rsaPublicKeyExponent" value="${publicKeyExponent}" />
+			<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}" />
 		</form>
 	</div>
 </body>

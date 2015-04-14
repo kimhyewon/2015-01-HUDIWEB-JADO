@@ -1,4 +1,7 @@
 @CHARSET "UTF-8";
+.dummy {
+	opacity : 0;
+}
 
 .container {
 	padding: 0 1.5rem;

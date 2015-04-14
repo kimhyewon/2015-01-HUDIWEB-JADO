@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/lib/grid.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/css/top.css">
-	<link rel="stylesheet" type="text/css" href="/css/signForm.css">
+	<link rel="stylesheet" type="text/css" href="/css/userForm.css">
 </head>
 <body>
     <%@ include file="include/top.jspf" %>
@@ -40,6 +40,5 @@
 <script src="/js/lib/prng4.js"></script>
 <script src="/js/lib/base64.js"></script>
 <!-- scroll Animation -->
-<script src="/js/ScrollAction.js"></script>
 <script src="/js/ShowSellerEnroll.js"></script>
 </html>
