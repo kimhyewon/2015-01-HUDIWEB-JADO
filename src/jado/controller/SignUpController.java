@@ -29,7 +29,7 @@ import core.util.EncryptRSA;
 
 @Controller
 public class SignUpController  {
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(SignUpController.class);
 	@Autowired private SignUpService signUpService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -56,7 +56,7 @@ public class SignUpController  {
 	@RequestMapping(value="/user", method=RequestMethod.POST)
 	protected String userPost(@RequestParam("idEncryption") String userId, @RequestParam("pwEncryption") String password,
 			@RequestParam("name") String name, @RequestParam("phone") String phone, @RequestParam("address") String address,
-			String returnUrl, String shopUrl, String shopPhone, String bank, String bankAccount, HttpSession session, Model model) {
+			String returnUrl, String shopUrl, String shopPhone, String bank, String bankAccount, String isSeller, HttpSession session, Model model) {
 		
 		model.addAttribute("url", returnUrl);
 		
@@ -82,9 +82,10 @@ public class SignUpController  {
 			model.addAttribute("errorMessage", e.getMessage());
 			return "errorCommon";
 		} 
-
+		System.out.println(session.getAttribute("isSeller"));
+		System.out.println(isSeller);
 		//Seller
-		if (session.getAttribute("isSeller") != null) {
+		if (isSeller != null) {
 			Shop shop = new Shop(shopUrl, shopPhone);
 			Seller seller = new Seller(userId, shopUrl, bank, bankAccount);
 			try{

@@ -27,12 +27,25 @@ public class EditUserService {
 		return shopDao.selectByUrl(url);
 	}
 
-	public void updateCustomer(Customer customer) {
-		userDao.updateCustomer(customer);
+	public void updateCustomer(Customer customerFromEdit) {
+		Customer customer = userDao.selectUserById(customerFromEdit.getUserId());
+		if(customer.update(customerFromEdit)){
+			userDao.updateCustomer(customerFromEdit);			
+		}
 	}
 
-	public void updateSeller(Seller seller) {
-		userDao.updateSeller(seller);
+	public void updateSeller(Seller sellerFromEdit) {
+		Seller seller = userDao.selectSellerById(sellerFromEdit.getUserId());
+		if (seller.update(sellerFromEdit)) {
+			userDao.updateSeller(seller);
+		}
+	}
+	
+	public void updateShop(Shop shopFromEdit) {
+		Shop shop = shopDao.selectByUrl(shopFromEdit.getUrl());
+		if(shop.updateFromUserPage(shopFromEdit)){
+			shopDao.update(shop);
+		}
 	}
 
 }

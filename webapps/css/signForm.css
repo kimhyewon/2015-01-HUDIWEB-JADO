@@ -80,6 +80,18 @@
 	font-size: 16px;
 	margin-top: 30px;
 }
+#signUpContainer a[name=delete] {
+	display: inline-block;
+	width: 70%;
+	height: 30px;
+	background: #FFBF42;
+	color: #fff;
+	font-size: 16px;
+	margin-top: 10px;
+	border-radius: 5px;
+	padding-top: 10px;
+
+}
 
 @media only screen and (max-width: 600px) {
 	#signUpContainer form div {
