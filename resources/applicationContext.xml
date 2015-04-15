@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
-	<context:property-placeholder location="classpath*:application-properties.xml"/>
+	<context:property-placeholder location="classpath*:application-properties.xml" />
 
 	<context:annotation-config />
-	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
-		p:driverClassName="${database.driverClassName}"
-		p:url="${database.url}"
-		p:username="${database.username}"
-		p:password="${database.password}"
-	/>
-	
-	<!-- 
-		jdbcTemplate은 말 그대로 템플릿이기 때문에 bean으로 하나만 등록해두고, 사용시 DI받아서 사용합니다!!
-	 -->
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		p:driverClassName="${database.driverClassName}" p:url="${database.url}"
+		p:username="${database.username}" p:password="${database.password}" />
+
+	<!-- jdbcTemplate은 말 그대로 템플릿이기 때문에 bean으로 하나만 등록해두고, 사용시 DI받아서 사용합니다!! -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
 		p:dataSource-ref="dataSource" />
-	
-	
+
+
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"
-		p:host="${mail.host}"
-		p:port="${mail.port}"
-		p:username="${mail.username}"
-		p:password="${mail.password}"
-	>
-	    <property name="javaMailProperties">
-	        <props>
-	            <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+		p:host="${mail.host}" p:port="${mail.port}" p:username="${mail.username}"
+		p:password="${mail.password}">
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
 				<prop key="mail.smtp.starttls.enable">true</prop>
 				<prop key="mail.smtp.auth">true</prop>
-	        </props>
-	    </property>
-    </bean>
-    
-    <bean id="" class="java.lang.String"
-    
-    />
-    
+			</props>
+		</property>
+	</bean>
+
+	<bean id="velocityEmailSender" class="core.mail.VelocityEmailSender">
+		<property name="mailSender" ref="mailSender" />
+		<property name="velocityEngine" ref="velocityEngine" />
+	</bean>
+
+	<bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<value>
+				resource.loader=class
+				class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+			</value>
+		</property>
+	</bean>
+
 </beans>

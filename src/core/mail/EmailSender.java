@@ -1,4 +1,4 @@
-package jado.service;
+package core.mail;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import core.mail.Mail;
-
 @Component
 public class EmailSender {
 	@Autowired
 	private JavaMailSender mailSender;
 
 	public void sendEmail(Mail mail) throws MessagingException {
+		
 		MimeMessage msg = mailSender.createMimeMessage();
 
 		msg.setSubject(mail.getMailSubject());

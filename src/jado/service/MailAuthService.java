@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import core.mail.EmailSender;
 import core.mail.Mail;
+import core.mail.VelocityEmailSender;
 import core.mail.template.MailTemplateStorage;
 
 @Service
@@ -21,6 +23,7 @@ public class MailAuthService {
 	@Autowired private MailAuthDao mailAuthDao;
 	@Autowired private UserDao userDao;
 	@Autowired private EmailSender emailSender;
+	@Autowired private VelocityEmailSender velocityEmailSender;
 
 	
 	public boolean isAlreadyVerified(String userEmail) {
