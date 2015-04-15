@@ -24,4 +24,23 @@
 		p:dataSource-ref="dataSource" />
 	
 	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"
+		p:host="${mail.host}"
+		p:port="${mail.port}"
+		p:username="${mail.username}"
+		p:password="${mail.password}"
+	>
+	    <property name="javaMailProperties">
+	        <props>
+	            <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.auth">true</prop>
+	        </props>
+	    </property>
+    </bean>
+    
+    <bean id="" class="java.lang.String"
+    
+    />
+    
 </beans>

@@ -3,6 +3,7 @@ package jado.controller;
 import jado.model.Customer;
 import jado.model.Seller;
 import jado.model.Shop;
+import jado.service.MailService;
 import jado.service.SignUpService;
 
 import java.security.NoSuchAlgorithmException;
@@ -31,6 +32,7 @@ import core.util.EncryptRSA;
 public class SignUpController  {
 	private static final Logger logger = LoggerFactory.getLogger(SignUpController.class);
 	@Autowired private SignUpService signUpService;
+	@Autowired private MailService mailService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewMainPage(HttpSession session, Model model) {
@@ -92,7 +94,7 @@ public class SignUpController  {
 			}
 		}
 		
-		MailSender.send(new Mail(userId, MailTemplateStorage.Type.JOIN_VERIFY));
+		mailService.sendJoinVerify(userId);
 		return "main";
 	}
 
