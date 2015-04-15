@@ -16,3 +16,13 @@ src/core/jdbc/ConnectionManager.java
 MailConfig.java
 application-properties.xml
 EmailRequestResult.java
+
+# Grunt
+node_modules/
+npm-debug.log
+jado_con.css
+jado_con.js
+jado_encrypt_con.js
+jado.css
+jado.js
+jado_encrypt.js

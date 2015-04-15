@@ -5,12 +5,7 @@
 <head>
 	<title>Ne#</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="/css/lib/reset.css">
-	<link rel="stylesheet" type="text/css" href="/css/lib/grid.css">
-	<link rel="stylesheet" type="text/css" href="/css/top.css">
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/css/login.css">
-	<link rel="stylesheet" type="text/css" href="/css/userForm.css">
+	<link rel="stylesheet" type="text/css" href="/css/jado.css">
 </head>
 <body onClick='rng_seed_time();' onKeyPress='rng_seed_time();'>
 	<%@ include file="include/top.jspf" %>
@@ -50,19 +45,7 @@
 	</div>
 </body>
 
-<!-- index.jsp && dummp blog 필요 && top.jspf 있는곳 에서 필요-->
-<script src="/js/SaveUrl.js"></script>
-
-<!-- index.jsp && sinUp.jsp && login.jsp 필요 -->
-<script src="/js/lib/sha256.js"></script>
-<script src="/js/EncryptPassword.js"></script>
-
-<!-- rsa 추가 -->
-<script src="/js/lib/jsbn.js"></script>
-<script src="/js/lib/rsa.js"></script>
-<script src="/js/lib/ec.js"></script>
-<script src="/js/lib/rng.js"></script>
-<script src="/js/lib/prng4.js"></script>
-<script src="/js/lib/base64.js"></script>
+<script src="/js/jado_encrypt.js"></script>
+<script src="/js/jado.js"></script>
 
 </html>
