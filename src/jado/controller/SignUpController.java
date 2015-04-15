@@ -3,7 +3,7 @@ package jado.controller;
 import jado.model.Customer;
 import jado.model.Seller;
 import jado.model.Shop;
-import jado.service.MailService;
+import jado.service.MailAuthService;
 import jado.service.SignUpService;
 
 import java.security.NoSuchAlgorithmException;
@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import core.mail.Mail;
-import core.mail.MailSender;
 import core.mail.template.MailTemplateStorage;
 import core.util.DecryptRSA;
 import core.util.EncryptRSA;
@@ -32,7 +30,7 @@ import core.util.EncryptRSA;
 public class SignUpController  {
 	private static final Logger logger = LoggerFactory.getLogger(SignUpController.class);
 	@Autowired private SignUpService signUpService;
-	@Autowired private MailService mailService;
+	@Autowired private MailAuthService mailService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewMainPage(HttpSession session, Model model) {
@@ -94,7 +92,7 @@ public class SignUpController  {
 			}
 		}
 		
-		mailService.sendJoinVerify(userId);
+		mailService.send(userId, MailTemplateStorage.Type.JOIN_VERIFY);
 		return "main";
 	}
 
