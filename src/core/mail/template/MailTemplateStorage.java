@@ -4,9 +4,13 @@ package core.mail.template;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -38,12 +42,11 @@ public class MailTemplateStorage {
 		}
 	}
 	
-	public MailTemplateStorage() {
-//		[TODO] auto wired 했는데 값은 null 이다
-		logger.debug("joinVerifyMail {}",joinVerifyMail.toString()); 
+	
+	@PostConstruct
+	public void initialize() {
 		templates.put(Type.JOIN_VERIFY, joinVerifyMail);
 		templates.put(Type.JOIN_WELCOME, joinWelcomeMail);
-
 	}
 
 	public AbstractMailTemplate getTemplate(Type joinVerify) {
