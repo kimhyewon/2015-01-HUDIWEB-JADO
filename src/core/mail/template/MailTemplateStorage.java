@@ -1,13 +1,17 @@
 package core.mail.template;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MailTemplateStorage {
+	private static final Logger logger = LoggerFactory.getLogger(MailTemplateStorage.class);
 	
 	@Autowired
 	private JoinVerifyMail joinVerifyMail;
@@ -35,6 +39,8 @@ public class MailTemplateStorage {
 	}
 	
 	public MailTemplateStorage() {
+//		[TODO] auto wired 했는데 값은 null 이다
+		logger.debug("joinVerifyMail {}",joinVerifyMail.toString()); 
 		templates.put(Type.JOIN_VERIFY, joinVerifyMail);
 		templates.put(Type.JOIN_WELCOME, joinWelcomeMail);
 

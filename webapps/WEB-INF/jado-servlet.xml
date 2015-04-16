@@ -11,10 +11,9 @@
 	<context:component-scan base-package="jado.controller" />
 	<context:component-scan base-package="jado.service" />
 	<context:component-scan base-package="jado.dao" />
-	<context:component-scan base-package="core.mail" />
 
 	<mvc:annotation-driven />
-
+	
 	<mvc:resources location="/img/" mapping="/img/**" />
 	<mvc:resources location="/userImg/" mapping="/userImg/**" />
 	<mvc:resources location="/css/" mapping="/css/**" />
@@ -22,7 +21,7 @@
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" p:order="2"/>
+		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" p:order="1"/>
 
 	<bean id="velocityConfig"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer"
@@ -30,7 +29,7 @@
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver"
-		p:suffix=".vm" p:order="1" />
+		p:suffix=".vm" p:order="2" />
 
 
 	<bean id="executorService" class="java.util.concurrent.Executors"
