@@ -1,5 +1,8 @@
 package core.mail.template;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class JoinWelcomeMail extends AbstractMailTemplate {
 
 	public JoinWelcomeMail() {

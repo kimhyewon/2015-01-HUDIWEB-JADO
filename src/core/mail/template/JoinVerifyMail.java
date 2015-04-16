@@ -9,8 +9,7 @@ import core.mail.UUIDGenerator;
 @Component
 public class JoinVerifyMail extends AbstractMailTemplate {
 	
-	@Autowired
-	private String mailingRequestAddress;
+	private String mailingRequestAddress ="";
 	 
 	public JoinVerifyMail() {
 		subject = "[Ne #] 서비스 가입을 위한 이메일 인증 메일입니다";
