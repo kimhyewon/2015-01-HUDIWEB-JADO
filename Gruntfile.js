@@ -37,14 +37,25 @@ module.exports = function(grunt) {
    			    src: 'webapps/css/jado_con.css',
       			dest: 'webapps/css/jado.css'
 		    }
+		},
+		watch: {
+		  scripts: {
+		    files: ['webapps/js/jadoJS/*.js', 'webapps/js/encryptJS/*.js',
+		    		'webapps/css/lib/*.css', 'webapps/css/jadoCSS/*.css'],
+		    tasks: ['clean', 'concat', 'uglify', 'cssmin'],
+		    options: {
+		      spawn: false,
+		    },
+		  },
 		}
 	});
 
-// Load the plugin that provides the "uglify", "concat" tasks.
+// Load the plugins
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-yui-compressor');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 // Default task(s).
 	grunt.registerTask('default', ['clean', 'concat', 'uglify', 'cssmin']); //grunt 명령어로 실행할 작업
 };
