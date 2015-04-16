@@ -19,7 +19,4 @@ public class EmailRequestResultSample {
 
 	// session
 	public final static String SESSION_USER_ID = "uid";
-
-	// address
-	public final static String MailingRequestAddress = "http://localhost:8080/user/mailAuth";
 }

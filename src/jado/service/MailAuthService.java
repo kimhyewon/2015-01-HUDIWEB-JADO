@@ -14,18 +14,23 @@ import org.springframework.stereotype.Service;
 import core.mail.EmailSender;
 import core.mail.Mail;
 import core.mail.VelocityEmailSender;
+import core.mail.template.AbstractMailTemplate;
 import core.mail.template.MailTemplateStorage;
 
 @Service
 public class MailAuthService {
 	private static final Logger logger = LoggerFactory.getLogger(MailAuthService.class);
-	
-	@Autowired private MailAuthDao mailAuthDao;
-	@Autowired private UserDao userDao;
-	@Autowired private EmailSender emailSender;
-	@Autowired private VelocityEmailSender velocityEmailSender;
 
-	
+	@Autowired
+	private MailAuthDao mailAuthDao;
+	@Autowired
+	private UserDao userDao;
+	@Autowired
+	private EmailSender emailSender;
+	// @Autowired private VelocityEmailSender velocityEmailSender;
+	@Autowired
+	private MailTemplateStorage mailTemplateStorage;
+
 	public boolean isAlreadyVerified(String userEmail) {
 		return mailAuthDao.isAlreadyVerified(userEmail);
 	}
@@ -37,11 +42,13 @@ public class MailAuthService {
 	public void updateMailAuthStatus() {
 		userDao.updateMailAuthStatus();
 	}
-	
-	
+
 	@Async
 	public void send(String mailRecipient, MailTemplateStorage.Type joinVerify) {
-		Mail mail = new Mail(mailRecipient, joinVerify);
+		
+		AbstractMailTemplate template = mailTemplateStorage.getTemplate(joinVerify);
+		Mail mail = new Mail(mailRecipient, template);
+	
 		try {
 			emailSender.sendEmail(mail);
 		} catch (MessagingException e) {

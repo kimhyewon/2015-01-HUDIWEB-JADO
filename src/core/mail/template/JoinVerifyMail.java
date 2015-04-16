@@ -1,11 +1,25 @@
 package core.mail.template;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import jado.dao.MailAuthDao;
-import core.mail.EmailRequestResult;
 import core.mail.UUIDGenerator;
 
+@Component
 public class JoinVerifyMail extends AbstractMailTemplate {
 	
+	@Autowired
+	private String mailingRequestAddress;
+	 
+	public JoinVerifyMail() {
+		subject = "[Ne #] 서비스 가입을 위한 이메일 인증 메일입니다";
+	}
+	
+	public void setMailRequestAddress(String mailingRequestAddress) {
+		this.mailingRequestAddress = mailingRequestAddress;
+	}
+
 	@Override
 	public String getTemplate(String mailRecipient) {
 		String uuid = setVerifyKeyOnDB(mailRecipient);
@@ -29,7 +43,7 @@ public class JoinVerifyMail extends AbstractMailTemplate {
 				+"		서비스를 이용하기 위해서는 회원님께서 입력하신 메일 주소에 대한 인증이 필요합니다.<br><br>"
 				+"		아래의 인증하기 버튼을 통해 메일주소를 인증하시고 회원가입을 완료하세요!"
 			
-				+"		<form style='' action='" + EmailRequestResult.MailingRequestAddress +"' method='post'>"
+				+"		<form style='' action='" + mailingRequestAddress +"' method='post'>"
 				+"			<input type='hidden' name='requestemail' value='" + mailRecipient + "'>"
 				+"			<input type='hidden' name='requestuuid' value='" + uuid + "'>"
 				+"			<input type='submit' value='인증하기' style='height:40px; padding: 10px 80px;font-size: 1.1em;display: block;background-color: #FF6273;border: 0px;color: #fff;margin-top: 30px;'>"

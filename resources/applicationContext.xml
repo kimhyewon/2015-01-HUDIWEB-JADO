@@ -29,6 +29,9 @@
 			</props>
 		</property>
 	</bean>
+	<!-- <bean id="joinVerifyMail" class="core.mail.template.JoinVerifyMail"
+		 p:mailRequestAddress="${mail.requestAddress}"
+	/> -->
 
 	<bean id="velocityEmailSender" class="core.mail.VelocityEmailSender">
 		<property name="mailSender" ref="mailSender" />

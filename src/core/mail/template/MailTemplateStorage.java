@@ -3,10 +3,18 @@ package core.mail.template;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MailTemplateStorage {
 	
-	private static Map<Type, AbstractMailTemplate> templates = new HashMap<>();
-	private static Map<Type, String> mailSubjects = new HashMap<>();
+	@Autowired
+	private JoinVerifyMail joinVerifyMail;
+	@Autowired
+	private JoinWelcomeMail joinWelcomeMail;
+	
+	private  Map<Type, AbstractMailTemplate> templates = new HashMap<>();
 	
 	public static enum Type {
 		// Join Type
@@ -26,21 +34,13 @@ public class MailTemplateStorage {
 		}
 	}
 	
-	static {
-		templates.put(Type.JOIN_VERIFY, new JoinVerifyMail());
-		templates.put(Type.JOIN_WELCOME, new JoinWelcomeMail());
+	public MailTemplateStorage() {
+		templates.put(Type.JOIN_VERIFY, joinVerifyMail);
+		templates.put(Type.JOIN_WELCOME, joinWelcomeMail);
+
 	}
-	
-	static {
-		mailSubjects.put(Type.JOIN_VERIFY, "[Ne #] 서비스 가입을 위한 이메일 인증 메일입니다");
-		mailSubjects.put(Type.JOIN_WELCOME, "[Ne #] 서비스 가입을 축하합니다");
-	}
-	
-	public static String getSubject(Type mailType) {
-		return mailSubjects.get(mailType);
-	}
-	
-	public static AbstractMailTemplate getBody(Type joinVerify) {
+
+	public AbstractMailTemplate getTemplate(Type joinVerify) {
 		return templates.get(joinVerify);
 	}
 }
