@@ -4,6 +4,11 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class Article {
+	
+	/*
+	 * 물론 테스트시는 default로 해야하지만..
+	 * 특별한 사유가 없으면 private으로 해주세요 !!
+	 */
 	String shopUrl;
 	String boardName;
 	String title;
