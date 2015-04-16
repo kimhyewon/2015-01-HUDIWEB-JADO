@@ -15,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import core.mail.Mail;
-import core.mail.MailSender;
 import core.mail.template.MailTemplateStorage.Type;
 import core.util.ServletRequestUtils;
 
@@ -48,7 +46,7 @@ public class MailAuthController {
 		}
 		
 		mailAuthService.updateMailAuthStatus();
-		MailSender.send(new Mail(userEmail, Type.JOIN_WELCOME));
+		mailAuthService.send(userEmail, Type.JOIN_WELCOME);
 
 		// TODO 인증 성공 페이지로 이동
 		response.getWriter().print("<h1>Your email is successfully authenticated</h1>");

@@ -1,8 +1,14 @@
 package core.mail.template;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class JoinWelcomeMail extends AbstractMailTemplate {
 
-	@Override
+	public JoinWelcomeMail() {
+		subject = "[Ne #] 서비스 가입을 축하합니다";
+	}
+	
 	public String getTemplate(String mailRecipient) {
 		return  ""
 				+"<div class='mail' style='box-sizing: border-box;width: 100%;margin: 0 auto;min-width: 320px !important;'>"

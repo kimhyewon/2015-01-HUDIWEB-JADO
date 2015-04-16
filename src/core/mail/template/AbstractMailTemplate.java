@@ -1,12 +1,16 @@
 package core.mail.template;
 
-import core.mail.template.MailTemplateStorage.Type;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public abstract class AbstractMailTemplate implements MailTemplate {
-	public String getSubject(Type joinVerify) {
-		return MailTemplateStorage.getSubject(joinVerify);
-	}
+	String subject;
 	
+	public String getSubject() {
+		return subject;
+	}
+
 	public String getBody(String mailRecipient) {
 		return  getTemplate(mailRecipient);
 	}

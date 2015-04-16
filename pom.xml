@@ -24,6 +24,7 @@
 		<spring-jdbc.version>4.1.6.RELEASE</spring-jdbc.version>
 		<h2.version>1.4.186</h2.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<spring-context-support.version>4.1.6.RELEASE</spring-context-support.version>
 
 		<!-- plugin version -->
 		<eclipse.plugin.version>2.9</eclipse.plugin.version>
@@ -174,6 +175,13 @@
 			<artifactId>mail</artifactId>
 			<version>${javax.mail.version}</version>
 		</dependency>
+		<!-- MailTemplate  -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+
 		<!-- logger -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -197,7 +205,13 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring-jdbc.version}</version>
 		</dependency>
-		
+		<!-- Spring Mail -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring-context-support.version}</version>
+		</dependency>
+
 		<!-- h2 database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -206,7 +220,7 @@
 			<scope>${h2database.scope}</scope>
 		</dependency>
 
-		<!--  commons-dbcp  / Connection Pooling -->
+		<!-- commons-dbcp / Connection Pooling -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
