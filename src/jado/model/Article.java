@@ -9,12 +9,12 @@ public class Article {
 	 * 물론 테스트시는 default로 해야하지만..
 	 * 특별한 사유가 없으면 private으로 해주세요 !!
 	 */
-	String shopUrl;
-	String boardName;
-	String title;
-	String content;
-	Timestamp articleTime;
-	List<ArticleComment> comments = null;
+	private String shopUrl;
+	private String boardName;
+	private String title;
+	private String content;
+	private Timestamp articleTime;
+	private List<ArticleComment> comments = null;
 	
 	public Article() { }
 
@@ -27,10 +27,6 @@ public class Article {
 		this.articleTime = articleTime;
 		this.comments = comments;
 		toString();
-	}
-
-	public Article(String shopUrl, String boardName, String title, String content, Timestamp articleTime) {
-		this(shopUrl, boardName, title, content, articleTime, null);
 	}
 
 	public Article(String shopUrl, String boardName, String title, String content) {

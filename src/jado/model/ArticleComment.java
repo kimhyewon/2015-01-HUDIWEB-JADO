@@ -1,6 +1,5 @@
 package jado.model;
 
-//import java.util.Date;
 import java.sql.Timestamp;
 
 public class ArticleComment {
@@ -8,7 +7,6 @@ public class ArticleComment {
 	private String articleTitle;
 	private String boardName;
 	private String userId;
-	// private Date commentTime;
 	private Timestamp commentTime;
 	private String content;
 

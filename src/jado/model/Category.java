@@ -17,11 +17,6 @@ public class Category {
 		this.products = products;
 	}
 
-	public Category(int id, String name, String shopUrl) {
-		this(id, name, shopUrl, null);
-	}
-
-
 	public Category(String name, String shopUrl) {
 		this(0, name, shopUrl, null);
 	}
