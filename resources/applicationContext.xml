@@ -31,11 +31,6 @@
 		</property>
 	</bean>
 
-	<bean id="velocityEmailSender" class="core.mail.VelocityEmailSender">
-		<property name="mailSender" ref="mailSender" />
-		<property name="velocityEngine" ref="velocityEngine" />
-	</bean>
-
 	<util:properties id="velocityProps">
 		<prop key="resource.loader">class</prop>
 		<prop key="class.resource.loader.class">org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
@@ -45,15 +40,5 @@
 	<bean id="velocityEngine"
 		class="org.springframework.ui.velocity.VelocityEngineFactoryBean"
 		p:velocityProperties-ref="velocityProps" />
-
-	<!-- <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer" 
-		p:resourceLoaderPath="/WEB-INF/velocity/" /> -->
-
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-		<property name="cache" value="true" />
-		<property name="prefix" value="WEB-INF/velocity" />
-		<property name="suffix" value=".vm" />
-	</bean>
 
 </beans>
