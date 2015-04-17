@@ -44,9 +44,3 @@ var ScrollAaction = (function() {
     };
     return ScrollAction;
 })();
-
-window.addEventListener("load", function() {
-    var oScrollAaction = new ScrollAaction('article');
-    oScrollAaction.getViewportH();
-    oScrollAaction.runOnScroll();
-})
