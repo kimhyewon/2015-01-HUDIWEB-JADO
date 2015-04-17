@@ -21,6 +21,7 @@ public class SignUpService {
 			throw new DuplicateKeyException("이미 가입된 사용자입니다.");
 		}
 		userDao.insert(customer);
+		userDao.insertDefaultRole(customer);
 	}
 
 	public void insertSeller(Seller seller) {

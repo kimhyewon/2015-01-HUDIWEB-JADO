@@ -1,0 +1,39 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<http auto-config="true" use-expressions="true">
+		<access-denied-handler error-page="/accessDenied" />
+		<intercept-url pattern="/css**" access="hasAnyRole('ROLE_ANONYMOUS')" />
+		<intercept-url pattern="/img**" access="hasAnyRole('ROLE_ANONYMOUS')" />
+		<intercept-url pattern="/js**" access="hasAnyRole('ROLE_ANONYMOUS')" />
+		<intercept-url pattern="/userImg**" access="hasAnyRole('ROLE_ANONYMOUS')" />
+		
+		<form-login login-page="/user/login" authentication-failure-url="/user/login?ng"/>
+		<logout logout-success-url="/"/>
+	</http>
+
+	<bean id="hashShaPwEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+    	 <constructor-arg value="256"/>
+ 	</bean>
+
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder ref="hashShaPwEncoder" />
+			<jdbc-user-service data-source-ref="dataSource"
+
+				users-by-username-query="
+         SELECT ID, PASSWORD, CASE ENABLED WHEN 1 THEN 'true' ELSE 'false' END 'ENABLED'
+         FROM USER
+         WHERE ID=?;"
+
+			authorities-by-username-query="
+        SELECT u.ID, r.ROLE
+        FROM USER u, USER_ROLE r
+        WHERE u.ID = r.USER_ID
+        AND u.ID=?;" />
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>
