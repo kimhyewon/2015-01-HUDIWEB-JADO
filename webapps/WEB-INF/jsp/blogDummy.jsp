@@ -9,7 +9,7 @@
 	<title>블로그</title>
 	<link rel="stylesheet" type="text/css" href="/css/jado.css">
 </head>
-<body>
+<body id="blog">
 	<div id = "header" class="row">
 		<div id = "title" class="col s12 m12 l12">HEY, JADO
 		</div>

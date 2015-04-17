@@ -1,8 +1,7 @@
-body {
+body.main {
 	font-family: dotum, dotumche, '돋움', '돋움체', sans-serif;
 	background-image : url("/img/mainImg.jpg");
 	background-repeat : no-repeat;
 	background-attachment : fixed;
 	min-width: 320px;
-
 }

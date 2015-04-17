@@ -29,14 +29,22 @@ public class BlogController {
 		return "blogDummy";
 	}
 	
-	@RequestMapping(value = "/settingShop/{shopUrl}", method = RequestMethod.GET)
-	public String doGet(@PathVariable("shopUrl")String url, Model model) throws ServletException, IOException {
+	
+	@RequestMapping(value = "/setting/{shopUrl}", method = RequestMethod.GET)
+	public String formSetting(@PathVariable("shopUrl")String url, Model model) throws ServletException, IOException {
 		Shop shop = shopDao.selectByUrl(url);
-		if (shop == null) {
-			return "settingShop";
-		}
+		if (shop == null) return "settingShop";
 		model.addAttribute("shop", shop);
 		return "blogDummy";
 	}
+	
+	@RequestMapping(value = "/setting/{shopUrl}", method = RequestMethod.POST)
+	public String editSetting(@PathVariable("shopUrl")String url, Model model) throws ServletException, IOException {
+		Shop shop = shopDao.selectByUrl(url);
+		if (shop == null) return "settingShop";
+		model.addAttribute("shop", shop);
+		return "blogDummy";
+	}
+	
 	
 }
