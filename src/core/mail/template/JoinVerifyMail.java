@@ -3,6 +3,7 @@ package core.mail.template;
 
 import jado.dao.MailAuthDao;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,9 @@ import core.mail.UUIDGenerator;
 @Component
 public class JoinVerifyMail extends AbstractMailTemplate {
 
+	@Autowired
+	private MailAuthDao mailDao;
+	
 	private String mailRequestAddress;
 	 
 	
@@ -26,8 +30,7 @@ public class JoinVerifyMail extends AbstractMailTemplate {
 
 	private String setVerifyKeyOnDB(String mailRecipient) {
 		String uuid = UUIDGenerator.createUUID();
-		MailAuthDao dao = new MailAuthDao();
-		dao.insert(mailRecipient, uuid);
+		mailDao.insert(mailRecipient, uuid);
 		return uuid;
 	}
 
