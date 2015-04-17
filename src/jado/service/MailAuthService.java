@@ -47,7 +47,9 @@ public class MailAuthService {
 		Mail mail = new Mail(mailRecipient, template);
 
 		try {
+			logger.info("메일 발송 요청 작업을 Google smtp서버로 보냈습니다");
 			emailSender.sendEmail(mail);
+			logger.info("비동기작업으로 진행되었던 메일 발송이 완료되었습니다");
 		} catch (MessagingException e) {
 			logger.debug("mail error {}", e.getMessage());
 			e.printStackTrace();
