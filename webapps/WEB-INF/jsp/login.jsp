@@ -13,7 +13,9 @@
 		<c:if test="${not empty errorMessage}">
 			<label class="error">${errorMessage}</label>
 		</c:if> 
-		<form class="encrypt_form" action="/user" method="post" autocomplete="off">
+
+		<c:url value="j_spring_security_check" var="loginUrl"/>
+		<form class="encrypt_form" action="${loginUrl}" method="post" autocomplete="off">
 			<div class="col m1 l2 dummy">dummy</div>
 			<div id="formUser" class="col s12 m5 l4 ">
 				<h2>로그인</h2>

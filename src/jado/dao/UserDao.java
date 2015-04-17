@@ -107,7 +107,7 @@ public class UserDao {
 	}
 
 	public void insertDefaultRole(Customer customer) {
-		String sql = "insert into USER_ROLE values(?, null)";
+		String sql = "insert into USER_ROLE (USER_ID) values(?)";
 		jdbcTemplate.update(sql, customer.getUserId());
 	}
 }

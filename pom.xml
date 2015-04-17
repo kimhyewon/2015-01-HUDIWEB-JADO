@@ -18,10 +18,10 @@
 		<jstl.version>1.2</jstl.version>
 		<mysql-connector.version>5.1.34</mysql-connector.version>
 		<javax.mail.version>1.4.7</javax.mail.version>
-		<logger.version>1.1.2</logger.version>
 		<spring-webmvc.version>4.1.6.RELEASE</spring-webmvc.version>
 		<spring-test.version>4.1.6.RELEASE</spring-test.version>
 		<spring-jdbc.version>4.1.6.RELEASE</spring-jdbc.version>
+		<spring-aop.version>4.1.6.RELEASE</spring-aop.version>
 		<spring-security-core.version>3.2.7.RELEASE</spring-security-core.version>
 		<spring-security-web.version>3.2.7.RELEASE</spring-security-web.version>
 		<spring-security-config.version>3.2.7.RELEASE</spring-security-config.version>
@@ -179,7 +179,7 @@
 			<artifactId>mail</artifactId>
 			<version>${javax.mail.version}</version>
 		</dependency>
-		<!-- MailTemplate  -->
+		<!-- MailTemplate -->
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
@@ -209,8 +209,13 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring-jdbc.version}</version>
 		</dependency>
-		
-				<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring-aop.version}</version>
+		</dependency>
+
+		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -231,7 +236,7 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>${spring-security-taglibs.version}</version>
 		</dependency>
-		
+
 		<!-- Spring Mail -->
 		<dependency>
 			<groupId>org.springframework</groupId>
