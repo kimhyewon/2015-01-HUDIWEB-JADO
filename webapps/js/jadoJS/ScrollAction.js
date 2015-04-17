@@ -1,7 +1,9 @@
 var ScrollAaction = (function() {
 
     var ScrollAction = function(elTarget) {
-        this.elSections = document.querySelectorAll('article');
+        this.elTarget = document.querySelector(elTarget);
+        if (!this.elTarget) return;
+        this.elSections = this.elTarget.querySelectorAll('article');
         this.viewHeight = 0;
         this.scrollHeight = 0;
         this.lastPage = 0;
@@ -44,9 +46,3 @@ var ScrollAaction = (function() {
     };
     return ScrollAction;
 })();
-
-window.addEventListener("load", function() {
-    var oScrollAaction = new ScrollAaction('article');
-    oScrollAaction.getViewportH();
-    oScrollAaction.runOnScroll();
-})

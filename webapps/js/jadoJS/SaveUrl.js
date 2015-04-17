@@ -12,7 +12,3 @@ var SaveUrl = (function() {
     }
     return SaveUrl;
 })();
-
-window.addEventListener("load", function() {
-    var oSU = new SaveUrl();
-})
