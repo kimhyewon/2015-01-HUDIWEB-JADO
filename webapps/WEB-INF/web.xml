@@ -13,6 +13,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath:/applicationContext.xml
+			WEB-INF/secu.xml
 		</param-value>
 	</context-param>
 
@@ -27,6 +28,33 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Error Pages -->
+	<error-page>
+		<error-code>401</error-code>
+		<location>/WEB-INF/jsp/commons/error/401.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/WEB-INF/jsp/commons/error/403.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/jsp/commons/error/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/jsp/commons/error/500.jsp</location>
+	</error-page>
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

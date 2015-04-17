@@ -3,7 +3,6 @@ package jado.model;
 import java.sql.Timestamp;
 
 public class Customer extends User {
-
 	private String password;
 	private String name;
 	private String phone;

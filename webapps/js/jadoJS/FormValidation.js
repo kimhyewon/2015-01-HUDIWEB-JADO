@@ -23,11 +23,3 @@ var FormValidation = (function() {
 
     return FormValidation;
 })();
-
-//service code
-// 컴포넌트 혹은 라이브러리와 실사용 코드를 묶는 것은 좋지 않은 방법입니다.
-// 재사용을 하지 않을 것이라면 굳이 클래스나 컴포넌트 형태를 취할 이유가 없을 것입니다.
-// 서비스 코드는 별도의 파일로 분리해서 하나로 관리하세요.
-(function() {
-    var oFormValidation = new FormValidation("#signup_form");
-})();

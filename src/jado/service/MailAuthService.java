@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import core.mail.EmailSender;
 import core.mail.Mail;
-import core.mail.VelocityEmailSender;
 import core.mail.template.AbstractMailTemplate;
 import core.mail.template.MailTemplateStorage;
 
@@ -27,7 +26,6 @@ public class MailAuthService {
 	private UserDao userDao;
 	@Autowired
 	private EmailSender emailSender;
-	// @Autowired private VelocityEmailSender velocityEmailSender;
 	@Autowired
 	private MailTemplateStorage mailTemplateStorage;
 
@@ -45,12 +43,13 @@ public class MailAuthService {
 
 	@Async
 	public void send(String mailRecipient, MailTemplateStorage.Type joinVerify) {
-		
 		AbstractMailTemplate template = mailTemplateStorage.getTemplate(joinVerify);
 		Mail mail = new Mail(mailRecipient, template);
-	
+
 		try {
+			logger.info("메일 발송 요청 작업을 Google smtp서버로 보냈습니다");
 			emailSender.sendEmail(mail);
+			logger.info("비동기작업으로 진행되었던 메일 발송이 완료되었습니다");
 		} catch (MessagingException e) {
 			logger.debug("mail error {}", e.getMessage());
 			e.printStackTrace();

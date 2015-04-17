@@ -93,6 +93,7 @@ public class SignUpController  {
 		}
 		
 		mailService.send(userId, MailTemplateStorage.Type.JOIN_VERIFY);
+		logger.info("메일 발송 요청 비동기 메소드를 실행시켰습니다");
 		return "main";
 	}
 

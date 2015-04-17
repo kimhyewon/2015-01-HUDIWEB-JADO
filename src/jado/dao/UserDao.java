@@ -25,8 +25,8 @@ public class UserDao {
 	}
 
 	public void insert(final Customer customer) {
-		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F')";
-		jdbcTemplate.update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress());
+		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F', ?)";
+		jdbcTemplate.update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress(), customer.getUserStatus());
 	}
 
 	public void insert(final Seller seller) {
@@ -104,5 +104,10 @@ public class UserDao {
 		if (selectSellerById(userId) != null)
 			return true;
 		return false;
+	}
+
+	public void insertDefaultRole(Customer customer) {
+		String sql = "insert into USER_ROLE (USER_ID) values(?)";
+		jdbcTemplate.update(sql, customer.getUserId());
 	}
 }

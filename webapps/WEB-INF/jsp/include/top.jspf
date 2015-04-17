@@ -18,7 +18,7 @@
 				</c:when>
 				<c:otherwise>
 					<li>
-						<input type="submit" formaction="/user/logout" value="로그아웃"/>
+						<input type="submit" formaction="<c:url value="/j_spring_security_logout" />" value="로그아웃"/>
 					</li>
 					<li class="topLine">|</li>
 					<li>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<http auto-config="true" use-expressions="true">
+		<access-denied-handler error-page="/accessDenied" />
+		<!-- 권한 종류
+			ROLE_EMAIL_NOT_VERIFIED_USER : 이메일 인증이 되지 않은 회원
+			ROLE_CUSTOMER : 이메일 인증이 되었고 구매자로 가입한 회원
+			ROLE_SELLER : 이메일 인증이 되었고 판매자로 가입한 회원
+			ROLE_DEVELOPER : 개발할 떄 사용할
+		 -->
+		<!--  방어해야 하는 주소 -->
+		<intercept-url pattern="/user/edit**" access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_SELLER', 'ROLE_DEVELOPER')" />
+		
+		<form-login login-page="/user/login" authentication-failure-url="/user/login?ng"/>
+		<logout logout-success-url="/"/>
+	</http>
+
+	<beans:bean id="hashShaPwEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+    	 <beans:constructor-arg value="256"/>
+ 	</beans:bean>
+
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder ref="hashShaPwEncoder" />
+			<jdbc-user-service data-source-ref="dataSource"
+
+				users-by-username-query="
+         SELECT ID, PASSWORD, CASE ENABLED WHEN 1 THEN 'true' ELSE 'false' END 'ENABLED'
+         FROM USER
+         WHERE ID=?;"
+
+			authorities-by-username-query="
+        SELECT u.ID, r.ROLE
+        FROM USER u, USER_ROLE r
+        WHERE u.ID = r.USER_ID
+        AND u.ID=?;" />
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>
