@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%@ include file="include/header.jspf" %>
+<%@ include file="include/head.jspf" %>
 <body class="main" onClick='rng_seed_time();' onKeyPress='rng_seed_time();'>
 	<%@ include file="include/top.jspf" %>
-	<div id="formContainer" class="row center">
+	<div class="row center formContainer">
 		<c:if test="${not empty errorMessage}">
 			<label class="error">${errorMessage}</label>
 		</c:if> 

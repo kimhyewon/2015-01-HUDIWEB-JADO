@@ -1,5 +1,7 @@
 package jado.model;
 
+import java.util.List;
+
 public class Shop {
 	private String url;
 	private String title;
@@ -9,6 +11,8 @@ public class Shop {
 	private String logo_url;
 	private String footer;
 	private String theme;
+	private List<Board> boards;
+	private List<Category> Categorys;
 
 	public Shop() {	}
 	public Shop(String url, String title, String phone, String banner_url, String main_url, String logo_url, String footer, String theme) {
@@ -90,7 +94,18 @@ public class Shop {
 	public void setFooter(String footer) {
 		this.footer = footer;
 	}
-
+	public void setBoards(List<Board> boards) {
+		this.boards = boards;
+	}
+	public void setCategorys(List<Category> categorys) {
+		Categorys = categorys;
+	}
+	public List<Board> getBoards() {
+		return boards;
+	}
+	public List<Category> getCategorys() {
+		return Categorys;
+	}
 	@Override
 	public String toString() {
 		return "Shop [url=" + url + ", title=" + title + ", phone=" + phone + ", banner_url=" + banner_url + ", main_url=" + main_url + ", logo_url=" + logo_url + ", theme=" + theme + ", footer="

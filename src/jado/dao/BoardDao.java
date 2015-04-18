@@ -42,9 +42,9 @@ public class BoardDao {
 		}
 	}
 
-	public List<Board> selectAllByUrl(final Board board) {
+	public List<Board> selectAllByUrl(final String url) {
 		String sql = "select * from BOARD where SHOP_URL=?";
-		Object[] args = new Object[] { board.getShopUrl() };
+		Object[] args = new Object[] {url};
 		try {
 			return jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<Board>(Board.class));
 		} catch (EmptyResultDataAccessException e) {
