@@ -34,6 +34,7 @@
 		<eclipse.plugin.version>2.9</eclipse.plugin.version>
 		<war.plugin.version>2.6</war.plugin.version>
 		<compiler.plugin.version>3.2</compiler.plugin.version>
+		<mojo.version>2.5</mojo.version>
 
 		<!-- scope -->
 		<tomcat.scope>provided</tomcat.scope>
@@ -83,6 +84,12 @@
 					<target>1.8</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
+			</plugin>
+			<!-- sonarqube -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>${mojo.version}</version>
 			</plugin>
 		</plugins>
 	</build>
@@ -259,5 +266,4 @@
 			<version>${commons-dbcp.version}</version>
 		</dependency>
 	</dependencies>
-
 </project>
