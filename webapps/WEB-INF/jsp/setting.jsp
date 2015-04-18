@@ -7,7 +7,7 @@
 	<%@ include file="include/top.jspf" %>
 	<div class="row center formContainer">
 		<div class="col m1 l2 dummy">dummy</div>
-		<form action="/setting" method="post" autocomplete="off">
+		<form method="post" autocomplete="off">
 			<div class="col s12 m5 l4 ">
 			<c:if test="${not empty errorMessage}">
 				<label class="error">${errorMessage}</label>
@@ -28,7 +28,7 @@
 						<input type="text" name="footer" value="${shop.footer}" placeholder="세부정보">
 					</li>
 					<li>
-						<input type="submit" name="submit" value="변 경 하 기"/>
+						<input type="submit" name="submit" formaction="/setting" value="변 경 하 기"/>
 					</li>
 				</ul>
 			</div>
