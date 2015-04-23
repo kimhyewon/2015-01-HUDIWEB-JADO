@@ -21,8 +21,13 @@ insert into USER_ROLE VALUES('customer', 'ROLE_CUSTOMER');
 insert into USER_ROLE VALUES('seller', 'ROLE_SELLER');
 insert into USER_ROLE VALUES('developer', 'ROLE_DEVELOPER');
 
-insert into SHOP VALUES('testurl', 'testtitle,','testphone', '/userImg/shop/main/default.png','/userImg/shop/main/default.png' ,'/userImg/shop/main/default.png','thema1','footer_test');
-insert into SELLER VALUES('testurl', 'user','우리','bankaccount');
+insert into SHOP VALUES('testShopUrl', 'testtitle,','testphone', '/userImg/shop/main/default.png','/userImg/shop/main/default.png' ,'/userImg/shop/main/default.png','thema1','footer_test');
+insert into SELLER VALUES('testShopUrl', 'user','우리','bankaccount');
 
-insert into BOARD VALUES('testurl', '공지사항');
-insert into ARTICLE VALUES('testurl', '공지사항','오픈 기념 이벤트','content', '2015-03-26 12:34:56');
+insert into BOARD VALUES('testShopUrl', '공지사항');
+insert into ARTICLE VALUES('testShopUrl', '공지사항','오픈 기념 이벤트','content', '2015-03-26 12:34:56');
+
+insert into CATEGORY values(1, '카테고리명', 'testShopUrl');
+insert into PRODUCT VALUES(1, 1,'test상품',14000,100,'/userImg/product/img/default.png','상품설명', '2015-03-26 12:34:56');
+--insert into CART values('testShopUrl', 'user');
+--insert into CART_has_PRODUCT values('testShopUrl', 'user', 1, '1');
