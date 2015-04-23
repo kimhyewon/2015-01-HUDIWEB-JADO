@@ -10,10 +10,10 @@
 
 	<context:component-scan base-package="jado.controller" />
 	<context:component-scan base-package="jado.service" />
-	
+	<context:component-scan base-package="core.jadopay" />
 
 	<mvc:annotation-driven />
-	
+
 	<mvc:resources location="/img/" mapping="/img/**" />
 	<mvc:resources location="/userImg/" mapping="/userImg/**" />
 	<mvc:resources location="/css/" mapping="/css/**" />
@@ -21,10 +21,7 @@
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" p:order="1"/>
-
-
-
+		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" p:order="1" />
 
 	<bean id="executorService" class="java.util.concurrent.Executors"
 		factory-method="newFixedThreadPool">
