@@ -11,7 +11,7 @@
 </head>
 <body id="blog">
 	<div id = "header" class="row">
-		<div id = "title" class="col s12 m12 l12">HEY, JADO
+		<div id = "title" class="col s12 m12 l12">${shop.title}
 		</div>
 	</div>
 	<div id = "nav_bar" class="row">

@@ -58,4 +58,12 @@ public class BoardDao {
 		jdbcTemplate.update(sql, args);
 	}
 
+
+
+	public int countArticles(Board board) {
+		String sql = "select count(*) from ARTICLE WHERE SHOP_URL=? and BOARD_NAME=?";
+		Object[] args = new Object[] { board.getShopUrl(), board.getName() };
+		return jdbcTemplate.queryForObject(sql, args, Integer.class);
+	}
+
 }

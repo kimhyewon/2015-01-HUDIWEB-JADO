@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import jado.model.Article;
+import jado.model.Board;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -41,9 +42,9 @@ public class ArticleDao {
 		}
 	}
 
-	public List<Article> selectAllByBoard(Article article) {
+	public List<Article> selectAllByBoard(Board board) {
 		String sql = "select * from ARTICLE where SHOP_URL=? and BOARD_NAME=?";
-		Object[] args = new Object[] { article.getShopUrl(), article.getBoardName() };
+		Object[] args = new Object[] { board.getShopUrl(), board.getName() };
 		try {
 			return jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<Article>(Article.class));
 		} catch (EmptyResultDataAccessException e) {

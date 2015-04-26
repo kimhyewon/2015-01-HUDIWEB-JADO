@@ -5,6 +5,7 @@ package jado.dao;
 import java.util.List;
 
 import jado.model.Article;
+import jado.model.Board;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +28,7 @@ public class ArticleDaoTest {
 		Article article = new Article( "testUrl", "공지사항", "title4", "content");
 		articleDao.insert(article);
 		log.debug("article : {}", article);
-		List<Article> articles = articleDao.selectAllByBoard(article);
+		List<Article> articles = articleDao.selectAllByBoard(new Board("testUrl", "공지사"));
 		article = articleDao.selectByPk(article);
 		log.debug("article : {}", article);		
 		log.debug("articles : {}", articles);

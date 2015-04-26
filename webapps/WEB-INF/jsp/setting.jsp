@@ -7,11 +7,11 @@
 	<%@ include file="include/top.jspf" %>
 	<div class="row center formContainer">
 		<div class="col m1 l2 dummy">dummy</div>
-		<form method="post" autocomplete="off">
-			<div class="col s12 m5 l4 ">
-			<c:if test="${not empty errorMessage}">
+		<div class="col s12 m5 l4 ">
+			<form method="post" autocomplete="off">
+				<c:if test="${not empty errorMessage}">
 				<label class="error">${errorMessage}</label>
-			</c:if>
+				</c:if>
 				<h2>기본 정보 </h2>
 				<h3><a href="/shop/${shop.url}">내샵 돌아가기 </a></h3>
 				<ul>
@@ -31,23 +31,35 @@
 						<input type="submit" name="submit" formaction="/setting" value="변 경 하 기"/>
 					</li>
 				</ul>
-			</div>
-			<div class="col s12 m5 l4">
-					<h2 style="opacity:0;"> _ </h2>
-					<h3>이미지 추가하기</h3>
-					<ul>
-						<li>
-							<button>업로드</button>
-						</li>
-						<li>
-							<input type="submit" name="submit" value="업 로 드"/>
-						</li>
-						<li>
-							<input type="submit" name="submit" value="업 로 드"/>
-						</li>
-					</ul>
-			</div>
-		</form>
+			</form>
+		</div>
+		<div class="col s12 m5 l4">
+			<h2 style="opacity:0;"> _ </h2>
+			<h3>이미지 변경하기</h3>
+			<ul>
+				<li>
+					<form id="upload" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="url" value="${shop.url}">
+						<input type="file" name="file"/>
+						<input type="submit" name="submit" formaction="/setting/api/image/banner" value="업 로 드"/>
+					</form>
+				</li>
+				<li>
+					<form id="upload" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="url" value="${shop.url}">
+						<input type="file" name="file" />
+						<input type="submit" name="submit" formaction="/setting/api/image/main" value="업 로 드"/>
+					</form>
+				</li>
+				<li>
+					<form id="upload" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="url" value="${shop.url}">
+						<input type="file" name="file" />
+						<input type="submit" name="submit" formaction="/setting/api/image/logo" value="업 로 드"/>
+					</form>
+				</li>
+			</ul>
+		</div>
 	</div>
 	<div class="row center formContainer" >
 		<div class="col m1 l2 dummy">dummy</div>
@@ -86,29 +98,48 @@
 		<div class="col s12 m5 l4">
 			<h2>보드 설정 </h2>
 			<h3>공지사항 , 이벤트 게시판을 만드세요</h3>
-			<form action="/setting/api/board/insert">
-				<input type="text" name="newBoard" value="보드 이름">
-				<input type="submit" name="submit" value="추가 하기"/>
-
-				<input type="text" name="hello" value="board2">
-				<input type="submit" name="submit" value="삭제 하기"/>
-				<input type="text" name="hello" value="board3">
-				<input type="submit" name="submit" value="삭제 하기"/>
-				<input type="text" name="hello" value="board4">
-				<input type="submit" name="submit" value="삭제 하기"/>
+			<button onclick="boardNew()">추가하기</button>
+			<ul id="boardBefore">
+				<c:forEach var="board" items="${shop.boards}">
+					<li>
+						<form action="/setting/api/board/delete">
+							<input type="hidden" name="shopUrl" value="${shop.url}">
+							<input type="text" name="name" value="${board.name}" readonly>
+							<input type="submit" name="submit" value="삭제하기">
+						</form>
+					</li>
+				</c:forEach>
+			</ul>
+			<form action="/setting/api/board/insert" method="post">
+				<ul id="boardAfter">
+					
+				</ul>
+				<input type="hidden" name="shopUrl" value="${shop.url}">
+				<input type="submit" name="submit" value="변 경 하 기">
 			</form>
 		</div>
 		<div class="col s12 m5 l4">
-				<h2>카테고리 설정 </h2>
-				<h3>상품 카테고리를 만드세요 </h3>
-				<ul id="categories">
+			<h2>카테고리 설정 </h2>
+			<h3>상품 카테고리를 만드세요 </h3>
+			<button onclick="categoryNew()">추가하기</button>
+			<ul id="categoryBefore">
+				<c:forEach var="category" items="${shop.categorys}">
+					<li>
+						<form action="/setting/api/category/delete">
+							<input type="hidden" name="id" value="${category.id}">
+							<input type="text" name="name" value="${category.name}">
+							<input type="submit" name="submit" value="삭제하기">
+						</form>
+					</li>
+				</c:forEach>
+			</ul>
+			<form action="/setting/api/category/insert" method="post">
+				<ul id="categoryAfter">
 					
-				<form action="/setting/api/category">
 				</ul>
-				<input type="text" name="hello" value="board2">
-				<input type="text" name="hello" value="board3">
-				<input type="text" name="hello" value="board4">
-				</form>
+				<input type="hidden" name="shopUrl" value="${shop.url}">
+				<input type="submit" name="submit" value="변 경 하 기">
+			</form>
 		</div>
 	</div>
 </body>

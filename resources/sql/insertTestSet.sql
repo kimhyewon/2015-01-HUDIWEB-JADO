@@ -26,3 +26,6 @@ insert into SELLER VALUES('testurl', 'seller','우리','bankaccount');
 
 insert into BOARD VALUES('testurl', '공지사항');
 insert into ARTICLE VALUES('testurl', '공지사항','오픈 기념 이벤트','content', '2015-03-26 12:34:56');
+
+insert into CATEGORY VALUES(null, 'outer', 'testurl');
+insert into PRODUCT VALUES(null, 1, '예쁜 옷', 1000, 100, '/img.jpg', 'lulu lala', null);
