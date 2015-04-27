@@ -27,7 +27,7 @@ public class BoardDaoTest {
 		boardDao.insert(board);
 		board = boardDao.selectByPk(board);
 		log.debug("board : {}", board);
-		List<Board> boards = boardDao.selectAllByUrl(board);
+		List<Board> boards = boardDao.selectAllByUrl(board.getShopUrl());
 		log.debug("boards : {}", board);
 		log.debug("boards : {}", boards);
 

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="boardForm" action="board/write" method="post">
+	<form name="boardForm" action="" method="post">
 		<div id = "board_name">공지사항</div>
 		<div id = "title"><input type="text" name="title" size="70"/></div>
 		<div id = "content"><textarea name="content" rows="5" cols="130"></textarea></div>
