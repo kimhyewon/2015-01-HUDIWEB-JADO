@@ -3,7 +3,7 @@ var ShowSellerEnroll = (function() {
         var chkBox = document.querySelector("#chkBox");
         if (!chkBox) return;
         chkBox.addEventListener("click", function() {
-            var target = document.querySelector("#formContainer");
+            var target = document.querySelector(".formContainer");
             if (chkBox.checked) {
                 target.classList.add('scrollSellerEnroll');
             } else {

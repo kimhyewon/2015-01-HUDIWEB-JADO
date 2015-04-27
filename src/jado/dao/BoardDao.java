@@ -42,9 +42,9 @@ public class BoardDao {
 		}
 	}
 
-	public List<Board> selectAllByUrl(final Board board) {
+	public List<Board> selectAllByUrl(final String url) {
 		String sql = "select * from BOARD where SHOP_URL=?";
-		Object[] args = new Object[] { board.getShopUrl() };
+		Object[] args = new Object[] {url};
 		try {
 			return jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<Board>(Board.class));
 		} catch (EmptyResultDataAccessException e) {
@@ -56,6 +56,14 @@ public class BoardDao {
 		String sql = "delete from BOARD where SHOP_URL=? and NAME=?";
 		Object[] args = new Object[] { board.getShopUrl(), board.getName() };
 		jdbcTemplate.update(sql, args);
+	}
+
+
+
+	public int countArticles(Board board) {
+		String sql = "select count(*) from ARTICLE WHERE SHOP_URL=? and BOARD_NAME=?";
+		Object[] args = new Object[] { board.getShopUrl(), board.getName() };
+		return jdbcTemplate.queryForObject(sql, args, Integer.class);
 	}
 
 }

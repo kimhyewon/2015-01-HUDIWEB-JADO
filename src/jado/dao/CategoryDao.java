@@ -32,9 +32,9 @@ public class CategoryDao {
 		Object[] args = new Object[] { category.getName(), category.getShopUrl() };
 		jdbcTemplate.update(sql, args);
 	}
-	public Category selectByPk(final int i) {
+	public Category selectByPk(final int id) {
 		String sql = "select * from CATEGORY where ID=?";
-		Object[] args = new Object[] { i };
+		Object[] args = new Object[] { id };
 		try {
 			return jdbcTemplate.queryForObject(sql, args, new BeanPropertyRowMapper<Category>(Category.class));
 		} catch (EmptyResultDataAccessException e) {
@@ -54,5 +54,11 @@ public class CategoryDao {
 	public void remove(final int id) {
 		String sql = "delete from CATEGORY where ID=?";
 		jdbcTemplate.update(sql, id);
+	}
+
+	public int countProduct(final int id) {
+		String sql = "select count(*) from PRODUCT WHERE CATEGORY_ID=?";
+		Object[] args = new Object[] { id };
+		return jdbcTemplate.queryForObject(sql, args, Integer.class);
 	}
 }
