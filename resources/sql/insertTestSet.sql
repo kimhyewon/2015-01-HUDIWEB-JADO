@@ -25,6 +25,7 @@ insert into SHOP VALUES('testurl', 'HEY, JODO', '031-737-7979', default, default
 insert into SELLER VALUES('testurl', 'seller','우리','bankaccount');
 
 insert into BOARD VALUES(null, 'testurl', 'INFO');
+insert into BOARD VALUES(null, 'testurl', '공지사항');
 insert into ARTICLE VALUES( null, 1, '오픈 기념 이벤트', 'content', null);
 insert into ARTICLE VALUES( null, 1, '봄 신상 할인 이벤트', 'content', null);
 insert into ARTICLE VALUES( null, 1, '직원 모집', 'content', null);
@@ -36,4 +37,7 @@ insert into CATEGORY VALUES(null, 'DRESS', 'testurl');
 insert into CATEGORY VALUES(null, 'PANTS', 'testurl');
 insert into CATEGORY VALUES(null, 'SKIRT', 'testurl');
 insert into CATEGORY VALUES(null, 'ACC', 'testurl');
-insert into PRODUCT VALUES(null, 1, '예쁜 옷', 1000, 100, '/img.jpg', 'lulu lala', null);
+
+insert into PRODUCT VALUES(null, 1,'test상품',14000,100,'/userImg/product/img/default.png','상품설명', null);
+--insert into CART values('testShopUrl', 'user');
+--insert into CART_has_PRODUCT values('testShopUrl', 'user', 1, '1');

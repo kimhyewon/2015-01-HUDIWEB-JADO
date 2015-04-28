@@ -25,3 +25,6 @@ jado_encrypt_con.js
 jado.css
 jado.js
 jado_encrypt.js
+
+#IDE
+**/.idea/**
