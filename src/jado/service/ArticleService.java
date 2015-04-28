@@ -16,7 +16,7 @@ public class ArticleService {
 	@Autowired private BoardDao boardDao;
 
 	public void insertArticle(Article article) throws ForignKeyException {
-		Board board = boardDao.selectByPk(new Board(article.getShopUrl(), article.getBoardName()));
+		Board board = boardDao.selectByPk(article.getBoardId());
 		if (board == null) {
 			throw new ForignKeyException("잘못된 경로로 접근하셨습니다.");
 		}

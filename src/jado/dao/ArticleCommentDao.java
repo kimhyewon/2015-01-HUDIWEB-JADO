@@ -26,28 +26,25 @@ public class ArticleCommentDao {
 	}
 
 	public int insert(final ArticleComment ac) {
-		String sql = "insert into ARTICLE_COMMENT values(?, ?, ?, ?, null, ?)";
-		Object[] args = new Object[] { ac.getShopUrl(), ac.getArticleTitle(), ac.getBoardName(), ac.getUserId(), ac.getContent() };
+		String sql = "insert into ARTICLE_COMMENT values(?, ?, null, ?)";
+		Object[] args = new Object[] {ac.getArticleId(), ac.getUserId(), ac.getContent() };
 		return jdbcTemplate.update(sql, args);
 	}
 
 	public ArticleComment findByPk(final ArticleComment ac) {
-		String sql = "select * from ARTICLE_COMMENT where SHOP_URL=? and ARTICLE_TITLE=? and BOARD_NAME=? and USER_ID=? and COMMENT_TIME=?";
-		Object[] args = new Object[] { ac.getShopUrl(), ac.getArticleTitle(), ac.getBoardName(), ac.getUserId(), ac.getCommentTime() };
-
+		String sql = "select * from ARTICLE_COMMENT where ARTICLE_ID=? and USER_ID=? and COMMENT_TIME=?";
+		Object[] args = new Object[] {ac.getArticleId(), ac.getUserId(), ac.getCommentTime() };
 		try {
 			return jdbcTemplate.queryForObject(sql, args, new BeanPropertyRowMapper<ArticleComment>(ArticleComment.class));
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
 	}
-
-	public List<ArticleComment> findByArticle(final ArticleComment ac) {
-		String sql = "select * from ARTICLE_COMMENT where SHOP_URL=? and ARTICLE_TITLE=? and BOARD_NAME=?";
-		Object[] args = new Object[] { ac.getShopUrl(), ac.getArticleTitle(), ac.getBoardName() };
-
+	
+	public List<ArticleComment> findByArticle(final int articleId) {
+		String sql = "select * from ARTICLE_COMMENT where ARTICLE_ID=?";
 		try {
-			return jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<ArticleComment>(ArticleComment.class));
+			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<ArticleComment>(ArticleComment.class), articleId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
