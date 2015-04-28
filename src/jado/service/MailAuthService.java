@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import core.mail.EmailSender;
 import core.mail.Mail;
-import core.mail.template.AbstractMailTemplate;
+import core.mail.template.MailTemplate;
 import core.mail.template.MailTemplateStorage;
 
 @Service
@@ -43,7 +43,7 @@ public class MailAuthService {
 
 	@Async
 	public void send(String mailRecipient, MailTemplateStorage.Type joinVerify) {
-		AbstractMailTemplate template = mailTemplateStorage.getTemplate(joinVerify);
+		MailTemplate template = mailTemplateStorage.getTemplate(joinVerify);
 		Mail mail = new Mail(mailRecipient, template);
 
 		try {

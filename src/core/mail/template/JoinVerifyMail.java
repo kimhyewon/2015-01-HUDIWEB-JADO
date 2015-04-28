@@ -34,7 +34,6 @@ public class JoinVerifyMail extends AbstractMailTemplate {
 		return uuid;
 	}
 
-	@Override
 	protected void getModel(String mailRecipient) {
 		String uuid = setVerifyKeyOnDB(mailRecipient);
 		model.put("uuid", uuid);

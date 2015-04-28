@@ -1,7 +1,7 @@
 package core.mail;
 
 
-import core.mail.template.AbstractMailTemplate;
+import core.mail.template.MailTemplate;
 
 
 public class Mail {
@@ -10,7 +10,7 @@ public class Mail {
 	String mailSubject;
 	String mailBody;
 	
-	public Mail(String mailRecipient, AbstractMailTemplate template) {
+	public Mail(String mailRecipient, MailTemplate template) {
 		this.mailRecipient = mailRecipient;
 		this.mailSubject = template.getSubject();
 		this.mailBody = template.getBody(mailRecipient);
