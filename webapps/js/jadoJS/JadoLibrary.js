@@ -4,6 +4,8 @@ function JADO() {
 
 };
 
+var jado = new JADO();
+
 // ##### Util #####
 // 프로젝트에서 쓰이는 Util 함수들입니다.
 function Util() {};
@@ -30,10 +32,10 @@ Util.prototype.saveUrl = function() {
 function FormManager() {};
 
 FormManager.prototype.showSellerEnroll = function(element) {
-	var chkBox = document.querySelector(element);
+	var chkBox = jado.util.getElement(element);
 	if (!chkBox) return;
 	chkBox.addEventListener("click", function() {
-		var target = document.querySelector(".formContainer");
+		var target = jado.util.getElement(".formContainer");
 		if (chkBox.checked) {
 			target.classList.add('scrollSellerEnroll');
 		} else {
@@ -42,8 +44,9 @@ FormManager.prototype.showSellerEnroll = function(element) {
 	})
 }
 
+//경륜아, 이건 목적이 뭐인지 얘기해주게 ㅋㅋㅋ
 FormManager.prototype.whatIsThis = function(element) {
-	var elForm = document.querySelector(element);
+	var elForm = jado.util.getElement(element);
     if (!elForm) return;
     var elements = {
         elId: 'userId',
@@ -57,7 +60,7 @@ FormManager.prototype.whatIsThis = function(element) {
 
     for (var prop in elements) {
         if (elements.hasOwnProperty(prop)) {
-            this[prop] = document.querySelector('input[name="' + elements[prop] + '"]');
+            this[prop] = jado.util.getElement('input[name="' + elements[prop] + '"]');
         }
     }
 }
