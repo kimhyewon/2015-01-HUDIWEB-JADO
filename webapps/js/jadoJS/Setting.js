@@ -6,19 +6,6 @@ var Setting = (function() {
         this.elBoard = this.elTarget.querySelector('#boards');
         this.elCategory = this.elTarget.querySelector('#categories');
     }
-
-    Setting.prototype.boardController = function() {
-        
-    };
-
-    Setting.prototype.runOnScroll = function() {
-    };
-
-    Setting.prototype.removePage = function() {
-    };
-
-    Setting.prototype.startPage = function() {
-    };
     return Setting;
 })();
 
