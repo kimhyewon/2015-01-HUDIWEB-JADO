@@ -2,7 +2,6 @@ package jado.dao;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 
 import jado.model.Board;
 
@@ -13,8 +12,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -22,13 +19,6 @@ public class BoardDao {
 	private static final Logger logger = LoggerFactory.getLogger(BoardDao.class);
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
-	
-	@PostConstruct
-	public void initialize() {
-		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		DatabasePopulatorUtils.execute(populator, jdbcTemplate.getDataSource());
-	}
 
 	public void insert(final Board board) {
 		String sql = "insert into BOARD values(null, ?, ?)";

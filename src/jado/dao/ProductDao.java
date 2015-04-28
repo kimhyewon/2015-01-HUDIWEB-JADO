@@ -2,7 +2,6 @@ package jado.dao;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 
 import jado.model.Product;
 
@@ -10,20 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProductDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
-	@PostConstruct
-	public void initialize() {
-		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		DatabasePopulatorUtils.execute(populator, jdbcTemplate.getDataSource());
-	}
 	
 	public void insert(final Product product) {
 		String sql = "insert into Product values(null, ?, ?, ?, ?, ?, ?, null)";

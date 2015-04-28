@@ -3,26 +3,17 @@ package jado.dao;
 import jado.model.FileInfo;
 import jado.model.Shop;
 
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ShopDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
-	@PostConstruct
-	public void initialize() {
-		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		DatabasePopulatorUtils.execute(populator, jdbcTemplate.getDataSource());
-	}
 
 	public void insert(final Shop shop) {
 		String sql = "insert into SHOP values(?, default, ?, default, default , ?, default, default, default, default)";
