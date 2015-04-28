@@ -42,8 +42,8 @@ public class MailAuthService {
 	}
 
 	@Async
-	public void send(String mailRecipient, MailTemplateStorage.Type joinVerify) {
-		MailTemplate template = mailTemplateStorage.getTemplate(joinVerify);
+	public void send(String mailRecipient, MailTemplateStorage.Type mailType) {
+		MailTemplate template = mailTemplateStorage.getTemplate(mailType);
 		Mail mail = new Mail(mailRecipient, template);
 
 		try {

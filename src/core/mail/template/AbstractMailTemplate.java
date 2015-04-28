@@ -15,13 +15,10 @@ public abstract class AbstractMailTemplate implements MailTemplate {
 	@Autowired
 	protected VelocityEngine velocityEngine;
 	
-	
 	protected String subject;
 	protected String templateLocation;
 	protected Map<String, Object> model = new HashMap<String, Object>();
 
-
-	
 	public String getSubject() {
 		return subject;
 	}
