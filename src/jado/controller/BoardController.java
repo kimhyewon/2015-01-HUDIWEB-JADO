@@ -27,11 +27,11 @@ import core.exception.ForignKeyException;
 @Controller
 @RequestMapping(value = "/board")
 public class BoardController {
-	private static final Logger logger = LoggerFactory
-			.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	private ArticleService articleService;
 
+	//article list 보여줌 
 	@RequestMapping(value="/{boardId}", method = RequestMethod.GET)
 	public String doGet(Model model, @PathVariable("boardId")String boardId)
 			throws ServletException, IOException {
@@ -42,6 +42,7 @@ public class BoardController {
 		return "board";
 	}
 
+	//board form 페이지 
 	@RequestMapping(value = "/write/{boardId}", method = RequestMethod.GET)
 	public String wirteGet(@PathVariable("boardId")String boardId, Model model)
 			throws ServletException, IOException {
@@ -49,7 +50,7 @@ public class BoardController {
 		return "boardForm";
 	}
 
-	// TODO - board에서 쓴 내용 post로 받아오기 구현 해야함
+	// board에서 쓴 내용 post로 받아오기 
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	protected String writePost(String boardId, String title, String content,
 			HttpSession session, Model model) throws ServletException,
