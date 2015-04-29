@@ -5,7 +5,7 @@
 <%@ include file="include/head.jspf" %>
 <body id="setting">
 	<%@ include file="include/top.jspf" %>
-	<div class="row center">
+	<div class="row center formContainer">
 		<div class="col m1 l2 dummy">dummy</div>
 		<div class="col s12 m5 l4 ">
 			<form method="post" autocomplete="off">
@@ -117,7 +117,7 @@
 			<img src="" alt="">
 		</div>
 	</div>
-	<div class="row center formContainer">
+	<div class="row center">
 		<div class="col m1 l2 dummy">dummy</div>
 		<div class="col s12 m5 l4">
 			<h2>보드 설정 </h2>

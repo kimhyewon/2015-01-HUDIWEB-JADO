@@ -12,7 +12,7 @@
 	<form:form modelAttribute="paymentInfo" cssClass="" action="/pay/info" method="post">
 
 		Shop Url <br>
-		<form:input path="shopUrl" value="testShopUrl"/><br><br>
+		<form:input path="shopUrl" value="testUrl"/><br><br>
 		<form:errors path="shopUrl"  cssClass=""   /><br><br>
 		Product Id<br>
 		<form:input path="productId" value="1"/><br><br>

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ShopController {
-	@Autowired private ShopDao shopDao;
 	@Autowired private ShopService shopService;
 	
 //	아무개 사용자가 남에 샵에 접근할때
@@ -39,9 +38,10 @@ public class ShopController {
 	@RequestMapping(value = "/shop", method = RequestMethod.GET)
 	public String showShopByUser(Model model,HttpSession session) throws ServletException, IOException {
 		String userId = (String) session.getAttribute("userId");
-		Shop shop = shopService.settingById(userId);
-		if (shop == null) return "main";
-		model.addAttribute("shop", shop);
-		return "blogDummy";
+		String url = shopService.getUrl(userId);
+		if (url == null) {
+			return "redirect:/";
+		}
+		return "redirect:/shop/"+url;
 	}
 }

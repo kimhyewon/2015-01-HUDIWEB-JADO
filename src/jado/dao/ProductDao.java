@@ -2,10 +2,10 @@ package jado.dao;
 
 import java.util.List;
 
-
 import jado.model.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,7 +35,7 @@ public class ProductDao {
 		String sql = "select * from PRODUCT where CATEGORY_ID=?";
 		try {
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Product>(Product.class), categoryId);
-		} catch (EmptyResultDataAccessException e) {
+		} catch (DataAccessException e) {
 			return null;
 		}
 	}
@@ -45,7 +45,7 @@ public class ProductDao {
 				+ "where CATEGORY.SHOP_URL = 'testurl'";
 		try {
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Product>(Product.class), url);
-		} catch (EmptyResultDataAccessException e) {
+		} catch (DataAccessException e) {
 			return null;
 		}
 	}

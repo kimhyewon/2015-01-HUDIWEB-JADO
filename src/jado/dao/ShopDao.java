@@ -21,7 +21,7 @@ public class ShopDao {
 	}
 
 	public void updateInfo(final Shop shop) {
-		String sql = "update SHOP set TITLE = ?, PHONE = ?, FOOTER=?, THEME=?, where URL = ?";
+		String sql = "update SHOP set TITLE = ?, PHONE = ?, FOOTER=?, THEME=? where URL = ?";
 		Object[] args = new Object[] {shop.getTitle(), shop.getPhone(), shop.getFooter(), shop.getTheme(), shop.getUrl()};
 		jdbcTemplate.update(sql, args);
 	}
