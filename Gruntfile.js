@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 		clean: {
 			build: {
 				src: ['webapps/css/jado_con.css', 'webapps/css/jado.css',
-				'webapps/js/jado_encrypt_con.js', 'webapps/js/jado_encrypt.js',
+				'webapps/js/jado_lib_con.js', 'webapps/js/jado_lib.js',
 				'webapps/js/jado_con.js', 'webapps/js/jado.js']
 			}
 		},
@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 		concat:{
 			basic_and_extras: {
 				files: {
-					'webapps/js/jado_encrypt_con.js': ['webapps/js/encryptJS/*.js'],
+					'webapps/js/jado_lib_con.js': ['webapps/js/lib/*.js'],
 					'webapps/js/jado_con.js': ['webapps/js/jadoJS/*.js'],
 					'webapps/css/jado_con.css': ['webapps/css/lib/reset.css', 'webapps/css/lib/grid.css', 'webapps/css/jadoCSS/*.css']
 					//concat 결과 파일: concat 타겟 설정(앞에서부터 순서대로 합쳐진다.)
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 			},
 			my_target: {
 				files: {
-					'webapps/js/jado_encrypt.js': ['webapps/js/jado_encrypt_con.js'],
+					'webapps/js/jado_lib.js': ['webapps/js/jado_lib_con.js'],
 					'webapps/js/jado.js': ['webapps/js/jado_con.js']
 				}
 			}
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
 		},
 		watch: {
 		  scripts: {
-		    files: ['webapps/js/jadoJS/*.js', 'webapps/js/encryptJS/*.js',
+		    files: ['webapps/js/lib/*.js', 'webapps/js/jadoJS/*.js',
 		    		'webapps/css/lib/*.css', 'webapps/css/jadoCSS/*.css'],
 		    tasks: ['clean', 'concat', 'uglify', 'cssmin'],
 		    options: {

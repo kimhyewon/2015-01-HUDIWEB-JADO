@@ -43,7 +43,7 @@
 	</div>
 </body>
 
-<script src="/js/jado_encrypt.js"></script>
+<script src="/js/jado_lib.js"></script>
 <script src="/js/jado.js"></script>
 
 </html>
