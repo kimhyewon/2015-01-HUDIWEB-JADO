@@ -11,4 +11,10 @@ window.addEventListener("load", function() {
 			jado.formManager.encrypt.removeInput();
 		}));
     }
+
+    //Animation Code
+    if (jado.util.getElement('#mainInfo')) {
+    	jado.animation.scrollAction.getViewportH();
+    	jado.animation.scrollAction.runOnScroll();
+    }
 })
