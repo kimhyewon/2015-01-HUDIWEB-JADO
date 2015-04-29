@@ -7,7 +7,7 @@
 
 <body id = "board_form">
 	<%@ include file="include/top.jspf" %>
-	<form name="boardForm" action="/board/write" method="post">
+	<form class="formContainer" name="boardForm" action="/board/write" method="post">
 		<div id = "board_name">공지사항</div>
 		<div id = "article_title"><input type="text" name="title" placeholder="제목을 입력하세요."/></div>
 		<div id = "article_content"><textarea name="content" placeholder="내용을 입력하세요." /></textarea></div>
