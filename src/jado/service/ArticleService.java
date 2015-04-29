@@ -1,5 +1,7 @@
 package jado.service;
 
+import java.util.List;
+
 import jado.dao.ArticleDao;
 import jado.dao.BoardDao;
 import jado.model.Article;
@@ -21,6 +23,14 @@ public class ArticleService {
 			throw new ForignKeyException("잘못된 경로로 접근하셨습니다.");
 		}
 		articleDao.insert(article);
+	}
+
+	public List<Article> getArticles(int boardId) {
+		return articleDao.selectAllByBoard(boardId);
+	}
+
+	public Board getBoard(int boardId) {
+		return boardDao.selectByPk(boardId);
 	}
 	
 }

@@ -23,7 +23,7 @@
 			<div class = "nav_content col s2 m2 l2"><a href="">CART</a></div>
 
 			<c:forEach var="board" items="${shop.boards}">
-				<div class = "nav_content col s2 m2 l2"><a href="/board">
+				<div class = "nav_content col s2 m2 l2"><a href="/board/${board.id}">
 					${board.name}
 				</a></div>
 			</c:forEach>

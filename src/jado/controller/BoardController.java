@@ -6,6 +6,7 @@ import jado.model.Board;
 import jado.service.ArticleService;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,15 +32,20 @@ public class BoardController {
 	@Autowired
 	private ArticleService articleService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String doGet(HttpServletRequest req, HttpServletResponse resp)
+	@RequestMapping(value="/{boardId}", method = RequestMethod.GET)
+	public String doGet(Model model, @PathVariable("boardId")String boardId)
 			throws ServletException, IOException {
+		Board board = articleService.getBoard(Integer.parseInt(boardId));
+		List<Article> articles = articleService.getArticles(Integer.parseInt(boardId));
+		model.addAttribute("articles", articles );
+		model.addAttribute("board", board);
 		return "board";
 	}
 
-	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String wirteGet(HttpServletRequest req, HttpServletResponse resp)
+	@RequestMapping(value = "/write/{boardId}", method = RequestMethod.GET)
+	public String wirteGet(@PathVariable("boardId")String boardId, Model model)
 			throws ServletException, IOException {
+		model.addAttribute("boardId", boardId);
 		return "boardForm";
 	}
 
@@ -53,7 +59,7 @@ public class BoardController {
 
 		Article article = new Article(Integer.parseInt(boardId), title, content);
 		articleService.insertArticle(article);
-		return "redirect:/board";
+		return "board";
 
 	}
 }

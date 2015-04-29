@@ -7,11 +7,12 @@
 
 <body id = "board_form">
 	<%@ include file="include/top.jspf" %>
-	<form name="boardForm" action="" method="post">
+	<form name="boardForm" action="/board/write" method="post">
 		<div id = "board_name">공지사항</div>
-		<div id = "article_title"><input type="text" name="article_title" placeholder="제목을 입력하세요."/></div>
-		<div id = "article_content"><textarea name="article_content" placeholder="내용을 입력하세요." /></textarea></div>
-		<div id = "submit"><input type="submit" a href="board/write" value="등록하기" />	</div>
+		<div id = "article_title"><input type="text" name="title" placeholder="제목을 입력하세요."/></div>
+		<div id = "article_content"><textarea name="content" placeholder="내용을 입력하세요." /></textarea></div>
+		<input type="hidden" name="boardId" value="${boardId}" />
+		<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div>
 	</form>
 </body>
 </html>

@@ -18,6 +18,7 @@ public class ArticleDao {
 
 	public void insert(final Article article) {
 		String sql = "insert into ARTICLE values(null, ?, ?, ?, null)";
+		System.out.println("ㅑㅓㅣㅓㅣㅑㅓㅣㅓ");
 		Object[] args = new Object[] { article.getBoardId(), article.getTitle(), article.getContent() };
 		jdbcTemplate.update(sql, args);
 	}
