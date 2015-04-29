@@ -31,7 +31,7 @@ public class BoardController {
 	@Autowired
 	private ArticleService articleService;
 
-	//article list 보여줌 
+	//블로그 페이지에서 board명 클릭시 article list 보여줌 
 	@RequestMapping(value="/{boardId}", method = RequestMethod.GET)
 	public String doGet(Model model, @PathVariable("boardId")String boardId)
 			throws ServletException, IOException {
@@ -61,6 +61,13 @@ public class BoardController {
 		Article article = new Article(Integer.parseInt(boardId), title, content);
 		articleService.insertArticle(article);
 		return "board";
-
+	}
+	
+	//list에서 title 클릭시 해당 글 보여주는 코드 
+	@RequestMapping(value="/show", method = RequestMethod.GET)
+	public String listGet(Model model)
+			throws ServletException, IOException {
+		
+		return "showArticle";
 	}
 }
