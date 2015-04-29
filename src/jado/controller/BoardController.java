@@ -36,7 +36,7 @@ public class BoardController {
 		return "board";
 	}
 
-	@RequestMapping(value = "/write/{shopUrl}/{boardName}", method = RequestMethod.GET)
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String wirteGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		return "boardForm";
@@ -55,7 +55,7 @@ public class BoardController {
 		
 		Article article = new Article(shopUrl, boardName, title, content);
 		articleService.insertArticle(article);
-		return "blog";
+		return "redirect:/board";
 		
 	}
 }

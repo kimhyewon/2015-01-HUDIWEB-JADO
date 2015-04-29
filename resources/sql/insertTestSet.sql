@@ -25,7 +25,9 @@ insert into SHOP VALUES('testurl', 'HEY, JODO', '031-737-7979', '/userImg/shop/m
 insert into SELLER VALUES('testurl', 'seller','우리','bankaccount');
 
 insert into BOARD VALUES('testurl', 'INFO');
-insert into ARTICLE VALUES('testurl', 'INFO','오픈 기념 이벤트','content', '2015-03-26 12:34:56');
+insert into ARTICLE VALUES('testurl', 'INFO', '오픈 기념 이벤트', 'content', '2015-04-30 08:03:05');
+insert into ARTICLE VALUES('testurl', 'INFO', '배송에 대한 안내', 'content', '2015-04-20 17:14:46');
+insert into ARTICLE VALUES('testurl', 'INFO', '공지 사항 게시판입니다.', 'content', '2015-03-26 12:34:56');
 
 insert into CATEGORY VALUES(null, 'OUTER', 'testurl');
 insert into CATEGORY VALUES(null, 'TOP', 'testurl');

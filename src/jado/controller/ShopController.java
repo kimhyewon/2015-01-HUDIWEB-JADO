@@ -1,6 +1,7 @@
 package jado.controller;
 
 import jado.dao.ShopDao;
+import jado.model.Board;
 import jado.model.Shop;
 import jado.service.ShopService;
 
