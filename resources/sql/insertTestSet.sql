@@ -21,7 +21,7 @@ insert into USER_ROLE VALUES('customer', 'ROLE_CUSTOMER');
 insert into USER_ROLE VALUES('seller', 'ROLE_SELLER');
 insert into USER_ROLE VALUES('developer', 'ROLE_DEVELOPER');
 
-insert into SHOP VALUES('testurl', 'HEY, JODO', '031-737-7979', default, default, default, default, default, default, default);
+insert into SHOP VALUES('testurl', 'HEY, JODO', '031-737-7979', default, default, 'footer', default, default, default, default);
 insert into SELLER VALUES('testurl', 'seller','우리','bankaccount');
 
 insert into BOARD VALUES(null, 'testurl', 'INFO');

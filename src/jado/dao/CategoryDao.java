@@ -2,7 +2,6 @@ package jado.dao;
 
 import java.util.List;
 
-
 import jado.model.Category;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +10,17 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
-public class CategoryDao { 
+public class CategoryDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	public void insert(final Category category) {
 		String sql = "insert into CATEGORY values(null, ?, ?)";
-		
 		Object[] args = new Object[] { category.getName(), category.getShopUrl() };
 		jdbcTemplate.update(sql, args);
 	}
+
 	public Category selectByPk(final int id) {
 		String sql = "select * from CATEGORY where ID=?";
 		Object[] args = new Object[] { id };
@@ -32,6 +30,7 @@ public class CategoryDao {
 			return null;
 		}
 	}
+
 	public List<Category> selectAllByUrl(final String url) {
 		String sql = "select * from CATEGORY where SHOP_URL=?";
 		Object[] args = new Object[] { url };

@@ -1,9 +1,7 @@
 package jado.service;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -107,6 +105,15 @@ public class ShopService {
 
 	public List<Product> settingProductByUrl(String url) {
 		return productDao.selectAllByUrl(url);
+	}
+
+	public String getUrl(String userId) {
+		if (userId == null)
+			return null;
+		Seller seller = userDao.selectSellerById(userId);
+		if (seller == null)
+			return null;
+		return seller.getShopUrl();
 	}
 
 }
