@@ -12,8 +12,8 @@ function Encrypt() {
 	};
 };
 
-Encrypt.prototype.init = function() {
-	this.elForm = jado.util.getElement(".encrypt_form");
+Encrypt.prototype.init = function(encryptElement) {
+	this.elForm = jado.util.getElement(encryptElement);
 	if (!this.elForm) return;
 	for (var prop in this.elements) {
 		if (this.elements.hasOwnProperty(prop)) {

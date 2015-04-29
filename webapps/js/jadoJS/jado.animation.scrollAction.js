@@ -32,7 +32,7 @@ ScrollAction.prototype.runOnScroll = function() {
 };
 
 ScrollAction.prototype.getPage = function(posY, view) {
-    var temp = (view + posY - 30) / view;
+    var temp = (view + posY) / view;
     return parseInt(temp);
 };
 
