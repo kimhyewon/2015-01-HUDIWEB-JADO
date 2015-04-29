@@ -151,3 +151,4 @@ Setting.prototype.removeListItem = function(elementList, index) {
     elementList.removeChild(element);
 };
 
+//Todo: File 분리하기, 네임스페이스 오브젝트로 변환?
