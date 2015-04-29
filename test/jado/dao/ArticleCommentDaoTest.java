@@ -23,27 +23,22 @@ public class ArticleCommentDaoTest {
 
 	@Test
 	public void insert() {
-		ArticleComment articleComment = new ArticleComment("testUrl", "오픈 기념 이벤트", "공지사항", "erin3142@naver.com", "감사합니다2222");
+		ArticleComment articleComment = new ArticleComment(1, "erin3142@naver.com", "감사합니다2222");
 		articleCommentDao.insert(articleComment);
 		log.debug("articleComment1 : {}", articleComment);
-
-		List<ArticleComment> articleComment2 = articleCommentDao.findByArticle(articleComment);
+		List<ArticleComment> articleComment2 = articleCommentDao.findByArticle(1);
 		log.debug("articleComment2 : {}", articleComment2);
 	}
 
 	@Test
 	public void selectAll() throws Exception {
-		ArticleComment articleComment = new ArticleComment("testUrl", "오픈 기념 이벤트", "공지사항", "erin314@naver.com", "감사합니다2222");
+		ArticleComment articleComment = new ArticleComment(1, "erin314@naver.com", "감사합니다2222");
 		articleCommentDao.insert(articleComment);
 
-		List<ArticleComment> comments = articleCommentDao.findByArticle(articleComment);
-		System.out.println("comments");
-		System.out.println(comments.size());
-		System.out.println(comments.get(0));
+		List<ArticleComment> comments = articleCommentDao.findByArticle(1);
+		log.debug("comments : {} {} {}", articleComment, comments.size(), comments.get(0));
 		ArticleComment comment = articleCommentDao.findByPk(comments.get(0));
-		System.out.println("comments");
-		System.out.println(comment);
-
+		log.debug("comment : {} ", comment);
 	}
 
 }

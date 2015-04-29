@@ -6,6 +6,7 @@ import jado.model.Board;
 import jado.service.ArticleService;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,36 +27,39 @@ import core.exception.ForignKeyException;
 @Controller
 @RequestMapping(value = "/board")
 public class BoardController {
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	@Autowired private ArticleService articleService;
-	
-	
-	@RequestMapping(method = RequestMethod.GET)
-	public String doGet(HttpServletRequest req, HttpServletResponse resp)
+	private static final Logger logger = LoggerFactory
+			.getLogger(LoginController.class);
+	@Autowired
+	private ArticleService articleService;
+
+	@RequestMapping(value="/{boardId}", method = RequestMethod.GET)
+	public String doGet(Model model, @PathVariable("boardId")String boardId)
 			throws ServletException, IOException {
+		Board board = articleService.getBoard(Integer.parseInt(boardId));
+		List<Article> articles = articleService.getArticles(Integer.parseInt(boardId));
+		model.addAttribute("articles", articles );
+		model.addAttribute("board", board);
 		return "board";
 	}
 
-	@RequestMapping(value = "/write/{shopUrl}/{boardName}", method = RequestMethod.GET)
-	public String wirteGet(HttpServletRequest req, HttpServletResponse resp)
+	@RequestMapping(value = "/write/{boardId}", method = RequestMethod.GET)
+	public String wirteGet(@PathVariable("boardId")String boardId, Model model)
 			throws ServletException, IOException {
+		model.addAttribute("boardId", boardId);
 		return "boardForm";
 	}
 
-	
 	// TODO - board에서 쓴 내용 post로 받아오기 구현 해야함
-	@RequestMapping(value = "/write/{shopUrl}/{boardName}", method = RequestMethod.POST)
-	protected String writePost(@PathVariable("shopUrl") String shopUrl, @PathVariable("boardName")String boardName,
-			String title, String content,
-			HttpSession session, Model model) throws ServletException, IOException, ForignKeyException {
-		logger.debug("shop data1 {}", shopUrl);
-		logger.debug("shop data2 {}", boardName);
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	protected String writePost(String boardId, String title, String content,
+			HttpSession session, Model model) throws ServletException,
+			IOException, ForignKeyException {
 		logger.debug("shop data3 {}", title);
 		logger.debug("shop data4 {}", content);
-		
-		Article article = new Article(shopUrl, boardName, title, content);
+
+		Article article = new Article(Integer.parseInt(boardId), title, content);
 		articleService.insertArticle(article);
-		return "blog";
-		
+		return "board";
+
 	}
 }

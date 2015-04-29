@@ -25,7 +25,7 @@ public class BoardDaoTest {
 	public void insertTest() {
 		Board board = new Board("testUrl", "직원구함");
 		boardDao.insert(board);
-		board = boardDao.selectByPk(board);
+		board = boardDao.selectByPk(1);
 		log.debug("board : {}", board);
 		List<Board> boards = boardDao.selectAllByUrl(board.getShopUrl());
 		log.debug("boards : {}", board);
@@ -37,8 +37,8 @@ public class BoardDaoTest {
 	public void removeTest() throws Exception {
 		Board board = new Board("testUrl", "할인 이벤트");
 		boardDao.insert(board);
-		boardDao.remove(board);
-		board = boardDao.selectByPk(board);
+		boardDao.remove(2);
+		board = boardDao.selectByPk(2);
 		if (board == null) {
 			log.debug("removed");
 		}

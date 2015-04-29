@@ -21,7 +21,13 @@
 			<div class = "nav_content col s2 m2 l2"><a href="/user/login">JOIN</a></div>
 			<div class = "nav_content col s2 m2 l2"><a href="">MYPAGE</a></div>
 			<div class = "nav_content col s2 m2 l2"><a href="">CART</a></div>
-			<div class = "nav_content col s2 m2 l2"><a href="/board">INFO</a></div>
+
+			<c:forEach var="board" items="${shop.boards}">
+				<div class = "nav_content col s2 m2 l2"><a href="/board/${board.id}">
+					${board.name}
+				</a></div>
+			</c:forEach>
+
 			<div class = "nav_content col s2 m2 l2"><a href="/setting">SETTING</a></div>
 			<div id = "nav_content col s2 m2 l2">
 			</div>
@@ -31,13 +37,12 @@
 	<div id = "body_con" class="row">
 		<div id = "white_block" class="col shide m1 l1"></div>
 		<div id = "category" class="row col s12 m2 l2">
-			<div class = "category_list row col s1.5 m12 l12">OUTER</div>
-			<div class = "category_list row col s1.5 m12 l12">TOP</div>
-			<div class = "category_list row col s1.5 m12 l12">DRESS</div>
-			<div class = "category_list row col s1.5 m12 l12">PANTS</div>
-			<div class = "category_list row col s1.5 m12 l12">SKIRT</div>
-			<div class = "category_list row col s1.5 m12 l12">ACC</div>
-			<div class = "category_list col s1.5 m12 l12">SALE</div>
+			<c:forEach var="category" items="${shop.categorys}">
+				<div class = "category_list row col s1.5 m12 l12">
+					${category.name}
+				</div>
+			</c:forEach>
+			
 			<div id ="profile_con" class ="row col shide m10 l6">
 				<div id ="profile_img"><img src="/img/profile.png" style="width:55%; height:55%; "></div>
 				<div id = "profile_name" >Grace lilac</div>
@@ -45,7 +50,7 @@
 		</div>
 
 		<div id = "main_img_con" class=" col s12 m8 l8">
-			<div id ="main_img" ><img src="/img/main_img.jpg" style="width:100%; "></div>
+			<div id ="main_img" ><img src='${shop.mainUrl}' style="width:100%; "></div>
 		</div>
 		<div id = "white_block" class="col shide m1 l1"></div>
 	</div>
@@ -131,7 +136,9 @@
 
 	</div>
 	<div id = "black_line" class="row col s12 m12 l12"></div>
-	<div id = "footer" class="row">TEL. 1599-7408<br />MON-FRI AM11- PM5 / LUNCH PM12-PM1 / SAT.SUN.HOLIDAY OFF<br />국민 431801-01-178756 / 농협 301-0150-9002-41 / 신한 100-030-100444 / 우리 1005-102-534194<br />택품반품 주소. 서울시 성동구 마장동 781-2 동대문직영(리플리) -현대택배- [1588-2121]<br /><br />COMPANY. 패스워드 주식회사 TEL. 1599-7408 MASTER. 윤선영(SHEGEM@HANMAIL.NET)<br />OWNER. 강남훈 ADDRESS: 138-848 서울특별시 송파구 백제고분로 399 (송파동,영풍빌딩지하1층)<br />BUSINESS LICENSE. 261-81-07102 MAIL ORDER LICENSE. 2014-서울송파-1052호 [사업자정보확인] <br />COPYRIGHT © LEPLEY ALL RIGHTS RESERVED. DESIGN BY LALASHOW<br /><br /><br />
+	<div id = "footer" class="row">TEL. ${shop.phone}<br />
+	${shop.footer}	
+	<br />
 	</div>
 </body>
 </html>

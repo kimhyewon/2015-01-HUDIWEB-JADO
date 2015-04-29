@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Board {
 
+	private int id;
 	private String shopUrl;
 	private String name;
 	private List<Article> articles;
@@ -11,15 +12,23 @@ public class Board {
 	public Board() {
 	}
 
-	public Board(String shopUrl, String name, List<Article> articles) {
+	public Board(int id, String shopUrl, String name) {
 		super();
+		this.id = id;
 		this.shopUrl = shopUrl;
 		this.name = name;
-		this.articles = articles;
 	}
 
 	public Board(String shopUrl, String name) {
-		this(shopUrl, name, null);
+		this(0, shopUrl, name);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getShopUrl() {
@@ -48,7 +57,7 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [shopUrl=" + shopUrl + ", name=" + name + ", articles=" + articles + "]";
+		return "Board [id=" + id + ", shopUrl=" + shopUrl + ", name=" + name + ", articles=" + articles + "]";
 	}
 
 }

@@ -5,7 +5,6 @@ package jado.dao;
 import java.util.List;
 
 import jado.model.Article;
-import jado.model.Board;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,30 +24,27 @@ public class ArticleDaoTest {
 	
 	@Test
 	public void insertAndSelectTest() {
-		Article article = new Article( "testUrl", "공지사항", "title4", "content");
+		Article article = new Article( 1, "안녕하세요 오픈 했습니다", " content");
 		articleDao.insert(article);
-		log.debug("article : {}", article);
-		List<Article> articles = articleDao.selectAllByBoard(new Board("testUrl", "공지사"));
-		article = articleDao.selectByPk(article);
-		log.debug("article : {}", article);		
+		log.debug("article null: {}", article);
+		List<Article> articles = articleDao.selectAllByBoard(1);
+		article = articleDao.selectByPk(4);
+		log.debug("article read: {}", article);		
 		log.debug("articles : {}", articles);
 	}
+	
 	@Test
 	public void updateTest() throws Exception {
-		Article article = new Article( "testUrl", "공지사항", "title5", "content111");
-		articleDao.insert(article);
-		log.debug("article_notinsert : {}", article);
-		article = articleDao.selectByPk(article);
-		log.debug("article_insert    : {}", article);
-		
-		Article temp = new Article("testUrl", "공지사항", "title4", "updated"); 
+		Article article = articleDao.selectByPk(3);
+		log.debug("article_update1    : {}", article);
+		Article temp = new Article("title4", "updated"); 
 		article.update(temp);
 		articleDao.update(article);
-		article = articleDao.selectByPk(article);
-		log.debug("article_update    : {}", article);
+		article = articleDao.selectByPk(3);
+		log.debug("article_update2    : {}", article);
 		
-		articleDao.remove(article);
-		article = articleDao.selectByPk(article);
+		articleDao.remove(3);
+		article = articleDao.selectByPk(3);
 		if (article == null) {
 			log.debug("removed");
 		}
