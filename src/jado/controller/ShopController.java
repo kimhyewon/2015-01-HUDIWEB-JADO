@@ -1,10 +1,12 @@
 package jado.controller;
 
 import jado.dao.ShopDao;
+import jado.model.Product;
 import jado.model.Shop;
 import jado.service.ShopService;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -22,19 +24,22 @@ public class ShopController {
 	@Autowired private ShopDao shopDao;
 	@Autowired private ShopService shopService;
 	
-//	아무나 shop url알면 그 shop으로 갈 수 있음 
+//	아무개 사용자가 남에 샵에 접근할때
 	@RequestMapping(value = "/shop/{shopUrl}", method = RequestMethod.GET)
 	public String showShop(@PathVariable("shopUrl")String url, Model model) throws ServletException, IOException {
-		Shop shop = shopDao.selectByUrl(url);
+		Shop shop = shopService.settingByUrl(url);
+		List<Product> products = shopService.settingProductByUrl(url);
 		if (shop == null) return "main";
 		model.addAttribute("shop", shop);
+		model.addAttribute("products", products);
 		return "blogDummy";
 	}
-//	본인이 자기 샵으로 갈때 : 이건 필요 없는 경로여서 나중에 없앨 예정
+	
+//	본인이 자기 샵으로 갈때 
 	@RequestMapping(value = "/shop", method = RequestMethod.GET)
 	public String showShopByUser(Model model,HttpSession session) throws ServletException, IOException {
 		String userId = (String) session.getAttribute("userId");
-		Shop shop = shopService.setting(userId);
+		Shop shop = shopService.settingById(userId);
 		if (shop == null) return "main";
 		model.addAttribute("shop", shop);
 		return "blogDummy";

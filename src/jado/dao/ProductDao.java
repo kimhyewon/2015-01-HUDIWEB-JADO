@@ -17,13 +17,13 @@ public class ProductDao {
 	private JdbcTemplate jdbcTemplate;
 	
 	public void insert(final Product product) {
-		String sql = "insert into Product values(null, ?, ?, ?, ?, ?, ?, null)";
+		String sql = "insert into PRODUCT values(null, ?, ?, ?, ?, ?, ?, null)";
 		Object[] args = new Object[] {product.getCategoryId(), product.getName(), product.getPrice(), product.getStock(), product.getImgUrl(), product.getDesc()};
 		jdbcTemplate.update(sql, args);
 	}
 
 	public Product selectByPk(final int productId) {
-		String sql = "select * from Product where ID=?";
+		String sql = "select * from PRODUCT where ID=?";
 		Object[] args = new Object[] { productId };
 		try {
 			return jdbcTemplate.queryForObject(sql, args, new BeanPropertyRowMapper<Product>(Product.class));
@@ -31,11 +31,20 @@ public class ProductDao {
 			return null;
 		}
 	}
-	public List<Product> selectAllByCateGoryId(final Product product) {
-		String sql = "select * from Product where CATEGORY_ID=?";
-		Object[] args = new Object[] { product.getCategoryId() };
+	public List<Product> selectAllByCateGoryId(final int categoryId) {
+		String sql = "select * from PRODUCT where CATEGORY_ID=?";
 		try {
-			return jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<Product>(Product.class));
+			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Product>(Product.class), categoryId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	public List<Product> selectAllByUrl(String url) {
+		String sql = "select PRODUCT.* from PRODUCT inner join CATEGORY on PRODUCT.CATEGORY_ID = CATEGORY.ID "
+				+ "where CATEGORY.SHOP_URL = 'testurl'";
+		try {
+			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Product>(Product.class), url);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

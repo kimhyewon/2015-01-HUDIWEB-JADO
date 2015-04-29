@@ -32,7 +32,7 @@ public class SettingController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String formSetting(Model model, HttpSession session) throws ServletException, IOException {
 		String userId = (String) session.getAttribute("userId");
-		Shop shop = shopService.setting(userId);
+		Shop shop = shopService.settingById(userId);
 		if (shop == null)
 			return "main";
 		model.addAttribute("shop", shop);
