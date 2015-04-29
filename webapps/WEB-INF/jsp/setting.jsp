@@ -13,7 +13,7 @@
 				<label class="error">${errorMessage}</label>
 				</c:if>
 				<h2>기본 정보 </h2>
-				<h3><a href="/shop/${shop.url}">내샵 돌아가기 </a></h3>
+				<h3><a href="/shop/${shop.url}">내 샵 돌아가기</a></h3>
 				<ul>
 					<li>
 					 	<input type="text" name="url" value="${shop.url}" readonly>

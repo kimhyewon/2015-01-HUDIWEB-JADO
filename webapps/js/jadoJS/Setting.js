@@ -6,19 +6,6 @@ var Setting = (function() {
         this.elBoard = this.elTarget.querySelector('#boards');
         this.elCategory = this.elTarget.querySelector('#categories');
     }
-
-    Setting.prototype.boardController = function() {
-        
-    };
-
-    Setting.prototype.runOnScroll = function() {
-    };
-
-    Setting.prototype.removePage = function() {
-    };
-
-    Setting.prototype.startPage = function() {
-    };
     return Setting;
 })();
 
@@ -37,8 +24,10 @@ var boardNum = 0;
 var elBoards = document.querySelector('#boardAfter');
 function boardNew () {
     elBoards.innerHTML = elBoards.innerHTML 
-    + "<li name="+boardNum+"><input type='text' name='board' placeholder='제목을 입력해 주세요'>"
-    +"<button type='button' onclick='boardDelete("+boardNum+")'>삭제</button></li>";
+    + "<li name="+boardNum+">"
+        + "<input type='text' name='board' placeholder='제목을 입력해 주세요'>"
+        + "<button type='button' onclick='boardDelete("+boardNum+")'>삭제</button>"
+    + "</li>";
     boardNum++;
 }
 function boardDelete (index) {
