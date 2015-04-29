@@ -50,7 +50,7 @@
 		</div>
 
 		<div id = "main_img_con" class=" col s12 m8 l8">
-			<div id ="main_img" ><img src='${shop.main_url}' style="width:100%; "></div>
+			<div id ="main_img" ><img src='${shop.mainUrl}' style="width:100%; "></div>
 		</div>
 		<div id = "white_block" class="col shide m1 l1"></div>
 	</div>

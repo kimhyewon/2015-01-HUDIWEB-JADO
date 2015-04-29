@@ -25,7 +25,6 @@ insert into SHOP VALUES('testurl', 'HEY, JODO', '031-737-7979', default, default
 insert into SELLER VALUES('testurl', 'seller','우리','bankaccount');
 
 insert into BOARD VALUES(null, 'testurl', 'INFO');
-insert into BOARD VALUES(null, 'testurl', '공지사항');
 insert into ARTICLE VALUES( null, 1, '오픈 기념 이벤트', 'content', null);
 insert into ARTICLE VALUES( null, 1, '봄 신상 할인 이벤트', 'content', null);
 insert into ARTICLE VALUES( null, 1, '직원 모집', 'content', null);
