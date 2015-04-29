@@ -251,26 +251,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `jado_dev`.`CART_has_PRODUCT`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `jado_dev`.`CART_has_PRODUCT` ;
-
-CREATE TABLE IF NOT EXISTS `jado_dev`.`CART_has_PRODUCT` (
-  `SHOP_URL` VARCHAR(45) NULL,
-  `USER_ID` VARCHAR(45) NULL,
-  `PRODUCT_ID` INT NULL,
-  `AMOUNT` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`SHOP_URL`, `USER_ID`, `PRODUCT_ID`),
-  INDEX `fk_CART_has_PRODUCT_PRODUCT1_idx` (`PRODUCT_ID` ASC),
-  CONSTRAINT `fk_CART_has_PRODUCT_PRODUCT1`
-    FOREIGN KEY (`PRODUCT_ID`)
-    REFERENCES `jado_dev`.`PRODUCT` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `jado_dev`.`USER_ROLE`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `jado_dev`.`USER_ROLE` ;
@@ -286,7 +266,6 @@ CREATE TABLE IF NOT EXISTS `jado_dev`.`USER_ROLE` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
