@@ -44,7 +44,7 @@ public class UserService {
 	public void updateShop(Shop shopFromEdit) {
 		Shop shop = shopDao.selectByUrl(shopFromEdit.getUrl());
 		if(shop.updateFromUserPage(shopFromEdit)){
-			shopDao.update(shop);
+			shopDao.updateInfo(shop);
 		}
 	}
 	

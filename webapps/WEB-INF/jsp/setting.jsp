@@ -40,22 +40,46 @@
 				<li>
 					<form id="upload" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="url" value="${shop.url}">
+						<input type="hidden" name="localLocation" value="/userImg/shop/main">
+						<input type="hidden" name="type" value="MAIN_URL">
 						<input type="file" name="file"/>
-						<input type="submit" name="submit" formaction="/setting/api/image/banner" value="업 로 드"/>
+						<input type="submit" name="submit" formaction="/setting/api/image" value="업 로 드"/>
 					</form>
 				</li>
 				<li>
 					<form id="upload" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="url" value="${shop.url}">
+						<input type="hidden" name="type" value="PROFILE_URL">
+						<input type="hidden" name="localLocation" value="/userImg/shop/profile">
 						<input type="file" name="file" />
-						<input type="submit" name="submit" formaction="/setting/api/image/main" value="업 로 드"/>
+						<input type="submit" name="submit" formaction="/setting/api/image" value="업 로 드"/>
 					</form>
 				</li>
 				<li>
 					<form id="upload" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="url" value="${shop.url}">
+						<input type="hidden" name="type" value="SUB_IMG1_URL">
+						<input type="hidden" name="localLocation" value="/userImg/shop/subImg1">
 						<input type="file" name="file" />
-						<input type="submit" name="submit" formaction="/setting/api/image/logo" value="업 로 드"/>
+						<input type="submit" name="submit" formaction="/setting/api/image" value="업 로 드"/>
+					</form>
+				</li>
+				<li>
+					<form id="upload" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="url" value="${shop.url}">
+						<input type="hidden" name="type" value="SUB_IMG2_URL">
+						<input type="hidden" name="localLocation" value="/userImg/shop/subImg2">
+						<input type="file" name="file" />
+						<input type="submit" name="submit" formaction="/setting/api/image" value="업 로 드"/>
+					</form>
+				</li>
+				<li>
+					<form id="upload" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="url" value="${shop.url}">
+						<input type="hidden" name="type" value="SUB_IMG3_URL">
+						<input type="hidden" name="localLocation" value="/userImg/shop/subImg3">
+						<input type="file" name="file" />
+						<input type="submit" name="submit" formaction="/setting/api/image" value="업 로 드"/>
 					</form>
 				</li>
 			</ul>

@@ -4,45 +4,47 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class Article {
-	
-	private String shopUrl;
-	private String boardName;
+
+	private int id;
+	private int boardId;
 	private String title;
 	private String content;
 	private Timestamp articleTime;
 	private List<ArticleComment> comments = null;
-	
-	public Article() { }
 
-	public Article(String shopUrl, String boardName, String title, String content, Timestamp articleTime, List<ArticleComment> comments) {
+	public Article() {
+	}
+
+	public Article(int id, int boardId, String title, String content, Timestamp articleTime) {
 		super();
-		this.shopUrl = shopUrl;
-		this.boardName = boardName;
+		this.id = id;
+		this.boardId = boardId;
 		this.title = title;
 		this.content = content;
 		this.articleTime = articleTime;
-		this.comments = comments;
-		toString();
 	}
 
-	public Article(String shopUrl, String boardName, String title, String content) {
-		this(shopUrl, boardName, title, content, null, null);
+	public Article(int boardId, String title, String content) {
+		this(0, boardId, title, content, null);
+	}
+	public Article(String title, String content) {
+		this(0, 0, title, content, null);
 	}
 
-	public String getShopUrl() {
-		return shopUrl;
+	public int getId() {
+		return id;
 	}
 
-	public void setShopUrl(String shopUrl) {
-		this.shopUrl = shopUrl;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getBoardName() {
-		return boardName;
+	public int getBoardId() {
+		return boardId;
 	}
 
-	public void setBoardName(String boardName) {
-		this.boardName = boardName;
+	public void setBoardId(int boardId) {
+		this.boardId = boardId;
 	}
 
 	public String getTitle() {
@@ -79,18 +81,20 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article [shopUrl=" + shopUrl + ", boardName=" + boardName + ", title=" + title + ", content=" + content + ", articleTime=" + articleTime + ", comments=" + comments + "]";
+		return "Article [id=" + id + ", boardId=" + boardId + ", title=" + title + ", content=" + content + ", articleTime=" + articleTime + ", comments=" + comments + "]";
 	}
 
 	public boolean update(Article temp) {
 		boolean result = false;
-		if (this.content.equals(temp.content)) {
+		if (!this.title.equals(temp.title)) {
+			this.title = temp.title;
+			result = true;
+		}
+		if (!this.content.equals(temp.content)) {
 			this.content = temp.content;
 			result = true;
 		}
 		return result;
 	}
-
-	
 
 }
