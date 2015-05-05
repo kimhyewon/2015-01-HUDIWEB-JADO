@@ -44,9 +44,11 @@ public class BoardController {
 
 	//board form 페이지 
 	@RequestMapping(value = "/write/{boardId}", method = RequestMethod.GET)
-	public String wirteGet(@PathVariable("boardId")String boardId, Model model)
+	public String wirteGet(Model model, @PathVariable("boardId")String boardId)
 			throws ServletException, IOException {
-		model.addAttribute("boardId", boardId);
+		Board board = articleService.getBoard(Integer.parseInt(boardId));
+		model.addAttribute("board", board);
+//		model.addAttribute("boardId", boardId);
 		return "boardForm";
 	}
 
