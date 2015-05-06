@@ -8,20 +8,19 @@
 	<%@ include file="include/top.jspf" %>
 
 	<!-- article 부분 --> 
-	<div id = "board_name">${board.name}</div>
 	<div id = "show_article_title">${article.title}</div>
 	<div id = "show_article_author"></div> 
-	<div id = "show_article_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="" /></div>
+	<div id = "show_article_date">${article.articleTime}<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="" /></div>
 	<div id = "show_article_content">${article.content}</div>
 	<input type="hidden" name="boardId" value="${boardId}" />
 
 
 	<!-- 댓글 작성 부분 -->
 	<div class="answerWrite">
-		<form method="post" action="">
-			<input type="hidden" name="" value="" />
-			<div id = "comment_writer">이름</div>
-			<input type="text" name="writer" id="writer" />
+		<form method="post" action="/board/saveanswer" method="post">
+			<input type="hidden" name="articleId" value="${article.id}" />
+			<div id = "comment_writer">아이디</div>
+			<input type="text" name="userId" id="userId" />
 			<div id = "comment_content">내용</div>
 			<textarea name="content" id="content"></textarea>
 			<input type="submit" value="저장" />

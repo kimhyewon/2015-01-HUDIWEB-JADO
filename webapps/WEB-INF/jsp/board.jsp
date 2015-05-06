@@ -10,7 +10,6 @@
 	<c:forEach var="article" items="${articles}">
 		<div class = "nav_content col s2 m2 l2"><a href="/board/show/${article.id}">
 			${article.title}
-			${article.id}
 		</a></div>
 	</c:forEach>
 	<div id = "write_button"><a href="/board/write/${board.id}">글쓰기</a></div>

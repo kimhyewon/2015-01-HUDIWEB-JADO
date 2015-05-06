@@ -1,6 +1,5 @@
 package jado.controller;
 
-
 import jado.model.Article;
 import jado.model.ArticleComment;
 import jado.model.Board;
@@ -26,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import core.exception.ForignKeyException;
 
-
 @Controller
 @RequestMapping(value = "/board")
 public class BoardController {
@@ -45,7 +43,7 @@ public class BoardController {
 		return "board";
 	}
 
-	//board form 페이지 
+	//글쓰기 클릭시 board form 페이지로 이동  
 	@RequestMapping(value = "/write/{boardId}", method = RequestMethod.GET)
 	public String wirteGet(Model model, @PathVariable("boardId")String boardId)
 			throws ServletException, IOException {
@@ -72,13 +70,26 @@ public class BoardController {
 	@RequestMapping(value="/show/{articleId}", method = RequestMethod.GET)
 	public String listGet(Model model, @PathVariable("articleId")String articleId)
 			throws ServletException, IOException {
-		logger.debug(articleId);
-		logger.debug("id",Integer.parseInt(articleId));
 		Article article = articleService.getArticle(Integer.parseInt(articleId));
 		List<ArticleComment> comments = articleService.getComments(Integer.parseInt(articleId));
 		model.addAttribute("article", article);
 		model.addAttribute("comments", comments);
 
 		return "showArticle";
+	}
+	
+	//댓글 구현
+	@RequestMapping(value = "/saveanswer", method = RequestMethod.POST)
+	protected String commentPost(String articleId, String userId, String content,
+			HttpSession session, Model model) throws ServletException,
+			IOException, ForignKeyException {
+		logger.debug("shop data3 {}", articleId);
+		logger.debug("shop data3 {}", userId);
+		logger.debug("shop data4 {}", content);
+		
+		ArticleComment articleComment = new ArticleComment(Integer.parseInt(articleId), userId, content);
+		articleService.insertArticleCommnet(articleComment);
+		
+		return "redirect:/showArticle/"+articleId;
 	}
 }

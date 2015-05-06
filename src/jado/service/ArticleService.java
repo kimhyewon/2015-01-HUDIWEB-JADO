@@ -44,4 +44,11 @@ public class ArticleService {
 		return articleCommentDao.findByArticle(articleId);
 	}
 	
+	public void insertArticleCommnet(ArticleComment articleComment) throws ForignKeyException {
+		Article article = articleDao.selectByPk(articleComment.getArticleId());
+		if (article == null) {
+			throw new ForignKeyException("잘못된 경로로 접근하셨습니다.");
+		}
+		articleCommentDao.insert(articleComment);
+	}
 }
