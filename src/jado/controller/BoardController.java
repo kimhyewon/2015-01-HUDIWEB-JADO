@@ -90,6 +90,6 @@ public class BoardController {
 		ArticleComment articleComment = new ArticleComment(Integer.parseInt(articleId), userId, content);
 		articleService.insertArticleCommnet(articleComment);
 		
-		return "redirect:/showArticle/"+articleId;
+		return "redirect:/board/show/"+articleId;
 	}
 }
