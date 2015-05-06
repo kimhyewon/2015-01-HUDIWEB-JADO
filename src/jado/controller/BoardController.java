@@ -1,7 +1,8 @@
 package jado.controller;
 
-import jado.dao.ArticleDao;
+
 import jado.model.Article;
+import jado.model.ArticleComment;
 import jado.model.Board;
 import jado.service.ArticleService;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import core.exception.ForignKeyException;
+
 
 @Controller
 @RequestMapping(value = "/board")
@@ -62,14 +65,20 @@ public class BoardController {
 
 		Article article = new Article(Integer.parseInt(boardId), title, content);
 		articleService.insertArticle(article);
-		return "board";
+		return "redirect:/board/"+boardId;
 	}
 	
 	//list에서 title 클릭시 해당 글 보여주는 코드 
-	@RequestMapping(value="/show", method = RequestMethod.GET)
-	public String listGet(Model model)
+	@RequestMapping(value="/show/{articleId}", method = RequestMethod.GET)
+	public String listGet(Model model, @PathVariable("articleId")String articleId)
 			throws ServletException, IOException {
-		
+		logger.debug(articleId);
+		logger.debug("id",Integer.parseInt(articleId));
+		Article article = articleService.getArticle(Integer.parseInt(articleId));
+		List<ArticleComment> comments = articleService.getComments(Integer.parseInt(articleId));
+		model.addAttribute("article", article);
+		model.addAttribute("comments", comments);
+
 		return "showArticle";
 	}
 }

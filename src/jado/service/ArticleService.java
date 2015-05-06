@@ -2,9 +2,11 @@ package jado.service;
 
 import java.util.List;
 
+import jado.dao.ArticleCommentDao;
 import jado.dao.ArticleDao;
 import jado.dao.BoardDao;
 import jado.model.Article;
+import jado.model.ArticleComment;
 import jado.model.Board;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import core.exception.ForignKeyException;
 public class ArticleService {
 	@Autowired private ArticleDao articleDao;
 	@Autowired private BoardDao boardDao;
+	@Autowired private ArticleCommentDao articleCommentDao;
 
 	public void insertArticle(Article article) throws ForignKeyException {
 		Board board = boardDao.selectByPk(article.getBoardId());
@@ -31,6 +34,14 @@ public class ArticleService {
 
 	public Board getBoard(int boardId) {
 		return boardDao.selectByPk(boardId);
+	}
+	
+	public Article getArticle(int articleId) {
+		return articleDao.selectByPk(articleId);
+	}
+	
+	public List<ArticleComment> getComments(int articleId) {
+		return articleCommentDao.findByArticle(articleId);
 	}
 	
 }
