@@ -17,7 +17,7 @@
 
 	<!-- 댓글 작성 부분 -->
 	<div class="answerWrite">
-		<form method="post" action="/board/saveanswer" method="post">
+		<form method="post" action="/board/save/answer" >
 			<input type="hidden" name="articleId" value="${article.id}" />
 			<div id = "comment_writer">아이디</div>
 			<input type="text" name="userId" id="userId" />
@@ -29,31 +29,25 @@
 
 	<!-- 댓글 리스트 -->
 	<div class="comments">
-		<form method="post" action="">
-			<c:forEach var="articleComment" items="${comments}">
-				<input type="hidden" name="boardId" value="${boardId}">
-				<input type="hidden" name="" value="">
+		<c:forEach var="articleComment" items="${comments}">
+			<form method="post" action="/board/delete/answer" >
+				<input type="hidden" name="articleId" value="${article.id}" />
+				<input type="hidden" name="userId" value="${articleComment.userId}" />
+				<input type="hidden" name="commentTime" value="${articleComment.commentTime}" />
 				<div class="comment">
 					<div class="comment-metadata">
-						<span class="comment-author">아아아${articleComment.userId}</span> 
+						<span class="comment-author">${articleComment.userId}</span> 
 						<span class="comment-date" value="">${articleComment.commentTime}</span>
 					</div>
 					<div class="comment-content">
-						<span class="about">내용 : ${articleComment.content}</span> 
-						<span class="comment-delete-button" >
-							<ul>
-								<li>
-									<input type="submit" name="submit" formaction="" value="수정"/>
-								</li>
-								<li>
-									<input type="submit" name="submit" formaction="" value="삭제"/>
-								</li>	
-							</ul>
-						</span>
+						<div class="about">내용 : ${articleComment.content}</div> 
+						<div class="comment-delete-button" >
+							<input type="submit" value="삭제"/>
+						</div>
 					</div>
 				</div>
-			</c:forEach>
-		</form>
+			</form>
+		</c:forEach>
 	</div>
 </body>
 </html>

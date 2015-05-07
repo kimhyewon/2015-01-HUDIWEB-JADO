@@ -78,8 +78,8 @@ public class BoardController {
 		return "showArticle";
 	}
 	
-	//댓글 구현
-	@RequestMapping(value = "/saveanswer", method = RequestMethod.POST)
+	//댓글 등록 구현
+	@RequestMapping(value = "/save/answer", method = RequestMethod.POST)
 	protected String commentPost(String articleId, String userId, String content,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
@@ -89,6 +89,20 @@ public class BoardController {
 		
 		ArticleComment articleComment = new ArticleComment(Integer.parseInt(articleId), userId, content);
 		articleService.insertArticleCommnet(articleComment);
+		
+		return "redirect:/board/show/"+articleId;
+	}
+	
+	//댓글 삭제 구현
+	@RequestMapping(value = "/delete/answer", method = RequestMethod.POST)
+	protected String commentDeletePost(String articleId, String userId, String commentTime,
+			HttpSession session, Model model) throws ServletException,
+			IOException, ForignKeyException {
+		logger.debug("data {}", articleId);
+		logger.debug("data {}", userId);
+		logger.debug("data {}", commentTime);
+		
+		articleService.deleteArticleComment(Integer.parseInt(articleId), userId, commentTime);
 		
 		return "redirect:/board/show/"+articleId;
 	}
