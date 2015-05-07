@@ -55,4 +55,8 @@ public class ArticleService {
 	public void deleteArticleComment(int articleId, String userId, String commentTime) throws ForignKeyException {
 		articleCommentDao.remove(articleId, userId, commentTime);
 	}
+	
+	public void deleteArticle(int articleId) throws ForignKeyException {
+		articleDao.remove(articleId);
+	}
 }

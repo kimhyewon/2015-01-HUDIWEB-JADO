@@ -60,6 +60,7 @@ public class BoardController {
 			IOException, ForignKeyException {
 		logger.debug("shop data3 {}", title);
 		logger.debug("shop data4 {}", content);
+		logger.debug("shop data555 {}", boardId);
 
 		Article article = new Article(Integer.parseInt(boardId), title, content);
 		articleService.insertArticle(article);
@@ -68,10 +69,12 @@ public class BoardController {
 	
 	//list에서 title 클릭시 해당 글 보여주는 코드 
 	@RequestMapping(value="/show/{articleId}", method = RequestMethod.GET)
-	public String listGet(Model model, @PathVariable("articleId")String articleId)
+	public String listGet(Model model, @PathVariable("articleId")String articleId, String boardId)
 			throws ServletException, IOException {
+//		Board board = articleService.getBoard(Integer.parseInt(boardId));
 		Article article = articleService.getArticle(Integer.parseInt(articleId));
 		List<ArticleComment> comments = articleService.getComments(Integer.parseInt(articleId));
+//		model.addAttribute("board", board);
 		model.addAttribute("article", article);
 		model.addAttribute("comments", comments);
 
@@ -79,8 +82,8 @@ public class BoardController {
 	}
 	
 	//댓글 등록 구현
-	@RequestMapping(value = "/save/answer", method = RequestMethod.POST)
-	protected String commentPost(String articleId, String userId, String content,
+	@RequestMapping(value = "/answer/save", method = RequestMethod.POST)
+	protected String commentPost(String boardId, String articleId, String userId, String content,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
 		logger.debug("shop data3 {}", articleId);
@@ -94,8 +97,8 @@ public class BoardController {
 	}
 	
 	//댓글 삭제 구현
-	@RequestMapping(value = "/delete/answer", method = RequestMethod.POST)
-	protected String commentDeletePost(String articleId, String userId, String commentTime,
+	@RequestMapping(value = "/answer/delete", method = RequestMethod.POST)
+	protected String commentDeletePost(String boardId, String articleId, String userId, String commentTime,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
 		logger.debug("data {}", articleId);
@@ -105,5 +108,25 @@ public class BoardController {
 		articleService.deleteArticleComment(Integer.parseInt(articleId), userId, commentTime);
 		
 		return "redirect:/board/show/"+articleId;
+	}
+	
+	//article 본문 수정 구현 
+//	@RequestMapping(value = "/update", method = RequestMethod.POST)
+//	protected String articleUpdatePost(String articleId, String userId, String commentTime,
+//			HttpSession session, Model model) throws ServletException,
+//			IOException, ForignKeyException {
+//		
+//		return "redirect:/board/show/"+articleId;
+//	}
+	
+	//article 본문 삭제 구현 
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	protected String articleUpdatePost(String articleId, String boardId,
+			HttpSession session, Model model) throws ServletException,
+			IOException, ForignKeyException {
+		logger.debug("boardId {}", boardId);
+		articleService.deleteArticle(Integer.parseInt(articleId));
+		
+		return "redirect:/board/"+boardId;
 	}
 }

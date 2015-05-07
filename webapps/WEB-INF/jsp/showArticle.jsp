@@ -7,7 +7,8 @@
 <body id = "show_article">
 	<%@ include file="include/top.jspf" %>
 
-	<!-- article 부분 --> 
+	<!-- article 본문 부분 --> 
+	<input type="hidden" name="boardId" value="${board.id}" />
 	<div id = "show_article_title">${article.title}</div>
 	<div id = "show_article_author"></div> 
 	<div id = "show_article_date">${article.articleTime}<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="" /></div>
@@ -17,20 +18,20 @@
 
 	<!-- 댓글 작성 부분 -->
 	<div class="answerWrite">
-		<form method="post" action="/board/save/answer" >
+		<form method="post" action="/board/answer/save" >
 			<input type="hidden" name="articleId" value="${article.id}" />
 			<div id = "comment_writer">아이디</div>
 			<input type="text" name="userId" id="userId" />
 			<div id = "comment_content">내용</div>
 			<textarea name="content" id="content"></textarea>
-			<input type="submit" value="저장" />
+			<input type="submit" value="댓글 저장" />
 		</form>
 	</div>
 
 	<!-- 댓글 리스트 -->
 	<div class="comments">
 		<c:forEach var="articleComment" items="${comments}">
-			<form method="post" action="/board/delete/answer" >
+			<form method="post" action="/board/answer/delete" >
 				<input type="hidden" name="articleId" value="${article.id}" />
 				<input type="hidden" name="userId" value="${articleComment.userId}" />
 				<input type="hidden" name="commentTime" value="${articleComment.commentTime}" />
@@ -42,12 +43,22 @@
 					<div class="comment-content">
 						<div class="about">내용 : ${articleComment.content}</div> 
 						<div class="comment-delete-button" >
-							<input type="submit" value="삭제"/>
+							<input type="submit" value="댓글 삭제"/>
 						</div>
 					</div>
 				</div>
 			</form>
 		</c:forEach>
 	</div>
+
+	<!-- article 본문 수정, 삭제  --> 
+	<form method="post" action="/board/update" >
+		<input type="submit" value="글 수정" />
+	</form>
+	<form method="post" action="/board/delete" >
+		<input type="hidden" name="boardId" value="${board.id}" />
+		<input type="hidden" name="articleId" value="${article.id}" />
+		<input type="submit" value="글 삭제" />
+	</form>
 </body>
 </html>
