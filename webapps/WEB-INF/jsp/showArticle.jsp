@@ -54,11 +54,8 @@
 	</div>
 
 	<!-- article 본문 수정, 삭제  --> 
-	<form method="post" action="/board/update" >
-		<input type="hidden" name="boardId" value="${board.id}" />
-		<input type="hidden" name="articleId" value="${article.id}" />
-		<input type="submit" value="글 수정" />
-	</form>
+	<div id ="update_button"><a href="/board/update/${board.id}/${article.id}">글 수정</a></div>
+
 	<form method="post" action="/board/delete" >
 		<input type="hidden" name="boardId" value="${board.id}" />
 		<input type="hidden" name="articleId" value="${article.id}" />

@@ -111,18 +111,35 @@ public class BoardController {
 		return "redirect:/board/show/"+boardId+"/"+articleId;
 	}
 	
-	//article 본문 수정 구현 
+	//article 본문 수정 구현 1 - 글 수정 버튼 클릭시 updateBoardForm 페이지로 이동 
+	@RequestMapping(value = "/update/{boardId}/{articleId}", method = RequestMethod.GET)
+	public String updateGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("articleId")String articleId)
+			throws ServletException, IOException {
+		Board board = articleService.getBoard(Integer.parseInt(boardId));
+		Article article = articleService.getArticle(Integer.parseInt(articleId));
+		model.addAttribute("board", board);
+		model.addAttribute("article", article);
+//		model.addAttribute("boardId", boardId);
+		return "updateBoardForm";
+	}
+	
+	//article 본문 수정 구현 2 - updateBoardForm에서 쓴 내용 받아오 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	protected String articleUpdatePost(String boardId, String articleId, String userId, String commentTime,
+	protected String articleUpdatePost(String articleId, String boardId, String title, String content,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
 		
+		Article article = new Article(Integer.parseInt(boardId), title, content);
+		articleService.updateArticle(article);
+		
 		return "redirect:/board/show/"+boardId+"/"+articleId;
+		
+		
 	}
 	
 	//article 본문 삭제 구현 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	protected String articleUpdatePost(String articleId, String boardId,
+	protected String articleDeletePost(String articleId, String boardId,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
 		logger.debug("boardId {}", boardId);

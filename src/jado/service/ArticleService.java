@@ -59,4 +59,8 @@ public class ArticleService {
 	public void deleteArticle(int articleId) throws ForignKeyException {
 		articleDao.remove(articleId);
 	}
+	
+	public void updateArticle(Article article) throws ForignKeyException {
+		articleDao.update(article);
+	}
 }
