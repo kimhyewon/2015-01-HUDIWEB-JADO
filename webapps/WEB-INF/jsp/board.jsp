@@ -8,7 +8,7 @@
 	<%@ include file="include/top.jspf" %>
 	<div id = "board_name">${board.name}</div>
 	<c:forEach var="article" items="${articles}">
-		<div class = "nav_content col s2 m2 l2"><a href="/board/show/${article.id}">
+		<div class = "nav_content col s2 m2 l2"><a href="/board/show/${board.id}/${article.id}">
 			${article.title}
 		</a></div>
 	</c:forEach>

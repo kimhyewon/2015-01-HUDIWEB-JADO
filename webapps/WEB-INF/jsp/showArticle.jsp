@@ -19,6 +19,7 @@
 	<!-- 댓글 작성 부분 -->
 	<div class="answerWrite">
 		<form method="post" action="/board/answer/save" >
+			<input type="hidden" name="boardId" value="${board.id}" />
 			<input type="hidden" name="articleId" value="${article.id}" />
 			<div id = "comment_writer">아이디</div>
 			<input type="text" name="userId" id="userId" />
@@ -32,6 +33,7 @@
 	<div class="comments">
 		<c:forEach var="articleComment" items="${comments}">
 			<form method="post" action="/board/answer/delete" >
+				<input type="hidden" name="boardId" value="${board.id}" />
 				<input type="hidden" name="articleId" value="${article.id}" />
 				<input type="hidden" name="userId" value="${articleComment.userId}" />
 				<input type="hidden" name="commentTime" value="${articleComment.commentTime}" />
@@ -53,6 +55,8 @@
 
 	<!-- article 본문 수정, 삭제  --> 
 	<form method="post" action="/board/update" >
+		<input type="hidden" name="boardId" value="${board.id}" />
+		<input type="hidden" name="articleId" value="${article.id}" />
 		<input type="submit" value="글 수정" />
 	</form>
 	<form method="post" action="/board/delete" >

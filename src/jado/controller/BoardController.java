@@ -68,13 +68,13 @@ public class BoardController {
 	}
 	
 	//list에서 title 클릭시 해당 글 보여주는 코드 
-	@RequestMapping(value="/show/{articleId}", method = RequestMethod.GET)
-	public String listGet(Model model, @PathVariable("articleId")String articleId, String boardId)
+	@RequestMapping(value="/show/{boardId}/{articleId}", method = RequestMethod.GET)
+	public String listGet(Model model, @PathVariable("articleId")String articleId, @PathVariable("boardId")String boardId)
 			throws ServletException, IOException {
-//		Board board = articleService.getBoard(Integer.parseInt(boardId));
+		Board board = articleService.getBoard(Integer.parseInt(boardId));
 		Article article = articleService.getArticle(Integer.parseInt(articleId));
 		List<ArticleComment> comments = articleService.getComments(Integer.parseInt(articleId));
-//		model.addAttribute("board", board);
+		model.addAttribute("board", board);
 		model.addAttribute("article", article);
 		model.addAttribute("comments", comments);
 
@@ -89,11 +89,12 @@ public class BoardController {
 		logger.debug("shop data3 {}", articleId);
 		logger.debug("shop data3 {}", userId);
 		logger.debug("shop data4 {}", content);
+		logger.debug("a {}", boardId);
 		
 		ArticleComment articleComment = new ArticleComment(Integer.parseInt(articleId), userId, content);
 		articleService.insertArticleCommnet(articleComment);
 		
-		return "redirect:/board/show/"+articleId;
+		return "redirect:/board/show/"+boardId+"/"+articleId;
 	}
 	
 	//댓글 삭제 구현
@@ -107,17 +108,17 @@ public class BoardController {
 		
 		articleService.deleteArticleComment(Integer.parseInt(articleId), userId, commentTime);
 		
-		return "redirect:/board/show/"+articleId;
+		return "redirect:/board/show/"+boardId+"/"+articleId;
 	}
 	
 	//article 본문 수정 구현 
-//	@RequestMapping(value = "/update", method = RequestMethod.POST)
-//	protected String articleUpdatePost(String articleId, String userId, String commentTime,
-//			HttpSession session, Model model) throws ServletException,
-//			IOException, ForignKeyException {
-//		
-//		return "redirect:/board/show/"+articleId;
-//	}
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	protected String articleUpdatePost(String boardId, String articleId, String userId, String commentTime,
+			HttpSession session, Model model) throws ServletException,
+			IOException, ForignKeyException {
+		
+		return "redirect:/board/show/"+boardId+"/"+articleId;
+	}
 	
 	//article 본문 삭제 구현 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
