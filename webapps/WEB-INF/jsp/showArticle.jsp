@@ -30,16 +30,16 @@
 	<!-- 댓글 리스트 -->
 	<div class="comments">
 		<form method="post" action="">
-			<c:forEach items="" var="each">
+			<c:forEach var="articleComment" items="${comments}">
 				<input type="hidden" name="boardId" value="${boardId}">
 				<input type="hidden" name="" value="">
 				<div class="comment">
 					<div class="comment-metadata">
-						<span class="comment-author"></span> 
-						<span class="comment-date" value=""> </span>
+						<span class="comment-author">아아아${articleComment.userId}</span> 
+						<span class="comment-date" value="">${articleComment.commentTime}</span>
 					</div>
 					<div class="comment-content">
-						<span class="about">내용 :</span> 
+						<span class="about">내용 : ${articleComment.content}</span> 
 						<span class="comment-delete-button" >
 							<ul>
 								<li>
