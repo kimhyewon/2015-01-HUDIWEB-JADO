@@ -1,6 +1,8 @@
 package core.mail.template;
 
 
+import java.util.Map;
+
 import jado.dao.MailAuthDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +36,11 @@ public class JoinVerifyMail extends AbstractMailTemplate {
 		return uuid;
 	}
 
-	protected void getModel(String mailRecipient) {
-		String uuid = setVerifyKeyOnDB(mailRecipient);
+	@Override
+	protected void getModel(Map<String, Object> mailParameterMap) {
+		String uuid = setVerifyKeyOnDB((String)mailParameterMap.get("mailRecipient"));
 		model.put("uuid", uuid);
 		model.put("mailRequestAddress", mailRequestAddress);
-		model.put("mailRecipient", mailRecipient);
-		
+		model.put("mailRecipient", (String)mailParameterMap.get("mailRecipient"));
 	}
 }

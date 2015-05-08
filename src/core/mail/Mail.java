@@ -1,6 +1,8 @@
 package core.mail;
 
 
+import java.util.Map;
+
 import core.mail.template.MailTemplate;
 
 
@@ -10,10 +12,10 @@ public class Mail {
 	String mailSubject;
 	String mailBody;
 	
-	public Mail(String mailRecipient, MailTemplate template) {
-		this.mailRecipient = mailRecipient;
+	public Mail(Map<String, Object> mailParameterMap, MailTemplate template) {
+		this.mailRecipient = (String)mailParameterMap.get("mailRecipient");
 		this.mailSubject = template.getSubject();
-		this.mailBody = template.getBody(mailRecipient);
+		this.mailBody = template.getBody(mailParameterMap);
 	}
 
 	public String getMailRecipient() {
