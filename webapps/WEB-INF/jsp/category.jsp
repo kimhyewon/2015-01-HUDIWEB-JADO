@@ -39,11 +39,6 @@
 					<a href="/category/${category.id}">${category.name}</a>
 				</div>
 			</c:forEach>
-			
-			<!-- <div id ="profile_con" class ="row col shide m10 l6">
-				<div id ="profile_img"><img src="${shop.profileUrl}" style="width:55%; height:55%; "></div>
-				<div id = "profile_name" >Grace lilac</div>
-			</div>	 -->
 		</div>
 
 		<div id = "main_img_con" class=" col s12 m8 l8">
@@ -51,10 +46,10 @@
 		</div>
 		<div id = "white_block" class="col shide m1 l1"></div>
 	</div>
-	
+
 	<div id = "product_con" class="row">
 		<div id = "black_line" class="row col s12 m12 l12"></div>
-		<div id = "product_text">PRODUCT</div>
+		<div id = "product_text">${category.name}</div>
 
 		<div id = "white_block2" class="col shide m1 l1"></div>
 		<div id = "product_section" class="row">
@@ -72,5 +67,6 @@
 			</c:forEach>
 		</div>
 	</div>
+	<div id = "upload_button" class="row"><a href="/category/upload/${shop.url}/${category.id}">상품 등록</a></div>
 </body>
 </html>

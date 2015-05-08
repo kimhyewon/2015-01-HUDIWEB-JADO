@@ -1,5 +1,7 @@
 package jado.controller;
 
+import jado.model.Article;
+import jado.model.Board;
 import jado.model.Category;
 import jado.model.Product;
 import jado.model.Shop;
@@ -10,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import core.exception.ForignKeyException;
 
 
 @Controller
@@ -32,9 +37,7 @@ public class CategoryController {
 	public String doGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("shopUrl")String url)
 			throws ServletException, IOException {
 		Shop shop = shopService.settingByUrl(url);
-//		List<Product> products = shopService.settingProductByUrl(url);
 		model.addAttribute("shop", shop);
-//		model.addAttribute("products", products);
 		
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
 		List<Product> products = categoryService.getProducts(Integer.parseInt(categoryId));
@@ -43,6 +46,36 @@ public class CategoryController {
 		
 		return "category";
 	}
+	
+	//상품 등록 클릭시 categoryForm으로 이동 
+	@RequestMapping(value = "/upload/{shopUrl}/{categoryId}", method = RequestMethod.GET)
+	public String uploadGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("shopUrl")String url)
+			throws ServletException, IOException {
+		Shop shop = shopService.settingByUrl(url);
+		model.addAttribute("shop", shop);
+		
+		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
+		model.addAttribute("category", category);
+		
+		return "categoryForm";
+	}
+	
+	// categoryForm에서 등록한 내용 post로 받아오기 
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	protected String writePost(String shopUrl, String categoryId, String imgUrl, String name, String price, String stock, String desc,
+			HttpSession session, Model model) throws ServletException,
+			IOException, ForignKeyException {
+
+		Product product = new Product(Integer.parseInt(categoryId), name, Integer.parseInt(price), Integer.parseInt(stock), imgUrl, desc);
+		categoryService.insertProduct(product);
+		
+		return "redirect:/category/"+shopUrl+"/"+categoryId;
+		
+//		Article article = new Article(Integer.parseInt(boardId), title, content);
+//		articleService.insertArticle(article);
+//		return "redirect:/board/"+boardId;
+	}
+	
 	
 	
 }
