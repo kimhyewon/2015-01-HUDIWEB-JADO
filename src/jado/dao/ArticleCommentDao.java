@@ -4,7 +4,6 @@ import jado.model.ArticleComment;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -40,5 +39,10 @@ public class ArticleCommentDao {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
+	}
+	
+	public void remove(int articleId, String userId, String commentTime) {
+		String sql = "delete from ARTICLE_COMMENT where ARTICLE_ID=? and USER_ID=? and COMMENT_TIME=?";
+		jdbcTemplate.update(sql, articleId, userId, commentTime);
 	}
 }
