@@ -123,13 +123,17 @@ public class BoardController {
 		return "updateBoardForm";
 	}
 	
-	//article 본문 수정 구현 2 - updateBoardForm에서 쓴 내용 받아오 
+	//article 본문 수정 구현 2 - updateBoardForm에서 쓴 내용 받아오기  
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	protected String articleUpdatePost(String articleId, String boardId, String title, String content,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
+		logger.debug("dataaaaaa {}", articleId);
+		logger.debug("data {}", title);
+		logger.debug("data {}", content);
 		
-		Article article = new Article(Integer.parseInt(boardId), title, content);
+		Article article = new Article(title, content);
+		article.setId(Integer.parseInt(articleId));
 		articleService.updateArticle(article);
 		
 		return "redirect:/board/show/"+boardId+"/"+articleId;

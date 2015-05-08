@@ -9,8 +9,8 @@
 	<%@ include file="include/top.jspf" %>
 	<form name="updateBoardForm" action="/board/update" method="post">
 		<div id = "board_name">${board.name}</div>
-		<div id = "article_title"><input type="text" name="title" placeholder="${article.title}"/></div>
-		<div id = "article_content"><textarea name="content" placeholder="${article.content}" /></textarea></div>
+		<div id = "article_title"><input type="text" name="title" value="${article.title}"/></div>
+		<div id = "article_content"><textarea name="content" />${article.content}</textarea></div>
 		<input type="hidden" name="boardId" value="${board.id}" />
 		<input type="hidden" name="articleId" value="${article.id}" />
 		<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div>
