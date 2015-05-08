@@ -38,7 +38,7 @@
 		<div id = "category" class="row col s12 m2 l2">
 			<c:forEach var="category" items="${shop.categorys}">
 				<div class = "category_list row col s1.5 m12 l12">
-					<a href="/category/${category.id}">${category.name}</a>
+					<a href="/category/${shop.url}/${category.id}">${category.name}</a>
 				</div>
 			</c:forEach>
 			
