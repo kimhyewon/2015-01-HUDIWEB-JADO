@@ -137,8 +137,6 @@ public class BoardController {
 		articleService.updateArticle(article);
 		
 		return "redirect:/board/show/"+boardId+"/"+articleId;
-		
-		
 	}
 	
 	//article 본문 삭제 구현 
