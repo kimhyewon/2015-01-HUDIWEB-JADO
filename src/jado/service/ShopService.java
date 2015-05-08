@@ -104,7 +104,9 @@ public class ShopService {
 	}
 
 	public List<Product> settingProductByUrl(String url) {
-		return productDao.selectAllByUrl(url);
+		List<Product> products = productDao.selectAllByUrl(url);
+		logger.debug("products {}", products );
+		return products;
 	}
 
 	public String getUrl(String userId) {

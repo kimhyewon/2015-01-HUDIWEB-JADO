@@ -42,7 +42,7 @@ public class ProductDao {
 
 	public List<Product> selectAllByUrl(String url) {
 		String sql = "select PRODUCT.* from PRODUCT inner join CATEGORY on PRODUCT.CATEGORY_ID = CATEGORY.ID "
-				+ "where CATEGORY.SHOP_URL = 'testurl'";
+				+ "where CATEGORY.SHOP_URL = ?";
 		try {
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Product>(Product.class), url);
 		} catch (DataAccessException e) {
