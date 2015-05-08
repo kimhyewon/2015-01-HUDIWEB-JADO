@@ -37,6 +37,13 @@ insert into CATEGORY VALUES(null, 'PANTS', 'testurl');
 insert into CATEGORY VALUES(null, 'SKIRT', 'testurl');
 insert into CATEGORY VALUES(null, 'ACC', 'testurl');
 
-insert into PRODUCT VALUES(null, 1,'test상품',14000,100,'/userImg/product/img/default.png','상품설명', null);
---insert into CART values('testShopUrl', 'user');
+insert into PRODUCT VALUES(null, 1, 'Shift Dress', 14000, 100,'/userImg/product/img/1.gif','대박 좋아 좋아좋아 ', null);
+insert into PRODUCT VALUES(null, 1, 'Shift Dress', 13000, 100,'/userImg/product/img/2.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
+insert into PRODUCT VALUES(null, 1, 'Shift Dress', 10000, 100,'/userImg/product/img/3.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
+insert into PRODUCT VALUES(null, 1, 'Pleats-droped<br>Shift Dress', 18000, 100,'/userImg/product/img/4.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
+insert into PRODUCT VALUES(null, 1, 'Pleats-droped<br>Shift Dress', 14000, 100,'/userImg/product/img/5.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
+insert into PRODUCT VALUES(null, 1, 'Pleats-droped<br>Shift Dress', 12000, 100,'/userImg/product/img/6.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
+insert into PRODUCT VALUES(null, 1, 'Pleats-droped<br>Shift Dress', 15000, 100,'/userImg/product/img/7.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
+insert into PRODUCT VALUES(null, 1, 'Pleats-droped<br>Shift Dress', 12000, 100,'/userImg/product/img/8.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
+insert into PRODUCT VALUES(null, 1, 'Pleats-droped<br>Shift Dress', 14000, 100,'/userImg/product/img/9.jpg','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
 --insert into CART_has_PRODUCT values('testShopUrl', 'user', 1, '1');
