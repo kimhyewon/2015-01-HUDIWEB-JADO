@@ -54,11 +54,11 @@
 	</div>
 
 	<!-- product 본문 수정, 삭제  --> 
-	<div id ="update_button"><a href="/category/product/update/${board.id}/${article.id}">글 수정</a></div>
+	<div id ="update_button"><a href="/category/product/update/${category.id}/${product.id}">글 수정</a></div>
 
 	<form method="post" action="/category/product/delete" >
-		<input type="hidden" name="boardId" value="${board.id}" />
-		<input type="hidden" name="articleId" value="${article.id}" />
+		<input type="hidden" name="categoryId" value="${category.id}" />
+		<input type="hidden" name="productId" value="${product.id}" />
 		<input type="submit" value="글 삭제" />
 	</form>
 </body>
