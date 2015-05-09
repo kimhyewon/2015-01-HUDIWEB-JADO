@@ -32,9 +32,9 @@ public class ProductCommentDao{
 			return null;
 		}
 	}
-	public List<ProductComment> findByProduct(final ProductComment productComment) {
+	public List<ProductComment> findByProduct(final int productId) {
 		String sql = "select * from PRODUCT_COMMENT where PRODUCT_ID=?";
-		Object[] args = new Object[] { productComment.getProductId() };
+		Object[] args = new Object[] { productId };
 
 		try {
 			return jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<ProductComment>(ProductComment.class));

@@ -1,9 +1,12 @@
 package jado.controller;
 
 import jado.model.Article;
+import jado.model.ArticleComment;
 import jado.model.Board;
 import jado.model.Category;
+import jado.model.FileInfo;
 import jado.model.Product;
+import jado.model.ProductComment;
 import jado.model.Shop;
 import jado.service.CategoryService;
 import jado.service.ShopService;
@@ -62,20 +65,32 @@ public class CategoryController {
 	
 	// categoryForm에서 등록한 내용 post로 받아오기 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	protected String writePost(String shopUrl, String categoryId, String imgUrl, String name, String price, String stock, String desc,
+	protected String writePost(String shopUrl, String categoryId, String imgUrl, String name, String price, String stock, String desc, FileInfo fileInfo,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
 
 		Product product = new Product(Integer.parseInt(categoryId), name, Integer.parseInt(price), Integer.parseInt(stock), imgUrl, desc);
 		categoryService.insertProduct(product);
 		
-		return "redirect:/category/"+shopUrl+"/"+categoryId;
+//		fileInfo.updateLocalLocation();
+//		categoryService.representImage(fileInfo);
 		
-//		Article article = new Article(Integer.parseInt(boardId), title, content);
-//		articleService.insertArticle(article);
-//		return "redirect:/board/"+boardId;
+		return "redirect:/category/"+shopUrl+"/"+categoryId;
 	}
 	
+	//상품 클릭시 해당 글(상세 페이지) 보여주는 코드 
+	@RequestMapping(value="/product/{categoryId}/{productId}", method = RequestMethod.GET)
+	public String productGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId)
+			throws ServletException, IOException {
+		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
+		Product product = categoryService.getProduct(Integer.parseInt(productId));
+		List<ProductComment> comments = categoryService.getComments(Integer.parseInt(productId));
+		model.addAttribute("category", category);
+		model.addAttribute("product", product);
+		model.addAttribute("comments", comments);
+
+		return "showProduct";
+	}
 	
 	
 }

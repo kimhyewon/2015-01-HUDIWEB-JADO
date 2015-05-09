@@ -2,7 +2,9 @@ package jado.dao;
 
 import java.util.List;
 
+import jado.model.FileInfo;
 import jado.model.Product;
+import jado.model.Shop;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -40,6 +42,15 @@ public class ProductDao {
 		}
 	}
 
+//	public Product selectByUrl(final String url) {
+//		String sql = "select * from PRODUCT where imgUrl=?";
+//		try {
+//			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Product>(Product.class), url);
+//		} catch (EmptyResultDataAccessException e) {
+//			return null;
+//		}
+//	}
+	
 	public List<Product> selectAllByUrl(String url) {
 		String sql = "select PRODUCT.* from PRODUCT inner join CATEGORY on PRODUCT.CATEGORY_ID = CATEGORY.ID "
 				+ "where CATEGORY.SHOP_URL = ?";
@@ -49,5 +60,12 @@ public class ProductDao {
 			return null;
 		}
 	}
+	
+//	public void updateImageUrl(FileInfo fileInfo) {
+//		String sql = "update PRODUCT set ".concat(fileInfo.getType())+"=? where imgUrl=?";
+//		Object[] args = new Object[]{ fileInfo.getLocalLocation(), fileInfo.getUrl()};
+//		jdbcTemplate.update(sql, args);
+//		
+//	}
 
 }
