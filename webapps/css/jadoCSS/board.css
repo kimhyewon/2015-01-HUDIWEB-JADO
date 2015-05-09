@@ -1,4 +1,39 @@
+#divide_line {
+	width: 80%;
+	height: 1px;
+	background-color: black;
+	margin-left: -50px;
+}
+
 #board_name {
 	font-size: 24px;
   	text-align: left;
+  	padding-top: 15px;
+  	padding-bottom: 10px;
+  	padding-left: 13px;
+}
+
+table {
+  	border-collapse: collapse;
+	font-size: 12px;
+	line-height: 160%;
+}
+
+td {
+	border-top: 1px solid #E8E8E8;
+    border-bottom: 1px solid #E8E8E8;
+    padding: 5px 10px;
+}
+
+#write_button {
+	width: 26%;
+  	height: 40px;
+  	background: #ffbf42;
+  	font-size: 16px;
+  	margin-top: 50px;
+}
+
+#write_button a {
+	color: #fff;
+	line-height: 40px;
 }
