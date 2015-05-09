@@ -4,7 +4,6 @@ import jado.model.ProductComment;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -43,10 +42,8 @@ public class ProductCommentDao{
 		}
 	}
 	
-	public void remove(final ProductComment productComment) {
+	public void remove(int productId, String userId, String commentTime) {
 		String sql = "delete from PRODUCT_COMMENT where PRODUCT_ID=? and USER_ID=? and COMMENT_TIME=?";
-		Object[] args = new Object[] { productComment.getProductId(), productComment.getUserId(), productComment.getCommentTime()};
-		jdbcTemplate.update(sql, args);
+		jdbcTemplate.update(sql, productId, userId, commentTime);
 	}
-
 }

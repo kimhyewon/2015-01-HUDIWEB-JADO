@@ -30,20 +30,20 @@
 	</div>
 
 	<!-- 댓글 리스트 -->
-	<!-- <div class="comments">
-		<c:forEach var="articleComment" items="${comments}">
-			<form method="post" action="/board/answer/delete" >
-				<input type="hidden" name="boardId" value="${board.id}" />
-				<input type="hidden" name="articleId" value="${article.id}" />
-				<input type="hidden" name="userId" value="${articleComment.userId}" />
-				<input type="hidden" name="commentTime" value="${articleComment.commentTime}" />
+	<div class="comments">
+		<c:forEach var="productComment" items="${comments}">
+			<form method="post" action="/category/answer/delete" >
+				<input type="hidden" name="categoryId" value="${category.id}" />
+				<input type="hidden" name="productId" value="${product.id}" />
+				<input type="hidden" name="userId" value="${productComment.userId}" />
+				<input type="hidden" name="commentTime" value="${productComment.commentTime}" />
 				<div class="comment">
 					<div class="comment-metadata">
-						<span class="comment-author">${articleComment.userId}</span> 
-						<span class="comment-date" value="">${articleComment.commentTime}</span>
+						<span class="comment-author">${productComment.userId}</span> 
+						<span class="comment-date" value="">${productComment.commentTime}</span>
 					</div>
 					<div class="comment-content">
-						<div class="about">내용 : ${articleComment.content}</div> 
+						<div class="about">내용 : ${productComment.content}</div> 
 						<div class="comment-delete-button" >
 							<input type="submit" value="댓글 삭제"/>
 						</div>
@@ -51,7 +51,7 @@
 				</div>
 			</form>
 		</c:forEach>
-	</div> -->
+	</div>
 
 	<!-- product 본문 수정, 삭제  --> 
 	<!-- <div id ="update_button"><a href="/board/update/${board.id}/${article.id}">글 수정</a></div>

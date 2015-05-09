@@ -103,4 +103,15 @@ public class CategoryController {
 		
 		return "redirect:/category/product/"+productId+"/"+categoryId;
 	}
+	
+	//댓글 삭제 구현
+	@RequestMapping(value = "/answer/delete", method = RequestMethod.POST)
+	protected String commentDeletePost(String categoryId, String productId, String userId, String commentTime,
+			HttpSession session, Model model) throws ServletException,
+			IOException, ForignKeyException {
+			
+		categoryService.deleteProductComment(Integer.parseInt(productId), userId, commentTime);
+			
+		return "redirect:/category/product/"+categoryId+"/"+productId;
+	}
 }

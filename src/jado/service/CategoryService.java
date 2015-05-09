@@ -60,6 +60,10 @@ public class CategoryService {
 		}
 		productCommentDao.insert(productComment);
 	}
+
+	public void deleteProductComment(int productId, String userId, String commentTime) throws ForignKeyException{
+		productCommentDao.remove(productId, userId, commentTime);
+	}
 	
 	
 //	public void representImage(FileInfo fileInfo) throws IllegalStateException, IOException {
