@@ -7,7 +7,7 @@
 
 <body id = "category_form">
 	<%@ include file="include/top.jspf" %>
-	<form name="categoryForm" action="/category/upload" method="post">
+	<form name="categoryForm" action="/category/product/upload" method="post">
 		<div id = "product_info">
 			<div id ="product_img">
 				대표 사진 <input type="file" name="imgUrl"/>

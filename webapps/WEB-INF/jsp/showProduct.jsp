@@ -18,7 +18,7 @@
 
 	<!-- 댓글 작성 부분 -->
 	<div class="answerWrite">
-		<form method="post" action="/category/answer/save" >
+		<form method="post" action="/category/product/answer/save" >
 			<input type="hidden" name="categoryId" value="${category.id}" />
 			<input type="hidden" name="productId" value="${product.id}" />
 			<div id = "comment_writer">아이디</div>
@@ -32,7 +32,7 @@
 	<!-- 댓글 리스트 -->
 	<div class="comments">
 		<c:forEach var="productComment" items="${comments}">
-			<form method="post" action="/category/answer/delete" >
+			<form method="post" action="/category/product/answer/delete" >
 				<input type="hidden" name="categoryId" value="${category.id}" />
 				<input type="hidden" name="productId" value="${product.id}" />
 				<input type="hidden" name="userId" value="${productComment.userId}" />
@@ -54,12 +54,12 @@
 	</div>
 
 	<!-- product 본문 수정, 삭제  --> 
-	<!-- <div id ="update_button"><a href="/board/update/${board.id}/${article.id}">글 수정</a></div>
+	<div id ="update_button"><a href="/category/product/update/${board.id}/${article.id}">글 수정</a></div>
 
-	<form method="post" action="/board/delete" >
+	<form method="post" action="/category/product/delete" >
 		<input type="hidden" name="boardId" value="${board.id}" />
 		<input type="hidden" name="articleId" value="${article.id}" />
 		<input type="submit" value="글 삭제" />
-	</form> -->
+	</form>
 </body>
 </html>

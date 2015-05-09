@@ -36,7 +36,7 @@
 		<div id = "category" class="row col s12 m2 l2">
 			<c:forEach var="category" items="${shop.categorys}">
 				<div class = "category_list row col s1.5 m12 l12">
-					<a href="/category/${category.id}">${category.name}</a>
+					<a href="/category/product/${category.id}">${category.name}</a>
 				</div>
 			</c:forEach>
 		</div>
@@ -67,6 +67,6 @@
 			</c:forEach>
 		</div>
 	</div>
-	<div id = "upload_button" class="row"><a href="/category/upload/${shop.url}/${category.id}">상품 등록</a></div>
+	<div id = "upload_button" class="row"><a href="/category/product/upload/${shop.url}/${category.id}">상품 등록</a></div>
 </body>
 </html>

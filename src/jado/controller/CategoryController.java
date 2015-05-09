@@ -51,7 +51,7 @@ public class CategoryController {
 	}
 	
 	//상품 등록 클릭시 categoryForm으로 이동 
-	@RequestMapping(value = "/upload/{shopUrl}/{categoryId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/product/upload/{shopUrl}/{categoryId}", method = RequestMethod.GET)
 	public String uploadGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("shopUrl")String url)
 			throws ServletException, IOException {
 		Shop shop = shopService.settingByUrl(url);
@@ -64,7 +64,7 @@ public class CategoryController {
 	}
 	
 	// categoryForm에서 등록한 내용 post로 받아오기 
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/product/upload", method = RequestMethod.POST)
 	protected String writePost(String shopUrl, String categoryId, String imgUrl, String name, String price, String stock, String desc, FileInfo fileInfo,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
@@ -93,7 +93,7 @@ public class CategoryController {
 	}
 	
 	//댓글 등록 구현
-	@RequestMapping(value = "/answer/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/product/answer/save", method = RequestMethod.POST)
 	protected String commentPost(String categoryId, String productId, String userId, String content,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
@@ -105,7 +105,7 @@ public class CategoryController {
 	}
 	
 	//댓글 삭제 구현
-	@RequestMapping(value = "/answer/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/product/answer/delete", method = RequestMethod.POST)
 	protected String commentDeletePost(String categoryId, String productId, String userId, String commentTime,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
