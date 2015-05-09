@@ -64,7 +64,14 @@ public class CategoryService {
 	public void deleteProductComment(int productId, String userId, String commentTime) throws ForignKeyException{
 		productCommentDao.remove(productId, userId, commentTime);
 	}
+
+	public void deleteProduct(int productId) throws ForignKeyException{
+		productDao.remove(productId);
+	}
 	
+	public void updateProduct(Product product) throws ForignKeyException {
+		productDao.update(product);
+	}
 	
 //	public void representImage(FileInfo fileInfo) throws IllegalStateException, IOException {
 //		String url = fileInfo.getUrl();

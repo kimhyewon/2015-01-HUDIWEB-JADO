@@ -79,9 +79,11 @@ public class CategoryController {
 	}
 	
 	//상품 클릭시 해당 글(상세 페이지) 보여주는 코드 
-	@RequestMapping(value="/product/{categoryId}/{productId}", method = RequestMethod.GET)
-	public String productGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId)
+	@RequestMapping(value="/product/{shopUrl}/{categoryId}/{productId}", method = RequestMethod.GET)
+	public String productGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId, @PathVariable("shopUrl")String url)
 			throws ServletException, IOException {
+		Shop shop = shopService.settingByUrl(url);
+		model.addAttribute("shop", shop);
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
 		Product product = categoryService.getProduct(Integer.parseInt(productId));
 		List<ProductComment> comments = categoryService.getComments(Integer.parseInt(productId));
@@ -94,24 +96,59 @@ public class CategoryController {
 	
 	//댓글 등록 구현
 	@RequestMapping(value = "/product/answer/save", method = RequestMethod.POST)
-	protected String commentPost(String categoryId, String productId, String userId, String content,
+	protected String commentPost(String shopUrl, String categoryId, String productId, String userId, String content,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
 			
 		ProductComment productComment = new ProductComment(Integer.parseInt(productId), userId, content);
 		categoryService.insertproductCommnet(productComment);
 		
-		return "redirect:/category/product/"+productId+"/"+categoryId;
+		return "redirect:/category/product/"+shopUrl+"/"+productId+"/"+categoryId;
 	}
 	
 	//댓글 삭제 구현
 	@RequestMapping(value = "/product/answer/delete", method = RequestMethod.POST)
-	protected String commentDeletePost(String categoryId, String productId, String userId, String commentTime,
+	protected String commentDeletePost(String shopUrl, String categoryId, String productId, String userId, String commentTime,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
 			
 		categoryService.deleteProductComment(Integer.parseInt(productId), userId, commentTime);
 			
-		return "redirect:/category/product/"+categoryId+"/"+productId;
+		return "redirect:/category/product/"+shopUrl+"/"+categoryId+"/"+productId;
+	}
+	
+	//product 본문 수정 구현 1 - 글 수정 버튼 클릭시 updateProductForm 페이지로 이동 
+	@RequestMapping(value = "/product/update/{shopUrl}/{categoryId}/{productId}", method = RequestMethod.GET)
+	public String updateGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId, @PathVariable("shopUrl")String url)
+			throws ServletException, IOException {
+		Shop shop = shopService.settingByUrl(url);
+		model.addAttribute("shop", shop);
+		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
+		Product product = categoryService.getProduct(Integer.parseInt(productId));
+		model.addAttribute("category", category);
+		model.addAttribute("product", product);
+		return "updateProductForm";
+	}
+		
+	//product 본문 수정 구현 2 - updateProductForm에서 쓴 내용 받아오기  
+	@RequestMapping(value = "/product/update", method = RequestMethod.POST)
+	protected String articleUpdatePost(String shopUrl, String categoryId, String productId, String imgUrl, String name, String price, String stock, String desc,
+			HttpSession session, Model model) throws ServletException,
+			IOException, ForignKeyException {
+		Product product = new Product(name, Integer.parseInt(price), Integer.parseInt(stock), imgUrl, desc);
+		product.setId(Integer.parseInt(productId));
+		categoryService.updateProduct(product);		
+			
+		return "redirect:/category/product/"+shopUrl+"/"+categoryId+"/"+productId;
+	}
+		
+	//product 본문 삭제 구현 
+	@RequestMapping(value = "/product/delete", method = RequestMethod.POST)
+	protected String articleDeletePost(String shopUrl, String categoryId, String productId,
+			HttpSession session, Model model) throws ServletException,
+			IOException, ForignKeyException {
+		categoryService.deleteProduct(Integer.parseInt(productId));
+			
+		return "redirect:/category/"+shopUrl+"/"+categoryId;
 	}
 }

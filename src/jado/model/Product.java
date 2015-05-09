@@ -34,6 +34,10 @@ public class Product {
 	public Product(int categoryId, String name, int price, int stock, String imgUrl, String desc) {
 		this(0, categoryId, name, price, stock, imgUrl, desc, null, null);
 	}
+	
+	public Product(String name, int price, int stock, String imgUrl, String desc) {
+		this(0, 0, name, price, stock, imgUrl, desc, null, null);
+	}
 
 	public int getId() {
 		return id;

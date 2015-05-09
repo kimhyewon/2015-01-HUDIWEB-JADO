@@ -111,7 +111,7 @@ public class BoardController {
 		return "redirect:/board/show/"+boardId+"/"+articleId;
 	}
 	
-	//article 본문 수정 구현 1 - 글 수정 버튼 클릭시 updateBoardForm 페이지로 이동 
+	// 본문 수정 구현 1 - 글 수정 버튼 클릭시 updateBoardForm 페이지로 이동 
 	@RequestMapping(value = "/update/{boardId}/{articleId}", method = RequestMethod.GET)
 	public String updateGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("articleId")String articleId)
 			throws ServletException, IOException {

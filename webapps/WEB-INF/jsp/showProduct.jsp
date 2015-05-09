@@ -9,6 +9,7 @@
 	<!-- product 본문 부분 --> 
 	<input type="hidden" name="categorydId" value="${category.id}" />
 	<input type="hidden" name="productId" value="${product.id}" />
+	<input type="hidden" name="shopUrl" value="${shop.url}" />
 	<div id = "show_product_url"><img src="${product.imgUrl}" style="width:100%; height=100%;"></div>
 	<div id = "show_product_name">${product.name}</div>
 	<div id = "show_product_price">${product.price}</div> 
@@ -19,6 +20,7 @@
 	<!-- 댓글 작성 부분 -->
 	<div class="answerWrite">
 		<form method="post" action="/category/product/answer/save" >
+			<input type="hidden" name="shopUrl" value="${shop.url}" />
 			<input type="hidden" name="categoryId" value="${category.id}" />
 			<input type="hidden" name="productId" value="${product.id}" />
 			<div id = "comment_writer">아이디</div>
@@ -33,6 +35,7 @@
 	<div class="comments">
 		<c:forEach var="productComment" items="${comments}">
 			<form method="post" action="/category/product/answer/delete" >
+				<input type="hidden" name="shopUrl" value="${shop.url}" />
 				<input type="hidden" name="categoryId" value="${category.id}" />
 				<input type="hidden" name="productId" value="${product.id}" />
 				<input type="hidden" name="userId" value="${productComment.userId}" />
@@ -54,11 +57,12 @@
 	</div>
 
 	<!-- product 본문 수정, 삭제  --> 
-	<div id ="update_button"><a href="/category/product/update/${category.id}/${product.id}">글 수정</a></div>
+	<div id ="update_button"><a href="/category/product/update/${shop.url}/${category.id}/${product.id}">글 수정</a></div>
 
 	<form method="post" action="/category/product/delete" >
 		<input type="hidden" name="categoryId" value="${category.id}" />
 		<input type="hidden" name="productId" value="${product.id}" />
+		<input type="hidden" name="shopUrl" value="${shop.url}" />
 		<input type="submit" value="글 삭제" />
 	</form>
 </body>

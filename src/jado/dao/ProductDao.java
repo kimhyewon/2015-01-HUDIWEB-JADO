@@ -2,6 +2,7 @@ package jado.dao;
 
 import java.util.List;
 
+import jado.model.Article;
 import jado.model.FileInfo;
 import jado.model.Product;
 import jado.model.Shop;
@@ -59,6 +60,17 @@ public class ProductDao {
 		} catch (DataAccessException e) {
 			return null;
 		}
+	}
+	
+	public void update(Product product) {
+		String sql = "update PRODUCT set NAME=?, PRICE=?, STOCK=?, IMG_URL=?, DESC=? where ID=?";
+		Object[] args = new Object[] {product.getName(), product.getPrice(), product.getStock(), product.getImgUrl(), product.getDesc(), product.getId()};
+		jdbcTemplate.update(sql, args);
+	}
+
+	public void remove(int productId) {
+		String sql = "delete from PRODUCT where ID=?";
+		jdbcTemplate.update(sql, productId);
 	}
 	
 //	public void updateImageUrl(FileInfo fileInfo) {
