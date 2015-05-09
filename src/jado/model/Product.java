@@ -1,5 +1,6 @@
 package jado.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Product {
@@ -10,11 +11,12 @@ public class Product {
 	private int stock;
 	private String imgUrl;
 	private String desc;
-	private String insertTime;
+	private Timestamp insertTime;
 	private List<ProductComment> comments;
 
 	public Product(){ };
-	public Product(int id, int categoryId, String name, int price, int stock, String imgUrl, String desc, String insertTime, List<ProductComment> comments) {
+	
+	public Product(int id, int categoryId, String name, int price, int stock, String imgUrl, String desc, Timestamp insertTime) {
 		super();
 		this.id = id;
 		this.categoryId = categoryId;
@@ -24,19 +26,14 @@ public class Product {
 		this.imgUrl = imgUrl;
 		this.desc = desc;
 		this.insertTime = insertTime;
-		this.comments = comments;
-	}
-
-	public Product(int id, int categoryId, String name, int price, int stock, String imgUrl, String desc, String insertTime) {
-		this(0, categoryId, name, price, stock, imgUrl, desc, insertTime, null);
 	}
 
 	public Product(int categoryId, String name, int price, int stock, String imgUrl, String desc) {
-		this(0, categoryId, name, price, stock, imgUrl, desc, null, null);
+		this(0, categoryId, name, price, stock, imgUrl, desc, null);
 	}
-	
+
 	public Product(String name, int price, int stock, String imgUrl, String desc) {
-		this(0, 0, name, price, stock, imgUrl, desc, null, null);
+		this(0, 0, name, price, stock, imgUrl, desc, null);
 	}
 
 	public int getId() {
@@ -95,11 +92,11 @@ public class Product {
 		this.desc = desc;
 	}
 
-	public String getInsertTime() {
+	public Timestamp getInsertTime() {
 		return insertTime;
 	}
 
-	public void setInsertTime(String insertTime) {
+	public void setInsertTime(Timestamp insertTime) {
 		this.insertTime = insertTime;
 	}
 

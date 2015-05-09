@@ -2,8 +2,6 @@ package jado.dao;
 
 import java.util.List;
 
-import jado.model.Article;
-import jado.model.FileInfo;
 import jado.model.Product;
 import jado.model.Shop;
 
@@ -25,20 +23,19 @@ public class ProductDao {
 		jdbcTemplate.update(sql, args);
 	}
 
-	public Product selectByPk(final int productId) {
+	public Product selectByPk(int productId) {
 		String sql = "select * from PRODUCT where ID=?";
-		Object[] args = new Object[] { productId };
 		try {
-			return jdbcTemplate.queryForObject(sql, args, new BeanPropertyRowMapper<Product>(Product.class));
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Product>(Product.class), productId);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
 	}
-	public List<Product> selectAllByCateGoryId(final int categoryId) {
+	public List<Product> selectAllByCateGoryId(int categoryId) {
 		String sql = "select * from PRODUCT where CATEGORY_ID=?";
 		try {
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Product>(Product.class), categoryId);
-		} catch (DataAccessException e) {
+		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
 	}
@@ -67,7 +64,7 @@ public class ProductDao {
 		Object[] args = new Object[] {product.getName(), product.getPrice(), product.getStock(), product.getImgUrl(), product.getDesc(), product.getId()};
 		jdbcTemplate.update(sql, args);
 	}
-
+	
 	public void remove(int productId) {
 		String sql = "delete from PRODUCT where ID=?";
 		jdbcTemplate.update(sql, productId);

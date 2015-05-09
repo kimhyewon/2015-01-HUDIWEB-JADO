@@ -17,6 +17,8 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +32,7 @@ import core.exception.ForignKeyException;
 @Controller
 @RequestMapping(value = "/category")
 public class CategoryController {
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired 
@@ -132,13 +135,22 @@ public class CategoryController {
 		
 	//product 본문 수정 구현 2 - updateProductForm에서 쓴 내용 받아오기  
 	@RequestMapping(value = "/product/update", method = RequestMethod.POST)
-	protected String articleUpdatePost(String shopUrl, String categoryId, String productId, String imgUrl, String name, String price, String stock, String desc,
+	protected String productUpdatePost(String shopUrl, String categoryId, String productId, String imgUrl, String name, String price, String stock, String desc,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
+		logger.debug("data3 {}", shopUrl);
+		logger.debug("data4 {}", categoryId);
+		logger.debug("data555 {}", productId);
+		logger.debug("data555 {}", imgUrl);
+		logger.debug("data555 {}", name);
+		logger.debug("data555 {}", price);
+		logger.debug("data555 {}", stock);
+		logger.debug("data555 {}", desc);
+		
 		Product product = new Product(name, Integer.parseInt(price), Integer.parseInt(stock), imgUrl, desc);
 		product.setId(Integer.parseInt(productId));
 		categoryService.updateProduct(product);		
-			
+		
 		return "redirect:/category/product/"+shopUrl+"/"+categoryId+"/"+productId;
 	}
 		

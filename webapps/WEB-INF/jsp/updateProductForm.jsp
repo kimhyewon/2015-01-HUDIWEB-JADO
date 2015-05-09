@@ -23,6 +23,7 @@
 			</div>
 			<input type="hidden" name="categoryId" value="${category.id}" />
 			<input type="hidden" name="shopUrl" value="${shop.url}" />
+			<input type="hidden" name="productId" value="${product.id}" />
 		</div>
 		<div id = "product_desc">
 			<textarea name="desc" />${product.desc}</textarea>

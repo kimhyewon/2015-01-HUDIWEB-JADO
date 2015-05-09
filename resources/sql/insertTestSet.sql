@@ -25,6 +25,7 @@ insert into SHOP VALUES('testurl', 'HEY, JODO', '031-737-7979', default, default
 insert into SELLER VALUES('testurl', 'seller','우리','bankaccount');
 
 insert into BOARD VALUES(null, 'testurl', 'INFO');
+
 insert into ARTICLE VALUES( null, 1, '오픈 기념 이벤트', 'content', null);
 insert into ARTICLE VALUES( null, 1, '봄 신상 할인 이벤트', 'content', null);
 insert into ARTICLE VALUES( null, 1, '직원 모집', 'content', null);
@@ -37,7 +38,7 @@ insert into CATEGORY VALUES(null, 'PANTS', 'testurl');
 insert into CATEGORY VALUES(null, 'SKIRT', 'testurl');
 insert into CATEGORY VALUES(null, 'ACC', 'testurl');
 
-insert into PRODUCT VALUES(null, 1, 'Shift Dress', 14000, 100,'/userImg/product/img/1.gif','대박 좋아 좋아좋아 ', null);
+insert into PRODUCT VALUES(null, 1, 'Shift Dress', 14000, 100,'/userImg/product/img/1.gif', '대박 좋아 좋아좋아', null);
 insert into PRODUCT VALUES(null, 1, 'Shift Dress', 13000, 100,'/userImg/product/img/2.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
 insert into PRODUCT VALUES(null, 1, 'Shift Dress', 10000, 100,'/userImg/product/img/3.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
 insert into PRODUCT VALUES(null, 1, 'Pleats-droped<br>Shift Dress', 18000, 100,'/userImg/product/img/4.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);

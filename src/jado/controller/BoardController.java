@@ -128,10 +128,6 @@ public class BoardController {
 	protected String articleUpdatePost(String articleId, String boardId, String title, String content,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
-		logger.debug("dataaaaaa {}", articleId);
-		logger.debug("data {}", title);
-		logger.debug("data {}", content);
-		
 		Article article = new Article(title, content);
 		article.setId(Integer.parseInt(articleId));
 		articleService.updateArticle(article);
