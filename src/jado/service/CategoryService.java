@@ -52,6 +52,15 @@ public class CategoryService {
 		}
 		productDao.insert(product);
 	}
+
+	public void insertproductCommnet(ProductComment productComment) throws ForignKeyException{
+		Product product = productDao.selectByPk(productComment.getProductId());
+		if(product == null) {
+			throw new ForignKeyException("잘못된 경로로 접근하셨습니다.");
+		}
+		productCommentDao.insert(productComment);
+	}
+	
 	
 //	public void representImage(FileInfo fileInfo) throws IllegalStateException, IOException {
 //		String url = fileInfo.getUrl();

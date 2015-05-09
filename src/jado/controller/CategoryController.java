@@ -92,5 +92,15 @@ public class CategoryController {
 		return "showProduct";
 	}
 	
-	
+	//댓글 등록 구현
+	@RequestMapping(value = "/answer/save", method = RequestMethod.POST)
+	protected String commentPost(String categoryId, String productId, String userId, String content,
+			HttpSession session, Model model) throws ServletException,
+			IOException, ForignKeyException {
+			
+		ProductComment productComment = new ProductComment(Integer.parseInt(productId), userId, content);
+		categoryService.insertproductCommnet(productComment);
+		
+		return "redirect:/category/product/"+productId+"/"+categoryId;
+	}
 }

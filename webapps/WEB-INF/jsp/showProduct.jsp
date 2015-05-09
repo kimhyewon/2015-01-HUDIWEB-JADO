@@ -17,17 +17,17 @@
 
 
 	<!-- 댓글 작성 부분 -->
-	<!-- <div class="answerWrite">
-		<form method="post" action="/board/answer/save" >
-			<input type="hidden" name="boardId" value="${board.id}" />
-			<input type="hidden" name="articleId" value="${article.id}" />
+	<div class="answerWrite">
+		<form method="post" action="/category/answer/save" >
+			<input type="hidden" name="categoryId" value="${category.id}" />
+			<input type="hidden" name="productId" value="${product.id}" />
 			<div id = "comment_writer">아이디</div>
 			<input type="text" name="userId" id="userId" />
 			<div id = "comment_content">내용</div>
 			<textarea name="content" id="content"></textarea>
 			<input type="submit" value="댓글 저장" />
 		</form>
-	</div> -->
+	</div>
 
 	<!-- 댓글 리스트 -->
 	<!-- <div class="comments">
