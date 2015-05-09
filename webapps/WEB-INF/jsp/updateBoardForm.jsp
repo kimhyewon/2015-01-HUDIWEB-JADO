@@ -13,6 +13,7 @@
 		<div id = "article_content"><textarea name="content" />${article.content}</textarea></div>
 		<input type="hidden" name="boardId" value="${board.id}" />
 		<input type="hidden" name="articleId" value="${article.id}" />
+		<input type="hidden" name="shopUrl" value="${shop.url}" />
 		<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div>
 	</form>
 </body>

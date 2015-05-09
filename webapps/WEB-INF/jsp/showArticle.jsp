@@ -9,6 +9,7 @@
 
 	<!-- article 본문 부분 --> 
 	<input type="hidden" name="boardId" value="${board.id}" />
+	<input type="hidden" name="shopUrl" value="${shop.url}" />
 	<div id = "show_article_title">${article.title}</div>
 	<div id = "show_article_author"></div> 
 	<div id = "show_article_date">${article.articleTime}<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="" /></div>
@@ -21,6 +22,7 @@
 		<form method="post" action="/board/answer/save" >
 			<input type="hidden" name="boardId" value="${board.id}" />
 			<input type="hidden" name="articleId" value="${article.id}" />
+			<input type="hidden" name="shopUrl" value="${shop.url}" />
 			<div id = "comment_writer">아이디</div>
 			<input type="text" name="userId" id="userId" />
 			<div id = "comment_content">내용</div>
@@ -33,6 +35,7 @@
 	<div class="comments">
 		<c:forEach var="articleComment" items="${comments}">
 			<form method="post" action="/board/answer/delete" >
+				<input type="hidden" name="shopUrl" value="${shop.url}" />
 				<input type="hidden" name="boardId" value="${board.id}" />
 				<input type="hidden" name="articleId" value="${article.id}" />
 				<input type="hidden" name="userId" value="${articleComment.userId}" />
@@ -54,9 +57,10 @@
 	</div>
 
 	<!-- article 본문 수정, 삭제  --> 
-	<div id ="update_button"><a href="/board/update/${board.id}/${article.id}">글 수정</a></div>
+	<div id ="update_button"><a href="/board/update/${shop.url}/${board.id}/${article.id}">글 수정</a></div>
 
 	<form method="post" action="/board/delete" >
+		<input type="hidden" name="shopUrl" value="${shop.url}" />
 		<input type="hidden" name="boardId" value="${board.id}" />
 		<input type="hidden" name="articleId" value="${article.id}" />
 		<input type="submit" value="글 삭제" />

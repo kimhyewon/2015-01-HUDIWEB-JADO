@@ -35,7 +35,7 @@
 		<div id = "category" class="row col s12 m2 l2">
 			<c:forEach var="category" items="${shop.categorys}">
 				<div class = "category_list row col s1.5 m12 l12">
-					<a href="/category/product/${category.id}">${category.name}</a>
+					<a href="/category/product/${shop.url}/${category.id}">${category.name}</a>
 				</div>
 			</c:forEach>
 		</div>
@@ -45,11 +45,11 @@
 
 	<div id = "board_name">${board.name}</div>
 	<c:forEach var="article" items="${articles}">
-		<div class = "nav_content col s2 m2 l2"><a href="/board/show/${board.id}/${article.id}">
+		<div class = "nav_content col s2 m2 l2"><a href="/board/show/${shop.url}/${board.id}/${article.id}">
 			${article.title}
 		</a></div>
 	</c:forEach>
-	<div id = "write_button"><a href="/board/write/${board.id}">글쓰기</a></div>
+	<div id = "write_button"><a href="/board/write/${shop.url}/${board.id}">글쓰기</a></div>
 	
 </body>
 </html>

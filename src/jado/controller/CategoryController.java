@@ -87,6 +87,7 @@ public class CategoryController {
 			throws ServletException, IOException {
 		Shop shop = shopService.settingByUrl(url);
 		model.addAttribute("shop", shop);
+		
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
 		Product product = categoryService.getProduct(Integer.parseInt(productId));
 		List<ProductComment> comments = categoryService.getComments(Integer.parseInt(productId));
@@ -126,6 +127,7 @@ public class CategoryController {
 			throws ServletException, IOException {
 		Shop shop = shopService.settingByUrl(url);
 		model.addAttribute("shop", shop);
+		
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
 		Product product = categoryService.getProduct(Integer.parseInt(productId));
 		model.addAttribute("category", category);
