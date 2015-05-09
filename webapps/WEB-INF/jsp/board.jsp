@@ -43,28 +43,29 @@
 		
 		<div id = "board_section" class="col s12 m10 l9">
 			<div id = "divide_line" class="row">
-			<div id = "board_name" class="row">${board.name}</div>
-			
-			<div id = "article_list" class="row">
-				<table>
-					<tr>
-						<td style="width:10%">NO</td>
-						<td style="width:4%"></td>
-						<td style="width:*">SUBJECT</td>
-						<td style="width:15%">DATE</td>
-					</tr>
-					<tr style="height:3px;"></tr>
-					<c:forEach var="article" items="${articles}">
+				<div id = "board_name" class="row">${board.name}</div>
+				
+				<div id = "article_list" class="row">
+					<table>
 						<tr>
-							<td>${article.id}</td>
-							<td></td>
-							<td align="left"><a href="/board/show/${shop.url}/${board.id}/${article.id}">${article.title}</a></td>
-							<td>${article.articleTime}</td>
+							<td style="width:10%">NO</td>
+							<td style="width:4%"></td>
+							<td style="width:*">SUBJECT</td>
+							<td style="width:15%">DATE</td>
 						</tr>
-					</c:forEach>
-				</table>
-			</div>	
-			<div id = "write_button" class="row"><a href="/board/write/${shop.url}/${board.id}">WRITE</a></div>
+						<tr style="height:3px;"></tr>
+						<c:forEach var="article" items="${articles}">
+							<tr>
+								<td>${article.id}</td>
+								<td></td>
+								<td align="left"><a href="/board/show/${shop.url}/${board.id}/${article.id}">${article.title}</a></td>
+								<td>${article.articleTime}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>	
+				<div id = "write_button" class="row"><a href="/board/write/${shop.url}/${board.id}">WRITE</a></div>
+			</div>
 		</div>
 
 	</div>

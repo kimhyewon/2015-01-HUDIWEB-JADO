@@ -40,18 +40,27 @@
 				</div>
 			</c:forEach>
 		</div>
+
+
+		<div id = "board_section" class="col s12 m10 l9">
+			<div id = "divide_line" class="row">
+				<form name="boardForm" action="/board/write" method="post">
+				<div id = "board_name">${board.name}</div>
+				<div id = "article_title"><input type="text" name="title" placeholder="제목을 입력하세요."/></div>
+				<div id = "article_content"><textarea name="content" placeholder="내용을 입력하세요." /></textarea></div>
+				<input type="hidden" name="boardId" value="${board.id}" />
+				<input type="hidden" name="shopUrl" value="${shop.url}" />
+				<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div>
+				</form>
+			</div>
+		</div>
+			
+
 	</div>
 
+
+
+
 	
-
-
-	<form name="boardForm" action="/board/write" method="post">
-		<div id = "board_name">${board.name}</div>
-		<div id = "article_title"><input type="text" name="title" placeholder="제목을 입력하세요."/></div>
-		<div id = "article_content"><textarea name="content" placeholder="내용을 입력하세요." /></textarea></div>
-		<input type="hidden" name="boardId" value="${board.id}" />
-		<input type="hidden" name="shopUrl" value="${shop.url}" />
-		<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div>
-	</form>
 </body>
 </html>
