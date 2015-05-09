@@ -47,6 +47,8 @@
 		<div id = "white_block" class="col shide m1 l1"></div>
 	</div>
 
+	
+
 	<div id = "product_con" class="row">
 		<div id = "black_line" class="row col s12 m12 l12"></div>
 		<div id = "product_text">${category.name}</div>

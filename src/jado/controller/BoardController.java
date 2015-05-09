@@ -3,7 +3,9 @@ package jado.controller;
 import jado.model.Article;
 import jado.model.ArticleComment;
 import jado.model.Board;
+import jado.model.Shop;
 import jado.service.ArticleService;
+import jado.service.ShopService;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +14,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,11 +32,16 @@ public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	private ArticleService articleService;
+	@Autowired 
+	private ShopService shopService;
 
 	//블로그 페이지에서 board명 클릭시 article list 보여줌 
-	@RequestMapping(value="/{boardId}", method = RequestMethod.GET)
-	public String doGet(Model model, @PathVariable("boardId")String boardId)
+	@RequestMapping(value="/{shopUrl}/{boardId}", method = RequestMethod.GET)
+	public String doGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url)
 			throws ServletException, IOException {
+		Shop shop = shopService.settingByUrl(url);
+		model.addAttribute("shop", shop);
+		
 		Board board = articleService.getBoard(Integer.parseInt(boardId));
 		List<Article> articles = articleService.getArticles(Integer.parseInt(boardId));
 		model.addAttribute("articles", articles );
