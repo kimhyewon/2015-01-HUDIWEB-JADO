@@ -15,10 +15,10 @@ import org.springframework.stereotype.Repository;
 public class ProductDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	public void insert(final Product product) {
 		String sql = "insert into PRODUCT values(null, ?, ?, ?, ?, ?, ?, null)";
-		Object[] args = new Object[] {product.getCategoryId(), product.getName(), product.getPrice(), product.getStock(), product.getImgUrl(), product.getDesc()};
+		Object[] args = new Object[] { product.getCategoryId(), product.getName(), product.getPrice(), product.getStock(), product.getImgUrl(), product.getDesc() };
 		jdbcTemplate.update(sql, args);
 	}
 
@@ -31,6 +31,7 @@ public class ProductDao {
 			return null;
 		}
 	}
+
 	public List<Product> selectAllByCateGoryId(final int categoryId) {
 		String sql = "select * from PRODUCT where CATEGORY_ID=?";
 		try {
@@ -41,8 +42,8 @@ public class ProductDao {
 	}
 
 	public List<Product> selectAllByUrl(String url) {
-		String sql = "select PRODUCT.* from PRODUCT inner join CATEGORY on PRODUCT.CATEGORY_ID = CATEGORY.ID "
-				+ "where CATEGORY.SHOP_URL = 'testurl'";
+		String sql = "select * from (select PRODUCT.* from PRODUCT inner join CATEGORY on PRODUCT.CATEGORY_ID = CATEGORY.ID "
+				+ "where CATEGORY.SHOP_URL = ?) as PRODUCT_INFO order by INSERT_TIME desc limit 9";
 		try {
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Product>(Product.class), url);
 		} catch (DataAccessException e) {

@@ -58,8 +58,8 @@ public class UserDao {
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 
-	public void removeCustomer(final String userId) {
-		String sql = "delete from USER where ID = ?";
+	public void updateDeleteUser(final String userId) {
+		String sql = "update USER set ENABLED=2 where ID = ?";
 		jdbcTemplate.update(sql, userId);
 	}
 
