@@ -9,7 +9,9 @@
 	<title>블로그</title>
 	<link rel="stylesheet" type="text/css" href="/css/jado.css">
 </head>
+<%@ include file="include/head.jspf" %>
 <body id="blog">
+
 	<div id = "header" class="row">
 		<div id = "title" class="col s12 m12 l12">${shop.title}
 		</div>
@@ -36,6 +38,7 @@
 	<div id = "body_con" class="row">
 		<div id = "white_block" class="col shide m1 l1"></div>
 		<div id = "category" class="row col s12 m2 l2">
+			<!-- <div id = "nav_divide_line"></div> -->
 			<c:forEach var="category" items="${shop.categorys}">
 				<div class = "category_list row col s1.5 m12 l12">
 					<a href="/category/${shop.url}/${category.id}">${category.name}</a>

@@ -1,3 +1,11 @@
+/* board.jsp */
+/* #nav_divide_line {
+	width: 60%;
+	height: 1px;
+	background-color: black;
+	margin-left: 12px;
+}
+ */
 #divide_line {
 	width: 80%;
 	height: 1px;
@@ -31,9 +39,49 @@ td {
   	background: #ffbf42;
   	font-size: 16px;
   	margin-top: 50px;
+  	margin-bottom: 30px;
 }
 
 #write_button a {
 	color: #fff;
 	line-height: 40px;
+}
+
+
+
+/* boardForm.jsp */
+#board_form input[type=text], #board_form textarea {
+	width: 96%;
+  	height: 30px;
+  	1background: -webkit-linear-gradient(#f0f0f0,#fff,#fff,#fff);
+  	1background: -o-linear-gradient(#f0f0f0,#fff,#fff,#fff);
+  	1background: linear-gradient(#f0f0f0,#fff,#fff,#fff);
+  	border-radius: 3px;
+  	text-indent: 10px;
+  	font-size: 12px;
+  	border: #ddd solid 1px;
+}
+
+#board_form textarea {
+	margin-top: 10px;
+	height: 350px;
+}
+
+#board_form input[type=submit] {
+	width: 26%;
+  	height: 40px;
+  	background: #ffbf42;
+  	border: 0;
+  	text-indent: 0;
+  	color: #fff;
+  	font-size: 16px;
+  	margin-top: 50px;
+  	margin-bottom: 30px;
+}
+
+
+
+/* showArticle.jsp */
+#show_article_title, #show_article_date{
+	text-align: left;
 }

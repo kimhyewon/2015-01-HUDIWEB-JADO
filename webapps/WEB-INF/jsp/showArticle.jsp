@@ -5,7 +5,6 @@
 <html>
 <%@ include file="include/head.jspf" %>
 <body id = "show_article">
-	<%@ include file="include/top.jspf" %>
 
 	<div id = "header" class="row">
 		<div id = "title" class="col s12 m12 l12">${shop.title}
@@ -47,15 +46,20 @@
 
 
 					<div id = "board_name">${board.name}</div>
-					
+
 					<!-- article 본문 부분 --> 
 					<input type="hidden" name="boardId" value="${board.id}" />
 					<input type="hidden" name="shopUrl" value="${shop.url}" />
-					<div id = "show_article_title">${article.title}</div>
+					<div id = "show_article_title">제목 : ${article.title}</div>
 					<div id = "show_article_author"></div> 
-					<div id = "show_article_date">${article.articleTime}<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="" /></div>
+					<div id = "show_article_date">작성 시간 : ${article.articleTime}<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="" /></div>
+
+					<div id = "divide_line" class="row"></div>
+
 					<div id = "show_article_content">${article.content}</div>
 					<input type="hidden" name="boardId" value="${boardId}" />
+
+					<div id = "divide_line" class="row"></div>
 
 
 					<!-- 댓글 작성 부분 -->

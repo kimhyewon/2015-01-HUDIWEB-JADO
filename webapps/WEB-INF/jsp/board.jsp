@@ -5,7 +5,7 @@
 <html>
 <%@ include file="include/head.jspf" %>
 <body id="board">
-	<%@ include file="include/top.jspf" %>
+	
 	
 	<div id = "header" class="row">
 		<div id = "title" class="col s12 m12 l12">${shop.title}
@@ -33,6 +33,7 @@
 	<div id = "body_con" class="row">
 		<div id = "white_block" class="col shide m1 l1"></div>
 		<div id = "category" class="row col s12 m2 l2">
+			<!-- <div id = "nav_divide_line"></div> -->
 			<c:forEach var="category" items="${shop.categorys}">
 				<div class = "category_list row col s1.5 m12 l12">
 					<a href="/category/product/${shop.url}/${category.id}">${category.name}</a>
@@ -41,7 +42,7 @@
 		</div>
 
 		
-		<div id = "board_section" class="col s12 m10 l9">
+		<div id = "board_section" class="col s12 m9 l9">
 			<div id = "divide_line" class="row">
 				<div id = "board_name" class="row">${board.name}</div>
 				
@@ -64,7 +65,7 @@
 						</c:forEach>
 					</table>
 				</div>	
-				<div id = "write_button" class="row"><a href="/board/write/${shop.url}/${board.id}">WRITE</a></div>
+				<div id = "write_button" class="row"><a href="/board/write/${shop.url}/${board.id}">글쓰기</a></div>
 			</div>
 		</div>
 
