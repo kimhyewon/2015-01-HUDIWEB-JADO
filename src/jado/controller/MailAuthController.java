@@ -49,8 +49,8 @@ public class MailAuthController {
 			logger.debug("메일 인증 실패");
 			return;
 		}
+		mailAuthService.updateMailAuthStatus(userEmail);
 		
-		mailAuthService.updateMailAuthStatus();
 		Map<String, Object> mailParameterMap = new HashMap<>();
 		mailParameterMap.put("mailRecipient", userEmail);
 		mailAuthService.send(mailParameterMap, Type.JOIN_WELCOME);

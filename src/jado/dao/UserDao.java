@@ -68,10 +68,14 @@ public class UserDao {
 		jdbcTemplate.update(sql, userId);
 	}
 
-	public void updateMailAuthStatus() {
-		String sql = "update USER set EMAIL_VALIDATE_STATUS = ?";
-		// TODO [우선순위 : 다소 높음] - sql where절이 필요할것 같아요! request from 경륜 to 태호 
-		jdbcTemplate.update(sql, "T");
+	public void updateMailAuthStatus(String userId) {
+		String sql = "update USER set EMAIL_VALIDATE_STATUS = ? WHERE ID=?";
+		jdbcTemplate.update(sql, "T", userId);
+	}
+	public void updateUserRole(String userId) {
+		String role = typeOfMailAuthStatus(userId);
+		String sql = "update USER_ROLE set ROLE=? WHERE USER_ID=?";
+		jdbcTemplate.update(sql, role, userId);
 	}
 
 	// TODO 이메소드 필요 없는것 같아요!
@@ -91,10 +95,10 @@ public class UserDao {
 		return false;
 	}
 
-	public boolean isExistSeller(String userId) {
+	public String typeOfMailAuthStatus(String userId) {
 		if (selectSellerById(userId) != null)
-			return true;
-		return false;
+			return "ROLE_SELLER";
+		return "ROLE_CUSTOMER";
 	}
 
 	public void insertDefaultRole(Customer customer) {

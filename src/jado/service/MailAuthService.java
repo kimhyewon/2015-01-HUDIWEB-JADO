@@ -39,8 +39,9 @@ public class MailAuthService {
 		return mailAuthDao.verify(userEmail, uuid);
 	}
 
-	public void updateMailAuthStatus() {
-		userDao.updateMailAuthStatus();
+	public void updateMailAuthStatus(String userEmail) {
+		userDao.updateUserRole(userEmail);
+		userDao.updateMailAuthStatus(userEmail);
 	}
 
 	@Async

@@ -55,6 +55,7 @@ public class SignUpController {
 	protected String userPost(@RequestParam("j_username") String userId, @RequestParam("j_password") String password, 
 			Customer user, Shop shop, Seller seller, String isSeller, Model model,
 			ServletRequest req) {
+		
 		if (req.getAttribute("errorMessage") != null) {
 			return "errorCommon";
 		}
