@@ -8,6 +8,8 @@ import jado.service.SignUpService;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpSession;
@@ -80,8 +82,10 @@ public class SignUpController {
 				return "errorCommon";
 			}
 		}
-
-		mailService.send(userId, MailTemplateStorage.Type.JOIN_VERIFY);
+		
+		Map<String, Object> mailParameterMap = new HashMap<>();
+		mailParameterMap.put("userId", userId);
+		mailService.send(mailParameterMap, MailTemplateStorage.Type.JOIN_VERIFY);
 		logger.info("메일 발송 요청 비동기 메소드를 실행시켰습니다");
 		return "main";
 	}
