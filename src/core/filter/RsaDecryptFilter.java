@@ -16,11 +16,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import core.util.DecryptRSA;
 import core.util.HttpRequestWithModifiableParameters;
 
 public class RsaDecryptFilter implements Filter {
-
+	private static final Logger logger = LoggerFactory.getLogger(RsaDecryptFilter.class);
+	
 	public void init(FilterConfig filterConfig) throws ServletException {
 	}
 
@@ -41,6 +45,8 @@ public class RsaDecryptFilter implements Filter {
 
 			// decrypt
 			if ("POST".equals(method.toUpperCase())) {
+				logger.debug("decrypt");
+				
 				userId = req.getParameter("idEncryption");
 				password = req.getParameter("pwEncryption");
 
@@ -51,7 +57,8 @@ public class RsaDecryptFilter implements Filter {
 				if (!(decryptedUserId.isSuccess() && decryptedUserPassword.isSuccess())) {
 					request.setAttribute("errorMessage", "암호화 전송된 정보를 해독하는 과정에서 오류 발생, 페이지 새로고침후 재시도 바람");
 				}
-				
+				logger.debug("id {}", decryptedUserId.getValue("decryptedString"));
+				logger.debug("pw {}", decryptedUserPassword.getValue("decryptedString"));
 				HttpRequestWithModifiableParameters param = new HttpRequestWithModifiableParameters(request); //요렇게 생성해서 
 				param.setParameter("j_username", (String)decryptedUserId.getValue("decryptedString")); 
 				param.setParameter("j_password", (String)decryptedUserPassword.getValue("decryptedString")); 

@@ -52,7 +52,7 @@ public class MailAuthController {
 		
 		mailAuthService.updateMailAuthStatus();
 		Map<String, Object> mailParameterMap = new HashMap<>();
-		mailParameterMap.put("userEmail", userEmail);
+		mailParameterMap.put("mailRecipient", userEmail);
 		mailAuthService.send(mailParameterMap, Type.JOIN_WELCOME);
 
 		// TODO 인증 성공 페이지로 이동

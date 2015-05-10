@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import core.mail.template.MailTemplateStorage;
 import core.util.EncryptRSA;
@@ -51,12 +52,12 @@ public class SignUpController {
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	protected String userPost(Customer user, Shop shop, Seller seller, String isSeller, Model model, ServletRequest req) {
+	protected String userPost(@RequestParam("j_username") String userId, @RequestParam("j_password") String password, 
+			Customer user, Shop shop, Seller seller, String isSeller, Model model,
+			ServletRequest req) {
 		if (req.getAttribute("errorMessage") != null) {
 			return "errorCommon";
 		}
-		String userId = (String) req.getAttribute("userId");
-		String password = (String) req.getAttribute("password");
 		user.setUserId(userId);
 		user.setPassword(password);
 
@@ -82,9 +83,9 @@ public class SignUpController {
 				return "errorCommon";
 			}
 		}
-		
+
 		Map<String, Object> mailParameterMap = new HashMap<>();
-		mailParameterMap.put("userId", userId);
+		mailParameterMap.put("mailRecipient", userId);
 		mailService.send(mailParameterMap, MailTemplateStorage.Type.JOIN_VERIFY);
 		logger.info("메일 발송 요청 비동기 메소드를 실행시켰습니다");
 		return "main";

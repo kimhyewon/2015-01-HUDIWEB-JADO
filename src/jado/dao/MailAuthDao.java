@@ -1,6 +1,8 @@
 package jado.dao;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,6 +16,7 @@ public class MailAuthDao {
 	
 	public void insert(String mailRecipient, String uuid) {
 		String sql = "insert into MAIL_AUTH values(?, ?, null)";
+		
 		jdbcTemplate.update(sql, mailRecipient, uuid);
 	}
 	
