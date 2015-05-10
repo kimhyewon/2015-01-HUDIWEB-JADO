@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping(value="/user")
 public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String viewLoginPage(Model model) {
 		return "login";
 	}
