@@ -82,7 +82,8 @@
 											<td style="width:15%; table-layout:fixed; word-break:break-all;"><span class="comment-author">${articleComment.userId}</span></td> 
 											<td style="width:65%; table-layout:fixed; word-break:break-all;" align="left" ><div class="about">${articleComment.content}</div></td> 
 											<td style="width:24%; table-layout:fixed; word-break:break-all;" ><span class="comment-date" value="">${articleComment.commentTime}</span></td>
-											<td style="5%; table-layout:fixed; word-break:break-all;" ><input type="submit" value="삭제"/></td>
+											<td style="width:5%; table-layout:fixed; word-break:break-all;" ><input type="image" src="/img/xbutton.png" style="width:10px; height=10px;">
+											</td>
 										</tr>	
 									</table>
 										
