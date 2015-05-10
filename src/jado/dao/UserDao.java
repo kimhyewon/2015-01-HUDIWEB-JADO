@@ -67,32 +67,11 @@ public class UserDao {
 		String sql = "delete from SELLER where ID = ?";
 		jdbcTemplate.update(sql, userId);
 	}
-
-	public void updateMailAuthStatus(String userId) {
-		String sql = "update USER set EMAIL_VALIDATE_STATUS = ? WHERE ID=?";
-		jdbcTemplate.update(sql, "T", userId);
-	}
+	
 	public void updateUserRole(String userId) {
 		String role = typeOfMailAuthStatus(userId);
 		String sql = "update USER_ROLE set ROLE=? WHERE USER_ID=?";
 		jdbcTemplate.update(sql, role, userId);
-	}
-
-	// TODO 이메소드 필요 없는것 같아요!
-	public Customer selectCustomerById(String userId) {
-		return selectUserById(userId);
-	}
-
-	public boolean IsPasswordCorrect(String userId, String password) {
-		if (selectCustomerById(userId) != null)
-			return selectCustomerById(userId).getPassword().equals(password);
-		return false;
-	}
-
-	public boolean IsEmailValidated(String userId) {
-		if (selectCustomerById(userId) != null)
-			return selectCustomerById(userId).getEmailValidateStatus().equals("T");
-		return false;
 	}
 
 	public String typeOfMailAuthStatus(String userId) {

@@ -26,9 +26,6 @@ public class MailAuthController {
 	
 	@Autowired private MailAuthService mailAuthService;
 	
-	/*
-	 * 도대체 user가... 어디까지 있는거죠? ㅋㅋㅋ 
-	 */
 	@RequestMapping(value = "/user/mailAuth", method = RequestMethod.GET)
 	public void InvalidAccess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//TODO 공통 에러 페이지가 만들어 지면 리다이렉트 시키기
@@ -49,7 +46,7 @@ public class MailAuthController {
 			logger.debug("메일 인증 실패");
 			return;
 		}
-		mailAuthService.updateMailAuthStatus(userEmail);
+		mailAuthService.updateTypeOfUserRole(userEmail);
 		
 		Map<String, Object> mailParameterMap = new HashMap<>();
 		mailParameterMap.put("mailRecipient", userEmail);

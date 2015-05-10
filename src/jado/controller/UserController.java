@@ -91,4 +91,14 @@ public class UserController {
 		// 또한 그냥 main로 돌아가는것이 아니라 회원탈퇴가 성공적으로 처리되었음을 알려주는 페이지로 이동하는것이 좋을 듯
 		return "main";
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String viewLoginPage(Model model) {
+		return "login";
+	}
+
+	@RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
+	public String processLogin() {
+		return "commons/error/401";
+	}
 }
