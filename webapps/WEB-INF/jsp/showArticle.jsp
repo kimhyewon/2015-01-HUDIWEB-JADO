@@ -50,34 +50,25 @@
 					<!-- article 본문 부분 --> 
 					<input type="hidden" name="boardId" value="${board.id}" />
 					<input type="hidden" name="shopUrl" value="${shop.url}" />
-					<div id = "show_article_title">제목 : ${article.title}</div>
-					<div id = "show_article_author"></div> 
-					<div id = "show_article_date">작성 시간 : ${article.articleTime}<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="" /></div>
-
-					<div id = "divide_line" class="row"></div>
-
-					<div id = "show_article_content">${article.content}</div>
-					<input type="hidden" name="boardId" value="${boardId}" />
-
-					<div id = "divide_line" class="row"></div>
-
-
-					<!-- 댓글 작성 부분 -->
-					<div class="answerWrite">
-						<form method="post" action="/board/answer/save" >
-							<input type="hidden" name="boardId" value="${board.id}" />
-							<input type="hidden" name="articleId" value="${article.id}" />
-							<input type="hidden" name="shopUrl" value="${shop.url}" />
-							<div id = "comment_writer">아이디</div>
-							<input type="text" name="userId" id="userId" />
-							<div id = "comment_content">내용</div>
-							<textarea name="content" id="content"></textarea>
-							<input type="submit" value="댓글 저장" />
-						</form>
+					
+					<div id = "show_article">
+						<table>
+							<tr>
+								<div id = "show_article_title">제목 : ${article.title}</div>
+							</tr>
+							<tr>
+								<div id = "show_article_date">작성 시간 : ${article.articleTime}<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="" /></div>
+							</tr>
+							<tr>
+								<div id = "show_article_content">${article.content}</div>
+							</tr>
+							<input type="hidden" name="boardId" value="${boardId}" />
+						</table>
 					</div>
 
 					<!-- 댓글 리스트 -->
-					<div class="comments">
+					<div id="comments">
+						
 						<c:forEach var="articleComment" items="${comments}">
 							<form method="post" action="/board/answer/delete" >
 								<input type="hidden" name="shopUrl" value="${shop.url}" />
@@ -86,31 +77,50 @@
 								<input type="hidden" name="userId" value="${articleComment.userId}" />
 								<input type="hidden" name="commentTime" value="${articleComment.commentTime}" />
 								<div class="comment">
-									<div class="comment-metadata">
-										<span class="comment-author">${articleComment.userId}</span> 
-										<span class="comment-date" value="">${articleComment.commentTime}</span>
-									</div>
-									<div class="comment-content">
-										<div class="about">내용 : ${articleComment.content}</div> 
-										<div class="comment-delete-button" >
-											<input type="submit" value="댓글 삭제"/>
-										</div>
-									</div>
+									<table>
+										<tr>
+											<td style="width:15%; table-layout:fixed; word-break:break-all;"><span class="comment-author">${articleComment.userId}</span></td> 
+											<td style="width:65%; table-layout:fixed; word-break:break-all;" align="left" ><div class="about">${articleComment.content}</div></td> 
+											<td style="width:24%; table-layout:fixed; word-break:break-all;" ><span class="comment-date" value="">${articleComment.commentTime}</span></td>
+											<td style="5%; table-layout:fixed; word-break:break-all;" ><input type="submit" value="삭제"/></td>
+										</tr>	
+									</table>
+										
 								</div>
 							</form>
 						</c:forEach>
+						
+					</div>
+
+					<!-- 댓글 작성 부분 -->
+					<div id="answerWrite">
+						<form method="post" action="/board/answer/save" >
+							<input type="hidden" name="boardId" value="${board.id}" />
+							<input type="hidden" name="articleId" value="${article.id}" />
+							<input type="hidden" name="shopUrl" value="${shop.url}" />
+							
+							<div id = "comment_writer">아이디<br />
+								<input type="text" name="userId" id="userId" style="width:100px; height:17px;" />
+							</div>
+							<div id = "comment_content">
+								<textarea name="content" id="content" style="width:545px; height:47px;"></textarea>
+							</div>
+							
+							<input type="submit" value="저장" />
+						</form>
 					</div>
 
 					<!-- article 본문 수정, 삭제  --> 
 					<div id ="update_button"><a href="/board/update/${shop.url}/${board.id}/${article.id}">글 수정</a></div>
 
-					<form method="post" action="/board/delete" >
-						<input type="hidden" name="shopUrl" value="${shop.url}" />
-						<input type="hidden" name="boardId" value="${board.id}" />
-						<input type="hidden" name="articleId" value="${article.id}" />
-						<input type="submit" value="글 삭제" />
-					</form>
-					
+					<div id ="delete_button">
+						<form method="post" action="/board/delete" >
+							<input type="hidden" name="shopUrl" value="${shop.url}" />
+							<input type="hidden" name="boardId" value="${board.id}" />
+							<input type="hidden" name="articleId" value="${article.id}" />
+							<input type="submit" value="글 삭제" />
+						</form>
+					</div>
 
 				</div>
 			</div>
