@@ -4,16 +4,14 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class Article {
-
 	private int id;
 	private int boardId;
 	private String title;
 	private String content;
 	private Timestamp articleTime;
-	private List<ArticleComment> comments = null;
+	private List<ArticleComment> comments;
 
-	public Article() {
-	}
+	public Article() {}
 
 	public Article(int id, int boardId, String title, String content, Timestamp articleTime) {
 		super();
