@@ -28,7 +28,7 @@ import core.exception.ForignKeyException;
 @Controller
 @RequestMapping(value = "/board")
 public class BoardController {
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	@Autowired
 	private ArticleService articleService;
 
