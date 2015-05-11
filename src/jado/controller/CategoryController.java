@@ -71,13 +71,18 @@ public class CategoryController {
 	protected String writePost(String shopUrl, String categoryId, String imgUrl, String name, String price, String stock, String desc, FileInfo fileInfo,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
-
+		
+		logger.debug("file info {}", fileInfo.getFile());
+		logger.debug("file info {}", fileInfo.getType());
+		logger.debug("file info {}", fileInfo.getUrl());
+		logger.debug("file info {}", fileInfo.getLocalLocation());
+		
+		fileInfo.updateLocalLocation();
+		logger.debug("file info {}", fileInfo.getLocalLocation());
+		
 		Product product = new Product(Integer.parseInt(categoryId), name, Integer.parseInt(price), Integer.parseInt(stock), imgUrl, desc);
-		categoryService.insertProduct(product);
-		
-//		fileInfo.updateLocalLocation();
-//		categoryService.representImage(fileInfo);
-		
+		categoryService.representImage(fileInfo, product);
+		logger.debug("url {}", shopUrl);
 		return "redirect:/category/"+shopUrl+"/"+categoryId;
 	}
 	
@@ -137,7 +142,7 @@ public class CategoryController {
 		
 	//product 본문 수정 구현 2 - updateProductForm에서 쓴 내용 받아오기  
 	@RequestMapping(value = "/product/update", method = RequestMethod.POST)
-	protected String productUpdatePost(String shopUrl, String categoryId, String productId, String imgUrl, String name, String price, String stock, String desc,
+	protected String productUpdatePost(FileInfo fileInfo, String shopUrl, String categoryId, String productId, String imgUrl, String name, String price, String stock, String desc,
 			HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
 		logger.debug("data3 {}", shopUrl);
@@ -148,10 +153,11 @@ public class CategoryController {
 		logger.debug("data555 {}", price);
 		logger.debug("data555 {}", stock);
 		logger.debug("data555 {}", desc);
-		
+
 		Product product = new Product(name, Integer.parseInt(price), Integer.parseInt(stock), imgUrl, desc);
 		product.setId(Integer.parseInt(productId));
 		categoryService.updateProduct(product);		
+		categoryService.updateImage(fileInfo, product.getId());
 		
 		return "redirect:/category/product/"+shopUrl+"/"+categoryId+"/"+productId;
 	}

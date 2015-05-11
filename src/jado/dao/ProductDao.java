@@ -60,8 +60,8 @@ public class ProductDao {
 	}
 	
 	public void update(Product product) {
-		String sql = "update PRODUCT set NAME=?, PRICE=?, STOCK=?, IMG_URL=?, DESC=? where ID=?";
-		Object[] args = new Object[] {product.getName(), product.getPrice(), product.getStock(), product.getImgUrl(), product.getDesc(), product.getId()};
+		String sql = "update PRODUCT set NAME=?, PRICE=?, STOCK=?, `DESC`=? where ID=?";
+		Object[] args = new Object[] {product.getName(), product.getPrice(), product.getStock(), product.getDesc(), product.getId()};
 		jdbcTemplate.update(sql, args);
 	}
 	

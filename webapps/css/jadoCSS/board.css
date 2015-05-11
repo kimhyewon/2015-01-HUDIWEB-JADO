@@ -188,3 +188,75 @@
 /*#delete_button {
   float: left;
 }*/
+
+
+
+
+
+/*category.jsp*/
+
+#upload_button {
+  width: 17%;
+    height: 40px;
+    background: #ffbf42;
+    font-size: 16px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+#upload_button a {
+  color: #fff;
+  line-height: 40px;
+}
+
+/*categoryForm.jsp*/
+
+#category_form input[type=text], #category_form textarea, #update_product_form input[type=text], #update_product_form textarea{
+  width: 96%;
+    height: 30px;
+    1background: -webkit-linear-gradient(#f0f0f0,#fff,#fff,#fff);
+    1background: -o-linear-gradient(#f0f0f0,#fff,#fff,#fff);
+    1background: linear-gradient(#f0f0f0,#fff,#fff,#fff);
+    border-radius: 3px;
+    text-indent: 10px;
+    font-size: 12px;
+    border: #ddd solid 1px;
+}
+
+#category_form textarea, #update_product_form textarea {
+  margin-top: 10px;
+  height: 350px;
+}
+
+#category_form input[type=submit], #update_product_form input[type=submit]{
+  width: 26%;
+    height: 40px;
+    background: #ffbf42;
+    border: 0;
+    text-indent: 0;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+
+
+
+/*showProduct.jsp*/
+
+#product_intro {
+
+}
+
+#product_img {
+  float: left;
+}
+
+#product_info {
+  float: left;
+}
+
+#show_product_content {
+  clear: both;
+}
