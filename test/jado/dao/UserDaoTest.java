@@ -27,7 +27,7 @@ public class UserDaoTest {
 		Customer customer = new Customer("userId1", "password", "name", "phone", "address");
 		userDao.insert(customer);
 		log.debug("insert CUSTOMER1_1 : {}", customer);
-		customer = userDao.selectCustomerById(customer.getUserId());
+		customer = userDao.selectUserById(customer.getUserId());
 		log.debug("insert CUSTOMER1_2 : {}", customer);
 	}
 
@@ -45,7 +45,7 @@ public class UserDaoTest {
 		shopDao.insert(shop);
 		userDao.insert(seller);
 
-		customer = userDao.selectCustomerById(customer.getUserId());
+		customer = userDao.selectUserById(customer.getUserId());
 		shop = shopDao.selectByUrl(shop.getUrl());
 		seller = userDao.selectSellerById(seller.getUserId());
 
@@ -59,7 +59,7 @@ public class UserDaoTest {
 		Customer customer1 = new Customer("userId5", "password", "name", "phone", "address");
 		userDao.insert(customer1);
 		Customer customer2 = new Customer("userId5", "password2", "name", "phone2", "address");
-		Customer dbCustomer = userDao.selectCustomerById(customer1.getUserId());
+		Customer dbCustomer = userDao.selectUserById(customer1.getUserId());
 		if (dbCustomer.update(customer2)) {
 			userDao.updateCustomer(dbCustomer);
 		}

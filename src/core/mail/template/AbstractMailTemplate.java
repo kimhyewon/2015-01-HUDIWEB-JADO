@@ -23,11 +23,10 @@ public abstract class AbstractMailTemplate implements MailTemplate {
 		return subject;
 	}
 
-	public String getBody(String mailRecipient) {
-		getModel(mailRecipient);
+	public String getBody(Map<String, Object> mailParameterMap) {
+		getModel(mailParameterMap);
 		return VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, templateLocation, "utf-8", model);
 	}
 
-	protected abstract void getModel(String mailRecipient);
-
+	protected abstract void getModel(Map<String, Object> mailParameterMap);
 }

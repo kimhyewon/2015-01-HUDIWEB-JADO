@@ -13,6 +13,8 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value = "/setting")
 public class SettingController {
+	private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
 	@Autowired
 	private ShopDao shopDao;
 	@Autowired
@@ -38,10 +41,11 @@ public class SettingController {
 		model.addAttribute("shop", shop);
 		return "setting";
 	}
-
+	
+	//edit Shop(url, title, phone, footer)
 	@RequestMapping(method = RequestMethod.POST)
-	public String editSetting(Model model, HttpSession session, String url, String title, String phone, String footer) throws ServletException, IOException {
-		Shop shop = new Shop(url, title, phone, footer);
+	public String editSetting(Model model, HttpSession session, Shop shop) throws ServletException, IOException {
+		logger.debug("shop {}", shop);
 		shop = shopService.settingEditInfo(shop);
 		if (shop == null)
 			return "main";

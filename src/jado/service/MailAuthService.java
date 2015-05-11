@@ -1,5 +1,7 @@
 package jado.service;
 
+import java.util.Map;
+
 import javax.mail.MessagingException;
 
 import jado.dao.MailAuthDao;
@@ -37,15 +39,15 @@ public class MailAuthService {
 		return mailAuthDao.verify(userEmail, uuid);
 	}
 
-	public void updateMailAuthStatus() {
-		userDao.updateMailAuthStatus();
+	public void updateTypeOfUserRole(String userEmail) {
+		userDao.updateUserRole(userEmail);
 	}
 
 	@Async
-	public void send(String mailRecipient, MailTemplateStorage.Type mailType) {
+	public void send(Map<String, Object> mailParameterMap, MailTemplateStorage.Type mailType) {
 		MailTemplate template = mailTemplateStorage.getTemplate(mailType);
-		Mail mail = new Mail(mailRecipient, template);
-
+		Mail mail = new Mail(mailParameterMap, template);
+		
 		try {
 			logger.info("메일 발송 요청 작업을 Google smtp서버로 보냈습니다");
 			emailSender.sendEmail(mail);

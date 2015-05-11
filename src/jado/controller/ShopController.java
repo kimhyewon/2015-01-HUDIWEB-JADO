@@ -1,6 +1,5 @@
 package jado.controller;
 
-import jado.dao.ShopDao;
 import jado.model.Product;
 import jado.model.Shop;
 import jado.service.ShopService;
@@ -20,22 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
+@RequestMapping(value = "/shop")
 public class ShopController {
 	@Autowired private ShopService shopService;
-	
-//	아무개 사용자가 남에 샵에 접근할때
-	@RequestMapping(value = "/shop/{shopUrl}", method = RequestMethod.GET)
-	public String showShop(@PathVariable("shopUrl")String url, Model model) throws ServletException, IOException {
-		Shop shop = shopService.settingByUrl(url);
-		List<Product> products = shopService.settingProductByUrl(url);
-		if (shop == null) return "main";
-		model.addAttribute("shop", shop);
-		model.addAttribute("products", products);
-		return "blogDummy";
-	}
-	
-//	본인이 자기 샵으로 갈때 
-	@RequestMapping(value = "/shop", method = RequestMethod.GET)
+
+	//	본인이 자기 샵으로 갈때 
+	@RequestMapping(method = RequestMethod.GET)
 	public String showShopByUser(Model model,HttpSession session) throws ServletException, IOException {
 		String userId = (String) session.getAttribute("userId");
 		String url = shopService.getUrl(userId);
@@ -44,4 +33,16 @@ public class ShopController {
 		}
 		return "redirect:/shop/"+url;
 	}
+	
+	//	아무개 사용자가 남에 샵에 접근할때
+	@RequestMapping(value = "/{shopUrl}", method = RequestMethod.GET)
+	public String showShop(@PathVariable("shopUrl")String url, Model model) throws ServletException, IOException {
+		Shop shop = shopService.settingByUrl(url);
+		List<Product> products = shopService.settingProductByUrl(url);
+		if (shop == null) return "redirect:/";
+		model.addAttribute("shop", shop);
+		model.addAttribute("products", products);
+		return "blogDummy";
+	}
+	
 }

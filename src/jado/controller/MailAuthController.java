@@ -3,6 +3,8 @@ package jado.controller;
 import jado.service.MailAuthService;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -44,9 +46,11 @@ public class MailAuthController {
 			logger.debug("메일 인증 실패");
 			return;
 		}
+		mailAuthService.updateTypeOfUserRole(userEmail);
 		
-		mailAuthService.updateMailAuthStatus();
-		mailAuthService.send(userEmail, Type.JOIN_WELCOME);
+		Map<String, Object> mailParameterMap = new HashMap<>();
+		mailParameterMap.put("mailRecipient", userEmail);
+		mailAuthService.send(mailParameterMap, Type.JOIN_WELCOME);
 
 		// TODO 인증 성공 페이지로 이동
 		response.getWriter().print("<h1>Your email is successfully authenticated</h1>");

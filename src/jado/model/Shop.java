@@ -18,6 +18,7 @@ public class Shop {
 	private List<Category> categorys;
 
 	public Shop() {
+		this.footer = "내용을 입력해 주세요";
 	}
 
 	public Shop(String url, String phone) {
@@ -37,6 +38,7 @@ public class Shop {
 	public String getUrl() {
 		return url;
 	}
+
 
 	public void setUrl(String url) {
 		this.url = url;

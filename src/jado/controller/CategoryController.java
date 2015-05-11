@@ -32,7 +32,7 @@ import core.exception.ForignKeyException;
 @Controller
 @RequestMapping(value = "/category")
 public class CategoryController {
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired 

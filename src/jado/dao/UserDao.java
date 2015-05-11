@@ -58,8 +58,8 @@ public class UserDao {
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 
-	public void removeCustomer(final String userId) {
-		String sql = "delete from USER where ID = ?";
+	public void updateDeleteUser(final String userId) {
+		String sql = "update USER set ENABLED=2 where ID = ?";
 		jdbcTemplate.update(sql, userId);
 	}
 
@@ -67,34 +67,17 @@ public class UserDao {
 		String sql = "delete from SELLER where ID = ?";
 		jdbcTemplate.update(sql, userId);
 	}
-
-	public void updateMailAuthStatus() {
-		String sql = "update USER set EMAIL_VALIDATE_STATUS = ?";
-		// TODO [우선순위 : 다소 높음] - sql where절이 필요할것 같아요! request from 경륜 to 태호 
-		jdbcTemplate.update(sql, "T");
+	
+	public void updateUserRole(String userId) {
+		String role = typeOfMailAuthStatus(userId);
+		String sql = "update USER_ROLE set ROLE=? WHERE USER_ID=?";
+		jdbcTemplate.update(sql, role, userId);
 	}
 
-	// TODO 이메소드 필요 없는것 같아요!
-	public Customer selectCustomerById(String userId) {
-		return selectUserById(userId);
-	}
-
-	public boolean IsPasswordCorrect(String userId, String password) {
-		if (selectCustomerById(userId) != null)
-			return selectCustomerById(userId).getPassword().equals(password);
-		return false;
-	}
-
-	public boolean IsEmailValidated(String userId) {
-		if (selectCustomerById(userId) != null)
-			return selectCustomerById(userId).getEmailValidateStatus().equals("T");
-		return false;
-	}
-
-	public boolean isExistSeller(String userId) {
+	public String typeOfMailAuthStatus(String userId) {
 		if (selectSellerById(userId) != null)
-			return true;
-		return false;
+			return "ROLE_SELLER";
+		return "ROLE_CUSTOMER";
 	}
 
 	public void insertDefaultRole(Customer customer) {
