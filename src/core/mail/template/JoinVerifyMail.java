@@ -31,7 +31,7 @@ public class JoinVerifyMail extends AbstractMailTemplate {
 		String mailRecipient = (String)mailParameterMap.get("mailRecipient");
 		String uuid = setVerifyKeyOnDB(mailRecipient);
 		model.put("uuid", uuid);
-		model.put("mailRequestAddress", mailRequestAddress+"/user/mailAuth");
+		model.put("mailRequestAddress", mailRequestAddress+"/mailAuth");
 		model.put("addressToMain", mailRequestAddress+"/");
 		model.put("mailRecipient", mailRecipient);
 	}

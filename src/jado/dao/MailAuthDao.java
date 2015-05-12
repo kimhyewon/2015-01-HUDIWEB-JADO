@@ -4,6 +4,7 @@ package jado.dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -31,13 +32,12 @@ public class MailAuthDao {
 		}
 	}
 
-	public boolean isAlreadyVerified(String userEmail) {
-		String sql = "select EMAIL_VALIDATE_STATUS from USER where ID=?";
+	public String userRole(String userEmail) {
+		String sql = "select ROLE from USER_ROLE WHERE USER_ID=?";
 		try {
-			if(jdbcTemplate.queryForObject(sql, String.class, userEmail).equals("T")) return true; 
-			return false;
-		} catch (EmptyResultDataAccessException e) {
-			return false;
+			return jdbcTemplate.queryForObject(sql, String.class, userEmail);		
+		} catch (DataAccessException e) {
+			return null;
 		}
 	}
 }

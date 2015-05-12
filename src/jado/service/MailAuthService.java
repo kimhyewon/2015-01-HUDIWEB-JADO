@@ -32,7 +32,16 @@ public class MailAuthService {
 	private MailTemplateStorage mailTemplateStorage;
 
 	public boolean isAlreadyVerified(String userEmail) {
-		return mailAuthDao.isAlreadyVerified(userEmail);
+		String role = mailAuthDao.userRole(userEmail);
+		logger.debug("role: {}", role);
+		if (role == null) {
+			return false;
+//			TODO: error 처리!!!!
+		}
+		if (role.equals("ROLE_EMAIL_NOT_VERIFIED_USER")) {
+			return  false;
+		}
+		return true;
 	}
 
 	public boolean verify(String userEmail, String uuid) {
