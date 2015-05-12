@@ -6,7 +6,9 @@
 <%@ include file="include/head.jspf" %>
 
 <body id = "update_product_form">
-	<%@ include file="include/top.jspf" %>
+	<%@ include file="include/blog.jspf" %>
+		</div>
+		
 	<form name="update_product_form" action="/category/product/update" method="post" enctype="multipart/form-data">
 		<div id = "product_info">
 			<div id ="product_img">
