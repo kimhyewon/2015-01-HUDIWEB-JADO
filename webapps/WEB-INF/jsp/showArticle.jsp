@@ -12,52 +12,16 @@ pageContext.setAttribute("lf", "\n");
 <html>
 <%@ include file="include/head.jspf" %>
 <body id = "show_article">
-
-	<div id = "header" class="row">
-		<div id = "title" class="col s12 m12 l12">${shop.title}
+	<%@ include file="include/blog.jspf" %>
 		</div>
-	</div>
-	<div id = "nav_bar" class="row">
-		<div id = "white_block" class="col shide m3 l3"></div>
-		<div id ="nav_content_con" class ="col s12 m6 l6">
-			<div class = "nav_content col s2 m2 l2"><a href="/user">LOGIN</a></div>
-			<div class = "nav_content col s2 m2 l2"><a href="/user/login">JOIN</a></div>
-			<div class = "nav_content col s2 m2 l2"><a href="">MYPAGE</a></div>
-			<div class = "nav_content col s2 m2 l2"><a href="">CART</a></div>
-			<c:forEach var="board" items="${shop.boards}">
-				<div class = "nav_content col s2 m2 l2"><a href="/board/${board.id}">
-					${board.name}
-				</a></div>
-			</c:forEach>
-
-			<div class = "nav_content col s2 m2 l2"><a href="/setting">SETTING</a></div>
-			<div id = "nav_content col s2 m2 l2">
-			</div>
-		</div>
-		<div id = "white_block" class="col shide m3 l3"></div>
-	</div>
-
-	<div id = "body_con" class="row">
-		<div id = "white_block" class="col shide m1 l1"></div>
-		<div id = "category" class="row col s12 m2 l2">
-			<c:forEach var="category" items="${shop.categorys}">
-				<div class = "category_list row col s1.5 m12 l12">
-					<a href="/category/product/${shop.url}/${category.id}">${category.name}</a>
-				</div>
-			</c:forEach>
-		</div>
-
-
 
 		<div id = "board_section" class="col s12 m10 l9">
 			<div id = "divide_line" class="row">
-
 				<div id = "board_name">${board.name}</div>
 
 				<!-- article 본문 부분 --> 
 				<input type="hidden" name="boardId" value="${board.id}" />
 				<input type="hidden" name="shopUrl" value="${shop.url}" />
-				
 				<div id = "show_article">
 					<table>
 						<tr>
@@ -75,7 +39,6 @@ pageContext.setAttribute("lf", "\n");
 
 				<!-- 댓글 리스트 -->
 				<div id="comments">
-					
 					<c:forEach var="articleComment" items="${comments}">
 						<form method="post" action="/board/answer/delete" >
 							<input type="hidden" name="shopUrl" value="${shop.url}" />
@@ -97,7 +60,6 @@ pageContext.setAttribute("lf", "\n");
 							</div>
 						</form>
 					</c:forEach>
-					
 				</div>
 
 				<!-- 댓글 작성 부분 -->
@@ -120,7 +82,6 @@ pageContext.setAttribute("lf", "\n");
 
 				<!-- article 본문 수정, 삭제  --> 
 				<div id ="update_button"><a href="/board/update/${shop.url}/${board.id}/${article.id}">글 수정</a></div>
-
 				<div id ="delete_button">
 					<form method="post" action="/board/delete" >
 						<input type="hidden" name="shopUrl" value="${shop.url}" />
@@ -131,8 +92,6 @@ pageContext.setAttribute("lf", "\n");
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 </body>
 </html>
