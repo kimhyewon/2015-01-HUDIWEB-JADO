@@ -21,14 +21,41 @@ pageContext.setAttribute("lf", "\n");
 				<input type="hidden" name="categorydId" value="${category.id}" />
 				<input type="hidden" name="productId" value="${product.id}" />
 				<input type="hidden" name="shopUrl" value="${shop.url}" />
-				<div id = "product_intro">
+				<div id = "product_intro" class="row">
 					<div id = "product_img">
 						<div id = "show_product_url"><img src="${product.imgUrl}" style="width:100%; height=100%;"></div>
 					</div>
 					<div id = "product_info">
-						<div id = "show_product_name">${product.name}</div>
-						<div id = "show_product_price">${product.price}</div> 
-						<div id = "select_product_count">수량 선택</div>
+
+						<table id ="info">
+							<tr>
+								<td style="width:30%; table-layout:fixed; word-break:break-all;">상품명</td>
+								<td style="width:70%; table-layout:fixed; word-break:break-all;">${product.name}</td>
+							</tr>
+							<tr>
+								<td style="width:30%; table-layout:fixed; word-break:break-all;">가격</td>
+								<td style="width:70%; table-layout:fixed; word-break:break-all;">${product.price}원</td>
+							</tr>
+							<tr>
+								<td style="width:30%; table-layout:fixed; word-break:break-all;">수량</td>
+								<td style="width:70%; table-layout:fixed; word-break:break-all;">
+									<select name="select_product_count">
+									    <option value="">선택하세요</option>
+									    <option value="1">1</option>
+									    <option value="2">2</option>
+									    <option value="3">3</option>
+									    <option value="4">4</option>
+									    <option value="5">5</option>
+									    <option value="6">6</option>
+									    <option value="7">7</option>
+									    <option value="8">8</option>
+									    <option value="9">9</option>
+									    <option value="10">10</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+						<div id = "buy_button"><a href="">구매하기</a></div>
 					</div>
 				</div>
 				<div id = "show_product_content">${fn:replace(product.desc, lf, "<br/>")}</div>

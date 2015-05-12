@@ -246,7 +246,8 @@
 /*showProduct.jsp*/
 
 #product_intro {
-
+  padding-top: 70px;
+  margin-left: 70px;
 }
 
 #product_img {
@@ -254,9 +255,42 @@
 }
 
 #product_info {
+  padding-top: 15px;
   float: left;
+  text-align: left;
+  font-size: 13px;
+  margin-left: 60px;
+  padding-bottom: 20px;
 }
+
+#info {
+  line-height: 170%;
+}
+
+#info td {
+  padding-left: 40px;
+}
+
+
+#buy_button {
+  width: 90px;
+    height: 35px;
+    background: black;
+    font-size: 14px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+    margin-left: 40px;
+}
+
+#buy_button a {
+  line-height: 35px;
+  color: white;
+}
+
 
 #show_product_content {
   clear: both;
+  margin-top: 100px;
+  height: 400px;
 }
