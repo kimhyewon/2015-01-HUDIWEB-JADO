@@ -112,7 +112,7 @@ public class CategoryController {
 		ProductComment productComment = new ProductComment(Integer.parseInt(productId), userId, content);
 		categoryService.insertproductCommnet(productComment);
 		
-		return "redirect:/category/product/"+shopUrl+"/"+productId+"/"+categoryId;
+		return "redirect:/category/product/"+shopUrl+"/"+categoryId+"/"+productId;
 	}
 	
 	//댓글 삭제 구현
