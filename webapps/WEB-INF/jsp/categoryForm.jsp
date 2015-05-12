@@ -6,11 +6,13 @@
 <%@ include file="include/head.jspf" %>
 
 <body id = "category_form">
-	<%@ include file="include/top.jspf" %>
-	<form name="categoryForm" action="/category/product/upload" method="post">
+	<form name="category_form" action="/category/product/upload" method="post" enctype="multipart/form-data">
 		<div id = "product_info">
 			<div id ="product_img">
-				대표 사진 <input type="file" name="imgUrl"/>
+				대표 사진 <input type="file" name="file"/>
+				<input type="hidden" name="url" value="${shop.url}">
+				<input type="hidden" name="localLocation" value="/userImg/product/img">
+				<input type="hidden" name="type" value="IMG_URL">
 			</div>
 			<div id ="product_name">
 				상품명 <input type="text" name="name" />

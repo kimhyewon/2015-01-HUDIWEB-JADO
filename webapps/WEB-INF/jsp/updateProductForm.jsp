@@ -7,10 +7,10 @@
 
 <body id = "update_product_form">
 	<%@ include file="include/top.jspf" %>
-	<form name="updateProductForm" action="/category/product/update" method="post">
+	<form name="update_product_form" action="/category/product/update" method="post" enctype="multipart/form-data">
 		<div id = "product_info">
 			<div id ="product_img">
-				대표 사진 ${product.imgUrl} <input type="file" name="imgUrl" value="${product.imgUrl}" />
+				대표 사진 ${product.imgUrl} <input type="file" name="file" value="${product.imgUrl}" />
 			</div>
 			<div id ="product_name">
 				상품명 <input type="text" name="name" value="${product.name}"/> 

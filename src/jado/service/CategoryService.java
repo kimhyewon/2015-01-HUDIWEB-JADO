@@ -72,15 +72,20 @@ public class CategoryService {
 	public void updateProduct(Product product) throws ForignKeyException {
 		productDao.update(product);
 	}
+
+
 	
-//	public void representImage(FileInfo fileInfo) throws IllegalStateException, IOException {
-//		String url = fileInfo.getUrl();
-//		upload.uploadFile(fileInfo.getFile(), fileInfo.getLocalLocation());
-//
-//		Product product = productDao.selectByUrl(url);
-//		product.setImgUrl(url);
-//		productDao.updateImageUrl(fileInfo);
-//		
-//	}
+	public void representImage(FileInfo fileInfo, Product product) throws IllegalStateException, IOException {
+		String url = fileInfo.getLocalLocation();
+		upload.uploadFile(fileInfo.getFile(), fileInfo.getLocalLocation());
+
+		product.setImgUrl(url);
+		productDao.insert(product);		
+	}
+
+	public void updateImage(FileInfo fileInfo, int productId) throws IllegalStateException, IOException {
+		Product product = productDao.selectByPk(productId);
+		upload.uploadFile(fileInfo.getFile(), product.getImgUrl());
+	}
 	
 }

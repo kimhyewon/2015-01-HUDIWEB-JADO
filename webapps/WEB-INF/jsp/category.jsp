@@ -6,8 +6,6 @@
 <%@ include file="include/head.jspf" %>
 
 <body id = "category">
-	<%@ include file="include/top.jspf" %>
-	
 	<div id = "header" class="row">
 		<div id = "title" class="col s12 m12 l12">${shop.title}
 		</div>
