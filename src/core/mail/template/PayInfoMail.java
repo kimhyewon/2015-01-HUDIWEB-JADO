@@ -19,5 +19,6 @@ public class PayInfoMail extends AbstractMailTemplate {
 		model.put("price", mailParameterMap.get("price"));
 		model.put("cardCompany", mailParameterMap.get("cardCompany"));
 		model.put("shopUrl", mailParameterMap.get("shopUrl"));
+		model.put("addressToMain", mailRequestAddress+"/");
 	}
 }

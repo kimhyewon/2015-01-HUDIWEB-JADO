@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
@@ -17,8 +18,14 @@ public abstract class AbstractMailTemplate implements MailTemplate {
 	
 	protected String subject;
 	protected String templateLocation;
+	protected String mailRequestAddress;
 	protected Map<String, Object> model = new HashMap<String, Object>();
 
+	@Value("${mail.requestAddress}")
+	public void setMailRequestAddress(String mailRequestAddress) {
+		this.mailRequestAddress = mailRequestAddress;
+	}
+	
 	public String getSubject() {
 		return subject;
 	}

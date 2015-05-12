@@ -6,7 +6,6 @@ import java.util.Map;
 import jado.dao.MailAuthDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import core.mail.UUIDGenerator;
@@ -16,14 +15,6 @@ public class JoinVerifyMail extends AbstractMailTemplate {
 
 	@Autowired
 	private MailAuthDao mailDao;
-	
-	private String mailRequestAddress;
-	 
-	
-	@Value("${mail.requestAddress}")
-	public void setMailRequestAddress(String mailRequestAddress) {
-		this.mailRequestAddress = mailRequestAddress;
-	}
 	
 	public JoinVerifyMail() {
 		subject = "[Ne #] 서비스 가입을 위한 이메일 인증 메일입니다";
@@ -36,12 +27,12 @@ public class JoinVerifyMail extends AbstractMailTemplate {
 		return uuid;
 	}
 
-	@Override
 	protected void getModel(Map<String, Object> mailParameterMap) {
 		String mailRecipient = (String)mailParameterMap.get("mailRecipient");
 		String uuid = setVerifyKeyOnDB(mailRecipient);
 		model.put("uuid", uuid);
-		model.put("mailRequestAddress", mailRequestAddress);
+		model.put("mailRequestAddress", mailRequestAddress+"/user/mailAuth");
+		model.put("addressToMain", mailRequestAddress+"/");
 		model.put("mailRecipient", mailRecipient);
 	}
 }

@@ -14,6 +14,7 @@ public class JoinWelcomeMail extends AbstractMailTemplate {
 	
 	@Override
 	protected void getModel(Map<String, Object> mailParameterMap) {
+		model.put("addressToMain", mailRequestAddress+"/");
 		model.put("mailRecipient", (String)mailParameterMap.get("mailRecipient"));
 	}
 }
