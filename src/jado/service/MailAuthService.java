@@ -1,5 +1,6 @@
 package jado.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -33,19 +34,20 @@ public class MailAuthService {
 
 	public boolean isAlreadyVerified(String userEmail) {
 		String role = mailAuthDao.userRole(userEmail);
-		logger.debug("role: {}", role);
-		if (role == null) {
+		if (role == null)
+			return true;
+		if (role.equals("ROLE_EMAIL_NOT_VERIFIED_USER"))
 			return false;
-//			TODO: error 처리!!!!
-		}
-		if (role.equals("ROLE_EMAIL_NOT_VERIFIED_USER")) {
-			return  false;
-		}
 		return true;
 	}
 
 	public boolean verify(String userEmail, String uuid) {
-		return mailAuthDao.verify(userEmail, uuid);
+		Integer result = mailAuthDao.verify(userEmail, uuid);
+		if (result == null)
+			return false;
+		if (result.equals(new Integer(1)))
+			return true;
+		return false;
 	}
 
 	public void updateTypeOfUserRole(String userEmail) {
@@ -56,14 +58,20 @@ public class MailAuthService {
 	public void send(Map<String, Object> mailParameterMap, MailTemplateStorage.Type mailType) {
 		MailTemplate template = mailTemplateStorage.getTemplate(mailType);
 		Mail mail = new Mail(mailParameterMap, template);
-		
+
 		try {
 			logger.info("메일 발송 요청 작업을 Google smtp서버로 보냈습니다");
 			emailSender.sendEmail(mail);
 			logger.info("비동기작업으로 진행되었던 메일 발송이 완료되었습니다");
 		} catch (MessagingException e) {
 			logger.debug("mail error {}", e.getMessage());
-			e.printStackTrace();
 		}
+	}
+
+	@Async
+	public void send(String userId, MailTemplateStorage.Type mailType) {
+		Map<String, Object> mailParameterMap = new HashMap<>();
+		mailParameterMap.put("mailRecipient", userId);
+		send(mailParameterMap, mailType);
 	}
 }

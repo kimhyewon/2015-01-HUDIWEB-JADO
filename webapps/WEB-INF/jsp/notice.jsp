@@ -8,9 +8,9 @@
     <div class="row"> 
     	<div class="col m1 l2 dummy">dummmy</div>
     	<div class="col s12 m8 l6 noticeContainer">
-    		<h2>${title}</h2>
+    		<h2>${notice.title}</h2>
     		<div class="message">
-    			${message}
+    			${notice.message}
     		</div>
     		<a class="home" href="/">홈 으 로</a>
     	</div>

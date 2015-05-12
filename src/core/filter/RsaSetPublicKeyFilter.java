@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import core.util.EncryptRSA;
+import core.util.HttpRequestWithModifiableParameters;
 
 @WebFilter(urlPatterns = { "/user/login", "/user/edit", "/user" })
 public class RsaSetPublicKeyFilter implements Filter {
@@ -32,7 +33,6 @@ public class RsaSetPublicKeyFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
-
 		String method = request.getMethod();
 
 		if (method != null && !"".equals(method)) {
@@ -42,7 +42,10 @@ public class RsaSetPublicKeyFilter implements Filter {
 			if ("GET".equals(method.toUpperCase())) {
 				logger.debug("encrypt");
 				if (!encryptPrepareProcess(session, request).isSuccess()) {
-					request.setAttribute("errorMessage", "암호화 하는 과정에서 오류 발생, 페이지 새로고침후 재시도 바람");
+					HttpRequestWithModifiableParameters param = new HttpRequestWithModifiableParameters((HttpServletRequest) req);
+					param.setParameter("title", "Encrypted Fail");
+					param.setParameter("message", "암호화 하는 과정에서 오류가 발생하였습니다. 페이지 새로고침후 재시도 해주시기 바랍니다.");
+					request = (HttpServletRequest) param;
 				}
 			}
 		}

@@ -24,7 +24,7 @@ import core.util.HttpRequestWithModifiableParameters;
 
 public class RsaDecryptFilter implements Filter {
 	private static final Logger logger = LoggerFactory.getLogger(RsaDecryptFilter.class);
-	
+
 	public void init(FilterConfig filterConfig) throws ServletException {
 	}
 
@@ -46,7 +46,7 @@ public class RsaDecryptFilter implements Filter {
 			// decrypt
 			if ("POST".equals(method.toUpperCase())) {
 				logger.debug("decrypt");
-				
+
 				userId = req.getParameter("idEncryption");
 				password = req.getParameter("pwEncryption");
 
@@ -54,16 +54,15 @@ public class RsaDecryptFilter implements Filter {
 				decryptedUserId = decryptString(privateKey, userId);
 				decryptedUserPassword = decryptString(privateKey, password);
 
+				HttpRequestWithModifiableParameters param = new HttpRequestWithModifiableParameters(request);
 				if (!(decryptedUserId.isSuccess() && decryptedUserPassword.isSuccess())) {
-					request.setAttribute("errorMessage", "암호화 전송된 정보를 해독하는 과정에서 오류 발생, 페이지 새로고침후 재시도 바람");
+					param.setParameter("title", "Decrypted Fail");
+					param.setParameter("message", "복호화 하는 과정에서 오류가 발생하였습니다. 페이지 새로고침후 재시도 해주시기 바랍니다.");
 				}
-				logger.debug("id {}", decryptedUserId.getValue("decryptedString"));
-				logger.debug("pw {}", decryptedUserPassword.getValue("decryptedString"));
-				HttpRequestWithModifiableParameters param = new HttpRequestWithModifiableParameters(request); //요렇게 생성해서 
-				param.setParameter("j_username", (String)decryptedUserId.getValue("decryptedString")); 
-				param.setParameter("j_password", (String)decryptedUserPassword.getValue("decryptedString")); 
+				param.setParameter("j_username", (String) decryptedUserId.getValue("decryptedString"));
+				param.setParameter("j_password", (String) decryptedUserPassword.getValue("decryptedString"));
 
-				request = (HttpServletRequest)param; 
+				request = (HttpServletRequest) param;
 			}
 		}
 		chain.doFilter(request, response);
