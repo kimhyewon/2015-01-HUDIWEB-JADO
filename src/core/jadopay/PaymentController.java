@@ -56,7 +56,27 @@ public class PaymentController {
 	
 	@RequestMapping(value = "/process", method = RequestMethod.POST)
 	public String processPayment(@RequestParam("cardCompany") String cardCompany, @RequestParam("userId") String userId, @RequestParam("shopUrl") String shopUrl, @RequestParam("productId") int productId,@RequestParam("price") int price, Model model) throws MessagingException {
-		
+
+		/*
+		 * 제 생각에 '돈'을 다루기 때문에 조금 더 명확해야할 것 같아요.
+		 * 특히 int가 아니라 BigDecimal이 좋을 것 같기도 한데.. 이건 제가 아직 안 써봐서 피드백드릴 내용은 없어요.
+		 * 공부해서 알려주세요 :)
+		 * 
+		 * 그리고 아래 로직이 좀 이상한건..
+		 * 상식적으로 지불을 수행하고 그 (성공/실패) 결과를 메일로 보내주는건지
+		 * 아니면 지불이 성공했을 때만 메일을 보내주는지 이게 불분명하네요.
+		 * 
+		 * 만약 후자라면
+		 * processPay 로직 하단에 메일발송 기능이 추가되어야 할 것 같아요.
+		 * 
+		 * 또.
+		 * 도중 지불이 실패할 경우에 어떻게 처리할 것인지가 불문명하네요.
+		 * 예를 들어 롤백을 할지, 아니면 무시 후 실패 결과만 통보할지
+		 * 만약 어쨋든 로직의 원자화가 중요한 이슈일 것 같습니다
+		 * 
+		 * 만약 스프링 @Transactional을 쓴다면
+		 * 반드시 PaymentService를 interface화 해야 적용이 될거에요.
+		 */
 		paymentService.processPay(userId, shopUrl, cardCompany, price, productId);
 
 		model.addAttribute("cardCompany", cardCompany);
