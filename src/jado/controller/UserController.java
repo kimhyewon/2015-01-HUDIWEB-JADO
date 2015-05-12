@@ -98,8 +98,10 @@ public class UserController {
 		shop.setUrl(seller.getShopUrl());
 		try {
 			userService.updateCustomer(user);
-			if (isSeller != null)
+			if (isSeller != null){
 				userService.setSellerInfo(shop, seller);
+				mailService.updateTypeOfUserRole(userId);
+			}
 		} catch (DuplicateKeyException e) {
 			return ModelAndViewUtils.renderToNotice(new Notice("Error", e.getMessage()));
 		}

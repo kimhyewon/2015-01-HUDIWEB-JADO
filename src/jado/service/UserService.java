@@ -60,6 +60,7 @@ public class UserService {
 			throw new DuplicateKeyException("이미 당신은 판매자로 등록되어 있습니다.");
 		}
 		userDao.insert(seller);
+		
 	}
 
 	private void insertShop(Shop shop) {
