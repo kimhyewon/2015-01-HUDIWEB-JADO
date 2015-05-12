@@ -15,11 +15,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-
+	
+	// 특별한 이유가 없으면 접근자는 private이 좋아요
 	@Autowired
-	UserDao userDao;
+	private UserDao userDao;
 	@Autowired
-	ShopDao shopDao;
+	private ShopDao shopDao;
 
 	public Customer selectUserById(String userId) {
 		return userDao.selectUserById(userId);

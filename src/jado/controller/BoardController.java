@@ -95,7 +95,7 @@ public class BoardController {
 	//댓글 등록 구현
 	/*
 	 * 스프링에서 @ModelAttribute를 사용하여 관련 파라미터 값을 객체로 받아올 수 있습니다
-	 *  - @see jado.controller.BoardControllerMockTest.commentPost_S_ModelAttribute로_값이_잘_받아지는지() 
+	 *  - @see jado.controller.BoardControllerMockTest 
 	 *  - @ModelAttribute 지정된 객체의 필드와 파라미터 이름을 맞추어 값을 저장하고 객체로 전달한다.
 	 */
 	@RequestMapping(value = "/answer/save", method = RequestMethod.POST)
