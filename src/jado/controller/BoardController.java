@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -20,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -94,31 +93,34 @@ public class BoardController {
 	}
 	
 	//댓글 등록 구현
+	/*
+	 * 스프링에서 @ModelAttribute를 사용하여 관련 파라미터 값을 객체로 받아올 수 있습니다
+	 *  - @see jado.controller.BoardControllerMockTest.commentPost_S_ModelAttribute로_값이_잘_받아지는지() 
+	 *  - @ModelAttribute 지정된 객체의 필드와 파라미터 이름을 맞추어 값을 저장하고 객체로 전달한다.
+	 */
 	@RequestMapping(value = "/answer/save", method = RequestMethod.POST)
-	protected String commentPost(String shopUrl, String boardId, String articleId, String userId, String content,
-			HttpSession session, Model model) throws ServletException,
+	protected String commentPost(String shopUrl,  String boardId, @ModelAttribute ArticleComment articleComment, HttpSession session, Model model) throws ServletException,
 			IOException, ForignKeyException {
-		logger.debug("shop data3 {}", articleId);
-		logger.debug("shop data3 {}", userId);
-		logger.debug("shop data4 {}", content);
+		logger.debug("articleComment {}", articleComment);
 		logger.debug("a {}", boardId);
 		
-		ArticleComment articleComment = new ArticleComment(Integer.parseInt(articleId), userId, content);
 		articleService.insertArticleCommnet(articleComment);
 		
-		return "redirect:/board/show/"+shopUrl+"/"+boardId+"/"+articleId;
+		return "redirect:/board/show/"+shopUrl+"/"+boardId+"/"+articleComment.getArticleId();
 	}
 	
 	//댓글 삭제 구현
+	/*
+	 * 전달되는 파라미터가 문자열 숫자라고 하더라도 스프링은 적절한 타입으로 변경해주는 기능이 있습니다.
+	 * protected String commentDeletePost(String shopUrl, String boardId, String articleId, String userId, String commentTime, HttpSession session, Model model) throws ServletException, IOException, ForignKeyException {
+	 */
 	@RequestMapping(value = "/answer/delete", method = RequestMethod.POST)
-	protected String commentDeletePost(String shopUrl, String boardId, String articleId, String userId, String commentTime,
-			HttpSession session, Model model) throws ServletException,
-			IOException, ForignKeyException {
+	protected String commentDeletePost(String shopUrl, String boardId, int articleId, String userId, String commentTime, HttpSession session, Model model) throws ServletException, IOException, ForignKeyException {
 		logger.debug("data {}", articleId);
 		logger.debug("data {}", userId);
 		logger.debug("data {}", commentTime);
 		
-		articleService.deleteArticleComment(Integer.parseInt(articleId), userId, commentTime);
+		articleService.deleteArticleComment(articleId, userId, commentTime);
 		
 		return "redirect:/board/show/"+shopUrl+"/"+boardId+"/"+articleId;
 	}
