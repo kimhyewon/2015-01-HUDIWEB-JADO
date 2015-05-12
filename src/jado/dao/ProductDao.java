@@ -32,7 +32,7 @@ public class ProductDao {
 	}
 
 	public List<Product> selectAllByCateGoryId(final int categoryId) {
-		String sql = "select * from PRODUCT where CATEGORY_ID=?";
+		String sql = "select * from PRODUCT where CATEGORY_ID=? order by ID desc";
 		try {
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Product>(Product.class), categoryId);
 		} catch (EmptyResultDataAccessException e) {
