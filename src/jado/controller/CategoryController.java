@@ -63,7 +63,7 @@ public class CategoryController {
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
 		model.addAttribute("category", category);
 		
-		return "categoryForm";
+		return "productForm";
 	}
 	
 	// categoryForm에서 등록한 내용 post로 받아오기 
