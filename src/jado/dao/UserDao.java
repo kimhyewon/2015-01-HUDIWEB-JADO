@@ -3,7 +3,6 @@ package jado.dao;
 import jado.model.Customer;
 import jado.model.Seller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -83,5 +82,10 @@ public class UserDao {
 	public void insertDefaultRole(Customer customer) {
 		String sql = "insert into USER_ROLE (USER_ID) values(?)";
 		jdbcTemplate.update(sql, customer.getUserId());
+	}
+
+	public void updateUserEmailValidateStatus(String userEmail) {
+		String sql ="update USER set EMAIL_VALIDATE_STATUS='T' where ID=?";
+		jdbcTemplate.update(sql, userEmail);
 	}
 }
