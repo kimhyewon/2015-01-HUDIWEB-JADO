@@ -1,8 +1,5 @@
 package jado.controller;
 
-import jado.model.Article;
-import jado.model.ArticleComment;
-import jado.model.Board;
 import jado.model.Category;
 import jado.model.FileInfo;
 import jado.model.Product;
@@ -26,7 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import core.exception.ForignKeyException;
+import core.exception.InsertTargetRecordNotFoundException;
 import core.jadopay.PaymentInfo;
 
 
@@ -70,8 +67,7 @@ public class CategoryController {
 	// categoryForm에서 등록한 내용 post로 받아오기 
 	@RequestMapping(value = "/product/upload", method = RequestMethod.POST)
 	protected String writePost(String shopUrl, String categoryId, String imgUrl, String name, String price, String stock, String desc, FileInfo fileInfo,
-			HttpSession session, Model model) throws ServletException,
-			IOException, ForignKeyException {
+			HttpSession session, Model model) throws InsertTargetRecordNotFoundException, IllegalStateException, IOException {
 		
 		logger.debug("file info {}", fileInfo.getFile());
 		logger.debug("file info {}", fileInfo.getType());
@@ -89,8 +85,7 @@ public class CategoryController {
 	
 	//상품 클릭시 해당 글(상세 페이지) 보여주는 코드 
 	@RequestMapping(value="/product/{shopUrl}/{categoryId}/{productId}", method = RequestMethod.GET)
-	public String productGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId, @PathVariable("shopUrl")String url)
-			throws ServletException, IOException {
+	public String productGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId, @PathVariable("shopUrl")String url)  {
 		Shop shop = shopService.settingByUrl(url);
 		model.addAttribute("shop", shop);
 		
@@ -108,12 +103,15 @@ public class CategoryController {
 	//댓글 등록 구현
 	@RequestMapping(value = "/product/answer/save", method = RequestMethod.POST)
 	protected String commentPost(String shopUrl, String categoryId, String productId, String userId, String content,
-			HttpSession session, Model model) throws ServletException,
-			IOException, ForignKeyException {
+			HttpSession session, Model model) {
 			
 		ProductComment productComment = new ProductComment(Integer.parseInt(productId), userId, content);
-		categoryService.insertproductCommnet(productComment);
-		
+		try{
+			categoryService.insertproductCommnet(productComment);
+		} catch (InsertTargetRecordNotFoundException e) {
+			model.addAttribute("errorMessage", e.getMessage());
+			return "commons/error/errorCommon";
+		}
 		return "redirect:/category/product/"+shopUrl+"/"+categoryId+"/"+productId;
 	}
 	
@@ -121,7 +119,7 @@ public class CategoryController {
 	@RequestMapping(value = "/product/answer/delete", method = RequestMethod.POST)
 	protected String commentDeletePost(String shopUrl, String categoryId, String productId, String userId, String commentTime,
 			HttpSession session, Model model) throws ServletException,
-			IOException, ForignKeyException {
+			IOException, InsertTargetRecordNotFoundException {
 			
 		categoryService.deleteProductComment(Integer.parseInt(productId), userId, commentTime);
 			
@@ -146,7 +144,7 @@ public class CategoryController {
 	@RequestMapping(value = "/product/update", method = RequestMethod.POST)
 	protected String productUpdatePost(FileInfo fileInfo, String shopUrl, String categoryId, String productId, String imgUrl, String name, String price, String stock, String desc,
 			HttpSession session, Model model) throws ServletException,
-			IOException, ForignKeyException {
+			IOException, InsertTargetRecordNotFoundException {
 		logger.debug("data3 {}", shopUrl);
 		logger.debug("data4 {}", categoryId);
 		logger.debug("data555 {}", productId);
@@ -167,8 +165,7 @@ public class CategoryController {
 	//product 본문 삭제 구현 
 	@RequestMapping(value = "/product/delete", method = RequestMethod.POST)
 	protected String articleDeletePost(String shopUrl, String categoryId, String productId,
-			HttpSession session, Model model) throws ServletException,
-			IOException, ForignKeyException {
+			HttpSession session, Model model) {
 		categoryService.deleteProduct(Integer.parseInt(productId));
 			
 		return "redirect:/category/"+shopUrl+"/"+categoryId;

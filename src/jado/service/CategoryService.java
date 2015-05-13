@@ -14,12 +14,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import core.exception.ForignKeyException;
+import core.exception.InsertTargetRecordNotFoundException;
 import core.util.Upload;
 
 @Service
 public class CategoryService {
-	
+
 	@Autowired
 	private CategoryDao categoryDao;
 	@Autowired
@@ -45,31 +45,31 @@ public class CategoryService {
 		return productCommentDao.findByProduct(productId);
 	}
 
-	public void insertProduct(Product product) throws ForignKeyException {
+	public void insertProduct(Product product) throws InsertTargetRecordNotFoundException {
 		Category category = categoryDao.selectByPk(product.getCategoryId());
 		if (category == null) {
-			throw new ForignKeyException("잘못된 경로로 접근하셨습니다.");
+			throw new InsertTargetRecordNotFoundException("상품 등록대상 카테고리가 존재하지 않습니다.");
 		}
 		productDao.insert(product);
 	}
 
-	public void insertproductCommnet(ProductComment productComment) throws ForignKeyException {
+	public void insertproductCommnet(ProductComment productComment) throws InsertTargetRecordNotFoundException {
 		Product product = productDao.selectByPk(productComment.getProductId());
 		if (product == null) {
-			throw new ForignKeyException("잘못된 경로로 접근하셨습니다.");
+			throw new InsertTargetRecordNotFoundException("상품 댓글 등록 대상 상품이 존재하지 않습니다");
 		}
 		productCommentDao.insert(productComment);
 	}
 
-	public void deleteProductComment(int productId, String userId, String commentTime) throws ForignKeyException {
+	public void deleteProductComment(int productId, String userId, String commentTime) {
 		productCommentDao.remove(productId, userId, commentTime);
 	}
 
-	public void deleteProduct(int productId) throws ForignKeyException {
+	public void deleteProduct(int productId) {
 		productDao.remove(productId);
 	}
 
-	public void updateProduct(Product product) throws ForignKeyException {
+	public void updateProduct(Product product) {
 		productDao.update(product);
 	}
 

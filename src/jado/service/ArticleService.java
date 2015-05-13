@@ -12,7 +12,7 @@ import jado.model.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import core.exception.ForignKeyException;
+import core.exception.InsertTargetRecordNotFoundException;
 
 @Service
 public class ArticleService {
@@ -24,10 +24,10 @@ public class ArticleService {
 	@Autowired
 	private ArticleCommentDao articleCommentDao;
 
-	public void insertArticle(Article article) throws ForignKeyException {
+	public void insertArticle(Article article) throws InsertTargetRecordNotFoundException {
 		Board board = boardDao.selectByPk(article.getBoardId());
 		if (board == null) {
-			throw new ForignKeyException("잘못된 경로로 접근하셨습니다.");
+			throw new InsertTargetRecordNotFoundException("게시물 등록 대상 게시판이 존재하지 않습니다.");
 		}
 		articleDao.insert(article);
 	}
@@ -48,23 +48,23 @@ public class ArticleService {
 		return articleCommentDao.findByArticle(articleId);
 	}
 
-	public void insertArticleCommnet(ArticleComment articleComment) throws ForignKeyException {
+	public void insertArticleCommnet(ArticleComment articleComment) throws InsertTargetRecordNotFoundException {
 		Article article = articleDao.selectByPk(articleComment.getArticleId());
 		if (article == null) {
-			throw new ForignKeyException("잘못된 경로로 접근하셨습니다.");
+			throw new InsertTargetRecordNotFoundException("댓글 등록 대상 게시물이 존재하지 않습니다.");
 		}
 		articleCommentDao.insert(articleComment);
 	}
 
-	public void deleteArticleComment(int articleId, String userId, String commentTime) throws ForignKeyException {
+	public void deleteArticleComment(int articleId, String userId, String commentTime) {
 		articleCommentDao.remove(articleId, userId, commentTime);
 	}
 
-	public void deleteArticle(int articleId) throws ForignKeyException {
+	public void deleteArticle(int articleId) {
 		articleDao.remove(articleId);
 	}
 
-	public void updateArticle(Article article) throws ForignKeyException {
+	public void updateArticle(Article article) {
 		articleDao.update(article);
 	}
 }

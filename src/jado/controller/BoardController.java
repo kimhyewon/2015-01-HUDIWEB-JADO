@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import core.exception.ForignKeyException;
+import core.exception.InsertTargetRecordNotFoundException;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -65,20 +65,24 @@ public class BoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	protected String writePost(String shopUrl, String boardId, String title, String content,
 			HttpSession session, Model model) throws ServletException,
-			IOException, ForignKeyException {
+			IOException, InsertTargetRecordNotFoundException {
 		logger.debug("shop data3 {}", title);
 		logger.debug("shop data4 {}", content);
 		logger.debug("shop data555 {}", boardId);
 
 		Article article = new Article(Integer.parseInt(boardId), title, content);
-		articleService.insertArticle(article);
+		try{
+			articleService.insertArticle(article);
+		} catch (InsertTargetRecordNotFoundException e) {
+			model.addAttribute("errorMessage", e.getMessage());
+			return "commons/error/errorCommon";
+		}
 		return "redirect:/board/"+shopUrl+"/"+boardId;
 	}
 	
 	//list에서 title 클릭시 해당 글 보여주는 코드 
 	@RequestMapping(value="/show/{shopUrl}/{boardId}/{articleId}", method = RequestMethod.GET)
-	public String listGet(Model model, @PathVariable("articleId")String articleId, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url)
-			throws ServletException, IOException {
+	public String listGet(Model model, @PathVariable("articleId")String articleId, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url)  {
 		Shop shop = shopService.settingByUrl(url);
 		model.addAttribute("shop", shop);
 		
@@ -99,13 +103,16 @@ public class BoardController {
 	 *  - @ModelAttribute 지정된 객체의 필드와 파라미터 이름을 맞추어 값을 저장하고 객체로 전달한다.
 	 */
 	@RequestMapping(value = "/answer/save", method = RequestMethod.POST)
-	protected String commentPost(String shopUrl,  String boardId, @ModelAttribute ArticleComment articleComment, HttpSession session, Model model) throws ServletException,
-			IOException, ForignKeyException {
+	protected String commentPost(String shopUrl,  String boardId, @ModelAttribute ArticleComment articleComment, HttpSession session, Model model) {
 		logger.debug("articleComment {}", articleComment);
 		logger.debug("a {}", boardId);
 		
-		articleService.insertArticleCommnet(articleComment);
-		
+		try {
+			articleService.insertArticleCommnet(articleComment);
+		} catch (InsertTargetRecordNotFoundException e) {
+			model.addAttribute("errorMessage", e.getMessage());
+			return "commons/error/errorCommon";
+		}
 		return "redirect:/board/show/"+shopUrl+"/"+boardId+"/"+articleComment.getArticleId();
 	}
 	
@@ -115,7 +122,7 @@ public class BoardController {
 	 * protected String commentDeletePost(String shopUrl, String boardId, String articleId, String userId, String commentTime, HttpSession session, Model model) throws ServletException, IOException, ForignKeyException {
 	 */
 	@RequestMapping(value = "/answer/delete", method = RequestMethod.POST)
-	protected String commentDeletePost(String shopUrl, String boardId, int articleId, String userId, String commentTime, HttpSession session, Model model) throws ServletException, IOException, ForignKeyException {
+	protected String commentDeletePost(String shopUrl, String boardId, int articleId, String userId, String commentTime, HttpSession session, Model model)  {
 		logger.debug("data {}", articleId);
 		logger.debug("data {}", userId);
 		logger.debug("data {}", commentTime);
@@ -127,8 +134,7 @@ public class BoardController {
 	
 	// 본문 수정 구현 1 - 글 수정 버튼 클릭시 updateBoardForm 페이지로 이동 
 	@RequestMapping(value = "/update/{shopUrl}/{boardId}/{articleId}", method = RequestMethod.GET)
-	public String updateGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("articleId")String articleId, @PathVariable("shopUrl")String url)
-			throws ServletException, IOException {
+	public String updateGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("articleId")String articleId, @PathVariable("shopUrl")String url) {
 		Shop shop = shopService.settingByUrl(url);
 		model.addAttribute("shop", shop);
 		
@@ -143,8 +149,7 @@ public class BoardController {
 	//article 본문 수정 구현 2 - updateBoardForm에서 쓴 내용 받아오기  
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	protected String articleUpdatePost(String shopUrl, String articleId, String boardId, String title, String content,
-			HttpSession session, Model model) throws ServletException,
-			IOException, ForignKeyException {
+			HttpSession session, Model model) {
 		Article article = new Article(title, content);
 		article.setId(Integer.parseInt(articleId));
 		articleService.updateArticle(article);
@@ -155,8 +160,7 @@ public class BoardController {
 	//article 본문 삭제 구현 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	protected String articleDeletePost(String shopUrl, String articleId, String boardId,
-			HttpSession session, Model model) throws ServletException,
-			IOException, ForignKeyException {
+			HttpSession session, Model model) {
 		logger.debug("boardId {}", boardId);
 		articleService.deleteArticle(Integer.parseInt(articleId));
 		
