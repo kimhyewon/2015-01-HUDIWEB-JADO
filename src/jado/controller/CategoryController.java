@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import core.exception.ForignKeyException;
+import core.jadopay.PaymentInfo;
 
 
 @Controller
@@ -99,7 +100,8 @@ public class CategoryController {
 		model.addAttribute("category", category);
 		model.addAttribute("product", product);
 		model.addAttribute("comments", comments);
-
+		model.addAttribute("paymentInfo", new PaymentInfo());
+		
 		return "showProduct";
 	}
 	
