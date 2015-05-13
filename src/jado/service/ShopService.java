@@ -39,11 +39,13 @@ public class ShopService {
 	private Upload upload;
 
 	public Shop settingById(String userId) {
-		if (userId == null)
+		if (userId == null) {
 			return null;
+		}
 		Seller seller = userDao.selectSellerById(userId);
-		if (seller == null)
+		if (seller == null) {
 			return null;
+		}
 		return settingByUrl(seller.getShopUrl());
 	}
 
@@ -110,11 +112,13 @@ public class ShopService {
 	}
 
 	public String getUrl(String userId) {
-		if (userId == null)
+		if (userId == null) {
 			return null;
+		}
 		Seller seller = userDao.selectSellerById(userId);
-		if (seller == null)
+		if (seller == null) {
 			return null;
+		}
 		return seller.getShopUrl();
 	}
 

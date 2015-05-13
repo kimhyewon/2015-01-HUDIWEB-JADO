@@ -95,5 +95,4 @@ public class UserService {
 	public void updateDeleteUser(String userId) {
 		userDao.updateDeleteUser(userId);
 	}
-
 }

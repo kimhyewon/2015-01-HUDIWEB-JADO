@@ -34,19 +34,23 @@ public class MailAuthService {
 
 	public boolean isAlreadyVerified(String userEmail) {
 		String role = mailAuthDao.userRole(userEmail);
-		if (role == null)
+		if (role == null) {
 			return true;
-		if (role.equals("ROLE_EMAIL_NOT_VERIFIED_USER"))
+		}
+		if (role.equals("ROLE_EMAIL_NOT_VERIFIED_USER")){
 			return false;
+		}
 		return true;
 	}
 
 	public boolean verify(String userEmail, String uuid) {
 		Integer result = mailAuthDao.verify(userEmail, uuid);
-		if (result == null)
+		if (result == null){
 			return false;
-		if (result.equals(new Integer(1)))
+		}
+		if (result.equals(new Integer(1))) {
 			return true;
+		}
 		return false;
 	}
 
