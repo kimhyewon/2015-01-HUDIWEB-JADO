@@ -52,6 +52,7 @@ public class MailAuthService {
 
 	public void updateTypeOfUserRole(String userEmail) {
 		userDao.updateUserRole(userEmail);
+		userDao.updateUserEmailValidateStatus(userEmail);
 	}
 
 	@Async
