@@ -12,13 +12,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CategoryDao {
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public void insert(final Category category) {
 		String sql = "insert into CATEGORY values(null, ?, ?)";
-		Object[] args = new Object[] { category.getName(), category.getShopUrl() };
-		jdbcTemplate.update(sql, args);
+		jdbcTemplate.update(sql, category.getName(), category.getShopUrl());
 	}
 
 	public Category selectByPk(final int id) {
@@ -46,9 +46,13 @@ public class CategoryDao {
 		jdbcTemplate.update(sql, id);
 	}
 
-	public int countProduct(final int id) {
+	public Integer countProduct(final int id) {
 		String sql = "select count(*) from PRODUCT WHERE CATEGORY_ID=?";
 		Object[] args = new Object[] { id };
-		return jdbcTemplate.queryForObject(sql, args, Integer.class);
+		try{
+			return jdbcTemplate.queryForObject(sql, args, Integer.class);
+		} catch (EmptyResultDataAccessException e){
+			return null;
+		}
 	}
 }

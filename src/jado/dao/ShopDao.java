@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ShopDao {
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -22,14 +23,12 @@ public class ShopDao {
 
 	public void updateInfo(final Shop shop) {
 		String sql = "update SHOP set TITLE = ?, PHONE = ?, FOOTER=?, THEME=? where URL = ?";
-		Object[] args = new Object[] {shop.getTitle(), shop.getPhone(), shop.getFooter(), shop.getTheme(), shop.getUrl()};
-		jdbcTemplate.update(sql, args);
+		jdbcTemplate.update(sql, shop.getTitle(), shop.getPhone(), shop.getFooter(), shop.getTheme(), shop.getUrl());
 	}
 	
 	public void updateImage(final Shop shop) {
 		String sql = "update SHOP set MAIN_URL=?, PROFILE_URL=?, SUB_IMG1=?, SUB_IMG2=?, SUB_IMG3=? where URL = ?";
-		Object[] args = new Object[] {shop.getMainUrl(), shop.getProfileUrl(), shop.getSubImg1Url(), shop.getSubImg2Url(), shop.getSubImg3Url(), shop.getUrl()};
-		jdbcTemplate.update(sql, args);
+		jdbcTemplate.update(sql, shop.getMainUrl(), shop.getProfileUrl(), shop.getSubImg1Url(), shop.getSubImg2Url(), shop.getSubImg3Url(), shop.getUrl());
 	}
 
 	public Shop selectByUrl(final String url) {
@@ -48,9 +47,6 @@ public class ShopDao {
 
 	public void updateImageUrl(FileInfo fileInfo) {
 		String sql = "update SHOP set ".concat(fileInfo.getType())+"=? where URL=?";
-		Object[] args = new Object[]{ fileInfo.getLocalLocation(), fileInfo.getUrl()};
-		jdbcTemplate.update(sql, args);
-		
+		jdbcTemplate.update(sql, fileInfo.getLocalLocation(), fileInfo.getUrl());
 	}
-
 }

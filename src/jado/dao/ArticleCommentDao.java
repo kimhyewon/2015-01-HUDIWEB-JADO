@@ -12,14 +12,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ArticleCommentDao {
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-
 	public int insert(final ArticleComment ac) {
 		String sql = "insert into ARTICLE_COMMENT values(?, ?, null, ?)";
-		Object[] args = new Object[] {ac.getArticleId(), ac.getUserId(), ac.getContent() };
-		return jdbcTemplate.update(sql, args);
+		return jdbcTemplate.update(sql, ac.getArticleId(), ac.getUserId(), ac.getContent());
 	}
 
 	public ArticleComment findByPk(final ArticleComment ac) {

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDao {
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -54,7 +55,12 @@ public class UserDao {
 
 	public Integer numberOfSellers() {
 		String sql = "select count(ID) AS count from SELLER";
-		return jdbcTemplate.queryForObject(sql, Integer.class);
+		try {
+			return jdbcTemplate.queryForObject(sql, Integer.class);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+		
 	}
 
 	public void updateDeleteUser(final String userId) {
@@ -74,8 +80,9 @@ public class UserDao {
 	}
 
 	public String typeOfMailAuthStatus(String userId) {
-		if (selectSellerById(userId) != null)
+		if (selectSellerById(userId) != null) {
 			return "ROLE_SELLER";
+		}
 		return "ROLE_CUSTOMER";
 	}
 

@@ -2,7 +2,6 @@ package jado.dao;
 
 import java.util.List;
 
-
 import jado.model.Article;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +12,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ArticleDao {
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public void insert(final Article article) {
 		String sql = "insert into ARTICLE values(null, ?, ?, ?, null)";
-		Object[] args = new Object[] { article.getBoardId(), article.getTitle(), article.getContent() };
-		jdbcTemplate.update(sql, args);
+		jdbcTemplate.update(sql, article.getBoardId(), article.getTitle(), article.getContent());
 	}
 
 	public Article selectByPk(int articleId) {
@@ -42,8 +41,7 @@ public class ArticleDao {
 
 	public void update(Article article) {
 		String sql = "update ARTICLE set TITLE=?, CONTENT=? where ID=?";
-		Object[] args = new Object[] {article.getTitle(), article.getContent(), article.getId()};
-		jdbcTemplate.update(sql, args);
+		jdbcTemplate.update(sql, article.getTitle(), article.getContent(), article.getId());
 	}
 
 	public void remove(int articleId) {

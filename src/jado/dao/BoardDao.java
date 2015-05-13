@@ -1,14 +1,10 @@
 package jado.dao;
 
-import java.util.List;
-
-
 import jado.model.Board;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,14 +12,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class BoardDao {
-	private static final Logger logger = LoggerFactory.getLogger(BoardDao.class);
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public void insert(final Board board) {
 		String sql = "insert into BOARD values(null, ?, ?)";
-		Object[] args = new Object[] { board.getShopUrl(), board.getName() };
-		jdbcTemplate.update(sql, args);
+		jdbcTemplate.update(sql, board.getShopUrl(), board.getName());
 	}
 
 	public Board selectByPk(final int boardId) {
@@ -53,10 +48,8 @@ public class BoardDao {
 		String sql = "select count(*) from ARTICLE WHERE BOARD_ID=?";
 		try {
 			return jdbcTemplate.queryForObject(sql, Integer.class, boardId);			
-		} catch (DataIntegrityViolationException e) {
-			logger.debug("it has article comment");
+		} catch (EmptyResultDataAccessException e) {
 			return 0;
 		}
 	}
-
 }

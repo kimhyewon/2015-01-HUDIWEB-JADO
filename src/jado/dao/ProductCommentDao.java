@@ -13,13 +13,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProductCommentDao{
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public void insert(final ProductComment productComment){
 		String sql = "insert into PRODUCT_COMMENT values(?, ?, null, ?)";
-		Object[] args = new Object[] { productComment.getProductId(), productComment.getUserId(), productComment.getContent()};
-		jdbcTemplate.update(sql, args);
+		jdbcTemplate.update(sql, productComment.getProductId(), productComment.getUserId(), productComment.getContent());
 	}
 
 	public ProductComment findtByPK(final ProductComment productComment) {
@@ -34,7 +34,6 @@ public class ProductCommentDao{
 	public List<ProductComment> findByProduct(final int productId) {
 		String sql = "select * from PRODUCT_COMMENT where PRODUCT_ID=?";
 		Object[] args = new Object[] { productId };
-
 		try {
 			return jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<ProductComment>(ProductComment.class));
 		} catch (EmptyResultDataAccessException e) {

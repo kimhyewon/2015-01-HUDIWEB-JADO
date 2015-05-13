@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class InitializeDao {
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
