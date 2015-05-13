@@ -89,7 +89,7 @@ public class UserController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	protected ModelAndView editUserInfo(Customer user, Shop shop, Seller seller, String isSeller, HttpSession session, Notice notice) {
 		if (notice.getTitle() != null) {
-			ModelAndViewUtils.renderToNotice(notice);
+			return ModelAndViewUtils.renderToNotice(notice);
 		}
 
 		String userId = (String) session.getAttribute("userId");
