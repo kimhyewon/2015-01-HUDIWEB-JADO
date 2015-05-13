@@ -32,7 +32,7 @@ public class ArticleDao {
 	}
 
 	public List<Article> selectAllByBoard(int boardId) {
-		String sql = "select * from ARTICLE where BOARD_ID=?";
+		String sql = "select * from ARTICLE where BOARD_ID=? order by ID DESC";
 		try {
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Article>(Article.class), boardId);
 		} catch (EmptyResultDataAccessException e) {

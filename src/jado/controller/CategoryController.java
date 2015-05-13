@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import core.exception.ForignKeyException;
+import core.jadopay.PaymentInfo;
 
 
 @Controller
@@ -99,7 +100,8 @@ public class CategoryController {
 		model.addAttribute("category", category);
 		model.addAttribute("product", product);
 		model.addAttribute("comments", comments);
-
+		model.addAttribute("paymentInfo", new PaymentInfo());
+		
 		return "showProduct";
 	}
 	
@@ -112,7 +114,7 @@ public class CategoryController {
 		ProductComment productComment = new ProductComment(Integer.parseInt(productId), userId, content);
 		categoryService.insertproductCommnet(productComment);
 		
-		return "redirect:/category/product/"+shopUrl+"/"+productId+"/"+categoryId;
+		return "redirect:/category/product/"+shopUrl+"/"+categoryId+"/"+productId;
 	}
 	
 	//댓글 삭제 구현

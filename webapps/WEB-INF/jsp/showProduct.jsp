@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <jsp:scriptlet>
 pageContext.setAttribute("space", " ");
@@ -55,6 +56,33 @@ pageContext.setAttribute("lf", "\n");
 								</td>
 							</tr>
 						</table>
+						<!-- 복사해옴 시작 -->
+						<form:form modelAttribute="paymentInfo" cssClass="" action="/pay/info" method="post">
+
+							Shop Url <br>
+							<form:input path="shopUrl" value="${shop.url}"/><br><br>
+							<form:errors path="shopUrl"  cssClass=""   /><br><br>
+							Product Id<br>
+							<form:input path="productId" value="${product.id}"/><br><br>
+							<form:errors path="productId"  cssClass=""   /><br><br>
+							
+							수량<br>
+							<form:input path="productAmount" value="2"/><br><br>
+							<form:errors path="productAmount"  cssClass=""   /><br><br>
+							
+							<button>결제하기</button>
+						</form:form>
+					</body>
+					<script>
+						document.querySelector("form button").addEventListener("click", function(){
+							var e = document.querySelector("form input[name='productId']"); 
+							if(e.value === "") {
+								e.value = 0;
+							} 
+							document.querySelector("form").submit();
+						});
+					</script>
+						<!-- 복사해옴 끝-->
 						<div id = "buy_button"><a href="">구매하기</a></div>
 					</div>
 				</div>
