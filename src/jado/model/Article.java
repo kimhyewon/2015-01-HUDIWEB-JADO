@@ -11,7 +11,8 @@ public class Article {
 	private Timestamp articleTime;
 	private List<ArticleComment> comments;
 
-	public Article() {}
+	public Article() {
+	}
 
 	public Article(int id, int boardId, String title, String content, Timestamp articleTime) {
 		super();

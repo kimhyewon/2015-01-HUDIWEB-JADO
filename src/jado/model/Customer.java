@@ -11,7 +11,8 @@ public class Customer extends User {
 	private Timestamp updateTime;
 	private String emailValidateStatus;
 
-	public Customer() { }
+	public Customer() {
+	}
 	
 	public Customer(String userId, String password, String name, String phone, String address, Timestamp insertTime, Timestamp updateTime, String emailValidateStatus) {
 		super(userId);

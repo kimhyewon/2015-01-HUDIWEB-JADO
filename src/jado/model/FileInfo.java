@@ -7,7 +7,6 @@ public class FileInfo {
 	String type;
 	String localLocation;
 	MultipartFile file;
-	
 
 	public String getUrl() {
 		return url;

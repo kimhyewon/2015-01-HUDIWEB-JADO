@@ -5,7 +5,8 @@ public class Seller extends User {
 	private String bank;
 	private String bankAccount;
 
-	public Seller() { }
+	public Seller() {
+	}
 
 	public Seller(String userId, String shopUrl, String bank, String bankAccount) {
 		super(userId);

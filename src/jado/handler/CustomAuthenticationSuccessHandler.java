@@ -20,10 +20,10 @@ import org.springframework.util.StringUtils;
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
 	private RequestCache requestCache = new HttpSessionRequestCache();
+	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	private String targetUrlParameter;
 	private String defaultUrl;
 	private boolean useReferer;
-	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
 	public CustomAuthenticationSuccessHandler() {
 		targetUrlParameter = "";
@@ -65,7 +65,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		clearAuthenticationAttributes(request);
 
 		int intRedirectStrategy = decideRedirectStrategy(request, response);
-		switch(intRedirectStrategy){
+		switch (intRedirectStrategy) {
 		case 1:
 			useTargetUrl(request, response);
 			break;
@@ -115,42 +115,42 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		redirectStrategy.sendRedirect(request, response, defaultUrl);
 	}
 
-	private int decideRedirectStrategy(HttpServletRequest request, HttpServletResponse response){
+	private int decideRedirectStrategy(HttpServletRequest request, HttpServletResponse response) {
 		int result = 0;
 
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
 
-		if(!"".equals(targetUrlParameter)){
+		if (!"".equals(targetUrlParameter)) {
 			String targetUrl = request.getParameter(targetUrlParameter);
 
-			if(StringUtils.hasText(targetUrl)){
+			if (StringUtils.hasText(targetUrl)) {
 				result = 1;
-			}else{
-				if(savedRequest != null){
+			} else {
+				if (savedRequest != null) {
 					result = 2;
-				}else{
+				} else {
 					String refererUrl = request.getHeader("REFERER");
-		
-					if(useReferer && StringUtils.hasText(refererUrl)){
+
+					if (useReferer && StringUtils.hasText(refererUrl)) {
 						result = 3;
-					}else{
+					} else {
 						result = 0;
 					}
 				}
 			}
-				return result;
+			return result;
 		}
-		
-		if(savedRequest != null){
+
+		if (savedRequest != null) {
 			result = 2;
 			return result;
 		}
 
 		String refererUrl = request.getHeader("REFERER");
-		
-		if(useReferer && StringUtils.hasText(refererUrl)){
+
+		if (useReferer && StringUtils.hasText(refererUrl)) {
 			result = 3;
-		}else{
+		} else {
 			result = 0;
 		}
 		return result;

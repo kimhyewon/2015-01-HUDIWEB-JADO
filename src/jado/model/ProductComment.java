@@ -6,7 +6,9 @@ public class ProductComment {
 	private String commentTime;
 	private String content;
 
-	public ProductComment() { }
+	public ProductComment() { 
+	}
+	
 	public ProductComment(int productId, String userId, String commentTime, String content) {
 		super();
 		this.productId = productId;

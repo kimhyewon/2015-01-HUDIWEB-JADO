@@ -14,7 +14,8 @@ public class Product {
 	private Timestamp insertTime;
 	private List<ProductComment> comments;
 
-	public Product(){ };
+	public Product(){ 
+	}
 	
 	public Product(int id, int categoryId, String name, int price, int stock, String imgUrl, String desc, Timestamp insertTime) {
 		super();

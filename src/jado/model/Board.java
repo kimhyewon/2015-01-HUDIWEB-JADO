@@ -3,7 +3,6 @@ package jado.model;
 import java.util.List;
 
 public class Board {
-
 	private int id;
 	private String shopUrl;
 	private String name;

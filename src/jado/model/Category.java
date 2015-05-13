@@ -8,7 +8,9 @@ public class Category {
 	private String shopUrl;
 	private List<Product> products;
 
-	public Category() { }
+	public Category() {
+	}
+	
 	public Category(int id, String name, String shopUrl, List<Product> products) {
 		super();
 		this.id = id;
