@@ -1,11 +1,16 @@
 package core.jadopay;
 
+import jado.model.PaymentWithProduct;
+
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
@@ -41,6 +46,28 @@ public class PaymentDao {
 		String sql = "select NAME from PRODUCT where ID=?";
 		try {
 			return jdbcTemplate.queryForObject(sql, String.class, productId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	public List<PaymentWithProduct> selectAll(String customerId, String url) {
+		String sql = "select PAYMENT.BANK, PAYMENT.PRICE as REAL_PRICE, PAYMENT.PAY_TIME, PRODUCT.* from PAYMENT "
+				+ "inner join PRODUCT on PAYMENT.PRODUCT_ID = PRODUCT.ID WHERE PAYMENT.SHOP_URL=? and PAYMENT.CUSTOMER_ID=?";
+		Object[] args = new Object[] { url , customerId};
+		try {
+			return jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<PaymentWithProduct>(PaymentWithProduct.class));
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	public List<PaymentWithProduct> selectAll(String url) {
+		String sql = "select PAYMENT.BANK, PAYMENT.PRICE as REAL_PRICE, PAYMENT.PAY_TIME, PRODUCT.* from PAYMENT "
+				+ "inner join PRODUCT on PAYMENT.PRODUCT_ID = PRODUCT.ID WHERE PAYMENT.SHOP_URL=?";
+		Object[] args = new Object[] { url };
+		try {
+			return jdbcTemplate.query(sql, args, new BeanPropertyRowMapper<PaymentWithProduct>(PaymentWithProduct.class));
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

@@ -51,6 +51,15 @@ public class UserDao {
 			return null;
 		}
 	}
+	
+	public Seller selectSellerByUrl(final String url) {
+		String sql = "select * from SELLER where SHOP_URL=?";
+		try {
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Seller>(Seller.class), url);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 
 	public Integer numberOfSellers() {
 		String sql = "select count(ID) AS count from SELLER";
@@ -88,4 +97,6 @@ public class UserDao {
 		String sql ="update USER set EMAIL_VALIDATE_STATUS='T' where ID=?";
 		jdbcTemplate.update(sql, userEmail);
 	}
+
+
 }
