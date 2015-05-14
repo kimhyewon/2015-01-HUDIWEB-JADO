@@ -1,5 +1,7 @@
 package jado.controller;
 
+import jado.model.Customer;
+import jado.model.PaymentWithProduct;
 import jado.model.Product;
 import jado.model.Shop;
 import jado.service.ShopService;
@@ -45,4 +47,18 @@ public class ShopController {
 		return "blogDummy";
 	}
 	
+	@RequestMapping(value = "/{shopUrl}/mypage", method = RequestMethod.GET)
+	public String myPageForCustomer(@PathVariable("shopUrl")String url, Model model, HttpSession session){
+		
+		String userId = (String) session.getAttribute("userId");
+		
+		Customer customer = shopService.getMyInfo(url, userId);
+		List<PaymentWithProduct> payments = shopService.getPayments(customer, url);
+		Integer paymentsTotal = shopService.getPaymentsTotal(payments);
+		
+		model.addAttribute("user", customer);
+		model.addAttribute("payments", payments);
+		model.addAttribute("paymentsTotal", paymentsTotal);		
+		return "mypage";
+	}
 }

@@ -17,22 +17,22 @@ public class UserDao {
 
 	public void insert(final Customer customer) {
 		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F', ?)";
-		jdbcTemplate.update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress(), customer.getUserStatus());
+		jdbcTemplate.update(sql, customer.getId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress(), customer.getUserStatus());
 	}
 
 	public void insert(final Seller seller) {
 		String sql = "insert into SELLER values (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, seller.getShopUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
+		jdbcTemplate.update(sql, seller.getShopUrl(), seller.getId(), seller.getBank(), seller.getBankAccount());
 	}
 
 	public void updateCustomer(final Customer customer) {
 		String sql = "update USER set PHONE = ?, ADDRESS = ? where ID = ?";
-		jdbcTemplate.update(sql, customer.getPhone(), customer.getAddress(), customer.getUserId());
+		jdbcTemplate.update(sql, customer.getPhone(), customer.getAddress(), customer.getId());
 	}
 
 	public void updateSeller(final Seller seller) {
 		String sql = "update SELLER set BANK = ?, BANK_ACCOUNT = ? where ID = ?";
-		jdbcTemplate.update(sql, seller.getBank(), seller.getBankAccount(), seller.getUserId());
+		jdbcTemplate.update(sql, seller.getBank(), seller.getBankAccount(), seller.getId());
 	}
 
 	public Customer selectUserById(final String userId) {
@@ -48,6 +48,15 @@ public class UserDao {
 		String sql = "select * from SELLER where ID=?";
 		try {
 			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Seller>(Seller.class), userId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public Seller selectSellerByUrl(final String url) {
+		String sql = "select * from SELLER where SHOP_URL=?";
+		try {
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Seller>(Seller.class), url);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -88,11 +97,13 @@ public class UserDao {
 
 	public void insertDefaultRole(Customer customer) {
 		String sql = "insert into USER_ROLE (USER_ID) values(?)";
-		jdbcTemplate.update(sql, customer.getUserId());
+		jdbcTemplate.update(sql, customer.getId());
 	}
 
 	public void updateUserEmailValidateStatus(String userEmail) {
 		String sql ="update USER set EMAIL_VALIDATE_STATUS='T' where ID=?";
 		jdbcTemplate.update(sql, userEmail);
 	}
+
+
 }
