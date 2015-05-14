@@ -9,8 +9,6 @@ import jado.service.UserService;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
@@ -20,17 +18,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import core.mail.template.MailTemplateStorage;
+import core.util.AuthorityManager;
 import core.util.ModelAndViewUtils;
 
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private MailAuthService mailService;
-
+	@Autowired
+	private AuthorityManager authorityManager;
+	
 	// 회원가입 페이지로 이동
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView userGet(Notice notice) {
@@ -96,11 +97,13 @@ public class UserController {
 		user.setUserId(userId);
 		seller.setUserId(userId);
 		shop.setUrl(seller.getShopUrl());
+		
 		try {
 			userService.updateCustomer(user);
+			
 			if (isSeller != null){
 				userService.setSellerInfo(shop, seller);
-				mailService.updateTypeOfUserRole(userId);
+				authorityManager.setUserAuthority(user, "ROLE_SELLER");
 			}
 		} catch (DuplicateKeyException e) {
 			return ModelAndViewUtils.renderToNotice(new Notice("Error", e.getMessage()));
