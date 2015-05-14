@@ -128,20 +128,28 @@ public class ShopService {
 	}
 
 	public List<PaymentWithProduct> getPayments(Customer customer, String url) {
+		logger.debug("user {}", customer.getId());
 		Seller seller = userDao.selectSellerByUrl(url);
+		logger.debug("seller", seller);
 		List<PaymentWithProduct> payments = null;
-		if (customer.getUserId().equals(seller.getUserId())) {
+		if (isSeller(customer, seller)) {
 			payments = paymentDao.selectAll(url);
 		}else{
-			payments = paymentDao.selectAll(customer.getUserId(), url);
+			payments = paymentDao.selectAll(customer.getId(), url);
 		}
 		return payments;
 		
 	}
 
+	private boolean isSeller(Customer customer, Seller seller) {
+		if(seller == null) return false;
+		return customer.getId().equals(seller.getId());
+	}
+
 	public Integer getPaymentsTotal(List<PaymentWithProduct> payments) {
 		int result = 0;
 		for (PaymentWithProduct paymentWithProduct : payments) {
+			paymentWithProduct.setAmount();
 			result = paymentWithProduct.getRealPrice();
 		}
 		return result;

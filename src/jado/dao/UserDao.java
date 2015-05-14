@@ -16,22 +16,22 @@ public class UserDao {
 
 	public void insert(final Customer customer) {
 		String sql = "insert into USER values(?, ?, ?, ?, ? ,now(), null, 'F', ?)";
-		jdbcTemplate.update(sql, customer.getUserId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress(), customer.getUserStatus());
+		jdbcTemplate.update(sql, customer.getId(), customer.getPassword(), customer.getName(), customer.getPhone(), customer.getAddress(), customer.getUserStatus());
 	}
 
 	public void insert(final Seller seller) {
 		String sql = "insert into SELLER values (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, seller.getShopUrl(), seller.getUserId(), seller.getBank(), seller.getBankAccount());
+		jdbcTemplate.update(sql, seller.getShopUrl(), seller.getId(), seller.getBank(), seller.getBankAccount());
 	}
 
 	public void updateCustomer(final Customer customer) {
 		String sql = "update USER set PHONE = ?, ADDRESS = ? where ID = ?";
-		jdbcTemplate.update(sql, customer.getPhone(), customer.getAddress(), customer.getUserId());
+		jdbcTemplate.update(sql, customer.getPhone(), customer.getAddress(), customer.getId());
 	}
 
 	public void updateSeller(final Seller seller) {
 		String sql = "update SELLER set BANK = ?, BANK_ACCOUNT = ? where ID = ?";
-		jdbcTemplate.update(sql, seller.getBank(), seller.getBankAccount(), seller.getUserId());
+		jdbcTemplate.update(sql, seller.getBank(), seller.getBankAccount(), seller.getId());
 	}
 
 	public Customer selectUserById(final String userId) {
@@ -90,7 +90,7 @@ public class UserDao {
 
 	public void insertDefaultRole(Customer customer) {
 		String sql = "insert into USER_ROLE (USER_ID) values(?)";
-		jdbcTemplate.update(sql, customer.getUserId());
+		jdbcTemplate.update(sql, customer.getId());
 	}
 
 	public void updateUserEmailValidateStatus(String userEmail) {
