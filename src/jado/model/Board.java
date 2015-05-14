@@ -1,12 +1,10 @@
 package jado.model;
 
-import java.util.List;
 
 public class Board {
 	private int id;
 	private String shopUrl;
 	private String name;
-	private List<Article> articles;
 
 	public Board() {
 	}
@@ -46,17 +44,5 @@ public class Board {
 		this.name = name;
 	}
 
-	public List<Article> getArticles() {
-		return articles;
-	}
-
-	public void setArticles(List<Article> articles) {
-		this.articles = articles;
-	}
-
-	@Override
-	public String toString() {
-		return "Board [id=" + id + ", shopUrl=" + shopUrl + ", name=" + name + ", articles=" + articles + "]";
-	}
 
 }

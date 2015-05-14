@@ -1,7 +1,6 @@
 package jado.model;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 public class Product {
 	private int id;
@@ -12,7 +11,6 @@ public class Product {
 	private String imgUrl;
 	private String desc;
 	private Timestamp insertTime;
-	private List<ProductComment> comments;
 
 	public Product(){ 
 	}
@@ -101,18 +99,6 @@ public class Product {
 		this.insertTime = insertTime;
 	}
 
-	public List<ProductComment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<ProductComment> comments) {
-		this.comments = comments;
-	}
-
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", categoryId=" + categoryId + ", name=" + name + ", price=" + price + ", stock=" + stock + ", imgUrl=" + imgUrl + ", desc=" + desc + ", insertTime=" + insertTime
-				+ ", comments=" + comments + "]";
-	}
+	
 
 }

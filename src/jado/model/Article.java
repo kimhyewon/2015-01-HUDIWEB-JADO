@@ -1,7 +1,6 @@
 package jado.model;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 public class Article {
 	private int id;
@@ -9,7 +8,6 @@ public class Article {
 	private String title;
 	private String content;
 	private Timestamp articleTime;
-	private List<ArticleComment> comments;
 
 	public Article() {
 	}
@@ -68,19 +66,6 @@ public class Article {
 
 	public void setArticleTime(Timestamp articleTime) {
 		this.articleTime = articleTime;
-	}
-
-	public List<ArticleComment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<ArticleComment> comments) {
-		this.comments = comments;
-	}
-
-	@Override
-	public String toString() {
-		return "Article [id=" + id + ", boardId=" + boardId + ", title=" + title + ", content=" + content + ", articleTime=" + articleTime + ", comments=" + comments + "]";
 	}
 
 	public boolean update(Article temp) {
