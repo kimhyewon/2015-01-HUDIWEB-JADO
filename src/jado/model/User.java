@@ -1,7 +1,7 @@
 package jado.model;
 
 public class User {
-	protected String userId;
+	protected String id;
 	protected int userStatus = 1;	// 초기 가입시 사용자는 활성화 상태 
 
 	public User() {
@@ -15,15 +15,15 @@ public class User {
 		this.userStatus = userStatus;
 	}
 
-	public User(String userId) {
-		this.userId = userId;
+	public User(String id) {
+		this.id = id;
 	}
 	
-	public String getUserId() {
-		return userId;
+	public String getId() {
+		return id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setId(String id) {
+		this.id = id;
 	}
 }

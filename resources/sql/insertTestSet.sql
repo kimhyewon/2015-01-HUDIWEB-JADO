@@ -48,3 +48,5 @@ insert into PRODUCT VALUES(null, 1, 'Shift Dress', 10000, 100,'/userImg/product/
 insert into PRODUCT VALUES(null, 1, 'Shift Dress', 13000, 100,'/userImg/product/img/2.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
 insert into PRODUCT VALUES(null, 1, 'Shift Dress', 14000, 100,'/userImg/product/img/1.gif', '대박 좋아 좋아좋아', null);
 --insert into CART_has_PRODUCT values('testShopUrl', 'user', 1, '1');
+
+insert into PAYMENT VALUES('testUrl', 'customer', 1, '국민', 12600, default);

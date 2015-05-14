@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import core.jadopay.PaymentDao;
 import core.util.Upload;
 import jado.dao.BoardDao;
 import jado.dao.CategoryDao;
@@ -16,7 +17,9 @@ import jado.dao.ShopDao;
 import jado.dao.UserDao;
 import jado.model.Board;
 import jado.model.Category;
+import jado.model.Customer;
 import jado.model.FileInfo;
+import jado.model.PaymentWithProduct;
 import jado.model.Product;
 import jado.model.Seller;
 import jado.model.Shop;
@@ -37,6 +40,8 @@ public class ShopService {
 	private UserDao userDao;
 	@Autowired
 	private Upload upload;
+	@Autowired
+	private PaymentDao paymentDao;
 
 	public Shop settingById(String userId) {
 		if (userId == null) {
@@ -121,5 +126,38 @@ public class ShopService {
 		}
 		return seller.getShopUrl();
 	}
+
+	public Customer getMyInfo(String url, String userId) {
+		return userDao.selectUserById(userId);
+	}
+
+	public List<PaymentWithProduct> getPayments(Customer customer, String url) {
+		logger.debug("user {}", customer.getId());
+		Seller seller = userDao.selectSellerByUrl(url);
+		logger.debug("seller", seller);
+		List<PaymentWithProduct> payments = null;
+		if (isSeller(customer, seller)) {
+			payments = paymentDao.selectAll(url);
+		}else{
+			payments = paymentDao.selectAll(customer.getId(), url);
+		}
+		return payments;
+		
+	}
+
+	private boolean isSeller(Customer customer, Seller seller) {
+		if(seller == null) return false;
+		return customer.getId().equals(seller.getId());
+	}
+
+	public Integer getPaymentsTotal(List<PaymentWithProduct> payments) {
+		int result = 0;
+		for (PaymentWithProduct paymentWithProduct : payments) {
+			paymentWithProduct.setAmount();
+			result = paymentWithProduct.getRealPrice();
+		}
+		return result;
+	}
+	
 
 }

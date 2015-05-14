@@ -69,9 +69,9 @@ public class UserController {
 		if (notice.getTitle() != null) {
 			return ModelAndViewUtils.renderToNotice(notice);
 		}
-		user.setUserId(userId);
+		user.setId(userId);
 		user.setPassword(password);
-		seller.setUserId(user.getUserId());
+		seller.setId(user.getId());
 		shop.setUrl(seller.getShopUrl());
 
 		try {
@@ -94,8 +94,8 @@ public class UserController {
 		}
 
 		String userId = (String) session.getAttribute("userId");
-		user.setUserId(userId);
-		seller.setUserId(userId);
+		user.setId(userId);
+		seller.setId(userId);
 		shop.setUrl(seller.getShopUrl());
 		
 		try {

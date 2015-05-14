@@ -36,7 +36,7 @@ public class UserService {
 	}
 
 	public void setSellerInfo(Shop shop, Seller seller) {
-		if (userDao.selectSellerById(seller.getUserId()) == null) {
+		if (userDao.selectSellerById(seller.getId()) == null) {
 			insertShop(shop);
 			insertSeller(seller);
 			return;
@@ -46,7 +46,7 @@ public class UserService {
 	}
 
 	public void insertCustomer(Customer customer) throws DuplicateKeyException {
-		Customer tempUser = userDao.selectUserById(customer.getUserId());
+		Customer tempUser = userDao.selectUserById(customer.getId());
 		if (tempUser != null) {
 			throw new DuplicateKeyException("이미 가입된 사용자입니다.");
 		}
@@ -55,7 +55,7 @@ public class UserService {
 	}
 
 	private void insertSeller(Seller seller) {
-		Seller tempSeller = userDao.selectSellerById(seller.getUserId());
+		Seller tempSeller = userDao.selectSellerById(seller.getId());
 		if (tempSeller != null) {
 			throw new DuplicateKeyException("이미 당신은 판매자로 등록되어 있습니다.");
 		}
@@ -72,14 +72,14 @@ public class UserService {
 	}
 
 	public void updateCustomer(Customer customerFromEdit) {
-		Customer customer = userDao.selectUserById(customerFromEdit.getUserId());
+		Customer customer = userDao.selectUserById(customerFromEdit.getId());
 		if (customer.update(customerFromEdit)) {
 			userDao.updateCustomer(customerFromEdit);
 		}
 	}
 
 	private void updateSeller(Seller sellerFromEdit) {
-		Seller seller = userDao.selectSellerById(sellerFromEdit.getUserId());
+		Seller seller = userDao.selectSellerById(sellerFromEdit.getId());
 		if (seller.update(sellerFromEdit)) {
 			userDao.updateSeller(seller);
 		}
