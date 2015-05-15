@@ -200,8 +200,7 @@
     height: 40px;
     background: #ffbf42;
     font-size: 16px;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 #upload_button a {
@@ -269,6 +268,10 @@
 
 #info td {
   padding-left: 40px;
+}
+
+#select_product_count td {
+  padding: 0px;
 }
 
 

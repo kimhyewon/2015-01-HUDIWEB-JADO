@@ -55,9 +55,9 @@ pageContext.setAttribute("lf", "\n");
 				<div id="comments">
 					<c:forEach var="articleComment" items="${comments}">
 						<form method="post" action="/board/answer/delete" >
-							<input type="hidden" name="shopUrl" value="${shop.url}" />
 							<input type="hidden" name="boardId" value="${board.id}" />
 							<input type="hidden" name="articleId" value="${article.id}" />
+							<input type="hidden" name="shopUrl" value="${shop.url}" />
 							<input type="hidden" name="userId" value="${articleComment.userId}" />
 							<input type="hidden" name="commentTime" value="${articleComment.commentTime}" />
 							<div class="comment">
@@ -108,4 +108,6 @@ pageContext.setAttribute("lf", "\n");
 		</div>
 	</div>
 </body>
+<script src="/js/jado.js"></script>
+<script src="/js/jadoJS/jado.ajax.js"></script>
 </html>

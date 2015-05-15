@@ -44,51 +44,66 @@ pageContext.setAttribute("lf", "\n");
 
 						<table id ="info">
 							<tr>
-								<td style="width:30%; table-layout:fixed; word-break:break-all;">상품명</td>
+								<td style="width:30%;height:35px; table-layout:fixed; word-break:break-all;">상품명</td>
 								<td style="width:70%; table-layout:fixed; word-break:break-all;">${product.name}</td>
 							</tr>
 							<tr>
-								<td style="width:30%; table-layout:fixed; word-break:break-all;">가격</td>
+								<td style="width:30%;height:35px; table-layout:fixed; word-break:break-all;">가격</td>
 								<td style="width:70%; table-layout:fixed; word-break:break-all;">${product.price}원</td>
 							</tr>
 							<tr>
-								<td style="width:30%; table-layout:fixed; word-break:break-all;">수량</td>
+								<td style="width:30%;height:35px; table-layout:fixed; word-break:break-all;">수량</td>
 								<td style="width:70%; table-layout:fixed; word-break:break-all;">
-									<select name="select_product_count">
-									    <option value="">선택하세요</option>
-									    <option value="1">1</option>
-									    <option value="2">2</option>
-									    <option value="3">3</option>
-									    <option value="4">4</option>
-									    <option value="5">5</option>
-									    <option value="6">6</option>
-									    <option value="7">7</option>
-									    <option value="8">8</option>
-									    <option value="9">9</option>
-									    <option value="10">10</option>
-									</select>
+									<table id="select_product_count">
+									    <tr>
+									    	<td style="padding-left:0px; border: 1px solid #bcbcbc;"><button id ="down_button" style="height:24px;width:23px;text-align:center;border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;background-color:white;color:#CFCFCF">-</button></td>
+											<td style="padding-left:0px; border: 1px solid #bcbcbc;"><input id="count" type="text" value="1" style="width:23px;text-align:center;border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px"/></td>
+											<td style="padding-left:0px; border: 1px solid #bcbcbc;"><button id = "up_button" style="width:23px;text-align:center;border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;background-color:white;color:#CFCFCF;">+</button></td>
+										</tr>
+									</table>
 								</td>
 							</tr>
 						</table>
 						<!-- 복사해옴 시작 -->
 						<form:form modelAttribute="paymentInfo" cssClass="" action="/pay/info" method="post">
 
-							Shop Url <br>
-							<form:input path="shopUrl" value="${shop.url}"/><br><br>
-							<form:errors path="shopUrl"  cssClass=""   /><br><br>
-							Product Id<br>
-							<form:input path="productId" value="${product.id}"/><br><br>
-							<form:errors path="productId"  cssClass=""   /><br><br>
+							<!-- Shop Url <br> -->
+							<form:input type="hidden" path="shopUrl" value="${shop.url}"/>
+							<form:errors path="shopUrl"  cssClass=""   />
+							<!-- Product Id<br> -->
+							<form:input type="hidden" path="productId" value="${product.id}"/>
+							<form:errors path="productId"  cssClass=""   />
 							
-							수량<br>
-							<form:input path="productAmount" value="2"/><br><br>
-							<form:errors path="productAmount"  cssClass=""   /><br><br>
+							<!-- 수량<br> -->
+							<form:input type="hidden" path="productAmount" value="2"/>
+							<form:errors path="productAmount"  cssClass=""   />
 							
-							<button>결제하기</button>
+							<!-- <button>결제하기</button> -->
+							<button id = "buy_button" style="width:65%;border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px" /><a>구매하기</a>
 						</form:form>
-					</body>
+					
+					</div>
+
 					<script>
-						document.querySelector("form button").addEventListener("click", function(){
+						// 상품 개수 카운트
+						var btn1 = document.querySelector("#down_button");
+						var btn2 = document.querySelector("#up_button");
+						var numEle = document.querySelector("#count");
+
+						btn1.addEventListener("click", function(){
+							if(numEle.value >1) {
+								numEle.value--;	
+							}
+						},false);
+
+						btn2.addEventListener("click", function(){
+							console.log("증가");
+							numEle.value++;
+							
+						},false);
+
+						// 구매 클릭시 발생
+						document.querySelector("#buy_button").addEventListener("click", function(){
 							var e = document.querySelector("form input[name='productId']"); 
 							if(e.value === "") {
 								e.value = 0;
@@ -96,9 +111,7 @@ pageContext.setAttribute("lf", "\n");
 							document.querySelector("form").submit();
 						});
 					</script>
-						<!-- 복사해옴 끝-->
-						<div id = "buy_button"><a href="">구매하기</a></div>
-					</div>
+
 				</div>
 				<div id = "show_product_content">${fn:replace(product.desc, lf, "<br/>")}</div>
 
@@ -160,4 +173,6 @@ pageContext.setAttribute("lf", "\n");
 		</div>
 	</div>
 </body>
+<script src="/js/jado.js"></script>
+<script src="/js/jadoJS/jado.ajax.product.js"></script>
 </html>

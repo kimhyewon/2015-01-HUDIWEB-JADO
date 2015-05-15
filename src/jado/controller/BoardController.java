@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import core.exception.ForignKeyException;
 import core.exception.InsertTargetRecordNotFoundException;
 
 @Controller
@@ -103,7 +104,8 @@ public class BoardController {
 	 *  - @ModelAttribute 지정된 객체의 필드와 파라미터 이름을 맞추어 값을 저장하고 객체로 전달한다.
 	 */
 	@RequestMapping(value = "/answer/save", method = RequestMethod.POST)
-	protected String commentPost(String shopUrl,  String boardId, @ModelAttribute ArticleComment articleComment, HttpSession session, Model model) {
+	protected String commentPost(String shopUrl, String boardId, @ModelAttribute ArticleComment articleComment, HttpSession session, Model model) throws ServletException,
+			IOException, ForignKeyException {
 		logger.debug("articleComment {}", articleComment);
 		logger.debug("a {}", boardId);
 		
