@@ -3,7 +3,6 @@ package jado.dao;
 import jado.model.FileInfo;
 import jado.model.Shop;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -48,5 +47,10 @@ public class ShopDao {
 	public void updateImageUrl(FileInfo fileInfo) {
 		String sql = "update SHOP set ".concat(fileInfo.getType())+"=? where URL=?";
 		jdbcTemplate.update(sql, fileInfo.getLocalLocation(), fileInfo.getUrl());
+	}
+
+	public void setTheme(int theme, String userId) {
+		String sql = "update SHOP inner join SELLER on SHOP.URL = SELLER.SHOP_URL set SHOP.THEME=? where SELLER.ID=?";
+		jdbcTemplate.update(sql, theme, userId);
 	}
 }

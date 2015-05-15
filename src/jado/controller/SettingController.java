@@ -61,7 +61,13 @@ public class SettingController {
 		}
 		fileInfo.updateLocalLocation();
 		shopService.settingEditImage(fileInfo);
-		return "redirect:/setting";
+		return "redirect:/shop";
+	}
+	@RequestMapping(value = "/api/theme", method = RequestMethod.GET)
+	public String editTheme(Model model, int theme, HttpSession session) throws ServletException, IOException {
+		String userId = (String) session.getAttribute("userId");
+		shopService.settingEditTheme(theme, userId);
+		return "redirect:/shop";
 	}
 
 	@RequestMapping(value = "/api/board/delete", method = RequestMethod.GET)

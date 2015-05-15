@@ -158,6 +158,11 @@ public class ShopService {
 		}
 		return result;
 	}
+
+	public void settingEditTheme(int theme, String userId) {
+		shopDao.setTheme(theme, userId);
+		
+	}
 	
 
 }
