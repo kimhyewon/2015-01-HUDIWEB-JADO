@@ -160,5 +160,5 @@ pageContext.setAttribute("lf", "\n");
 	</div>
 </body>
 <script src="/js/jado.js"></script>
-<script src="/js/jadoJS/jado.ajax.js"></script>
+<script src="/js/jadoJS/jado.ajax.product.js"></script>
 </html>
