@@ -208,7 +208,7 @@ body {
 }
 
 .categoryOn {
-	color: red;
+	color: #FFBF42;
 }
 
 @media only screen and (max-width : 601px) {
