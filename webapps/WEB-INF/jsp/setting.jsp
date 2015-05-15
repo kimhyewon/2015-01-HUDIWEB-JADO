@@ -93,16 +93,16 @@
 				<h3>테마 고르기</h3>
 				<ul>
 					<li>
-						<input type="radio" name="theme" value="theme1" checked="checked" >심플한 테마
+						<input type="radio" name="theme" value="1" checked="checked" >심플한 테마
 					</li>
 					<li>
-						<input type="radio" name="theme" value="theme2">화사한 테마
+						<input type="radio" name="theme" value="2">화사한 테마
 					</li>
 					<li>
-						<input type="radio" name="theme" value="theme3">봄같은 테마
+						<input type="radio" name="theme" value="3">봄같은 테마
 					</li>
 					<li>
-						<input type="radio" name="theme" value="theme4">시크한 테마
+						<input type="radio" name="theme" value="4">시크한 테마
 					</li>
 					<li>
 						<input type="submit" name="submit" value="변 경 하 기"/>
@@ -110,11 +110,10 @@
 				</ul>		
 			</form>
 		</div>
-		<div class="col s12 m5 l4">
+		<div id="imgContainer" class="col s12 m5 l4">
 			미리보기
-			<img width ="100%"src="/img/shop_theme1.png">
-			<img src="" alt="">
-			<img src="" alt="">
+			<img width ="100%" src="/img/shop_theme1.png">
+			<img width ="100%" src="/img/shop_theme2.png">
 		</div>
 	</div>
 	<div class="row center">
