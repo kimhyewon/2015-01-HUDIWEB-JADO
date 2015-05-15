@@ -33,7 +33,7 @@ public class ArticleCommentDao {
 	}
 	
 	public List<ArticleComment> findByArticle(final int articleId) {
-		String sql = "select * from ARTICLE_COMMENT where ARTICLE_ID=?";
+		String sql = "select * from ARTICLE_COMMENT where ARTICLE_ID=? order by COMMENT_TIME";
 		try {
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<ArticleComment>(ArticleComment.class), articleId);
 		} catch (EmptyResultDataAccessException e) {
