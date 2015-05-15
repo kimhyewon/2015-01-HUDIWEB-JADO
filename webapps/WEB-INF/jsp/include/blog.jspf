@@ -40,3 +40,4 @@
 				<a href="/category/${shop.url}/${category.id}">${category.name}</a>
 			</div>
 		</c:forEach>
+		

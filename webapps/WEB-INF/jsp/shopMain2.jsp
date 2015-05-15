@@ -9,13 +9,22 @@
 	<title>블로그</title>
 	<link rel="stylesheet" type="text/css" href="/css/jado.css">		
 </head>
-<body id="">
-	<%@ include file="include/blog.jspf" %>
-
-			<div id ="profile_con" class ="row col shide m10 l6">
-				<div id ="profile_img"><img src="${shop.profileUrl}" style="width:55%; height:55%; "></div>
-				<div id = "profile_name" >Grace lilac</div>
-			</div>	
+<body id="shop2">
+	<div id="header" class="row">
+	<div id="title" class="col s12 m12 l12">${shop.title}</div>
+	</div>
+	<div id="nav_bar" class="row">
+		<div id="white_block" class="col shide m3 l3"></div>
+		<div id="nav_content_con" class="col s12 m6 l6">
+			<%@ include file="include/shopNav.jspf" %>
+		</div>
+		<div id="white_block" class="col shide m3 l3"></div>
+	</div>
+	<div id="body_con" class="row">
+		<div id="white_block" class="col shide m1 l1"></div>
+		<div id="category" class="row col s12 m2 l2">
+			<!-- <div id = "nav_divide_line"></div> -->
+			<%@ include file="include/shopCategory.jspf" %>
 		</div>
 
 		<div id = "main_img_con" class=" col s12 m8 l8">
@@ -58,6 +67,5 @@
 	${shop.footer}	
 	<br />
 	</div>
-	
 </body>
 </html>

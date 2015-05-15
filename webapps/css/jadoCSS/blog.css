@@ -138,6 +138,7 @@ body {
 }
 
 .product_text_con {
+	height: 30px;
 	margin-top: 20px;
 	font-size: 13px;
 }
@@ -157,6 +158,8 @@ body {
 #mobile_white_block {
 	display: none;
 }
+
+.shop2 #category
 
 @media only screen and (max-width : 601px) {
 	body {

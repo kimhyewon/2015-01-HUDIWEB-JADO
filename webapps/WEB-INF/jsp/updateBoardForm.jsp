@@ -5,7 +5,21 @@
 <html>
 <%@ include file="include/head.jspf" %>
 <body id = "update_board_form">
-	<%@ include file="include/blog.jspf" %>
+	<div id="header" class="row">
+		<div id="title" class="col s12 m12 l12">${shop.title}</div>
+	</div>
+	<div id="nav_bar" class="row">
+		<div id="white_block" class="col shide m3 l3"></div>
+		<div id="nav_content_con" class="col s12 m6 l6">
+			<%@ include file="include/shopNav.jspf" %>
+		</div>
+		<div id="white_block" class="col shide m3 l3"></div>
+	</div>
+	<div id="body_con" class="row">
+		<div id="white_block" class="col shide m1 l1"></div>
+		<div id="category" class="row col s12 m2 l2">
+			<!-- <div id = "nav_divide_line"></div> -->
+			<%@ include file="include/shopCategory.jspf" %>
 		</div>
 
 		<div id = "board_section" class="col s12 m10 l9">

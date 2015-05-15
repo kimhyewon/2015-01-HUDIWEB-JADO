@@ -6,7 +6,21 @@
 <%@ include file="include/head.jspf" %>
 
 <body id = "category">
-	<%@ include file="include/blog.jspf" %>
+	<div id="header" class="row">
+	<div id="title" class="col s12 m12 l12">${shop.title}</div>
+	</div>
+	<div id="nav_bar" class="row">
+		<div id="white_block" class="col shide m3 l3"></div>
+		<div id="nav_content_con" class="col s12 m6 l6">
+			<%@ include file="include/shopNav.jspf" %>
+		</div>
+		<div id="white_block" class="col shide m3 l3"></div>
+	</div>
+	<div id="body_con" class="row">
+		<div id="white_block" class="col shide m1 l1"></div>
+		<div id="category" class="row col s12 m2 l2">
+			<!-- <div id = "nav_divide_line"></div> -->
+			<%@ include file="include/shopCategory.jspf" %>
 		</div>
 
 		<div id = "main_img_con" class=" col s12 m8 l8">
@@ -14,6 +28,7 @@
 		</div>
 		<div id = "white_block" class="col shide m1 l1"></div>
 	</div>
+	
 	<div id = "product_con" class="row">
 		<div id = "black_line" class="row col s12 m12 l12"></div>
 		<div id = "product_text">${category.name}</div>

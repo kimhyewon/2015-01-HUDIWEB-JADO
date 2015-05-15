@@ -5,15 +5,7 @@
 <%@ include file="include/head.jspf" %>
 <body class="main">
     <%@ include file="include/top.jspf" %>
-    <c:choose>
-    <c:when test="${empty userId}">
-		<h1>잘못된 경로 입니다! 회원가입을 해주세요 </h1>
-		<a href="/">홈으로</a>
-	</c:when>
-	<c:otherwise>
-		<%@ include file="include/signForm.jspf" %>
-	</c:otherwise>
-	</c:choose>
+	<%@ include file="include/signForm.jspf" %>
 </body>
 
 <script src="/js/jado_lib.js"></script>
