@@ -33,11 +33,12 @@
 				</ul>
 			</form>
 		</div>
-		<div class="col s12 m5 l4">
+		<div class="imgEditContainer col s12 m5 l4">
 			<h2 style="opacity:0;"> _ </h2>
 			<h3>이미지 변경하기</h3>
 			<ul>
 				<li>
+					<h4>main</h4>
 					<form id="upload" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="url" value="${shop.url}">
 						<input type="hidden" name="localLocation" value="/userImg/shop/main">
@@ -47,6 +48,7 @@
 					</form>
 				</li>
 				<li>
+					<h4>profile Image</h4>
 					<form id="upload" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="url" value="${shop.url}">
 						<input type="hidden" name="type" value="PROFILE_URL">
@@ -56,6 +58,7 @@
 					</form>
 				</li>
 				<li>
+					<h4>sub Image 1</h4>
 					<form id="upload" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="url" value="${shop.url}">
 						<input type="hidden" name="type" value="SUB_IMG1_URL">
@@ -65,6 +68,7 @@
 					</form>
 				</li>
 				<li>
+					<h4>sub Image 2</h4>
 					<form id="upload" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="url" value="${shop.url}">
 						<input type="hidden" name="type" value="SUB_IMG2_URL">
@@ -74,6 +78,7 @@
 					</form>
 				</li>
 				<li>
+					<h4>sub Image 3</h4>
 					<form id="upload" method="post" enctype="multipart/form-data">
 						<input type="hidden" name="url" value="${shop.url}">
 						<input type="hidden" name="type" value="SUB_IMG3_URL">
@@ -85,10 +90,10 @@
 			</ul>
 		</div>
 	</div>
-	<div class="row center formContainer" >
+	<div class="previewContainer row center formContainer" >
 		<div class="col m1 l2 dummy">dummy</div>
 		<div class="col s12 m5 l4">
-			<form action="/setting/api/theme">
+			<form  action="/setting/api/theme">
 				<h2>화면 꾸미기 </h2>
 				<h3>테마 고르기</h3>
 				<ul>
@@ -110,10 +115,10 @@
 				</ul>		
 			</form>
 		</div>
-		<div id="imgContainer" class="col s12 m5 l4">
-			미리보기
-			<img width ="100%" src="/img/shop_theme1.png">
-			<img width ="100%" src="/img/shop_theme2.png">
+		<div class="col s12 m5 l4">
+			<h4>미리보기</h4>
+			<img src="/img/shop_theme1.png">		
+			<!--<img src="/img/shop_theme2.png">-->	
 		</div>
 	</div>
 	<div class="row center">
