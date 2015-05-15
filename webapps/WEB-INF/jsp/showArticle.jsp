@@ -94,4 +94,6 @@ pageContext.setAttribute("lf", "\n");
 		</div>
 	</div>
 </body>
+<script src="/js/jado.js"></script>
+<script src="/js/jadoJS/jado.ajax.js"></script>
 </html>
