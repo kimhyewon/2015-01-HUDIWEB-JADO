@@ -16,7 +16,7 @@ public class AuthorityManagerDao {
 	
 	public void updateUserRole(User user, String authorityTobeChanged) {
 		String sql = "update USER_ROLE set ROLE=? WHERE USER_ID=?";
-		jdbcTemplate.update(sql, authorityTobeChanged, user.getUserId());
+		jdbcTemplate.update(sql, authorityTobeChanged, user.getId());
 	}
 
 	public String findUserRoleByUserId(String userId) {
