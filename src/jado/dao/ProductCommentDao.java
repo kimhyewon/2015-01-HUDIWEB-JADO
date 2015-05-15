@@ -32,7 +32,7 @@ public class ProductCommentDao{
 		}
 	}
 	public List<ProductComment> findByProduct(final int productId) {
-		String sql = "select * from PRODUCT_COMMENT where PRODUCT_ID=?";
+		String sql = "select * from PRODUCT_COMMENT where PRODUCT_ID=? order by COMMENT_TIME";
 		Object[] args = new Object[] { productId };
 
 		try {
