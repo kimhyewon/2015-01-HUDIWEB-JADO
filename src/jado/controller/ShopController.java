@@ -44,7 +44,7 @@ public class ShopController {
 		if (shop == null) return "redirect:/";
 		model.addAttribute("shop", shop);
 		model.addAttribute("products", products);
-		return "blogDummy";
+		return "shopMain"+shop.getTheme();
 	}
 	
 	@RequestMapping(value = "/{shopUrl}/mypage", method = RequestMethod.GET)

@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `jado_dev`.`SHOP` (
   `MAIN_URL` VARCHAR(256) NOT NULL DEFAULT '/userImg/shop/main/default.jpg',
   `PROFILE_URL` VARCHAR(45) NOT NULL DEFAULT '/userImg/shop/profile/default.png',
   `FOOTER` LONGTEXT NULL,
-  `THEME` VARCHAR(45) NOT NULL DEFAULT 'thema1',
+  `THEME` INT NOT NULL DEFAULT 1,
   `SUB_IMG1_URL` VARCHAR(45) NOT NULL DEFAULT '/userImg/shop/subImg1/default.jpg',
   `SUB_IMG2_URL` VARCHAR(45) NOT NULL DEFAULT '/userImg/shop/subImg2/default.jpg',
   `SUB_IMG3_URL` VARCHAR(45) NOT NULL DEFAULT '/userImg/shop/subImg3/default.jpg',
