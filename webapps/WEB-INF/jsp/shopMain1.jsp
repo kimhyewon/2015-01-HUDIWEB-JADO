@@ -11,7 +11,7 @@
 </head>
 <body id="shop2">
 	<div id="header" class="row">
-	<div id="title" class="col s12 m12 l12">${shop.title}</div>
+	<div id="title" class="col s12 m12 l12"><a href="/shop/${shop.url}">${shop.title}</a></div>
 	</div>
 	<div id="nav_bar" class="row">
 		<div id="white_block" class="col shide m3 l3"></div>

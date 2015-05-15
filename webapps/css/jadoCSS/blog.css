@@ -25,6 +25,11 @@ body {
 	width: 100%;
 }
 
+#header a:hover{
+	color: initial;
+	text-decoration: none;
+}
+
 #title {
 	text-align: center;
 	font-size: 6.5rem;
@@ -158,8 +163,6 @@ body {
 #mobile_white_block {
 	display: none;
 }
-
-.shop2 #category
 
 @media only screen and (max-width : 601px) {
 	body {
