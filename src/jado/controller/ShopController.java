@@ -38,12 +38,14 @@ public class ShopController {
 	
 	//	아무개 사용자가 남에 샵에 접근할때
 	@RequestMapping(value = "/{shopUrl}", method = RequestMethod.GET)
-	public String showShop(@PathVariable("shopUrl")String url, Model model) throws ServletException, IOException {
-		Shop shop = shopService.settingByUrl(url);
+	public String showShop(@PathVariable("shopUrl")String url, Model model, HttpSession session) throws ServletException, IOException {
+		String userId = (String) session.getAttribute("userId");
+		Shop shop = shopService.getShopByUrl(url, userId);
 		List<Product> products = shopService.settingProductByUrl(url);
 		if (shop == null) return "redirect:/";
 		model.addAttribute("shop", shop);
 		model.addAttribute("products", products);
+		model.addAttribute("isMyShop", false);
 		return "shopMain"+shop.getTheme();
 	}
 	
@@ -51,7 +53,7 @@ public class ShopController {
 	public String myPageForCustomer(@PathVariable("shopUrl")String url, Model model, HttpSession session){
 		
 		String userId = (String) session.getAttribute("userId");
-		
+		//잘못 된 user가 들어온 경우 막기
 		Customer customer = shopService.getMyInfo(url, userId);
 		List<PaymentWithProduct> payments = shopService.getPayments(customer, url);
 		Integer paymentsTotal = shopService.getPaymentsTotal(payments);

@@ -39,7 +39,7 @@ public class BoardController {
 	@RequestMapping(value="/{shopUrl}/{boardId}", method = RequestMethod.GET)
 	public String doGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url)
 			throws ServletException, IOException {
-		Shop shop = shopService.settingByUrl(url);
+		Shop shop = shopService.getShopByUrl(url);
 		model.addAttribute("shop", shop);
 		
 		Board board = articleService.getBoard(Integer.parseInt(boardId));
@@ -53,7 +53,7 @@ public class BoardController {
 	@RequestMapping(value = "/write/{shopUrl}/{boardId}", method = RequestMethod.GET)
 	public String wirteGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url)
 			throws ServletException, IOException {
-		Shop shop = shopService.settingByUrl(url);
+		Shop shop = shopService.getShopByUrl(url);
 		model.addAttribute("shop", shop);
 		
 		Board board = articleService.getBoard(Integer.parseInt(boardId));
@@ -84,7 +84,7 @@ public class BoardController {
 	//list에서 title 클릭시 해당 글 보여주는 코드 
 	@RequestMapping(value="/show/{shopUrl}/{boardId}/{articleId}", method = RequestMethod.GET)
 	public String listGet(Model model, @PathVariable("articleId")String articleId, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url)  {
-		Shop shop = shopService.settingByUrl(url);
+		Shop shop = shopService.getShopByUrl(url);
 		model.addAttribute("shop", shop);
 		
 		Board board = articleService.getBoard(Integer.parseInt(boardId));
@@ -137,7 +137,7 @@ public class BoardController {
 	// 본문 수정 구현 1 - 글 수정 버튼 클릭시 updateBoardForm 페이지로 이동 
 	@RequestMapping(value = "/update/{shopUrl}/{boardId}/{articleId}", method = RequestMethod.GET)
 	public String updateGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("articleId")String articleId, @PathVariable("shopUrl")String url) {
-		Shop shop = shopService.settingByUrl(url);
+		Shop shop = shopService.getShopByUrl(url);
 		model.addAttribute("shop", shop);
 		
 		Board board = articleService.getBoard(Integer.parseInt(boardId));

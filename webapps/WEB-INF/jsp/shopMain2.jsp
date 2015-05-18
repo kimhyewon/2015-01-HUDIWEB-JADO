@@ -60,7 +60,7 @@
 		<div id = "product_section" class="row">
 			<c:forEach var="product" items="${products}">
 				<div class = "product col s5 m3 l3">
-					<a href="/product/${product.id}">
+					<a href="/shop/${shop.url}/product/${product.id}">
 					<img src="${product.imgUrl}" style="width:100%; height=100%;">
 					
 					<div class="product_text_con">

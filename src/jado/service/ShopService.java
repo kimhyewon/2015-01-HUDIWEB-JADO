@@ -51,10 +51,19 @@ public class ShopService {
 		if (seller == null) {
 			return null;
 		}
-		return settingByUrl(seller.getShopUrl());
+		return getShopByUrl(seller.getShopUrl());
 	}
 
-	public Shop settingByUrl(String url) {
+	public Shop getShopByUrl(String url, String userId) {
+		Shop shop = getShopByUrl(url);
+		Seller seller = userDao.selectSellerByUrl(url);
+		if (userId != null) {
+			shop.setIsMyShop(userId.equals(seller.getId()));
+		}
+		return shop;
+	}
+
+	public Shop getShopByUrl(String url) {
 		Shop shop = shopDao.selectByUrl(url);
 		shop.setBoards(boardDao.selectAllByUrl(shop.getUrl()));
 		shop.setCategorys(categoryDao.selectAllByUrl(shop.getUrl()));
@@ -112,7 +121,7 @@ public class ShopService {
 
 	public List<Product> settingProductByUrl(String url) {
 		List<Product> products = productDao.selectAllByUrl(url);
-		logger.debug("products {}", products );
+		logger.debug("products {}", products);
 		return products;
 	}
 
@@ -138,15 +147,16 @@ public class ShopService {
 		List<PaymentWithProduct> payments = null;
 		if (isSeller(customer, seller)) {
 			payments = paymentDao.selectAll(url);
-		}else{
+		} else {
 			payments = paymentDao.selectAll(customer.getId(), url);
 		}
 		return payments;
-		
+
 	}
 
 	private boolean isSeller(Customer customer, Seller seller) {
-		if(seller == null) return false;
+		if (seller == null)
+			return false;
 		return customer.getId().equals(seller.getId());
 	}
 
@@ -161,8 +171,7 @@ public class ShopService {
 
 	public void settingEditTheme(int theme, String userId) {
 		shopDao.setTheme(theme, userId);
-		
+
 	}
-	
 
 }

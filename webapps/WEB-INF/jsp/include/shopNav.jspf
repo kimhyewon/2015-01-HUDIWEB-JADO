@@ -30,6 +30,9 @@
 		<a href="/board/${shop.url}/${board.id}"> ${board.name} </a>
 	</div>
 </c:forEach>
-<div class="nav_content col s2 m2 l2">
-	<a href="/setting">SETTING</a>
-</div>
+
+<c:if test="${shop.isMyShop}">
+	<div class="nav_content col s2 m2 l2">
+		<a href="/setting">SETTING</a>
+	</div>
+</c:if>

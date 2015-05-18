@@ -40,7 +40,7 @@ public class CategoryController {
 	@RequestMapping(value="/{shopUrl}/{categoryId}", method = RequestMethod.GET)
 	public String doGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("shopUrl")String url)
 			throws ServletException, IOException {
-		Shop shop = shopService.settingByUrl(url);
+		Shop shop = shopService.getShopByUrl(url);
 		model.addAttribute("shop", shop);
 		
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
@@ -55,7 +55,7 @@ public class CategoryController {
 	@RequestMapping(value = "/product/upload/{shopUrl}/{categoryId}", method = RequestMethod.GET)
 	public String uploadGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("shopUrl")String url)
 			throws ServletException, IOException {
-		Shop shop = shopService.settingByUrl(url);
+		Shop shop = shopService.getShopByUrl(url);
 		model.addAttribute("shop", shop);
 		
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
@@ -86,7 +86,7 @@ public class CategoryController {
 	//상품 클릭시 해당 글(상세 페이지) 보여주는 코드 
 	@RequestMapping(value="/product/{shopUrl}/{categoryId}/{productId}", method = RequestMethod.GET)
 	public String productGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId, @PathVariable("shopUrl")String url)  {
-		Shop shop = shopService.settingByUrl(url);
+		Shop shop = shopService.getShopByUrl(url);
 		model.addAttribute("shop", shop);
 		
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
@@ -130,7 +130,7 @@ public class CategoryController {
 	@RequestMapping(value = "/product/update/{shopUrl}/{categoryId}/{productId}", method = RequestMethod.GET)
 	public String updateGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId, @PathVariable("shopUrl")String url)
 			throws ServletException, IOException {
-		Shop shop = shopService.settingByUrl(url);
+		Shop shop = shopService.getShopByUrl(url);
 		model.addAttribute("shop", shop);
 		
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
