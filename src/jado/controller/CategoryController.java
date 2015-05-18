@@ -38,9 +38,10 @@ public class CategoryController {
 	
 	//블로그 페이지에서 카테고리명 클릭시 category.jsp 보여줌 
 	@RequestMapping(value="/{shopUrl}/{categoryId}", method = RequestMethod.GET)
-	public String doGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("shopUrl")String url)
+	public String doGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("shopUrl")String url, HttpSession session)
 			throws ServletException, IOException {
-		Shop shop = shopService.getShopByUrl(url);
+		String userId = (String) session.getAttribute("userId");
+		Shop shop = shopService.getShopByUrl(url, userId);
 		model.addAttribute("shop", shop);
 		
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
@@ -53,9 +54,10 @@ public class CategoryController {
 	
 	//상품 등록 클릭시 categoryForm으로 이동 
 	@RequestMapping(value = "/product/upload/{shopUrl}/{categoryId}", method = RequestMethod.GET)
-	public String uploadGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("shopUrl")String url)
+	public String uploadGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("shopUrl")String url, HttpSession session)
 			throws ServletException, IOException {
-		Shop shop = shopService.getShopByUrl(url);
+		String userId = (String) session.getAttribute("userId");
+		Shop shop = shopService.getShopByUrl(url,userId);
 		model.addAttribute("shop", shop);
 		
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
@@ -68,7 +70,6 @@ public class CategoryController {
 	@RequestMapping(value = "/product/upload", method = RequestMethod.POST)
 	protected String writePost(String shopUrl, String categoryId, String imgUrl, String name, String price, String stock, String desc, FileInfo fileInfo,
 			HttpSession session, Model model) throws InsertTargetRecordNotFoundException, IllegalStateException, IOException {
-		
 		logger.debug("file info {}", fileInfo.getFile());
 		logger.debug("file info {}", fileInfo.getType());
 		logger.debug("file info {}", fileInfo.getUrl());
@@ -85,8 +86,9 @@ public class CategoryController {
 	
 	//상품 클릭시 해당 글(상세 페이지) 보여주는 코드 
 	@RequestMapping(value="/product/{shopUrl}/{categoryId}/{productId}", method = RequestMethod.GET)
-	public String productGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId, @PathVariable("shopUrl")String url)  {
-		Shop shop = shopService.getShopByUrl(url);
+	public String productGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId, @PathVariable("shopUrl")String url, HttpSession session)  {
+		String userId = (String) session.getAttribute("userId");
+		Shop shop = shopService.getShopByUrl(url, userId);
 		model.addAttribute("shop", shop);
 		
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));
@@ -128,9 +130,10 @@ public class CategoryController {
 	
 	//product 본문 수정 구현 1 - 글 수정 버튼 클릭시 updateProductForm 페이지로 이동 
 	@RequestMapping(value = "/product/update/{shopUrl}/{categoryId}/{productId}", method = RequestMethod.GET)
-	public String updateGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId, @PathVariable("shopUrl")String url)
+	public String updateGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("productId")String productId, @PathVariable("shopUrl")String url, HttpSession session)
 			throws ServletException, IOException {
-		Shop shop = shopService.getShopByUrl(url);
+		String userId = (String) session.getAttribute("userId");
+		Shop shop = shopService.getShopByUrl(url, userId);
 		model.addAttribute("shop", shop);
 		
 		Category category = categoryService.getCategory(Integer.parseInt(categoryId));

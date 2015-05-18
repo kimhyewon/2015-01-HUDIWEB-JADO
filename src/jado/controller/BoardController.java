@@ -37,9 +37,10 @@ public class BoardController {
 
 	//블로그 페이지에서 board명 클릭시 article list 보여줌 
 	@RequestMapping(value="/{shopUrl}/{boardId}", method = RequestMethod.GET)
-	public String doGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url)
+	public String doGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url, HttpSession session)
 			throws ServletException, IOException {
-		Shop shop = shopService.getShopByUrl(url);
+		String userId = (String) session.getAttribute("userId");
+		Shop shop = shopService.getShopByUrl(url, userId);
 		model.addAttribute("shop", shop);
 		
 		Board board = articleService.getBoard(Integer.parseInt(boardId));
@@ -51,9 +52,10 @@ public class BoardController {
 
 	//글쓰기 클릭시 board form 페이지로 이동  
 	@RequestMapping(value = "/write/{shopUrl}/{boardId}", method = RequestMethod.GET)
-	public String wirteGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url)
+	public String wirteGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url, HttpSession session)
 			throws ServletException, IOException {
-		Shop shop = shopService.getShopByUrl(url);
+		String userId = (String) session.getAttribute("userId");
+		Shop shop = shopService.getShopByUrl(url, userId);
 		model.addAttribute("shop", shop);
 		
 		Board board = articleService.getBoard(Integer.parseInt(boardId));
@@ -83,8 +85,9 @@ public class BoardController {
 	
 	//list에서 title 클릭시 해당 글 보여주는 코드 
 	@RequestMapping(value="/show/{shopUrl}/{boardId}/{articleId}", method = RequestMethod.GET)
-	public String listGet(Model model, @PathVariable("articleId")String articleId, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url)  {
-		Shop shop = shopService.getShopByUrl(url);
+	public String listGet(Model model, @PathVariable("articleId")String articleId, @PathVariable("boardId")String boardId, @PathVariable("shopUrl")String url, HttpSession session)  {
+		String userId = (String) session.getAttribute("userId");
+		Shop shop = shopService.getShopByUrl(url, userId);
 		model.addAttribute("shop", shop);
 		
 		Board board = articleService.getBoard(Integer.parseInt(boardId));
@@ -136,8 +139,9 @@ public class BoardController {
 	
 	// 본문 수정 구현 1 - 글 수정 버튼 클릭시 updateBoardForm 페이지로 이동 
 	@RequestMapping(value = "/update/{shopUrl}/{boardId}/{articleId}", method = RequestMethod.GET)
-	public String updateGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("articleId")String articleId, @PathVariable("shopUrl")String url) {
-		Shop shop = shopService.getShopByUrl(url);
+	public String updateGet(Model model, @PathVariable("boardId")String boardId, @PathVariable("articleId")String articleId, @PathVariable("shopUrl")String url, HttpSession session) {
+		String userId = (String) session.getAttribute("userId");
+		Shop shop = shopService.getShopByUrl(url, userId);
 		model.addAttribute("shop", shop);
 		
 		Board board = articleService.getBoard(Integer.parseInt(boardId));

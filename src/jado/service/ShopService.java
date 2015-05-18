@@ -69,6 +69,22 @@ public class ShopService {
 		shop.setCategorys(categoryDao.selectAllByUrl(shop.getUrl()));
 		return shop;
 	}
+	
+	
+	public Shop getShopByCategoryId(int categoryId, String userId) {
+		Shop shop = shopDao.getShopByCategoryId(categoryId);
+		shop.setBoards(boardDao.selectAllByUrl(shop.getUrl()));
+		shop.setCategorys(categoryDao.selectAllByUrl(shop.getUrl()));
+		setIsMyShop(userId, shop);
+		return shop;
+	}
+
+	private void setIsMyShop(String userId, Shop shop) {
+		if (userId != null) {
+			Seller seller = userDao.selectSellerByUrl(shop.getUrl());
+			shop.setIsMyShop(userId.equals(seller.getId()));
+		}
+	}
 
 	public Shop settingEditInfo(Shop shopFromClient) {
 		Shop shop = shopDao.selectByUrl(shopFromClient.getUrl());

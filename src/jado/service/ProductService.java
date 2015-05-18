@@ -5,10 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jado.dao.CategoryDao;
 import jado.dao.ProductCommentDao;
 import jado.dao.ProductDao;
-import jado.model.Category;
 import jado.model.Product;
 import jado.model.ProductComment;
 
@@ -19,8 +17,6 @@ public class ProductService {
 	private ProductDao productDao;
 	@Autowired
 	private ProductCommentDao productCommentDao;
-	@Autowired
-	private CategoryDao categoryDao;
 	
 	public Product getProduct(int productId) {
 		return productDao.selectByPk(productId);
@@ -30,8 +26,22 @@ public class ProductService {
 		return productCommentDao.findByProduct(productId);
 	}
 
-	public Category getCategory(int categoryId) {
-		return categoryDao.selectByPk(categoryId);
+	public boolean deleteProduct(int productId, String userId) {
+		List<ProductComment> comments = productCommentDao.findByProduct(productId);
+		if(canDelete(userId, comments)){
+			productDao.remove(productId);
+			return true;
+		}
+		return false;
+	}
+
+	private boolean canDelete(String userId, List<ProductComment> comments) {
+		for (ProductComment productComment : comments) {
+			if (!userId.equals(productComment.getUserId())) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }
