@@ -23,7 +23,7 @@
         </c:forEach>
         <br>
         <br>
-         총 ${paymentTotal} 원 입니다.
+         총 ${paymentsTotal} 원 입니다.
     </div>
 
 </body>

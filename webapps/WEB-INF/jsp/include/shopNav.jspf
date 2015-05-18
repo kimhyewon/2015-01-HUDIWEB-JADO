@@ -20,11 +20,11 @@
 </c:otherwise>
 </c:choose>
 <div class="nav_content col s2 m2 l2">
-	<a href="">MYPAGE</a>
+	<a href="/shop/${shop.url}/mypage">MYPAGE</a>
 </div>
-<div class="nav_content col s2 m2 l2">
+<!--<div class="nav_content col s2 m2 l2">
 	<a href="">CART</a>
-</div>
+</div>-->
 <c:forEach var="board" items="${shop.boards}">
 	<div class="nav_content col s2 m2 l2">
 		<a href="/board/${shop.url}/${board.id}"> ${board.name} </a>

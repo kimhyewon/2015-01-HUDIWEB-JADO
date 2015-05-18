@@ -154,7 +154,7 @@ public class ShopService {
 		int result = 0;
 		for (PaymentWithProduct paymentWithProduct : payments) {
 			paymentWithProduct.setAmount();
-			result = paymentWithProduct.getRealPrice();
+			result += paymentWithProduct.getRealPrice();
 		}
 		return result;
 	}
