@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import core.exception.InsertTargetRecordNotFoundException;
+import core.exception.NotExistFileException;
 import core.util.Upload;
 
 @Service
@@ -73,17 +74,12 @@ public class CategoryService {
 		productDao.update(product);
 	}
 
-	public void representImage(FileInfo fileInfo, Product product) throws IllegalStateException, IOException {
-		String url = fileInfo.getLocalLocation();
+	public void representImage(FileInfo fileInfo, Product product) throws IllegalStateException, IOException, NotExistFileException {
+		String imgUrl = fileInfo.getLocalLocation();
 		upload.uploadFile(fileInfo.getFile(), fileInfo.getLocalLocation());
 
-		product.setImgUrl(url);
+		product.setImgUrl(imgUrl);
 		productDao.insert(product);
-	}
-
-	public void updateImage(FileInfo fileInfo, int productId) throws IllegalStateException, IOException {
-		Product product = productDao.selectByPk(productId);
-		upload.uploadFile(fileInfo.getFile(), product.getImgUrl());
 	}
 
 }

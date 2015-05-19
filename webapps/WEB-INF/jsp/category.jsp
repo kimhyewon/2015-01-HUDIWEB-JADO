@@ -49,7 +49,7 @@
 			</c:forEach>
 		</div>
 	</div>
-	<div id = "upload_button" class="row"><a href="/category/product/upload/${shop.url}/${category.id}">상품 등록</a></div>
+	<div id = "upload_button" class="row"><a href="/shop/${shop.url}/product/create?categoryId=${category.id}">상품 등록</a></div>
 </body>
 <script src="/js/jado.js"></script>
 <script src="/js/jadoJS/jado.categoryEffect.js"></script>

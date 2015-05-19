@@ -1,5 +1,6 @@
 package jado.controller;
 
+import jado.model.Category;
 import jado.model.Customer;
 import jado.model.PaymentWithProduct;
 import jado.model.Product;
@@ -27,7 +28,7 @@ public class ShopController {
 
 	//	본인이 자기 샵으로 갈때 
 	@RequestMapping(method = RequestMethod.GET)
-	public String showShopByUser(Model model,HttpSession session) throws ServletException, IOException {
+	public String showShopByUser(Model model,HttpSession session){
 		String userId = (String) session.getAttribute("userId");
 		String url = shopService.getUrl(userId);
 		if (url == null) {
@@ -38,7 +39,7 @@ public class ShopController {
 	
 	//	아무개 사용자가 남에 샵에 접근할때
 	@RequestMapping(value = "/{shopUrl}", method = RequestMethod.GET)
-	public String showShop(@PathVariable("shopUrl")String url, Model model, HttpSession session) throws ServletException, IOException {
+	public String showShop(@PathVariable("shopUrl")String url, Model model, HttpSession session){
 		String userId = (String) session.getAttribute("userId");
 		Shop shop = shopService.getShopByUrl(url, userId);
 		List<Product> products = shopService.settingProductByUrl(url);
@@ -47,6 +48,22 @@ public class ShopController {
 		model.addAttribute("products", products);
 		model.addAttribute("isMyShop", false);
 		return "shopMain"+shop.getTheme();
+	}
+	
+	//블로그 페이지에서 카테고리명 클릭시 category.jsp 보여줌 
+	@RequestMapping(value="/{shopUrl}/category/{categoryId}", method = RequestMethod.GET)
+	public String doGet(Model model, @PathVariable("categoryId")String categoryId, @PathVariable("shopUrl")String url, HttpSession session)
+			throws ServletException, IOException {
+		String userId = (String) session.getAttribute("userId");
+		Shop shop = shopService.getShopByUrl(url, userId);
+		model.addAttribute("shop", shop);
+		
+		Category category = shopService.getCategory(Integer.parseInt(categoryId));
+		List<Product> products = shopService.getProducts(Integer.parseInt(categoryId));
+		model.addAttribute("category", category);
+		model.addAttribute("products", products);
+		
+		return "category";
 	}
 	
 	@RequestMapping(value = "/{shopUrl}/mypage", method = RequestMethod.GET)
@@ -63,4 +80,5 @@ public class ShopController {
 		model.addAttribute("paymentsTotal", paymentsTotal);		
 		return "mypage";
 	}
+	
 }

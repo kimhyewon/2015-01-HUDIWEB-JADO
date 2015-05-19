@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import core.exception.NotExistFileException;
 import core.jadopay.PaymentDao;
 import core.util.Upload;
 import jado.dao.BoardDao;
@@ -63,7 +64,7 @@ public class ShopService {
 		return shop;
 	}
 
-	public Shop getShopByUrl(String url) {
+	private Shop getShopByUrl(String url) {
 		Shop shop = shopDao.selectByUrl(url);
 		shop.setBoards(boardDao.selectAllByUrl(shop.getUrl()));
 		shop.setCategorys(categoryDao.selectAllByUrl(shop.getUrl()));
@@ -94,7 +95,7 @@ public class ShopService {
 		return shop;
 	}
 
-	public void settingEditImage(FileInfo fileInfo) throws IllegalStateException, IOException {
+	public void settingEditImage(FileInfo fileInfo) throws IllegalStateException, IOException, NotExistFileException {
 		String url = fileInfo.getUrl();
 		upload.uploadFile(fileInfo.getFile(), fileInfo.getLocalLocation());
 
@@ -188,6 +189,14 @@ public class ShopService {
 	public void settingEditTheme(int theme, String userId) {
 		shopDao.setTheme(theme, userId);
 
+	}
+
+	public Category getCategory(int categoryId) {
+		return categoryDao.selectByPk(categoryId);
+	}
+
+	public List<Product> getProducts(int categoryId) {
+		return productDao.selectAllByCateGoryId(categoryId);
 	}
 
 }
