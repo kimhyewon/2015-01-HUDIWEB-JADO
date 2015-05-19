@@ -104,15 +104,15 @@
 			<scope>${junit.scope}</scope>
 		</dependency>
 		<!-- hamcrest -->
-		<!--  참고: http://goo.gl/2LUY14 -->
+		<!-- 참고: http://goo.gl/2LUY14 -->
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
 			<version>${org.hamcrest.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
-		
+
+
 		<!-- joda-time -->
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -292,6 +292,18 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.1.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>0.9.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- FasterXML -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.4.4</version>
 		</dependency>
 	</dependencies>
 </project>
