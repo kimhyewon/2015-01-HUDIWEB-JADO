@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 import core.exception.NotExistFileException;
 import core.jadopay.PaymentDao;
 import core.util.Upload;
+import jado.dao.ArticleDao;
 import jado.dao.BoardDao;
 import jado.dao.CategoryDao;
 import jado.dao.ProductDao;
 import jado.dao.ShopDao;
 import jado.dao.UserDao;
+import jado.model.Article;
 import jado.model.Board;
 import jado.model.Category;
 import jado.model.Customer;
@@ -43,6 +45,8 @@ public class ShopService {
 	private Upload upload;
 	@Autowired
 	private PaymentDao paymentDao;
+	@Autowired
+	private ArticleDao articleDao;
 
 	public Shop settingById(String userId) {
 		if (userId == null) {
@@ -197,6 +201,19 @@ public class ShopService {
 
 	public List<Product> getProducts(int categoryId) {
 		return productDao.selectAllByCateGoryId(categoryId);
+	}
+
+	public List<Article> getArticles(int boardId) {
+		return articleDao.selectAllByBoard(boardId);
+	}
+
+	public Board getBoard(Integer boardId, List<Board> list) {
+		for (Board board : list) {
+			if (boardId.equals(board.getId())) {
+				return board;
+			}
+		}
+		return null;
 	}
 
 }

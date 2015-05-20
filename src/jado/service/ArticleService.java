@@ -12,6 +12,7 @@ import jado.model.Board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import core.exception.ForignKeyException;
 import core.exception.InsertTargetRecordNotFoundException;
 
 @Service
@@ -61,10 +62,20 @@ public class ArticleService {
 	}
 
 	public void deleteArticle(int articleId) {
+		List<ArticleComment> comments = articleCommentDao.findByArticle(articleId);
+		for (ArticleComment articleComment : comments) {
+			if(!articleComment.getUserId().equals(articleId)) {
+				throw new ForignKeyException("다른 사람의 댓글이 있어 지울수 없습니다.");
+			}
+		}
 		articleDao.remove(articleId);
 	}
 
 	public void updateArticle(Article article) {
 		articleDao.update(article);
+	}
+
+	public void deleteArticleComment(ArticleComment articleComment) {
+		articleCommentDao.removeByPk(articleComment);
 	}
 }
