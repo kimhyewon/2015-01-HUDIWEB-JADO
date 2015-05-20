@@ -20,28 +20,58 @@
             <%@ include file="include/shopCategory.jspf" %>
         </div>
 
-    <div>
-        ${user.id}<br>
-        ${user.name}<br>
-        ${user.phone}<br>
-        ${user.address}<br>
-    </div>
-    <div>
-        <c:forEach var="payment" items='${payments}'>
-            ${payment.bank} <br>
-            ${payment.realPrice} 원<br>
-            ${payment.payTime}<br>
-            ${payment.amount}개 <br>   
-            ${payment.id} <br>
-            ${payment.categoryId}<br>
-            ${payment.name} <br>
-            ${payment.price} 원<br>
-        </c:forEach>
-        <br>
-        <br>
-         총 ${paymentsTotal} 원 입니다.
-    </div>
-
+        <div id = "user_info_con">   
+            <div id = "info_section" class="col s12 m9 l9">
+                <div id = "divide_line" class="row">
+                    <div id = "board_name" class="row">MY PAGE</div>
+                    <div id = "info_list" class="row">
+                        <div class = "info_title">회원 정보</div>
+                        <table>
+                            <tr>
+                                <td style="width:50%">ID</td>
+                                <td style="width:50%">${user.id}</td>
+                            </tr>
+                            <tr>
+                                <td style="width:50%">name</td>
+                                <td style="width:50%">${user.name}</td>
+                            </tr>
+                            <tr>
+                                <td style="width:50%">phone</td>
+                                <td style="width:50%">${user.phone}</td>
+                            </tr>
+                            <tr>
+                                <td style="width:50%">address</td>
+                                <td style="width:50%">${user.address}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id = "order_history">
+                        <div class = "info_title">구매 내역</div>
+                        <table>
+                            <tr>
+                                <td>NO</td>
+                                <td>상품명</td>
+                                <td>수량</td>
+                                <td>결재 금액</td>
+                                <td>결제 은행</td>
+                                <td>결제 시간</td>
+                            </tr>
+                            <c:forEach var="payment" items='${payments}'>
+                            <tr>
+                                <td>${payment.id}</td>
+                                <td>${payment.name}</td>
+                                <td>${payment.amount}</td>
+                                <td>${payment.realPrice}</td>
+                                <td>${payment.bank}</td>
+                                <td>${payment.payTime}</td>
+                            </tr>
+                            </c:forEach>
+                        </table>
+                        <div id = "total_price">총 ${paymentsTotal} 원 입니다.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 
 <script src="/js/jado_lib.js"></script>
