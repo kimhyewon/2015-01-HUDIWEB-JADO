@@ -8,7 +8,6 @@ import jado.dao.BoardDao;
 import jado.model.Article;
 import jado.model.ArticleComment;
 import jado.model.Board;
-import jado.model.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
