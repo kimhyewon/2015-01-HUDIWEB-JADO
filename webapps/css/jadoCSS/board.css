@@ -240,6 +240,20 @@
     margin-bottom: 30px;
 }
 
+#category_form #product_img {
+  float: left;
+  width: 296px;
+  height: 188px;
+  border: 1px solid black;
+  text-align: center; 
+  padding-top: 108px;
+}
+
+#category_form #product_right_info {
+  float: left;
+  margin-left: 60px;
+}
+
 
 
 

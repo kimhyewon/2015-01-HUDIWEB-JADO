@@ -25,28 +25,62 @@
 
 
 	<form name="category_form" action="/shop/${shop.url}/product/create" method="post" enctype="multipart/form-data">
-		<div id = "product_info">
+		
+		<div id = "product_section" class="col s12 m10 l9">
+			<div id = "divide_line" class="row">
+				<div id = "product_intro" class="row">
+					<div id = "product_img">
+						대표 사진 등록<br /><input type="file" name="file" style="text-align:center; width:150px;"/>
+						<input type="hidden" name="localLocation" value="/userImg/product/img">
+						<!-- <input type="hidden" name="url" value="${shop.url}"> -->
+						<input type="hidden" name="type" value="IMG_URL">
+					</div>
+					<div id = "product_info">
+						<table id ="info">
+							<tr>
+								<td style="width:30%;height:35px; table-layout:fixed; word-break:break-all;">상품명</td>
+								<td style="width:70%; table-layout:fixed; word-break:break-all;"><input type="text" name="name" style="width:160px;" /></td>
+							</tr>
+							<tr>
+								<td style="width:30%;height:35px; table-layout:fixed; word-break:break-all;">가격</td>
+								<td style="width:70%; table-layout:fixed; word-break:break-all;"><input type="text" name="price" style="width:160px;"/></td>
+							</tr>
+							<tr>
+								<td style="width:30%;height:35px; table-layout:fixed; word-break:break-all;">재고</td>
+								<td style="width:70%; table-layout:fixed; word-break:break-all;"><input type="text" name="stock" style="width:160px;"/></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div id = "show_product_content"><textarea name="desc" placeholder="내용을 입력하세요." /></textarea></div>
+				<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div>
+			</div>
+		</div>
+
+
+		<!-- <div id = "product_info">
 			<div id ="product_img">
-				대표 사진 <input type="file" name="file"/>
+				대표 사진 등록<br /><input type="file" name="file" style="text-align:center; width:150px;"/>
 				<input type="hidden" name="localLocation" value="/userImg/product/img">
-				<!-- <input type="hidden" name="url" value="${shop.url}"> -->
 				<input type="hidden" name="type" value="IMG_URL">
 			</div>
-			<div id ="product_name">
-				상품명 <input type="text" name="name" />
+			<div id = "product_right_info">
+				<div id ="product_name">
+					상품명 <input type="text" name="name" />
+				</div>
+				<div id ="product_price">
+					가격 <input type="text" name="price" />
+				</div>
+				<div id ="product_stock">
+					재고 <input type="text" name="stock" />
+				</div>
+				<input type="hidden" name="categoryId" value="${categoryId}" />
 			</div>
-			<div id ="product_price">
-				가격 <input type="text" name="price" />
-			</div>
-			<div id ="product_stock">
-				재고 <input type="text" name="stock" />
-			</div>
-			<input type="hidden" name="categoryId" value="${categoryId}" />
 		</div>
 		<div id = "product_desc">
-			<textarea name="desc" placeholder="내용을 입력하세요." /></textarea>
+			<textarea name="desc" placeholder="내용을 입력하세요." style="width:57%;" /></textarea>
 		</div>
-		<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div>
+		<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div> -->
 	</form>
 </body>
 </html>
