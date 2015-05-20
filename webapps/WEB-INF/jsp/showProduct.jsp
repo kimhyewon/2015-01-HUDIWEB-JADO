@@ -33,7 +33,7 @@ pageContext.setAttribute("lf", "\n");
 		<!-- product 부분 --> 
 		<div id = "product_section" class="col s12 m10 l9">
 			<div id = "divide_line" class="row">
-				<input type="hidden" name="categorydId" value="${product.categoryId}" />
+				<input id="categoryId" type="hidden" name="categorydId" value="${product.categoryId}" />
 				<input type="hidden" name="productId" value="${product.id}" />
 				<input type="hidden" name="shopUrl" value="${shop.url}" />
 				<div id = "product_intro" class="row">

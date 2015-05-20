@@ -216,4 +216,13 @@ public class ShopService {
 		return null;
 	}
 
+	public Category getCategory(Integer categoryId, List<Category> categorys) {
+		for (Category category : categorys) {
+			if (categoryId.equals(category.getId())) {
+				return category;
+			}
+		}
+		return null;
+	}
+
 }

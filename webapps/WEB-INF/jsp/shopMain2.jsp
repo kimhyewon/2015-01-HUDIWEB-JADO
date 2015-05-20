@@ -20,11 +20,13 @@
 		<div id="title" class="col s12 m12 l12"><a href="/shop/${shop.url}">${shop.title}</a></div>
 	</div>
 	<div id="category_bar" class="row">
+		<!-- <%@ include file="include/shopCategory.jspf" %> -->
+
 		<div id="white_block" class="col shide m2 l2"></div>
 		<div id="category" class="col s12 m6 l6">
 			<c:forEach var="category" items="${shop.categorys}">
 				<div class="category_list  col s2 m2 l2">
-					<a href="/category/${shop.url}/${category.id}">${category.name}</a>
+					<a href="/shop/${shop.url}/category/${category.id}">${category.name}</a>
 				</div>
 			</c:forEach>
 		</div>

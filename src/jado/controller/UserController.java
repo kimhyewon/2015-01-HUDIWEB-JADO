@@ -64,7 +64,7 @@ public class UserController {
 
 	// 회원가입 요청
 	@RequestMapping(method = RequestMethod.POST)
-	protected ModelAndView userPost(@RequestParam("j_username") String userId, @RequestParam("j_password") String password, Customer user, Shop shop, Seller seller,
+	public ModelAndView userPost(@RequestParam("j_username") String userId, @RequestParam("j_password") String password, Customer user, Shop shop, Seller seller,
 			String isSeller, Notice notice) {
 		if (notice.getTitle() != null) {
 			return ModelAndViewUtils.renderToNotice(notice);
@@ -88,7 +88,7 @@ public class UserController {
 
 	// 회원 정보 수정 요청
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	protected ModelAndView editUserInfo(Customer user, Shop shop, Seller seller, String isSeller, HttpSession session, Notice notice) {
+	public ModelAndView editUserInfo(Customer user, Shop shop, Seller seller, String isSeller, HttpSession session, Notice notice) {
 		if (notice.getTitle() != null) {
 			return ModelAndViewUtils.renderToNotice(notice);
 		}

@@ -1,5 +1,6 @@
 package jado.controller;
 
+import jado.model.Category;
 import jado.model.FileInfo;
 import jado.model.Notice;
 import jado.model.Product;
@@ -39,9 +40,11 @@ public class ProductController {
 		String userId = (String) session.getAttribute("userId");
 		Shop shop = shopService.getShopByUrl(shopUrl, userId);
 		Product product = productService.getProduct(Integer.parseInt(productId));
+		Category category = shopService.getCategory(product.getCategoryId(), shop.getCategorys());
 		List<ProductComment> comments = productService.getComments(product.getId());
 
 		model.addAttribute("shop", shop);
+		model.addAttribute("category", category);
 		model.addAttribute("product", product);
 		model.addAttribute("comments", comments);
 		model.addAttribute("paymentInfo", new PaymentInfo());
@@ -90,16 +93,16 @@ public class ProductController {
 		fileInfo.setFileNameByUUID();
 		fileInfo.updateLocalLocation();
 		product.setImgUrl(fileInfo.getLocalLocation());
-		ModelAndView mav = ModelAndViewUtils.renderToNoticeForSeller(new Notice("Success", "상품 정보 및 상품 이미지가 수정 되었습니다."));
+		Notice notice = new Notice("Success", "상품 정보 및 상품 이미지가 수정 되었습니다.");
 		try {
 			productService.updateImage(fileInfo);
 		} catch (IllegalStateException | IOException e) {
 			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Fail", "상품 이미지에 문제가 있어 수정 불가능 합니다"));
 		} catch (NotExistFileException e) {
-			mav = ModelAndViewUtils.renderToNoticeForSeller(new Notice("Success", "상품 정보만 수정 되었습니다.<br> 혹시 상품 이미지 수정도 원했다면 다시 시도해 주시기 바랍니다"));
+
 		}
 		productService.updateProduct(product);
-		return mav;
+		return ModelAndViewUtils.renderToNoticeForSeller(notice);
 	}
 
 	// product 본문 삭제 구현
