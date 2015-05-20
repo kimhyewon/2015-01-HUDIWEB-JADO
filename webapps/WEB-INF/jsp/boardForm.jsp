@@ -18,7 +18,6 @@
 	<div id="body_con" class="row">
 		<div id="white_block" class="col shide m1 l1"></div>
 		<div id="category" class="row col s12 m2 l2">
-			<!-- <div id = "nav_divide_line"></div> -->
 			<%@ include file="include/shopCategory.jspf" %>
 		</div>
 
