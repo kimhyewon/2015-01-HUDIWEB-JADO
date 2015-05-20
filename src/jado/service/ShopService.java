@@ -8,13 +8,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import core.exception.NotExistFileException;
 import core.jadopay.PaymentDao;
 import core.util.Upload;
+import jado.dao.ArticleDao;
 import jado.dao.BoardDao;
 import jado.dao.CategoryDao;
 import jado.dao.ProductDao;
 import jado.dao.ShopDao;
 import jado.dao.UserDao;
+import jado.model.Article;
 import jado.model.Board;
 import jado.model.Category;
 import jado.model.Customer;
@@ -42,6 +45,8 @@ public class ShopService {
 	private Upload upload;
 	@Autowired
 	private PaymentDao paymentDao;
+	@Autowired
+	private ArticleDao articleDao;
 
 	public Shop settingById(String userId) {
 		if (userId == null) {
@@ -51,14 +56,39 @@ public class ShopService {
 		if (seller == null) {
 			return null;
 		}
-		return settingByUrl(seller.getShopUrl());
+		return getShopByUrl(seller.getShopUrl());
 	}
 
-	public Shop settingByUrl(String url) {
+	public Shop getShopByUrl(String url, String userId) {
+		Shop shop = getShopByUrl(url);
+		Seller seller = userDao.selectSellerByUrl(url);
+		if (userId != null) {
+			shop.setIsMyShop(userId.equals(seller.getId()));
+		}
+		return shop;
+	}
+
+	private Shop getShopByUrl(String url) {
 		Shop shop = shopDao.selectByUrl(url);
 		shop.setBoards(boardDao.selectAllByUrl(shop.getUrl()));
 		shop.setCategorys(categoryDao.selectAllByUrl(shop.getUrl()));
 		return shop;
+	}
+	
+	
+	public Shop getShopByCategoryId(int categoryId, String userId) {
+		Shop shop = shopDao.getShopByCategoryId(categoryId);
+		shop.setBoards(boardDao.selectAllByUrl(shop.getUrl()));
+		shop.setCategorys(categoryDao.selectAllByUrl(shop.getUrl()));
+		setIsMyShop(userId, shop);
+		return shop;
+	}
+
+	private void setIsMyShop(String userId, Shop shop) {
+		if (userId != null) {
+			Seller seller = userDao.selectSellerByUrl(shop.getUrl());
+			shop.setIsMyShop(userId.equals(seller.getId()));
+		}
 	}
 
 	public Shop settingEditInfo(Shop shopFromClient) {
@@ -69,7 +99,7 @@ public class ShopService {
 		return shop;
 	}
 
-	public void settingEditImage(FileInfo fileInfo) throws IllegalStateException, IOException {
+	public void settingEditImage(FileInfo fileInfo) throws IllegalStateException, IOException, NotExistFileException {
 		String url = fileInfo.getUrl();
 		upload.uploadFile(fileInfo.getFile(), fileInfo.getLocalLocation());
 
@@ -112,7 +142,7 @@ public class ShopService {
 
 	public List<Product> settingProductByUrl(String url) {
 		List<Product> products = productDao.selectAllByUrl(url);
-		logger.debug("products {}", products );
+		logger.debug("products {}", products);
 		return products;
 	}
 
@@ -138,15 +168,16 @@ public class ShopService {
 		List<PaymentWithProduct> payments = null;
 		if (isSeller(customer, seller)) {
 			payments = paymentDao.selectAll(url);
-		}else{
+		} else {
 			payments = paymentDao.selectAll(customer.getId(), url);
 		}
 		return payments;
-		
+
 	}
 
 	private boolean isSeller(Customer customer, Seller seller) {
-		if(seller == null) return false;
+		if (seller == null)
+			return false;
 		return customer.getId().equals(seller.getId());
 	}
 
@@ -161,8 +192,28 @@ public class ShopService {
 
 	public void settingEditTheme(int theme, String userId) {
 		shopDao.setTheme(theme, userId);
-		
+
 	}
-	
+
+	public Category getCategory(int categoryId) {
+		return categoryDao.selectByPk(categoryId);
+	}
+
+	public List<Product> getProducts(int categoryId) {
+		return productDao.selectAllByCateGoryId(categoryId);
+	}
+
+	public List<Article> getArticles(int boardId) {
+		return articleDao.selectAllByBoard(boardId);
+	}
+
+	public Board getBoard(Integer boardId, List<Board> list) {
+		for (Board board : list) {
+			if (boardId.equals(board.getId())) {
+				return board;
+			}
+		}
+		return null;
+	}
 
 }

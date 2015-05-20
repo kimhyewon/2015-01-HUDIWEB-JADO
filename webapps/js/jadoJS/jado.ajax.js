@@ -7,10 +7,8 @@ for ( var j=0 ; j < formList.length ; j++) {
 function writeComments(e) {
 	 e.preventDefault();
 	 var commentForm = e.currentTarget.form;
-	 var url = "/board/answer/save";
-	 var params = "&boardId=" + commentForm[0].value + "&articleId=" + commentForm[1].value + "&shopUrl=" + commentForm[2].value +
-	 "&userId=" + commentForm[3].value + "&content=" + commentForm[4].value;
-
+	 var url = "/api/article/comment/create";
+	 var params = "articleId=" + commentForm[0].value + "&userId=" + commentForm[1].value + "&content=" + commentForm[2].value;
 	 var request = new XMLHttpRequest();
 	 request.open("POST", url, true);
 	 request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -32,9 +30,8 @@ for ( var j=0 ; j < formList.length ; j++) {
 function deleteComments(e) {
 	 e.preventDefault();
 	 var commentForm = e.currentTarget.form;
-	 var url = "/board/answer/delete";
-	 var params = "&boardId=" + commentForm[0].value + "&articleId=" + commentForm[1].value + "&shopUrl=" + commentForm[2].value +
-	 "&userId=" + commentForm[3].value + "&commentTime=" + commentForm[4].value;
+	 var url = "/api/article/comment/delete";
+	 var params = "articleId=" + commentForm[0].value + "&userId=" + commentForm[1].value + "&commentTime=" + commentForm[2].value;
 	 
 	 var request = new XMLHttpRequest();
 	 request.open("POST", url, true);

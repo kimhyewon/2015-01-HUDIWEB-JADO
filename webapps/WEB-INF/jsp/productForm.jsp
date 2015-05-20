@@ -23,12 +23,13 @@
 			<%@ include file="include/shopCategory.jspf" %>
 		</div>
 
-	<form name="category_form" action="/category/product/upload" method="post" enctype="multipart/form-data">
+
+	<form name="category_form" action="/shop/${shop.url}/product/create" method="post" enctype="multipart/form-data">
 		<div id = "product_info">
 			<div id ="product_img">
 				대표 사진 <input type="file" name="file"/>
-				<input type="hidden" name="url" value="${shop.url}">
 				<input type="hidden" name="localLocation" value="/userImg/product/img">
+				<!-- <input type="hidden" name="url" value="${shop.url}"> -->
 				<input type="hidden" name="type" value="IMG_URL">
 			</div>
 			<div id ="product_name">
@@ -40,8 +41,7 @@
 			<div id ="product_stock">
 				재고 <input type="text" name="stock" />
 			</div>
-			<input type="hidden" name="categoryId" value="${category.id}" />
-			<input type="hidden" name="shopUrl" value="${shop.url}" />
+			<input type="hidden" name="categoryId" value="${categoryId}" />
 		</div>
 		<div id = "product_desc">
 			<textarea name="desc" placeholder="내용을 입력하세요." /></textarea>

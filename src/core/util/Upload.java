@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import core.exception.NotExistFileException;
+
 public class Upload {
 
 	private String globalLocation;
@@ -16,7 +18,10 @@ public class Upload {
 	public Upload() {
 	}
 
-	public void uploadFile(MultipartFile maltipartFile, String localLocation) throws IllegalStateException, IOException {
+	public void uploadFile(MultipartFile maltipartFile, String localLocation) throws IllegalStateException, IOException, NotExistFileException {
+		if (maltipartFile.isEmpty()) {
+			throw new NotExistFileException();
+		}
 		File file = new File(globalLocation + localLocation);
 		maltipartFile.transferTo(file);
 	}

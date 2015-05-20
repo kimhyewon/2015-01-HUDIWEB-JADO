@@ -3,6 +3,7 @@ package jado.controller;
 import jado.dao.ShopDao;
 import jado.model.Board;
 import jado.model.Category;
+import jado.model.Notice;
 import jado.model.Shop;
 import jado.model.FileInfo;
 import jado.service.ShopService;
@@ -21,6 +22,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import core.exception.NotExistFileException;
+import core.util.ModelAndViewUtils;
 
 @Controller
 @RequestMapping(value = "/setting")
@@ -54,14 +59,14 @@ public class SettingController {
 	}
 
 	@RequestMapping(value = "/api/image", method = RequestMethod.POST)
-	public String editImage(Model model, FileInfo fileInfo) throws ServletException, IOException {
-		if (fileInfo.getFile() == null) {
-			model.addAttribute("errorMessage", "이미지를 다시 업로드 해주세요 ");
-			return "setting";
-		}
+	public ModelAndView editImage(Model model, FileInfo fileInfo){
 		fileInfo.updateLocalLocation();
-		shopService.settingEditImage(fileInfo);
-		return "redirect:/shop";
+		try {
+			shopService.settingEditImage(fileInfo);
+		} catch (IllegalStateException | IOException | NotExistFileException e) {
+			return ModelAndViewUtils.renderToNotice(new Notice("Sucess", "이미지에 문제가 있습니다."));
+		}
+		return new ModelAndView("redirect:/shop");
 	}
 	@RequestMapping(value = "/api/theme", method = RequestMethod.GET)
 	public String editTheme(Model model, int theme, HttpSession session) throws ServletException, IOException {

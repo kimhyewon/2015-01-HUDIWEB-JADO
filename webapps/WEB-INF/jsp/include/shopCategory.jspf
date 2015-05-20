@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:forEach var="category" items="${shop.categorys}">
 	<div class="category_list col s1.5 m12 l12">
-		<a href="/category/${shop.url}/${category.id}">${category.name}</a>
+		<a href="/shop/${shop.url}/category/${category.id}">${category.name}</a>
 	</div>
 </c:forEach>
 

@@ -13,6 +13,7 @@ public class Shop {
 	private String subImg1Url;
 	private String subImg2Url;
 	private String subImg3Url;
+	private Boolean isMyShop = false;
 
 	private List<Board> boards;
 	private List<Category> categorys;
@@ -33,6 +34,15 @@ public class Shop {
 		this.title = title;
 		this.phone = phone;
 		this.footer = footer;
+	}
+	
+
+	public Boolean getIsMyShop() {
+		return isMyShop;
+	}
+
+	public void setIsMyShop(Boolean isMyShop) {
+		this.isMyShop = isMyShop;
 	}
 
 	public String getUrl() {
