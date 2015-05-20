@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import core.exception.InsertTargetRecordNotFoundException;
 import core.exception.NotExistFileException;
 import core.jadopay.PaymentInfo;
 import core.util.ModelAndViewUtils;
@@ -97,11 +98,16 @@ public class ProductController {
 		try {
 			productService.updateImage(fileInfo);
 		} catch (IllegalStateException | IOException e) {
-			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Fail", "상품 이미지에 문제가 있어 수정 불가능 합니다"));
+			notice = new Notice("Notice", "상품 이미지에 문제가 있어 상품 이미지 수정에 실폐하셨습니다.");
 		} catch (NotExistFileException e) {
-
+			notice = new Notice("Notice", "상품이미지는 그대로인 채로 상품 정보만 수정되었습니다");
 		}
-		productService.updateProduct(product);
+		
+		try {
+			productService.updateProduct(product);
+		} catch (InsertTargetRecordNotFoundException e) {
+			notice = new Notice("Notice", e.getMessage());
+		} 
 		return ModelAndViewUtils.renderToNoticeForSeller(notice);
 	}
 

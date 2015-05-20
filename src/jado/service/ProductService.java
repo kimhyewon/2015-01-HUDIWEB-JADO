@@ -63,6 +63,9 @@ public class ProductService {
 	}
 
 	public void updateProduct(Product product) {
+		Product productFromDao = productDao.selectByPk(product.getId());
+		if (productFromDao == null) throw new InsertTargetRecordNotFoundException("product 가 없습니다.");
+		if(!productFromDao.update(product)) throw new InsertTargetRecordNotFoundException("바꿀 정보가 없습니다");
 		productDao.update(product);
 	}
 
@@ -71,7 +74,7 @@ public class ProductService {
 		if (product == null) {
 			throw new InsertTargetRecordNotFoundException("상품 댓글 등록 대상 상품이 존재하지 않습니다");
 		}
-		productCommentDao.insert(productComment);		
+		productCommentDao.insert(productComment);
 	}
 
 	public void deleteProductComment(ProductComment productComment) {

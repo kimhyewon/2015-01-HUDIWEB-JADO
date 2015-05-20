@@ -8,6 +8,7 @@ import jado.dao.BoardDao;
 import jado.model.Article;
 import jado.model.ArticleComment;
 import jado.model.Board;
+import jado.model.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,7 +73,10 @@ public class ArticleService {
 	}
 
 	public void updateArticle(Article article) {
-		articleDao.update(article);
+		Article articleFromDao = articleDao.selectByPk(article.getId());
+		if (articleFromDao == null) throw new InsertTargetRecordNotFoundException("글이 없습니다.");
+		if(!articleFromDao.update(article)) throw new InsertTargetRecordNotFoundException("바꿀 정보가 없습니다");
+		articleDao.update(articleFromDao);
 	}
 
 	public void deleteArticleComment(ArticleComment articleComment) {
