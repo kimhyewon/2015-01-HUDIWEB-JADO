@@ -25,29 +25,29 @@
                 <div id = "divide_line" class="row">
                     <div id = "board_name" class="row">MY PAGE</div>
                     <div id = "info_list" class="row">
-                        <div class = "info_title">회원 정보</div>
-                        <table>
+                        <div class = "info_title" class="row">회원 정보</div>
+                        <table id = "user_info" class="row">
                             <tr>
-                                <td style="width:50%">ID</td>
-                                <td style="width:50%">${user.id}</td>
+                                <td style="width:35%; background-color:#E8E8E8;">ID</td>
+                                <td style="width:75%">${user.id}</td>
                             </tr>
                             <tr>
-                                <td style="width:50%">name</td>
-                                <td style="width:50%">${user.name}</td>
+                                <td style="width:35%; background-color:#E8E8E8">name</td>
+                                <td style="width:75%">${user.name}</td>
                             </tr>
                             <tr>
-                                <td style="width:50%">phone</td>
-                                <td style="width:50%">${user.phone}</td>
+                                <td style="width:35%; background-color:#E8E8E8">phone</td>
+                                <td style="width:75%">${user.phone}</td>
                             </tr>
                             <tr>
-                                <td style="width:50%">address</td>
-                                <td style="width:50%">${user.address}</td>
+                                <td style="width:35%; background-color:#E8E8E8">address</td>
+                                <td style="width:75%">${user.address}</td>
                             </tr>
                         </table>
                     </div>
                     <div id = "order_history">
-                        <div class = "info_title">구매 내역</div>
-                        <table>
+                        <div class = "info_title" class="row">구매 내역</div>
+                        <table id = "order_info" class="row">
                             <tr>
                                 <td>NO</td>
                                 <td>상품명</td>
@@ -67,7 +67,7 @@
                             </tr>
                             </c:forEach>
                         </table>
-                        <div id = "total_price">총 ${paymentsTotal} 원 입니다.</div>
+                        <div id = "total_price" class="row">총 결제 금액은 ${paymentsTotal}원 입니다.</div>
                     </div>
                 </div>
             </div>
