@@ -50,4 +50,6 @@
 		</div>
 	</div>
 </body>
+<script src="/js/jado.js"></script>
+<script src="/js/jadoJS/jado.navCategoryEffect.js"></script>
 </html>
