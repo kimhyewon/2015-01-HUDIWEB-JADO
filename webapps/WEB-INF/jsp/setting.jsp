@@ -4,9 +4,24 @@
 <html>
 <%@ include file="include/head.jspf" %>
 <body id="setting">
-	<%@ include file="include/top.jspf" %>
+	<div id="header" class="row">
+		<div id="title" class="col s12 m12 l12"><a href="/shop/${shop.url}">${shop.title}</a></div>
+	</div>
+	<div id="nav_bar" class="row">
+		<div id="white_block" class="col shide m3 l3"></div>
+		<div id="nav_content_con" class="col s12 m6 l6">
+			<%@ include file="include/shopNav.jspf" %>
+		</div>
+		<div id="white_block" class="col shide m3 l3"></div>
+	</div>
+	<div id="body_con" class="row">
+		<div id="white_block" class="col shide m1 l1"></div>
+		<div id="category" class="row col s12 m2 l2">
+			<!-- <div id = "nav_divide_line"></div> -->
+			<%@ include file="include/shopCategory.jspf" %>
+		</div>
+
 	<div class="row center formContainer">
-		<div class="col m1 l2 dummy">dummy</div>
 		<div class="col s12 m5 l4 ">
 			<form method="post" autocomplete="off">
 				<c:if test="${not empty errorMessage}">
