@@ -38,13 +38,13 @@
 								<tr>
 									<td>${article.id}</td>
 									<td></td>
-									<td align="left"><a href="/board/show/${shop.url}/${board.id}/${article.id}">${article.title}</a></td>
+									<td align="left"><a href="/shop/${shop.url}/article/${article.id}">${article.title}</a></td>
 									<td>${article.articleTime}</td>
 								</tr>
 							</c:forEach>
 						</table>
 					</div>	
-					<div id = "write_button" class="row"><a href="/board/write/${shop.url}/${board.id}">글쓰기</a></div>
+					<div id = "write_button" class="row"><a href="/shop/${shop.url}/article/write/${board.id}">글쓰기</a></div>
 				</div>
 			</div>
 		</div>

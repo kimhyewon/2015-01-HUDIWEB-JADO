@@ -15,16 +15,6 @@ window.addEventListener("load", function() {
 
     var eRadios = document.querySelectorAll(".previewContainer input[type='radio']");
     console.log(eRadios.length);
-    // for(int i=0; i<eRadios.length; i++){
-
-    // }
-    // for (int i = 0; i < eRadios.length ; i++) {
-    //     console.log(eRadios[i]);
-
-    //     eRadios[i].addEventListener("click", function(e) {
-    //         console.log(e.target);
-    //     })
-    // };
 });
 
 

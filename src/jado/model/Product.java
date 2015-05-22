@@ -6,15 +6,15 @@ public class Product {
 	private int id;
 	private int categoryId;
 	private String name;
-	private int price;
-	private int stock;
+	private Integer price;
+	private Integer stock;
 	private String imgUrl;
 	private String desc;
 	private Timestamp insertTime;
 
-	public Product(){ 
+	public Product() {
 	}
-	
+
 	public Product(int id, int categoryId, String name, int price, int stock, String imgUrl, String desc, Timestamp insertTime) {
 		super();
 		this.id = id;
@@ -99,6 +99,25 @@ public class Product {
 		this.insertTime = insertTime;
 	}
 
-	
+	public boolean update(Product product) {
+		boolean result = false;
+		if (!this.name.equals(product.name)) {
+			this.name = product.name;
+			result = true;
+		}
+		if (!this.price.equals(product.price)) {
+			this.price = product.price;
+			result = true;
+		}
+		if (!this.stock.equals(product.stock)) {
+			this.stock = product.stock;
+			result = true;
+		}
+		if (!this.desc.equals(product.desc)) {
+			this.desc = product.desc;
+			result = true;
+		}
+		return result;
+	}
 
 }

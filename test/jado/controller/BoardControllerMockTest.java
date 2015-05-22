@@ -40,7 +40,7 @@ public class BoardControllerMockTest {
 	private static final String STR_BOARD_ID = "1";
 
 	@InjectMocks
-	private BoardController boardController;
+	private ArticleCommentController boardController;
 	
 	@Mock
 	private ArticleService articleService;

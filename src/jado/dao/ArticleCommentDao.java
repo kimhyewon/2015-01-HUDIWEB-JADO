@@ -44,4 +44,10 @@ public class ArticleCommentDao {
 		String sql = "delete from ARTICLE_COMMENT where ARTICLE_ID=? and USER_ID=? and COMMENT_TIME=?";
 		jdbcTemplate.update(sql, articleId, userId, commentTime);
 	}
+
+	public void removeByPk(ArticleComment articleComment) {
+		String sql = "delete from ARTICLE_COMMENT where ARTICLE_ID=? and USER_ID=? and COMMENT_TIME=?";
+		Object[] args = {articleComment.getArticleId(), articleComment.getUserId(), articleComment.getCommentTime()};
+		jdbcTemplate.update(sql, args);
+	}
 }

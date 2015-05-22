@@ -53,4 +53,13 @@ public class ShopDao {
 		String sql = "update SHOP inner join SELLER on SHOP.URL = SELLER.SHOP_URL set SHOP.THEME=? where SELLER.ID=?";
 		jdbcTemplate.update(sql, theme, userId);
 	}
+
+	public Shop getShopByCategoryId(int categoryId) {
+		String sql = "select SHOP.* from SHOP inner join CATEGORY on SHOP.URL = CATEGORY.SHOP_URL where CATEGORY.ID=?";
+		try {
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), categoryId);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 }

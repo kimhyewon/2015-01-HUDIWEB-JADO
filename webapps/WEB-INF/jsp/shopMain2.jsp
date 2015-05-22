@@ -20,36 +20,39 @@
 		<div id="title" class="col s12 m12 l12"><a href="/shop/${shop.url}">${shop.title}</a></div>
 	</div>
 	<div id="category_bar" class="row">
-		<div id="white_block" class="col shide m2 l2"></div>
-		<div id="category" class="col s12 m6 l6">
+		<!-- <%@ include file="include/shopCategory.jspf" %> -->
+
+		<div id="white_block" class="col shide m2 l1"></div>
+		<div id="category" class="col s12 m8 l9" style="margin-left:50px;">
 			<c:forEach var="category" items="${shop.categorys}">
 				<div class="category_list  col s2 m2 l2">
-					<a href="/category/${shop.url}/${category.id}">${category.name}</a>
+					<a href="/shop/${shop.url}/category/${category.id}">${category.name}</a>
 				</div>
 			</c:forEach>
 		</div>
-		<div id ="profile_con" class ="col l2">
-			<div id ="profile_img"><img src="${shop.profileUrl}" style="width:55%; height:55%; "></div>
-			<div id = "profile_name" >Grace lilac</div>
-		</div>	
+		
 	</div>
 	
 	
 	<div id="body_con" class="row">
-		<div id="white_block" class="col shide m2 l2"></div>
-		<div id = "main_img_con" class=" col s12 m8 l8">
+		<div id="white_block" class="col shide m2 l1"></div>
+		<div id = "main_img_con" class=" col s12 m8 l9" style="margin-left:50px;">
 			<div id ="main_img" ><img src='${shop.mainUrl}' style="width:100%; "></div>
 		</div>		
-		<div id="white_block" class="col shide m2 l2"></div>
+		<div id="white_block" class="col shide m2 l1"></div>
 	</div>
 
-	<div id = "special_product_con" class="row">
-		<div id = "white_block" class="col shide m2 l2"></div>
+	<div id = "special_product_con" class="row" style="margin-left:50px;">
+		<div id = "white_block" class="col shide m2 l1"></div>
 		<div class = "special_product col shide m2 l2"><img src="${shop.subImg1Url}" style="width:100%; height=100%;"></div>
 		<div class = "special_product col shide m2 l2"><img src="${shop.subImg2Url}" style="width:100%; height=100%;"></div>
 		<div class = "special_product col shide m2 l2"><img src="${shop.subImg3Url}" style="width:100%; height=100%;"></div>
 		<div class = "special_product col shide m2 l2"><img src="/img/side_block2.png" style="width:100%; height=100%;"><p>${shop.title}</p></div>
-		<div id = "white_block" class="col shide m2 l2"></div>
+		<div class = "special_product col shide m1 l1" style="background-color:#D8D8D8; height:125px;"><img src="${shop.profileUrl}" style="width:55%; margin-top:38px; "></div></div>
+
+	
+
+		<div id = "white_block" class="col shide m2 l1"></div>
 	</div>
 
 	<div id = "product_con" class="row">
@@ -60,7 +63,7 @@
 		<div id = "product_section" class="row">
 			<c:forEach var="product" items="${products}">
 				<div class = "product col s5 m3 l3">
-					<a href="/product/${product.id}">
+					<a href="/shop/${shop.url}/product/${product.id}">
 					<img src="${product.imgUrl}" style="width:100%; height=100%;">
 					
 					<div class="product_text_con">

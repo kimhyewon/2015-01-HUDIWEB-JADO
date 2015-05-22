@@ -1,12 +1,18 @@
 package jado.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import org.springframework.web.multipart.MultipartFile;
 
+import core.mail.UUIDGenerator;
+
 public class FileInfo {
-	String url;
-	String type;
-	String localLocation;
-	MultipartFile file;
+	private String url;
+	private String type;
+	private String localLocation;
+	private MultipartFile file;
 
 	public String getUrl() {
 		return url;
@@ -42,5 +48,11 @@ public class FileInfo {
 	public void updateLocalLocation(){
 		String fileType = file.getContentType().replace('/', '.');
 		this.localLocation += "/" + url + fileType;
+	}
+
+	public void setFileNameByUUID() {
+		String date = new SimpleDateFormat("yyMMdd", Locale.KOREAN).format(new Date());
+		String uuid = UUIDGenerator.createUUID();
+		url = "img"+date+uuid;
 	}
 }

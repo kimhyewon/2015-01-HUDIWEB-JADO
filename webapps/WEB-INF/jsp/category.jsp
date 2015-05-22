@@ -37,7 +37,7 @@
 		<div id = "product_section" class="row">
 			<c:forEach var="product" items="${products}">
 				<div class = "product col s5 m3 l3">
-					<a href="/category/product/${shop.url}/${category.id}/${product.id}">
+					<a href="/shop/${shop.url}/product/${product.id}">
 					<img src="${product.imgUrl}" style="width:100%; height=100%;">
 					
 					<div class="product_text_con">
@@ -49,7 +49,7 @@
 			</c:forEach>
 		</div>
 	</div>
-	<div id = "upload_button" class="row"><a href="/category/product/upload/${shop.url}/${category.id}">상품 등록</a></div>
+	<div id = "upload_button" class="row"><a href="/shop/${shop.url}/product/create?categoryId=${category.id}">상품 등록</a></div>
 </body>
 <script src="/js/jado.js"></script>
 <script src="/js/jadoJS/jado.categoryEffect.js"></script>

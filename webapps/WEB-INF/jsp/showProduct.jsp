@@ -33,7 +33,7 @@ pageContext.setAttribute("lf", "\n");
 		<!-- product 부분 --> 
 		<div id = "product_section" class="col s12 m10 l9">
 			<div id = "divide_line" class="row">
-				<input type="hidden" name="categorydId" value="${category.id}" />
+				<input id="categoryId" type="hidden" name="categorydId" value="${product.categoryId}" />
 				<input type="hidden" name="productId" value="${product.id}" />
 				<input type="hidden" name="shopUrl" value="${shop.url}" />
 				<div id = "product_intro" class="row">
@@ -119,10 +119,8 @@ pageContext.setAttribute("lf", "\n");
 				<!-- 댓글 리스트 -->
 				<div id="comments">
 					<c:forEach var="productComment" items="${comments}">
-						<form method="post" action="/category/product/answer/delete" >
-							<input type="hidden" name="shopUrl" value="${shop.url}" />
-							<input type="hidden" name="categoryId" value="${category.id}" />
-							<input type="hidden" name="productId" value="${product.id}" />
+						<form>
+							<input type="hidden" name="productId" value="${productComment.productId}" />
 							<input type="hidden" name="userId" value="${productComment.userId}" />
 							<input type="hidden" name="commentTime" value="${productComment.commentTime}" />
 							<div class="comment">
@@ -142,9 +140,7 @@ pageContext.setAttribute("lf", "\n");
 
 				<!-- 댓글 작성 부분 -->
 				<div id="answerWrite">
-					<form method="post" action="/category/product/answer/save"  >
-						<input type="hidden" name="shopUrl" value="${shop.url}" />
-						<input type="hidden" name="categoryId" value="${category.id}" />
+					<form>
 						<input type="hidden" name="productId" value="${product.id}" />
 						
 						<div id = "comment_writer">아이디<br />
@@ -159,13 +155,11 @@ pageContext.setAttribute("lf", "\n");
 				</div>
 
 				<!-- product 본문 수정, 삭제  --> 
-				<div id ="update_button"><a href="/category/product/update/${shop.url}/${category.id}/${product.id}">글 수정</a></div>
+				<div id ="update_button"><a href="/shop/${shop.url}/product/update?productId=${product.id}">글 수정</a></div>
 
 				<div id ="delete_button">
-					<form method="post" action="/category/product/delete" >
-						<input type="hidden" name="categoryId" value="${category.id}" />
+					<form method="get" action="/shop/${shop.url}/product/delete" >
 						<input type="hidden" name="productId" value="${product.id}" />
-						<input type="hidden" name="shopUrl" value="${shop.url}" />
 						<input type="submit" value="글 삭제" />
 					</form>
 				</div>
@@ -174,5 +168,5 @@ pageContext.setAttribute("lf", "\n");
 	</div>
 </body>
 <script src="/js/jado.js"></script>
-<script src="/js/jadoJS/jado.ajax.product.js"></script>
+<!-- <script src="/js/jadoJS/jado.ajax.product.js"></script> -->
 </html>

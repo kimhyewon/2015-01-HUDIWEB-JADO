@@ -5,15 +5,16 @@
 <%@ include file="include/head.jspf" %>
 <body class="main">
     <%@ include file="include/top.jspf" %>
-    <c:choose>
-    <c:when test="${empty userId}">
-    	<%@ include file="include/signForm.jspf" %>
-	</c:when>
-	<c:otherwise>
-		<h1>잘못된 경로 입니다! 이미 로그인한 사용자입니다.</h1>
-		<a href="/">홈으로</a>
-	</c:otherwise>
-	</c:choose>
+    <div class="row"> 
+    	<div class="col m1 l2 dummy">dummmy</div>
+    	<div class="col s12 m8 l6 noticeContainer">
+    		<h2>${notice.title}</h2>
+    		<div class="message">
+    			${notice.message}
+    		</div>
+            <a class="home" href="/shop">내 샵으로 돌아가기 </a>
+    	</div>
+    </div>
 </body>
 
 <script src="/js/jado_lib.js"></script>

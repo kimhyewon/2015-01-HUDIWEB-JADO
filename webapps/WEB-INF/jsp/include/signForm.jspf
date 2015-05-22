@@ -125,14 +125,6 @@
 		</div>
 		<div class="col m1 l2 dummy">dummy</div>
 
-		<c:choose>
-		    <c:when test="${empty url}">
-				<input type="hidden" name="url" value="">
-			</c:when>
-			<c:otherwise>
-				<input type="hidden" name="url" value="${url}">
-			</c:otherwise>
-		</c:choose>
 		<input type="hidden" name="rsaPublicKeyExponent" value="${publicKeyExponent}" />
 		<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}" />
 	</form>

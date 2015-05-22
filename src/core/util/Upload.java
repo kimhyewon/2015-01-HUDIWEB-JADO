@@ -3,16 +3,14 @@ package core.util;
 import java.io.File;
 import java.io.IOException;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-@Component
+import core.exception.NotExistFileException;
+
 public class Upload {
 
 	private String globalLocation;
 
-	@Value("${image.location}")
 	public void setLocation(String globalLocation) {
 		this.globalLocation = globalLocation;
 	}
@@ -20,7 +18,10 @@ public class Upload {
 	public Upload() {
 	}
 
-	public void uploadFile(MultipartFile maltipartFile, String localLocation) throws IllegalStateException, IOException {
+	public void uploadFile(MultipartFile maltipartFile, String localLocation) throws IllegalStateException, IOException, NotExistFileException {
+		if (maltipartFile.isEmpty()) {
+			throw new NotExistFileException();
+		}
 		File file = new File(globalLocation + localLocation);
 		maltipartFile.transferTo(file);
 	}

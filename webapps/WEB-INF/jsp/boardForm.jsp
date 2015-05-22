@@ -18,18 +18,16 @@
 	<div id="body_con" class="row">
 		<div id="white_block" class="col shide m1 l1"></div>
 		<div id="category" class="row col s12 m2 l2">
-			<!-- <div id = "nav_divide_line"></div> -->
 			<%@ include file="include/shopCategory.jspf" %>
 		</div>
 
 		<div id = "board_section" class="col s12 m10 l9">
 			<div id = "divide_line" class="row">
-				<form name="boardForm" action="/board/write" method="post">
+				<form name="boardForm" action="/shop/${shop.url}/article/write" method="post">
 				<div id = "board_name">${board.name}</div>
 				<div id = "article_title"><input type="text" name="title" placeholder="제목을 입력하세요."/></div>
 				<div id = "article_content"><textarea name="content" placeholder="내용을 입력하세요." /></textarea></div>
 				<input type="hidden" name="boardId" value="${board.id}" />
-				<input type="hidden" name="shopUrl" value="${shop.url}" />
 				<div id = "submit_button" class="row"><input type="submit" name="submit" value="등록하기" /></div>
 				</form>
 			</div>

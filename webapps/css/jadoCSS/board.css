@@ -1,3 +1,4 @@
+
 /* board.jsp */
 
 /* #nav_divide_line {
@@ -142,7 +143,7 @@
 #answerWrite input[type=submit] {
   margin-left: 10px;
   float: left;
-  width: 8%;
+  width: 55px;
     height: 54px;
     background: black;
     border: 0;
@@ -239,6 +240,39 @@
     margin-bottom: 30px;
 }
 
+#category_form #product_img {
+  float: left;
+  width: 296px;
+  height: 188px;
+  border: 1px solid black;
+  text-align: center; 
+  padding-top: 108px;
+}
+
+#category_form #product_right_info {
+  float: left;
+  margin-left: 60px;
+}
+
+
+
+
+/*updateProductFrom.jsp*/
+
+#update_product_form #product_img {
+  float: left;
+  width: 296px;
+  height: 188px;
+  border: 1px solid black;
+  text-align: center; 
+  padding-top: 108px;
+}
+
+#update_product_form #product_right_info {
+  float: left;
+  margin-left: 60px;
+}
+
 
 
 
@@ -296,4 +330,46 @@
   clear: both;
   margin-top: 100px;
   height: 400px;
+}
+
+
+/*mypage.jsp*/
+
+.info_title {
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+#user_info {
+  font-size: 13px;
+  margin-top: 20px;
+  width: 400px;
+  height: 190px;
+  border-collapse: collapse;
+  margin-bottom: 80px;
+}
+
+#user_info td {
+  border: 1px solid #bcbcbc;
+}
+
+#order_info {
+  font-size: 13px;
+  margin-top: 20px;
+  width: 98%;
+  border-collapse: collapse;
+}
+
+#order_info td {
+  border-top: 1px solid #bcbcbc;
+  border-bottom: 1px solid #bcbcbc;
+  padding: 5px 10px;
+}
+
+#total_price {
+  margin-top: 50px;
+  text-align: right;
+  font-size: 17px;
+  margin-bottom: 30px;
+  text-decoration: underline;
 }

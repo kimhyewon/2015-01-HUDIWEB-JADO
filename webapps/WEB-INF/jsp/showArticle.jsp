@@ -55,9 +55,7 @@ pageContext.setAttribute("lf", "\n");
 				<div id="comments">
 					<c:forEach var="articleComment" items="${comments}">
 						<form method="post" action="/board/answer/delete" >
-							<input type="hidden" name="boardId" value="${board.id}" />
 							<input type="hidden" name="articleId" value="${article.id}" />
-							<input type="hidden" name="shopUrl" value="${shop.url}" />
 							<input type="hidden" name="userId" value="${articleComment.userId}" />
 							<input type="hidden" name="commentTime" value="${articleComment.commentTime}" />
 							<div class="comment">
@@ -79,9 +77,7 @@ pageContext.setAttribute("lf", "\n");
 				<!-- 댓글 작성 부분 -->
 				<div id="answerWrite">
 					<form method="post" action="/board/answer/save" >
-						<input type="hidden" name="boardId" value="${board.id}" />
 						<input type="hidden" name="articleId" value="${article.id}" />
-						<input type="hidden" name="shopUrl" value="${shop.url}" />
 						
 						<div id = "comment_writer">아이디<br />
 							<input type="text" name="userId" id="userId" style="width:100px; height:17px;" />
@@ -95,11 +91,9 @@ pageContext.setAttribute("lf", "\n");
 				</div>
 
 				<!-- article 본문 수정, 삭제  --> 
-				<div id ="update_button"><a href="/board/update/${shop.url}/${board.id}/${article.id}">글 수정</a></div>
+				<div id ="update_button"><a href="/shop/${shop.url}/article/update/${article.id}">글 수정</a></div>
 				<div id ="delete_button">
-					<form method="post" action="/board/delete" >
-						<input type="hidden" name="shopUrl" value="${shop.url}" />
-						<input type="hidden" name="boardId" value="${board.id}" />
+					<form method="post" action="/shop/${shop.url}/article/delete" >
 						<input type="hidden" name="articleId" value="${article.id}" />
 						<input type="submit" value="글 삭제" />
 					</form>

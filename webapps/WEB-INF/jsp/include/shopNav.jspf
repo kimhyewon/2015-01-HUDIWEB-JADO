@@ -20,16 +20,16 @@
 </c:otherwise>
 </c:choose>
 <div class="nav_content col s2 m2 l2">
-	<a href="">MYPAGE</a>
-</div>
-<div class="nav_content col s2 m2 l2">
-	<a href="">CART</a>
+	<a href="/shop/${shop.url}/mypage">MYPAGE</a>
 </div>
 <c:forEach var="board" items="${shop.boards}">
 	<div class="nav_content col s2 m2 l2">
-		<a href="/board/${shop.url}/${board.id}"> ${board.name} </a>
+		<a href="/shop/${shop.url}/board/${board.id}"> ${board.name} </a>
 	</div>
 </c:forEach>
-<div class="nav_content col s2 m2 l2">
-	<a href="/setting">SETTING</a>
-</div>
+
+<c:if test="${shop.isMyShop}">
+	<div class="nav_content col s2 m2 l2">
+		<a href="/setting">SETTING</a>
+	</div>
+</c:if>
