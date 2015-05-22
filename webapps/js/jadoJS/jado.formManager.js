@@ -25,24 +25,3 @@ FormManager.prototype.showSellerEnroll = function(element) {
 		}
 	})
 };
-
-//경륜아, 이건 목적이 뭐인지 얘기해주게 ㅋㅋㅋ
-FormManager.prototype.whatIsThis = function(element) {
-	var elForm = jado.util.getElement(element);
-    if (!elForm) return;
-    var elements = {
-        elId: 'userId',
-        elPw1: 'password',
-        elPw2: 'checkPassword',
-        elName: 'name',
-        elPhone: 'phone',
-        elAddress: 'address',
-        elSubmit: 'submit'
-    };
-
-    for (var prop in elements) {
-        if (elements.hasOwnProperty(prop)) {
-            this[prop] = jado.util.getElement('input[name="' + elements[prop] + '"]');
-        }
-    }
-};

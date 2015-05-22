@@ -12,7 +12,6 @@ Util.prototype.getElementAll = function(element) {
 };
 
 Util.prototype.saveUrl = function() {
-	var url = this.getElement('input[name=url]');
-	if (!url) return;
-	url.value = document.location.href;
+	
+	
 };

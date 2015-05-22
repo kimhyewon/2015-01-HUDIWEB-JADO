@@ -10,7 +10,7 @@
     	<%@ include file="include/signForm.jspf" %>
 	</c:when>
 	<c:otherwise>
-		<h1>잘못된 경로 입니다! 이미 로그인한 사용자 예요 </h1>
+		<h1>잘못된 경로 입니다! 이미 로그인한 사용자입니다.</h1>
 		<a href="/">홈으로</a>
 	</c:otherwise>
 	</c:choose>
