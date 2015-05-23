@@ -84,13 +84,14 @@ public class ShopController {
 
 	@RequestMapping(value = "/{shopUrl}/mypage", method = RequestMethod.GET)
 	public String myPageForCustomer(@PathVariable("shopUrl") String url, Model model, HttpSession session) {
-
 		String userId = (String) session.getAttribute("userId");
+		Shop shop = shopService.getShopByUrl(url, userId);
 		// 잘못 된 user가 들어온 경우 막기
 		Customer customer = shopService.getMyInfo(url, userId);
 		List<PaymentWithProduct> payments = shopService.getPayments(customer, url);
 		Integer paymentsTotal = shopService.getPaymentsTotal(payments);
 
+		model.addAttribute("shop", shop);
 		model.addAttribute("user", customer);
 		model.addAttribute("payments", payments);
 		model.addAttribute("paymentsTotal", paymentsTotal);
