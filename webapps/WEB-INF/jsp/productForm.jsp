@@ -55,31 +55,6 @@
 				<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div>
 			</div>
 		</div>
-
-
-		<!-- <div id = "product_info">
-			<div id ="product_img">
-				대표 사진 등록<br /><input type="file" name="file" style="text-align:center; width:150px;"/>
-				<input type="hidden" name="localLocation" value="/userImg/product/img">
-				<input type="hidden" name="type" value="IMG_URL">
-			</div>
-			<div id = "product_right_info">
-				<div id ="product_name">
-					상품명 <input type="text" name="name" />
-				</div>
-				<div id ="product_price">
-					가격 <input type="text" name="price" />
-				</div>
-				<div id ="product_stock">
-					재고 <input type="text" name="stock" />
-				</div>
-				<input type="hidden" name="categoryId" value="${categoryId}" />
-			</div>
-		</div>
-		<div id = "product_desc">
-			<textarea name="desc" placeholder="내용을 입력하세요." style="width:57%;" /></textarea>
-		</div>
-		<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div> -->
 	</form>
 </body>
 </html>
