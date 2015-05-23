@@ -8,7 +8,7 @@
     <div class="row"> 
     	<div class="col m1 l2 dummy">dummmy</div>
     	<div class="col s12 m8 l6 noticeContainer">
-    		<h2>${notice.title}</h2>
+    		<h2>${notice.header}</h2>
     		<div class="message">
     			${notice.message}
     		</div>

@@ -1,24 +1,24 @@
 package jado.model;
 
 public class Notice {
-	private String title;
+	private String header;
 	private String message;
 
 	public Notice() {
 	}
 
-	public Notice(String title, String message) {
+	public Notice(String header, String message) {
 		super();
-		this.title = title;
+		this.header = header;
 		this.message = message;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getHeader() {
+		return header;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setHeader(String header) {
+		this.header = header;
 	}
 
 	public String getMessage() {

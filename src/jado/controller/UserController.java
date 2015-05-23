@@ -66,7 +66,7 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView userPost(@RequestParam("j_username") String userId, @RequestParam("j_password") String password, Customer user, Shop shop, Seller seller,
 			String isSeller, Notice notice) {
-		if (notice.getTitle() != null) {
+		if (notice.getHeader() != null) {
 			return ModelAndViewUtils.renderToNotice(notice);
 		}
 		user.setId(userId);
@@ -89,7 +89,7 @@ public class UserController {
 	// 회원 정보 수정 요청
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ModelAndView editUserInfo(Customer user, Shop shop, Seller seller, String isSeller, HttpSession session, Notice notice) {
-		if (notice.getTitle() != null) {
+		if (notice.getHeader() != null) {
 			return ModelAndViewUtils.renderToNotice(notice);
 		}
 

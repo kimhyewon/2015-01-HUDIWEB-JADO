@@ -43,7 +43,7 @@ public class RsaSetPublicKeyFilter implements Filter {
 				logger.debug("encrypt");
 				if (!encryptPrepareProcess(session, request).isSuccess()) {
 					HttpRequestWithModifiableParameters param = new HttpRequestWithModifiableParameters((HttpServletRequest) req);
-					param.setParameter("title", "Encrypted Fail");
+					param.setParameter("header", "Encrypted Fail");
 					param.setParameter("message", "암호화 하는 과정에서 오류가 발생하였습니다. 페이지 새로고침후 재시도 해주시기 바랍니다.");
 					request = (HttpServletRequest) param;
 				}

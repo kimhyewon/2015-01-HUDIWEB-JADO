@@ -8,7 +8,7 @@ public class ModelAndViewUtils {
 
 	// notice 가 있으면 notice 페이지로 이동
 	public static ModelAndView render(String result, Notice notice, ModelAndView mav) {
-		if (notice.getTitle() != null) {
+		if (notice.getHeader() != null) {
 			render("notice", notice);
 		}
 		mav.setViewName(result);

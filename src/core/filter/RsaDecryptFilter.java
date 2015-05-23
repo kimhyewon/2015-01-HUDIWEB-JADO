@@ -56,7 +56,7 @@ public class RsaDecryptFilter implements Filter {
 
 				HttpRequestWithModifiableParameters param = new HttpRequestWithModifiableParameters(request);
 				if (!(decryptedUserId.isSuccess() && decryptedUserPassword.isSuccess())) {
-					param.setParameter("title", "Decrypted Fail");
+					param.setParameter("header", "Decrypted Fail");
 					param.setParameter("message", "복호화 하는 과정에서 오류가 발생하였습니다. 페이지 새로고침후 재시도 해주시기 바랍니다.");
 				}
 				param.setParameter("j_username", (String) decryptedUserId.getValue("decryptedString"));
@@ -66,6 +66,7 @@ public class RsaDecryptFilter implements Filter {
 			}
 		}
 		chain.doFilter(request, response);
+		return;
 	}
 
 	public void destroy() {
