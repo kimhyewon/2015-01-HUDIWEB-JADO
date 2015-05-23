@@ -18,7 +18,7 @@ public class Upload {
 	public Upload() {
 	}
 
-	public void uploadFile(MultipartFile maltipartFile, String localLocation) throws IllegalStateException, IOException, NotExistFileException {
+	public void uploadFile(MultipartFile maltipartFile, String localLocation) throws IllegalStateException, IOException {
 		if (maltipartFile.isEmpty()) {
 			throw new NotExistFileException();
 		}

@@ -41,8 +41,17 @@ public class ProductService {
 	}
 
 	public boolean deleteProduct(int productId, String userId) {
+		Integer paymentCount = productDao.countPaymentByProduct(productId);
+		Integer commentCount = productDao.countCommentByProduct(productId);
+		if (paymentCount > 0)
+			return false;
+		if (commentCount == 0) {
+			productDao.remove(productId);
+			return true;
+		}
 		List<ProductComment> comments = productCommentDao.findByProduct(productId);
 		if (canDelete(userId, comments)) {
+			productCommentDao.removeByProductId(productId);
 			productDao.remove(productId);
 			return true;
 		}
@@ -58,14 +67,17 @@ public class ProductService {
 		return true;
 	}
 
-	public void updateImage(FileInfo fileInfo) throws IllegalStateException, IOException, NotExistFileException {
+	public void updateImage(FileInfo fileInfo, Product product) throws IllegalStateException, IOException {
 		upload.uploadFile(fileInfo.getFile(), fileInfo.getLocalLocation());
+		product.setImgUrl(fileInfo.getLocalLocation());
+		productDao.updateImgUrl(product);
 	}
 
 	public void updateProduct(Product product) {
 		Product productFromDao = productDao.selectByPk(product.getId());
-		if (productFromDao == null) throw new InsertTargetRecordNotFoundException("product 가 없습니다.");
-		if(!productFromDao.update(product)) throw new InsertTargetRecordNotFoundException("바꿀 정보가 없습니다");
+		if (productFromDao == null)
+			throw new InsertTargetRecordNotFoundException("product 가 없습니다.");
+		if (!productFromDao.update(product)) return;
 		productDao.update(product);
 	}
 

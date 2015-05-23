@@ -14,6 +14,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,13 +25,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import core.exception.InsertTargetRecordNotFoundException;
-import core.exception.NotExistFileException;
 import core.jadopay.PaymentInfo;
 import core.util.ModelAndViewUtils;
 
 @Controller
 @RequestMapping(value = "/shop/{shopUrl}/product")
 public class ProductController {
+	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	@Autowired
 	private ProductService productService;
 	@Autowired
@@ -55,6 +57,7 @@ public class ProductController {
 	// product 만들기 폼 보내주기
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String uploadGet(Model model, String categoryId, @PathVariable("shopUrl") String url, HttpSession session) {
+		logger.debug("hello");
 		String userId = (String) session.getAttribute("userId");
 		Shop shop = shopService.getShopByUrl(url, userId);
 		model.addAttribute("shop", shop);
@@ -64,16 +67,17 @@ public class ProductController {
 
 	// product 만들기 폼 받아오기
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ModelAndView writePost(Product product, FileInfo fileInfo) {
+	public ModelAndView writePost(Product product, FileInfo fileInfo, @PathVariable("shopUrl") String url) {
 		fileInfo.setFileNameByUUID();
 		fileInfo.updateLocalLocation();
 		product.setImgUrl(fileInfo.getLocalLocation());
 		try {
 			productService.representImage(fileInfo, product);
 		} catch (Exception e) {
+			logger.debug(e.getMessage());
 			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Fail", "상품을 등록을 다시 시도해 주세요 "));
 		}
-		return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Success", "상품을 등록했습니다 "));
+		return new ModelAndView("redirect:/shop/"+url+"/category/"+product.getCategoryId());
 	}
 
 	// product 수정 폼 보내주기
@@ -90,34 +94,31 @@ public class ProductController {
 
 	// product 수정 폼 받아오기
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public ModelAndView productUpdatePost(FileInfo fileInfo, Product product) {
+	public ModelAndView productUpdatePost(FileInfo fileInfo, Product product, @PathVariable("shopUrl") String url) {
 		fileInfo.setFileNameByUUID();
 		fileInfo.updateLocalLocation();
 		product.setImgUrl(fileInfo.getLocalLocation());
-		Notice notice = new Notice("Success", "상품 정보 및 상품 이미지가 수정 되었습니다.");
 		try {
-			productService.updateImage(fileInfo);
-		} catch (IllegalStateException | IOException e) {
-			notice = new Notice("Notice", "상품 이미지에 문제가 있어 상품 이미지 수정에 실폐하셨습니다.");
-		} catch (NotExistFileException e) {
-			notice = new Notice("Notice", "상품이미지는 그대로인 채로 상품 정보만 수정되었습니다");
-		}
-		
-		try {
+			if (!fileInfo.getFile().isEmpty()) {
+				productService.updateImage(fileInfo, product);
+			}
 			productService.updateProduct(product);
-		} catch (InsertTargetRecordNotFoundException e) {
-			notice = new Notice("Notice", e.getMessage());
-		} 
-		return ModelAndViewUtils.renderToNoticeForSeller(notice);
+		} catch (IllegalStateException | IOException e) {
+			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Notice", "상품 이미지에 문제가 있어 상품 이미지 수정에 실폐하셨습니다."));
+		} catch (InsertTargetRecordNotFoundException e){
+			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Notice",  e.getMessage()));
+		}
+		return new ModelAndView("redirect:/shop/"+url+"/product/"+product.getId());
 	}
 
 	// product 본문 삭제 구현
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView productDelete(HttpSession session, String productId, Model model) {
+	public ModelAndView productDelete(HttpSession session, Integer productId, Model model, @PathVariable("shopUrl") String url) {
 		String userId = (String) session.getAttribute("userId");
-		if (productService.deleteProduct(Integer.parseInt(productId), userId)) {
-			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Success", "상품정보를 삭제 하였습니다"));
+		Product product = productService.getProduct(productId);
+		if (!productService.deleteProduct(product.getId(), userId)) {
+			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Fail", "댓글이 존재하거나 제품이 이미 팔렸기 때문에 삭제 할 수 있습니다"));
 		}
-		return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Fail", "댓글이 존재하기 때문에 삭제 할 수 있습니다"));
+		return new ModelAndView("redirect:/shop/"+url+"/category/"+product.getCategoryId());
 	}
 }

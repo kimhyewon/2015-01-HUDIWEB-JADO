@@ -32,8 +32,6 @@
 					<div id = "product_img">
 						대표 사진 등록<br /><input type="file" name="file" style="text-align:center; width:150px;"/>
 						<input type="hidden" name="localLocation" value="/userImg/product/img">
-						<!-- <input type="hidden" name="url" value="${shop.url}"> -->
-						<input type="hidden" name="type" value="IMG_URL">
 					</div>
 					<div id = "product_info">
 						<table id ="info">
@@ -52,6 +50,7 @@
 						</table>
 					</div>
 				</div>
+				<input type="hidden" name="categoryId" value="${categoryId}">
 				<div id = "show_product_content"><textarea name="desc" placeholder="내용을 입력하세요." /></textarea></div>
 				<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div>
 			</div>
