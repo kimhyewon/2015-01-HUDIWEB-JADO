@@ -11,7 +11,7 @@
 </head>
 <body id="shop2">
 	<div id="header" class="row">
-	<div id="title" class="col s12 m12 l12"><a href="/shop/${shop.url}">${shop.title}</a></div>
+		<div id="title" class="col s12 m12 l12"><a href="/shop/${shop.url}">${shop.title}</a></div>
 	</div>
 	<div id="nav_bar" class="row">
 		<div id="white_block" class="col shide m3 l3"></div>
@@ -23,10 +23,8 @@
 	<div id="body_con" class="row">
 		<div id="white_block" class="col shide m1 l1"></div>
 		<div id="category" class="row col s12 m2 l2">
-			<!-- <div id = "nav_divide_line"></div> -->
 			<%@ include file="include/shopCategory.jspf" %>
 		</div>
-
 		<div id = "main_img_con" class=" col s12 m8 l8">
 			<div id ="main_img" ><img src='${shop.mainUrl}' style="width:100%; "></div>
 		</div>
