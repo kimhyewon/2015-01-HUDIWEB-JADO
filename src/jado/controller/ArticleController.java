@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,11 +62,13 @@ public class ArticleController {
 	// article create form 받아오기
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public ModelAndView writePost(Article article, String shopUrl, HttpSession session, Model model) {
-		try {
-			articleService.insertArticle(article);
-		} catch (InsertTargetRecordNotFoundException e) {
-			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Failed", e.getMessage()));
-		}
+//		try {
+//			articleService.insertArticle(article);
+//		} catch (InsertTargetRecordNotFoundException e) {
+//			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Failed", e.getMessage()));
+//		}
+		articleService.insertArticle(article);
+		
 		return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Success", "글을 등록했습니다 "));
 	}
 
@@ -88,22 +91,35 @@ public class ArticleController {
 	// article 수정 form 받아오기
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView articleUpdatePost(Article article) {
-		try {
-			articleService.updateArticle(article);
-		} catch (InsertTargetRecordNotFoundException e) {
-			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Failed", e.getMessage()));
-		}
+//		try {
+//			articleService.updateArticle(article);
+//		} catch (InsertTargetRecordNotFoundException e) {
+//			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Failed", e.getMessage()));
+//		}
+		articleService.updateArticle(article);
+		
 		return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Success", "글을 수정 했습니다 "));
 	}
 
 	// article 본문 삭제 구현
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public ModelAndView articleDeletePost(Integer articleId) {
-		try {
-			articleService.deleteArticle(articleId);
-		} catch (InsertTargetRecordNotFoundException e) {
-			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Failed", e.getMessage()));
-		}
+//		try {
+//			articleService.deleteArticle(articleId);
+//		} catch (InsertTargetRecordNotFoundException e) {
+//			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Failed", e.getMessage()));
+//		}
+		articleService.deleteArticle(articleId);
+		
 		return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Success", "글을 삭제 했습니다 "));
+	}
+	
+	/*
+	 * 중복되는 예외는 아래처럼 controller 기반의 예외 핸들러를 쓰면 좋을 것 같아요.
+	 * 참고: http://goo.gl/uuBkax
+	 */
+	@ExceptionHandler(InsertTargetRecordNotFoundException.class)
+	public ModelAndView insertTargetRecordNotFoundException(InsertTargetRecordNotFoundException e) {
+		return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Failed", e.getMessage()));
 	}
 }
