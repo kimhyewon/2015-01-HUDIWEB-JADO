@@ -98,6 +98,12 @@ public class UserController {
 		seller.setId(userId);
 		shop.setUrl(seller.getShopUrl());
 		
+		/*
+		 * 이 부분은 원자적으로 처리될 필요가 있을것 같아요
+		 * 제 생각엔 CustomerService를 만들고 
+		 * CustomerService#updateCustomer 로 하면 좋을 것 같아요!!
+		 */
+		//// 시작 ////
 		try {
 			userService.updateCustomer(user);
 			
@@ -108,6 +114,8 @@ public class UserController {
 		} catch (DuplicateKeyException e) {
 			return ModelAndViewUtils.renderToNotice(new Notice("Error", e.getMessage()));
 		}
+		//// 끝 ////
+		
 		return ModelAndViewUtils.renderToNotice(new Notice("Success", userId + " 님, 회원 정보를 수정 하였습니다. "));
 	}
 
