@@ -61,7 +61,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		String userId = authentication.getName();
 		HttpSession session = request.getSession();
 		session.setAttribute("userId", userId);
-
+		session.setAttribute("userAuthority", authentication.getAuthorities());
+		
 		clearAuthenticationAttributes(request);
 
 		int intRedirectStrategy = decideRedirectStrategy(request, response);

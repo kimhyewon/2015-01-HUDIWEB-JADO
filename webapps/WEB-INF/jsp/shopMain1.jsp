@@ -9,6 +9,7 @@
 	<title>블로그</title>
 	<link rel="stylesheet" type="text/css" href="/css/jado.css">		
 </head>
+<%@ include file="include/needEmailVerifyInfo.jspf" %>
 <body id="shop2">
 	<div id="header" class="row">
 	<div id="title" class="col s12 m12 l12"><a href="/shop/${shop.url}">${shop.title}</a></div>
