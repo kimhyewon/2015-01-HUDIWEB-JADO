@@ -21,7 +21,7 @@ public class JoinVerifyMail extends AbstractMailTemplate {
 		templateLocation ="./velocity/joinVerifyMail.vm";
 	}
 
-	private String setVerifyKeyOnDB(String mailRecipient) {
+	protected String setVerifyKeyOnDB(String mailRecipient) {
 		String uuid = UUIDGenerator.createUUID();
 		mailDao.insert(mailRecipient, uuid);
 		return uuid;

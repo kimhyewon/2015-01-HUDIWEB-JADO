@@ -15,6 +15,8 @@ public class MailTemplateStorage {
 	@Autowired
 	private JoinVerifyMail joinVerifyMail;
 	@Autowired
+	private JoinVerifyResendMail joinVerfJoinVerifyResendMail;
+	@Autowired
 	private JoinWelcomeMail joinWelcomeMail;
 	@Autowired
 	private PayInfoMail payInfoMail;
@@ -25,7 +27,7 @@ public class MailTemplateStorage {
 	
 	public static enum Type {
 		// Join Type
-		JOIN_VERIFY(1), JOIN_WELCOME(2),
+		JOIN_VERIFY(1), JOIN_WELCOME(2), JOIN_VERIFY_RESEND(5),
 
 		// Pay Info
 		PAY_INFO(3), 
@@ -53,6 +55,7 @@ public class MailTemplateStorage {
 		templates.put(Type.JOIN_WELCOME, joinWelcomeMail);
 		templates.put(Type.PAY_INFO, payInfoMail);
 		templates.put(Type.DELETE_USER, deleteUserMail);
+		templates.put(Type.JOIN_VERIFY_RESEND, joinVerfJoinVerifyResendMail);
 	}
 
 	public AbstractMailTemplate getTemplate(Type joinVerify) {
