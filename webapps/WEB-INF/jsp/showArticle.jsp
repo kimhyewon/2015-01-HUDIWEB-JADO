@@ -53,10 +53,11 @@ pageContext.setAttribute("lf", "\n");
 				<!-- 댓글 리스트 -->
 				<div id="comments">
 					<c:forEach var="articleComment" items="${comments}">
-						<form method="post" action="/board/answer/delete" >
+						<form >
 							<input type="hidden" name="articleId" value="${article.id}" />
 							<input type="hidden" name="userId" value="${articleComment.userId}" />
 							<input type="hidden" name="commentTime" value="${articleComment.commentTime}" />
+							<input type="hidden" name="url" value="/api/article/comment/delete"/>
 							<div class="comment">
 								<table>
 									<tr>
@@ -75,7 +76,7 @@ pageContext.setAttribute("lf", "\n");
 
 				<!-- 댓글 작성 부분 -->
 				<div id="answerWrite">
-					<form method="post" action="/board/answer/save" >
+					<form>
 						<input type="hidden" name="articleId" value="${article.id}" />
 						
 						<div id = "comment_writer">아이디<br />
@@ -84,7 +85,7 @@ pageContext.setAttribute("lf", "\n");
 						<div id = "comment_content">
 							<textarea name="content" id="content" style="width:545px; height:47px;"></textarea>
 						</div>
-						
+						<input type="hidden" name="url" value="/api/article/comment/create"/>
 						<input type="submit" value="저장" />
 					</form>
 				</div>
@@ -102,5 +103,4 @@ pageContext.setAttribute("lf", "\n");
 	</div>
 </body>
 <script src="/js/jado.js"></script>
-<script src="/js/jadoJS/jado.ajax.js"></script>
 </html>

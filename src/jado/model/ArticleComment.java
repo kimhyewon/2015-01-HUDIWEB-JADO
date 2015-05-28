@@ -1,17 +1,15 @@
 package jado.model;
 
-import java.sql.Timestamp;
-
 public class ArticleComment {
 	private int articleId;
 	private String userId;
-	private Timestamp commentTime;
+	private String commentTime;
 	private String content;
 
 	public ArticleComment() {
 	}
 
-	public ArticleComment(int articleId, String userId, Timestamp commentTime, String content) {
+	public ArticleComment(int articleId, String userId, String commentTime, String content) {
 		super();
 		this.articleId = articleId;
 		this.userId = userId;
@@ -39,11 +37,11 @@ public class ArticleComment {
 		this.userId = userId;
 	}
 
-	public Timestamp getCommentTime() {
+	public String getCommentTime() {
 		return commentTime;
 	}
 
-	public void setCommentTime(Timestamp commentTime) {
+	public void setCommentTime(String commentTime) {
 		this.commentTime = commentTime;
 	}
 

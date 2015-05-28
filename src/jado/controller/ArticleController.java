@@ -27,7 +27,6 @@ import core.util.ModelAndViewUtils;
 @Controller
 @RequestMapping(value = "/shop/{shopUrl}/article")
 public class ArticleController {
-	
 	@Autowired private ArticleService articleService;
 	@Autowired private ShopService shopService;
 	
@@ -61,19 +60,11 @@ public class ArticleController {
 
 	// article create form 받아오기
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public ModelAndView writePost(Article article, String shopUrl, HttpSession session, Model model) {
-//		try {
-//			articleService.insertArticle(article);
-//		} catch (InsertTargetRecordNotFoundException e) {
-//			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Failed", e.getMessage()));
-//		}
+	public ModelAndView writePost(Article article, @PathVariable("shopUrl") String shopUrl, HttpSession session, Model model) {
 		articleService.insertArticle(article);
-		
-		return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Success", "글을 등록했습니다 "));
+		return new ModelAndView("redirect:/shop/"+shopUrl+"/board/"+article.getBoardId());
 	}
 
-
-	
 	// article 수정 form 보내주기
 	@RequestMapping(value = "/update/{articleId}", method = RequestMethod.GET)
 	public String updateGet(Model model, @PathVariable("articleId") String articleId, @PathVariable("shopUrl") String url, HttpSession session) {
@@ -90,28 +81,18 @@ public class ArticleController {
 
 	// article 수정 form 받아오기
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public ModelAndView articleUpdatePost(Article article) {
-//		try {
-//			articleService.updateArticle(article);
-//		} catch (InsertTargetRecordNotFoundException e) {
-//			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Failed", e.getMessage()));
-//		}
+	public ModelAndView articleUpdatePost(Article article, @PathVariable("shopUrl") String shopUrl) {
 		articleService.updateArticle(article);
-		
-		return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Success", "글을 수정 했습니다 "));
+		return new ModelAndView("redirect:/shop/"+shopUrl+"/article/"+article.getId());
 	}
 
 	// article 본문 삭제 구현
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public ModelAndView articleDeletePost(Integer articleId) {
-//		try {
-//			articleService.deleteArticle(articleId);
-//		} catch (InsertTargetRecordNotFoundException e) {
-//			return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Failed", e.getMessage()));
-//		}
-		articleService.deleteArticle(articleId);
-		
-		return ModelAndViewUtils.renderToNoticeForSeller(new Notice("Success", "글을 삭제 했습니다 "));
+	public ModelAndView articleDeletePost(Integer articleId, @PathVariable("shopUrl") String shopUrl) {
+		Article article = null;
+		article = articleService.getArticle(articleId);
+		articleService.deleteArticle(article.getId());
+		return new ModelAndView("redirect:/shop/"+shopUrl+"/board/"+article.getBoardId());
 	}
 	
 	/*

@@ -52,5 +52,4 @@
 	<div id = "upload_button" class="row"><a href="/shop/${shop.url}/product/create?categoryId=${category.id}">상품 등록</a></div>
 </body>
 <script src="/js/jado.js"></script>
-<script src="/js/jadoJS/jado.categoryEffect.js"></script>
 </html>
