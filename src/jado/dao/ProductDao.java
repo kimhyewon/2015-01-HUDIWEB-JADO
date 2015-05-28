@@ -58,4 +58,30 @@ public class ProductDao {
 		String sql = "delete from PRODUCT where ID=?";
 		jdbcTemplate.update(sql, productId);
 	}
+	
+
+	public Integer countPaymentByProduct(int productId) {
+		String sql = "select count(*) from PAYMENT inner join PRODUCT on PRODUCT.ID = PAYMENT.PRODUCT_ID where PRODUCT.ID=?";
+		Object[] args = new Object[] { productId };
+		try {
+			return jdbcTemplate.queryForObject(sql, args, Integer.class);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	public Integer countCommentByProduct(int productId) {
+		String sql = "select count(*) from PRODUCT_COMMENT inner join PRODUCT on PRODUCT.ID = PRODUCT_COMMENT.PRODUCT_ID where PRODUCT.ID=?";
+		Object[] args = new Object[] { productId };
+		try {
+			return jdbcTemplate.queryForObject(sql, args, Integer.class);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	public void updateImgUrl(Product product) {
+		String sql = "update PRODUCT set IMG_URL=? where ID=?";
+		jdbcTemplate.update(sql, product.getImgUrl(), product.getId());
+		
+	}
 }

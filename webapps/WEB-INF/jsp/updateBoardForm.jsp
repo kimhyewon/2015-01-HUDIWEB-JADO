@@ -24,13 +24,12 @@
 
 		<div id = "board_section" class="col s12 m10 l9">
 			<div id = "divide_line" class="row">
-				<form name="updateBoardForm" action="/board/update" method="post">
+				<form name="updateBoardForm" action="/shop/${shop.url}/article/update" method="post">
 				<div id = "board_name">${board.name}</div>
 				<div id = "article_title"><input type="text" name="title" value="${article.title}"/></div>
 				<div id = "article_content"><textarea name="content" />${article.content}</textarea></div>
 				<input type="hidden" name="boardId" value="${board.id}" />
-				<input type="hidden" name="articleId" value="${article.id}" />
-				<input type="hidden" name="shopUrl" value="${shop.url}" />
+				<input type="hidden" name="id" value="${article.id}" />
 				<div id = "submit"><input type="submit" name="submit" value="등록하기" />	</div>
 				</form>
 			</div>

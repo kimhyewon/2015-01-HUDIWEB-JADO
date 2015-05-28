@@ -99,7 +99,6 @@ public class ShopService {
 		return shop;
 	}
 
-	// TODO 이미지 업로드 실패시의 롤백을 직접 구현??
 	public void settingEditImage(FileInfo fileInfo) throws IllegalStateException, IOException, NotExistFileException {
 		String url = fileInfo.getUrl();
 		upload.uploadFile(fileInfo.getFile(), fileInfo.getLocalLocation());
