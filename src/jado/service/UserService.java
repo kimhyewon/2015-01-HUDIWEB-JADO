@@ -12,6 +12,7 @@ import jado.model.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -35,6 +36,7 @@ public class UserService {
 		return userInfo;
 	}
 
+	@Transactional
 	public void setSellerInfo(Shop shop, Seller seller) {
 		if (userDao.selectSellerById(seller.getId()) == null) {
 			insertShop(shop);
@@ -45,6 +47,7 @@ public class UserService {
 		updateSeller(seller);
 	}
 
+	@Transactional
 	public void insertCustomer(Customer customer) throws DuplicateKeyException {
 		Customer tempUser = userDao.selectUserById(customer.getId());
 		if (tempUser != null) {

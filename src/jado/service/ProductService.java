@@ -32,6 +32,7 @@ public class ProductService {
 		return productCommentDao.findByProduct(productId);
 	}
 
+	// TODO 이미지 업로드 실패시의 롤백을 직접 구현??
 	public void representImage(FileInfo fileInfo, Product product) throws IllegalStateException, IOException, NotExistFileException {
 		String url = fileInfo.getLocalLocation();
 		upload.uploadFile(fileInfo.getFile(), fileInfo.getLocalLocation());
@@ -58,6 +59,7 @@ public class ProductService {
 		return true;
 	}
 
+	// TODO 이미지 업로드 실패시의 롤백을 직접 구현??
 	public void updateImage(FileInfo fileInfo) throws IllegalStateException, IOException, NotExistFileException {
 		upload.uploadFile(fileInfo.getFile(), fileInfo.getLocalLocation());
 	}

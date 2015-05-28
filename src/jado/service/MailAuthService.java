@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import core.mail.EmailSender;
 import core.mail.Mail;
@@ -54,6 +55,7 @@ public class MailAuthService {
 		return false;
 	}
 
+	@Transactional
 	public void updateTypeOfUserRole(String userEmail) {
 		userDao.updateUserRole(userEmail);
 		userDao.updateUserEmailValidateStatus(userEmail);
