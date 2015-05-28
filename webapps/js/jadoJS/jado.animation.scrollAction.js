@@ -1,7 +1,7 @@
 function ScrollAction(elTarget) {
     this.elTarget = document.querySelector(elTarget);
     if (!this.elTarget) return;
-    this.elSections = this.elTarget.querySelectorAll('article');
+    this.elSections = this.elTarget.querySelectorAll('section');
     this.viewHeight = 0;
     this.scrollHeight = 0;
     this.lastPage = 0;
@@ -9,7 +9,6 @@ function ScrollAction(elTarget) {
 };
 
 ScrollAction.prototype.run = function() {
-    console.log(this);
     this.recentPage = this.getPage(window.pageYOffset, this.viewHeight);
     if (this.lastPage !== this.recentPage) {
         this.removePage();
