@@ -62,8 +62,10 @@ public class UserController {
 	// 회원 로그인 페이지로 이동
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView viewLoginPage(HttpServletRequest request, HttpSession session, Notice notice) throws ServletRequestBindingException {
-		String fromUrl = "/shop/" + ServletRequestUtils.getStringParameter(request, "from");
-		session.setAttribute("fromUrl", fromUrl);
+		if(request.getParameter("from") != null) {
+			String fromUrl = "/shop/" + ServletRequestUtils.getStringParameter(request, "from");
+			session.setAttribute("fromUrl", fromUrl);	
+		}
 		return ModelAndViewUtils.render("login", notice);
 	}
 
