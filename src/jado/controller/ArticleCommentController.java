@@ -37,12 +37,15 @@ public class ArticleCommentController {
 	// 글에 댓글 삭제 구현
 	@RequestMapping(value = "/comment/delete", method = RequestMethod.POST)
 	public List<ArticleComment> commentDeletePost(ArticleComment articleComment) {
+		logger.debug("delete. {}", articleComment.getArticleId());
 		try {
 			articleService.deleteArticleComment(articleComment);
 		} catch (Exception e) {
 			logger.debug("failed"+e.getMessage());
 			return null;
 		}
-		return articleService.getComments(articleComment.getArticleId());
+		List<ArticleComment> a = articleService.getComments(articleComment.getArticleId());
+		logger.debug("delete: {}");
+		return a;
 	}
 }

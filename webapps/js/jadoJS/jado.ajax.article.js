@@ -41,10 +41,10 @@ function writeArticleComments(e) {
 }
 
 function deleteArticleComments(e) {
-	console.log("hello");
 	 e.preventDefault();
 	 var commentForm = e.currentTarget.form;
 	 var url = commentForm[3].value;
+	 console.log(url);
 	 var params = "articleId=" + commentForm[0].value + "&userId=" + commentForm[1].value + 
 	 "&commentTime=" + commentForm[2].value;
 	 
@@ -56,14 +56,16 @@ function deleteArticleComments(e) {
 		 if(request.readyState == 4 && request.status == 200) {
 		 	var ajaxResult = request.responseText;
 		 	ajaxResult = JSON.parse(ajaxResult);
+			console.log("hello");
+			console.log(ajaxResult);
 		 	var commentsMaker = new ArticleCommentsMaker(ajaxResult);
 		 }
 	 }
 	 request.send(params);
 }
 function ArticleCommentsMaker (jComments) {
-	jComments = jComments;
-	result = "";
+	var jComments = jComments;
+	var result = "";
 	for (var i = 0; i < jComments.length; i++) {
 		var comment = new ArticleComment(jComments[i]);
 		result += comment.template;
@@ -77,9 +79,8 @@ function ArticleComment (jComment) {
 	this.template = this.setTemplate();
 }
 
-
 ArticleComment.prototype.setTemplate = function() {
-	var template = "<form><input type='hidden' name='articleId' value='${articleComment.articleId}' /><input type='hidden' name='userId' value='${articleComment.userId}' /><input type='hidden' name='commentTime' value='${articleComment.commentTime}' /><input type='hidden' name='url' value='/api/comment/delete'><div class='comment'><table><tr><td style='width:15%; table-layout:fixed; word-break:break-all;'><span class='comment-author'>${articleComment.userId}</span></td> <td style='width:65%; table-layout:fixed; word-break:break-all;' align='left' ><div class='about'>${articleComment.content}</div></td> <td style='width:24%; table-layout:fixed; word-break:break-all;'><span class='comment-date' value=''>${articleComment.commentTime}</span></td><td style='width:5%; table-layout:fixed; word-break:break-all;' ><input type='image' src='/img/xbutton.png' style='width:10px; height=10px;'></td></tr></table></div></form>";
+	var template = "<form><input type='hidden' name='articleId' value='${articleComment.articleId}' /><input type='hidden' name='userId' value='${articleComment.userId}' /><input type='hidden' name='commentTime' value='${articleComment.commentTime}' /><input type='hidden' name='url' value='/api/article/comment/delete'><div class='comment'><table><tr><td style='width:15%; table-layout:fixed; word-break:break-all;'><span class='comment-author'>${articleComment.userId}</span></td> <td style='width:65%; table-layout:fixed; word-break:break-all;' align='left' ><div class='about'>${articleComment.content}</div></td> <td style='width:24%; table-layout:fixed; word-break:break-all;'><span class='comment-date' value=''>${articleComment.commentTime}</span></td><td style='width:5%; table-layout:fixed; word-break:break-all;' ><input type='image' src='/img/xbutton.png' style='width:10px; height=10px;'></td></tr></table></div></form>";
 	template = template.replace("${articleComment.articleId}", ""+this.jComment.articleId);
 	template = template.replace("${articleComment.userId}", this.jComment.userId);
 	template = template.replace("${articleComment.commentTime}", this.jComment.commentTime);
