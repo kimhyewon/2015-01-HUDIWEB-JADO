@@ -123,6 +123,7 @@ pageContext.setAttribute("lf", "\n");
 							<input type="hidden" name="productId" value="${productComment.productId}" />
 							<input type="hidden" name="userId" value="${productComment.userId}" />
 							<input type="hidden" name="commentTime" value="${productComment.commentTime}" />
+							<input type="hidden" name="url" value="/api/comment/delete">
 							<div class="comment">
 								<table>
 									<tr>
@@ -142,14 +143,13 @@ pageContext.setAttribute("lf", "\n");
 				<div id="answerWrite">
 					<form>
 						<input type="hidden" name="productId" value="${product.id}" />
-						
 						<div id = "comment_writer">아이디<br />
 							<input type="text" name="userId" id="userId" style="width:100px; height:17px;"/>
 						</div>
 						<div id = "comment_content">
 							<textarea name="content" id="content" style="width:545px; height:47px;"></textarea>
 						</div>
-
+						<input type="hidden" name="url" value="/api/comment/create">
 						<input type="submit" value="저장" />
 					</form>
 				</div>
