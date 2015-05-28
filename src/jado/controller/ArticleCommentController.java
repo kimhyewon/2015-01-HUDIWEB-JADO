@@ -25,7 +25,6 @@ public class ArticleCommentController {
 	// 글에 댓글 등록 구현
 	@RequestMapping(value = "/comment/create", method = RequestMethod.POST)
 	public List<ArticleComment> commentPost(ArticleComment articleComment) {
-		logger.debug("articleComment {}", articleComment.getArticleId());
 		try {
 			articleService.insertArticleCommnet(articleComment);
 		} catch (InsertTargetRecordNotFoundException e) {
@@ -38,11 +37,9 @@ public class ArticleCommentController {
 	// 글에 댓글 삭제 구현
 	@RequestMapping(value = "/comment/delete", method = RequestMethod.POST)
 	public List<ArticleComment> commentDeletePost(ArticleComment articleComment) {
-		logger.debug("delete :{}", articleComment.getArticleId());
 		try {
 			articleService.deleteArticleComment(articleComment);
 		} catch (Exception e) {
-			logger.debug("failed"+e.getMessage());
 			logger.debug("failed"+e.getMessage());
 			return null;
 		}

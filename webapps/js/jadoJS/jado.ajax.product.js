@@ -3,9 +3,8 @@ window.addEventListener("load", function() {
 	setDeleteFormBox(); 
 })
 //product 댓글 작성 
-
 function setAddFormBox () {
-	var formListForWrite = document.querySelectorAll('#answerWrite input[type=submit]');
+	var formListForWrite = document.querySelectorAll('#show_product #answerWrite input[type=submit]');
 	for ( var j=0 ; j < formListForWrite.length ; j++) {
 		formListForWrite[j].addEventListener('click', writeComments);
 	}
@@ -13,7 +12,7 @@ function setAddFormBox () {
 
 //product 댓글 삭제 
 function setDeleteFormBox () {
-	var formListsForDelete = document.querySelectorAll('#comments input[type=image]');
+	var formListsForDelete = document.querySelectorAll('#show_product #comments input[type=image]');
 	for ( var j=0 ; j < formListsForDelete.length ; j++) {
 		formListsForDelete[j].addEventListener('click', deleteComments);
 	}
@@ -49,6 +48,7 @@ function setFormNone (argument) {
 
 
 function deleteComments(e) {
+	console.log("hello");
 	 e.preventDefault();
 	 var commentForm = e.currentTarget.form;
 	 var url = commentForm[3].value;
