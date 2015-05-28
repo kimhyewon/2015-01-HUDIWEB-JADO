@@ -5,6 +5,8 @@ import jado.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,9 +25,14 @@ public class AuthorityManager {
 	@Autowired
 	private AuthorityManagerDao authorityManagerDao;
 	
-	public void setUserAuthority(User user, String authorityTobeChanged) {
+	public void setUserAuthority(User user, String authorityTobeChanged, HttpSession session) {
 		updateRoleOnDb(user, authorityTobeChanged);
 		updateAuthorityOnContext(authorityTobeChanged);
+		updateAuthorityOnSession(session, authorityTobeChanged);
+	}
+
+	private void updateAuthorityOnSession(HttpSession session, String authorityTobeChanged) {
+		session.setAttribute("userAuthority", authorityTobeChanged);		
 	}
 
 	private void updateAuthorityOnContext(String authorityTobeChanged) {
