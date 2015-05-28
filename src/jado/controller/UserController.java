@@ -109,7 +109,7 @@ public class UserController {
 			
 			if (isSeller != null){
 				userService.setSellerInfo(shop, seller);
-				authorityManager.setUserAuthority(user, "ROLE_SELLER");
+				authorityManager.setUserAuthority(user, "ROLE_SELLER", session);
 			}
 		} catch (DuplicateKeyException e) {
 			return ModelAndViewUtils.renderToNotice(new Notice("Error", e.getMessage()));

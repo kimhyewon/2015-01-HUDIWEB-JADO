@@ -35,4 +35,9 @@ public class MailAuthDao {
 			return null;
 		}
 	}
+
+	public void update(String mailRecipient, String uuid) {
+		String sql = "update MAIL_AUTH set UUID_KEY=? where USER_ID=?";
+		jdbcTemplate.update(sql, uuid, mailRecipient);
+	}
 }
