@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="top" class="row">
-	<div class="col s1 m7 l9 dummy">dummy</div>
-	<div class="col s11 m5 l3">
+	<div id="logo" class="col s3 m4 l4">
+		<a href="/"><img src="/img/mainLogo.png"></a>
+	</div>
+	<div class="col s1 m3 l5 dummy">dummy</div>
+	<div class="col s8 m5 l3">
 		<form method="get">
 		<ul>
 			<c:choose>
