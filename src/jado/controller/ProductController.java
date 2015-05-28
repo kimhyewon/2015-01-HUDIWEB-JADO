@@ -14,6 +14,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import core.exception.InsertTargetRecordNotFoundException;
 import core.exception.NotExistFileException;
+import core.exception.NotSupportFileSizeException;
+import core.exception.NotSupportFileTypeException;
 import core.jadopay.PaymentInfo;
 import core.util.ModelAndViewUtils;
 
@@ -65,6 +69,11 @@ public class ProductController {
 	// product 만들기 폼 받아오기
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView writePost(Product product, FileInfo fileInfo) {
+		try{
+			fileInfo.checkUploadFIle();
+		} catch (NotSupportFileSizeException | NotSupportFileTypeException e) {
+			return ModelAndViewUtils.renderToNotice(new Notice("error", e.getMessage()));
+		}
 		fileInfo.setFileNameByUUID();
 		fileInfo.updateLocalLocation();
 		product.setImgUrl(fileInfo.getLocalLocation());
@@ -91,6 +100,11 @@ public class ProductController {
 	// product 수정 폼 받아오기
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView productUpdatePost(FileInfo fileInfo, Product product) {
+		try{
+			fileInfo.checkUploadFIle();
+		} catch (NotSupportFileSizeException | NotSupportFileTypeException e) {
+			return ModelAndViewUtils.renderToNotice(new Notice("error", e.getMessage()));
+		}
 		fileInfo.setFileNameByUUID();
 		fileInfo.updateLocalLocation();
 		product.setImgUrl(fileInfo.getLocalLocation());

@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import core.exception.NotExistFileException;
+import core.exception.NotSupportFileSizeException;
+import core.exception.NotSupportFileTypeException;
 import core.util.ModelAndViewUtils;
 
 @Controller
@@ -61,6 +63,11 @@ public class SettingController {
 	@RequestMapping(value = "/api/image", method = RequestMethod.POST)
 	public ModelAndView editImage(Model model, FileInfo fileInfo){
 		fileInfo.updateLocalLocation();
+		try{
+			fileInfo.checkUploadFIle();
+		} catch (NotSupportFileSizeException | NotSupportFileTypeException e) {
+			return ModelAndViewUtils.renderToNotice(new Notice("error", e.getMessage()));
+		}
 		try {
 			shopService.settingEditImage(fileInfo);
 		} catch (IllegalStateException | IOException | NotExistFileException e) {
