@@ -1,21 +1,20 @@
 package jado.controller;
 
 import jado.model.ArticleComment;
-import jado.model.Notice;
 import jado.service.ArticleService;
+
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RestController;
 
 import core.exception.InsertTargetRecordNotFoundException;
-import core.util.ModelAndViewUtils;
 
-@Controller
+@RestController
 @RequestMapping(value = "/api/article")
 public class ArticleCommentController {
 	private static final Logger logger = LoggerFactory.getLogger(ArticleCommentController.class);
@@ -25,21 +24,28 @@ public class ArticleCommentController {
 
 	// 글에 댓글 등록 구현
 	@RequestMapping(value = "/comment/create", method = RequestMethod.POST)
-	public ModelAndView commentPost(ArticleComment articleComment) {
+	public List<ArticleComment> commentPost(ArticleComment articleComment) {
 		logger.debug("articleComment {}", articleComment.getArticleId());
 		try {
 			articleService.insertArticleCommnet(articleComment);
 		} catch (InsertTargetRecordNotFoundException e) {
 			logger.debug("failed {}", e.getMessage());
-			return ModelAndViewUtils.renderToNotice(new Notice("Failed", e.getMessage()));
+			return null;
 		}
-		return new ModelAndView("redirect:/");
+		return articleService.getComments(articleComment.getArticleId());
 	}
-
+	
 	// 글에 댓글 삭제 구현
 	@RequestMapping(value = "/comment/delete", method = RequestMethod.POST)
-	public ModelAndView commentDeletePost(ArticleComment articleComment) {
-		articleService.deleteArticleComment(articleComment);
-		return new ModelAndView("redirect:/");
+	public List<ArticleComment> commentDeletePost(ArticleComment articleComment) {
+		logger.debug("delete :{}", articleComment.getArticleId());
+		try {
+			articleService.deleteArticleComment(articleComment);
+		} catch (Exception e) {
+			logger.debug("failed"+e.getMessage());
+			logger.debug("failed"+e.getMessage());
+			return null;
+		}
+		return articleService.getComments(articleComment.getArticleId());
 	}
 }
