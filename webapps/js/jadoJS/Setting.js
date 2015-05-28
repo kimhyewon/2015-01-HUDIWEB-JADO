@@ -14,7 +14,6 @@ window.addEventListener("load", function() {
     if (oSetting.elTarget) {}
 
     var eRadios = document.querySelectorAll(".previewContainer input[type='radio']");
-    console.log(eRadios.length);
 });
 
 

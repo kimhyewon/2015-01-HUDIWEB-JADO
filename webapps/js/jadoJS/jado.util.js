@@ -12,6 +12,8 @@ Util.prototype.getElementAll = function(element) {
 };
 
 Util.prototype.saveUrl = function() {
-	
-	
+	var url = location.href;
+	var shopRegexp = /\/shop\//g;
+	if (shopRegexp.test(url))
+		console.log("URL is saved!");
 };

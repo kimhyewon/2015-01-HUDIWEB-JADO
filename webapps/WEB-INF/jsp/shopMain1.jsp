@@ -67,5 +67,7 @@
 	${shop.footer}	
 	<br />
 	</div>
+	<script src="/js/jado_lib.js"></script>
+	<script src="/js/jado.js"></script>
 </body>
 </html>
