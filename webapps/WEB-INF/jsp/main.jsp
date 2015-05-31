@@ -12,7 +12,9 @@
     	<%@ include file="include/signForm.jspf" %>
 	</c:when>
 	<c:otherwise>
-		<h1>Welcome!! Redirect 처리 추가 예정</h1>
+    	<%@ include file="include/main.jspf" %>
+    	<%@ include file="include/info.jspf" %>
+        <div id="infoBlank"></div>
 	</c:otherwise>
 	</c:choose>
 </body>

@@ -9,14 +9,29 @@
 	<div class="sub_title">
 		<img src="/img/mainSubtitle.png" width="390px"; height="50%">
 	</div>
-	<div id="main_btn" class="row center">
-		<div class="col m2 l4 dummy">dummy</div>
-		<div class="col s12 m4 l2">
-			<button type="submit" class="signup_btn" formaction="">회원가입</button>
+	<c:choose>
+    <c:when test="${empty userId}">
+		<div id="main_btn" class="row center">
+			<form method="get">
+				<div class="col m2 l4 dummy">dummy</div>
+				<div class="col s12 m4 l2">
+					<button type="submit" class="signup_btn" formaction="/user">회원가입</button>
+				</div>
+				<div class="col s12 m4 l2">
+					<button type="submit" class="login_btn" formaction="/user/login">로그인</button>
+				</div>
+				<div class="col m2 l4 dummy">dummy</div>
+			</form>
 		</div>
-		<div class="col s12 m4 l2">
-			<button type="submit" class="login_btn" formaction="">로그인</button>
+	</c:when>
+	<c:otherwise>
+		<div id="main_btn" class="row center">
+			<form method="get">
+				<div class="col s12 m12 l12">
+					<button type="submit" class="toShop_btn" formaction="">내 쇼핑몰 가기</button>
+				</div>
+			</form>
 		</div>
-		<div class="col m2 l4 dummy">dummy</div>
-	</div>
+	</c:otherwise>
+	</c:choose>
 </div>
