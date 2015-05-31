@@ -177,4 +177,8 @@ public class Shop {
 		return result;
 	}
 
+	public void updateTitle() {
+		title = url;
+	}
+
 }
