@@ -28,7 +28,7 @@
 		<div id="main_btn" class="row center">
 			<form method="get">
 				<div class="col s12 m12 l12">
-					<button type="submit" class="toShop_btn" formaction="">내 쇼핑몰 가기</button>
+					<button type="submit" class="toShop_btn" formaction="/shop/${seller.shopUrl}">내 쇼핑몰 가기</button>
 				</div>
 			</form>
 		</div>
