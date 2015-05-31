@@ -7,6 +7,7 @@ import jado.model.Shop;
 import jado.service.MailAuthService;
 import jado.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import core.mail.template.MailTemplateStorage;
 import core.util.AuthorityManager;
 import core.util.ModelAndViewUtils;
+import core.util.ServletRequestBindingException;
+import core.util.ServletRequestUtils;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -58,7 +61,11 @@ public class UserController {
 
 	// 회원 로그인 페이지로 이동
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView viewLoginPage(Notice notice) {
+	public ModelAndView viewLoginPage(HttpServletRequest request, HttpSession session, Notice notice) throws ServletRequestBindingException {
+		if(request.getParameter("from") != null) {
+			String fromUrl = "/shop/" + ServletRequestUtils.getStringParameter(request, "from");
+			session.setAttribute("fromUrl", fromUrl);	
+		}
 		return ModelAndViewUtils.render("login", notice);
 	}
 

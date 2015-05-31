@@ -1,36 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="mainInfo">
 	<section class="row">
-		<div class="col s12 m6 l6">
+		<div class="col shide m1 l1 dummy">dummy</div>
+		<div class="col s12 m5 l5">
 			<article>
-				<h5>10초만에 당신만의 샵을 만드세요!</h5>
+				<h5>당신만의 쇼핑몰을 만드세요!</h5>
 				<h6>지금 판매자로 가입하시면<br>바로 쇼핑몰이 생깁니다</h6>
 			</article>
 		</div>
-		<div class="col s12 m6 l6">
+		<div class="col s12 m5 l5">
 			<article><img src="" alt="No Image"></article>
 		</div>
+		<div class="col shide m1 l1 dummy">dummy</div>
 	</section>
 	<section class="row">
-		<div class="col s12 m6 l6">
+		<div class="col shide m1 l1 dummy">dummy</div>
+		<div class="col s12 m5 l5">
 			<article><img src="" alt="No Image"></article>
 		</div>
-		<div class="col s12 m6 l6">
+		<div class="col s12 m5 l5">
 			<article>
 				<h5>Only for YOU</h5>
 				<h6>Ne#의 샵은 판매자의 <br>독립적인 운영을 보장합니다</h6>
 			</article>
 		</div>
+		<div class="col shide m1 l1 dummy">dummy</div>
 	</section>
 	<section class="row">
-		<div class="col s12 m6 l6">
+		<div class="col shide m1 l1 dummy">dummy</div>
+		<div class="col s12 m5 l5">
 			<article>
 				<h5>블로그 관리하듯 편하게!</h5>
 				<h6>블로그에 포스팅을 작성하듯이<br/>상품을 등록할 수 있습니다</h6>
 			</article>
 		</div>
-		<div class="col s12 m6 l6">
+		<div class="col s12 m5 l5">
 			<article><img src="" alt="No Image"></article>
 		</div>
+		<div class="col shide m1 l1 dummy">dummy</div>
 	</section>
 </div>
