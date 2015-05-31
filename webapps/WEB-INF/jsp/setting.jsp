@@ -29,7 +29,7 @@
 
 					<div id = "setting_con" class="row">
 						<div id = "board_name" class="row">기본 정보 설정</div>
-						<div id = "basic_info" class="col s12 m5 l6 ">
+						<div id = "basic_info" class="col s12 m5 l6 " style="margin-top:30px;">
 							<h3>샵 정보</h3>
 							<form method="post" autocomplete="off">
 								<c:if test="${not empty errorMessage}">
@@ -57,7 +57,7 @@
 										</div>
 									</li>
 									<li id ="info_line">
-										<input type="submit" name="submit" formaction="/setting" value="변 경 하 기"/>
+										<input type="submit" name="submit" formaction="/setting" value="저 장 하 기"/>
 									</li>
 								</ul>
 							</form>
@@ -135,35 +135,32 @@
 
 					<div id ="setting_con" class="row" >
 						<div id = "board_name" class="row">테마 설정</div>
-						<div class="col s12 m5 l4">
+						<div id = "thema_con">
 							<form  action="/setting/api/theme">
-								<h3>테마 고르기</h3>
 								<ul>
-									<li>
-										<input type="radio" name="theme" value="1" checked="checked" >A형
+									<li class = "thema_select">
+										<input type="radio" name="theme" value="1" checked="checked" >A형<br><br>
+										<img src="/img/shop_theme1.png" style="width:195px; height:250px; ">	
 									</li>
-									<li>
-										<input type="radio" name="theme" value="2">B형
+									<li class = "thema_select">
+										<input type="radio" name="theme" value="2">B형</li><br><br>
+										<img src="/img/shop_theme2.png" style="width:195px; height:250px;">	
 									</li>
-									<li>
-										<input type="submit" name="submit" value="변 경 하 기"/>
-									</li>
-								</ul>		
+								</ul>	
+								
 							</form>
+							
+							
 						</div>
-						<div class="col s12 m5 l4">
-							<h4>미리보기</h4>
-							<img src="/img/shop_theme1.png" style="width:145px; height:200px; ">		
-							<img src="/img/shop_theme2.png" style="width:145px; height:200px;">	
-						</div>
+						<div id="thema_btn"><input type="submit" name="submit" value="저 장 하 기"/></div>
 					</div>
 
 
 					<div id ="setting_con" class="row center">
 						<div id = "board_name" class="row">게시판, 카테고리 설정</div>
-						<div class="col s12 m5 l4">
-							<h3>공지사항 , 이벤트 게시판을 만드세요</h3>
-							<button onclick="boardNew()">추가하기</button>
+						<div class="col s12 m5 l6">
+							<h3>게시판 등록</h3>
+							<button onclick="boardNew()" style="margin-bottom:10px;">추가하기</button>
 							<ul id="boardBefore">
 								<c:forEach var="board" items="${shop.boards}">
 									<li>
@@ -180,13 +177,13 @@
 									
 								</ul>
 								<input type="hidden" name="shopUrl" value="${shop.url}">
-								<input type="submit" name="submit" value="변 경 하 기">
+								<input type="submit" name="submit" value="저 장 하 기" style="margin-top:20px;">
 							</form>
 						</div>
-						<div class="col s12 m5 l4">
-							<h2>카테고리 설정 </h2>
-							<h3>상품 카테고리를 만드세요 </h3>
-							<button onclick="categoryNew()">추가하기</button>
+
+						<div class="col s12 m5 l6">
+							<h3>카테고리 등록 </h3>
+							<button onclick="categoryNew()" style="margin-bottom:10px;">추가하기</button>
 							<ul id="categoryBefore">
 								<c:forEach var="category" items="${shop.categorys}">
 									<li>
@@ -203,7 +200,7 @@
 									
 								</ul>
 								<input type="hidden" name="shopUrl" value="${shop.url}">
-								<input type="submit" name="submit" value="변 경 하 기">
+								<input type="submit" name="submit" value="저 장 하 기" style="margin-top:20px;">
 							</form>
 						</div>
 					</div>

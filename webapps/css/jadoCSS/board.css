@@ -416,3 +416,22 @@
 h3 {
   margin-bottom: 20px;
  }
+
+#thema_con {
+  padding-top: 30px;
+  padding-bottom: 40px;
+  border: 1px solid #DDDDDD;
+  border-radius: 10px;
+}
+
+.thema_select {
+  float: left;
+  width: 360px;
+  margin: 0 auto;
+}
+
+#thema_btn {
+  clear: both;
+  margin-top: 20px;
+
+}
