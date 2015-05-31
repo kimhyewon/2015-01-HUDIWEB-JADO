@@ -9,5 +9,4 @@
 
 <div id ="profile_con" class ="col shide m10 l6">
 	<div id ="profile_img"><img src="${shop.profileUrl}" style="width:55%; height:55%; "></div>
-	<div id = "profile_name" >Grace lilac</div>
 </div>	
