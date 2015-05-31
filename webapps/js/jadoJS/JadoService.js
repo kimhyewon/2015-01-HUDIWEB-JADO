@@ -1,5 +1,4 @@
 window.addEventListener("load", function() {
-    jado.util.saveUrl();
     jado.formManager.showSellerEnroll("#chkBox");
     
     //Encryption Code
