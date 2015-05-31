@@ -73,7 +73,11 @@ public class UserService {
 		}
 		shopDao.insert(shop);
 	}
-
+	
+	public Seller selectSellerById(String userId) {
+		return userDao.selectSellerById(userId);
+	}
+	
 	public void updateCustomer(Customer customerFromEdit) {
 		Customer customer = userDao.selectUserById(customerFromEdit.getId());
 		if (customer.update(customerFromEdit)) {
