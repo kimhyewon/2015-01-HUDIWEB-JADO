@@ -26,7 +26,6 @@ public class UserService {
 		Map<String, Object> userInfo = new HashMap<String, Object>();
 		Customer customer = userDao.selectUserById(userId);
 		userInfo.put("customer", customer);
-
 		Seller seller = userDao.selectSellerById(userId);
 		if (seller != null) {
 			userInfo.put("seller", seller);
@@ -67,6 +66,7 @@ public class UserService {
 	}
 
 	private void insertShop(Shop shop) {
+		shop.updateTitle();
 		Shop tempShop = shopDao.selectByUrl(shop.getUrl());
 		if (tempShop != null) {
 			throw new DuplicateKeyException("이미 똑같은 URL이 존재 합니다");
