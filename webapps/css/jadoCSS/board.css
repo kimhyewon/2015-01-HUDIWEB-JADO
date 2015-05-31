@@ -435,3 +435,16 @@ h3 {
   margin-top: 20px;
 
 }
+
+#setting_upload_button {
+  width: 200px;
+    height: 40px;
+    background: #ffbf42;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+#setting_upload_button a {
+  color: #fff;
+  line-height: 40px;
+}
