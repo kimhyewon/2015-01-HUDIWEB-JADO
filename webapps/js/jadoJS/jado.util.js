@@ -12,6 +12,10 @@ Util.prototype.getElementAll = function(element) {
 };
 
 Util.prototype.saveUrl = function() {
-	
-	
+	var url = location.href;
+	var shopRegexp = /\/shop\//g;
+	if (shopRegexp.test(url)) {
+		var shopAddress = (url.split("\/shop\/"))[1];
+		console.log(shopAddress);
+	}
 };

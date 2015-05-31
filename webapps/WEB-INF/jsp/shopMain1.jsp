@@ -6,7 +6,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-	<title>블로그</title>
+	<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+	<title>${shop.title}</title>
 	<link rel="stylesheet" type="text/css" href="/css/jado.css">		
 </head>
 <%@ include file="include/needEmailVerifyInfo.jspf" %>
@@ -66,5 +67,7 @@
 	${shop.footer}	
 	<br />
 	</div>
+	<script src="/js/jado_lib.js"></script>
+	<script src="/js/jado.js"></script>
 </body>
 </html>

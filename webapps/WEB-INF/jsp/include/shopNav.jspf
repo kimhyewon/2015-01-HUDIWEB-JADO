@@ -4,7 +4,7 @@
 <c:choose>
 <c:when test="${empty userId}">
 	<div class="nav_content col s2 m2 l2">
-		<a href="/user/login">LOGIN</a>
+		<a href="/user/login?from=${shop.url}">LOGIN</a>
 	</div>
 	<div class="nav_content col s2 m2 l2">
 		<a href="/user">JOIN</a>

@@ -18,7 +18,6 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
 
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-
 	private RequestCache requestCache = new HttpSessionRequestCache();
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	private String targetUrlParameter;
@@ -76,6 +75,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		case 3:
 			useRefererUrl(request, response);
 			break;
+		case 4:
+			useJadoReturnFromUrl(request, response);
+			break;
 		default:
 			useDefaultUrl(request, response);
 		}
@@ -115,6 +117,16 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 	private void useDefaultUrl(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		redirectStrategy.sendRedirect(request, response, defaultUrl);
 	}
+	
+	private void useJadoReturnFromUrl(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		String targetUrl = (String) session.getAttribute("fromUrl");
+		if(targetUrl == null) {
+			targetUrl = "";
+		}
+		session.removeAttribute("fromUrl");
+		redirectStrategy.sendRedirect(request, response, targetUrl);
+	}
 
 	private int decideRedirectStrategy(HttpServletRequest request, HttpServletResponse response) {
 		int result = 0;
@@ -135,7 +147,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 					if (useReferer && StringUtils.hasText(refererUrl)) {
 						result = 3;
 					} else {
-						result = 0;
+						result = 0;	
 					}
 				}
 			}
@@ -154,6 +166,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		} else {
 			result = 0;
 		}
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("fromUrl") != null) {
+			result = 4;
+		}
+		
 		return result;
 	}
 }
