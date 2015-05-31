@@ -143,16 +143,16 @@
 										<img src="/img/shop_theme1.png" style="width:195px; height:250px; ">	
 									</li>
 									<li class = "thema_select">
-										<input type="radio" name="theme" value="2">B형</li><br><br>
+										<input type="radio" name="theme" value="2" checked="checked">B형</li><br><br>
 										<img src="/img/shop_theme2.png" style="width:195px; height:250px;">	
 									</li>
 								</ul>	
-								
+								<div id="thema_btn"><input type="submit" name="submit" value="저 장 하 기"/></div>
 							</form>
 							
 							
 						</div>
-						<div id="thema_btn"><input type="submit" name="submit" value="저 장 하 기"/></div>
+						
 					</div>
 
 
@@ -205,7 +205,8 @@
 						</div>
 					</div>
 
-					<h3><a href="/shop/${shop.url}">완료</a></h3>
+					
+					<div id = "setting_upload_button" class="row"><a href="/shop/${shop.url}">완 료</a></div>
 
 				</div>
 			</div>
