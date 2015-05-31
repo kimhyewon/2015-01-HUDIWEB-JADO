@@ -15,8 +15,20 @@
     		<a class="home" href="/">홈 으 로</a>
     	</div>
     </div>
+    <input type="hidden" id="returnUrl" value="${returnUrl }" />
 </body>
 
 <script src="/js/jado_lib.js"></script>
 <script src="/js/jado.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+	var returnUrl = document.querySelector("#returnUrl").value;
+	var goHomeEle = document.querySelector(".home");
+	
+	if(returnUrl) {
+		goHomeEle.href=returnUrl;
+		goHomeEle.innerHTML = "샵 으 로";
+	}
+});
+</script>
 </html>

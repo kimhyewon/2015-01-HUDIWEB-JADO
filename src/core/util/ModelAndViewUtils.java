@@ -2,6 +2,7 @@ package core.util;
 
 import jado.model.Notice;
 
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 public class ModelAndViewUtils {
@@ -29,6 +30,13 @@ public class ModelAndViewUtils {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("notice", notice);
 		mav.setViewName(string);
+		return mav;
+	}
+
+	public static ModelAndView renderToNotice(Notice notice, Model model) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("notice", notice);
+		mav.setViewName("notice");
 		return mav;
 	}
 }

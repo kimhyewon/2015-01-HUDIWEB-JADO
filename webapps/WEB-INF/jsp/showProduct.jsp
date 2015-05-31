@@ -75,7 +75,7 @@ pageContext.setAttribute("lf", "\n");
 							<form:errors path="productId"  cssClass=""   />
 							
 							<!-- 수량<br> -->
-							<form:input type="hidden" path="productAmount" value="2"/>
+							<form:input type="hidden" path="productAmount" />
 							<form:errors path="productAmount"  cssClass=""   />
 							
 							<!-- <button>결제하기</button> -->
@@ -108,6 +108,9 @@ pageContext.setAttribute("lf", "\n");
 							if(e.value === "") {
 								e.value = 0;
 							} 
+							
+							var form = document.querySelector("#paymentInfo");
+							form.productAmount.value = document.querySelector("#count").value;
 							document.querySelector("form").submit();
 						});
 					</script>

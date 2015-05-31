@@ -127,5 +127,12 @@
 
 		<input type="hidden" name="rsaPublicKeyExponent" value="${publicKeyExponent}" />
 		<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}" />
+		<input type="hidden" id="returnUrl" name="returnUrl" value="" />
 	</form>
 </div>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		var url = parent.document.referrer
+		document.querySelector("#returnUrl").value = url;
+	});
+</script>

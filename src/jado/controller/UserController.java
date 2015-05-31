@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,7 +73,7 @@ public class UserController {
 	// 회원가입 요청
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView userPost(@RequestParam("j_username") String userId, @RequestParam("j_password") String password, Customer user, Shop shop, Seller seller,
-			String isSeller, Notice notice) {
+			String isSeller, Notice notice, String returnUrl, Model model) {
 		if (notice.getHeader() != null) {
 			return ModelAndViewUtils.renderToNotice(notice);
 		}
@@ -90,7 +91,8 @@ public class UserController {
 			return ModelAndViewUtils.renderToNotice(new Notice("Error", e.getMessage()));
 		}
 		mailService.send(userId, MailTemplateStorage.Type.JOIN_VERIFY);
-		return ModelAndViewUtils.renderToNotice(new Notice("Success", userId + " 님, 회원가입이 요청 이메일을 보냈습니다. "));
+		model.addAttribute("returnUrl", returnUrl);
+		return ModelAndViewUtils.renderToNotice(new Notice("Success", userId + " 님, 회원가입이 요청 이메일을 보냈습니다. "), model);
 	}
 
 	// 회원 정보 수정 요청
