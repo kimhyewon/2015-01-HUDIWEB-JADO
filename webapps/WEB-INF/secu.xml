@@ -20,6 +20,8 @@
 		<intercept-url pattern="/pay/**" access="hasAnyRole('ROLE_CUSTOMER', 'ROLE_SELLER', 'ROLE_DEVELOPER')" />
 		<intercept-url pattern="/setting/**" access="hasAnyRole('ROLE_SELLER', 'ROLE_DEVELOPER')" />
 		<intercept-url pattern="/shop/**/myPage/**" access="hasAnyRole('ROLE_CUSTOMER','ROLE_SELLER', 'ROLE_DEVELOPER')" />
+		<intercept-url pattern="/cart/**" access="hasAnyRole('ROLE_CUSTOMER','ROLE_SELLER', 'ROLE_DEVELOPER')" />
+		<intercept-url pattern="/shop/**/info/**" access="hasAnyRole('ROLE_CUSTOMER','ROLE_SELLER', 'ROLE_DEVELOPER')" />
 		
 		<form-login login-page="/user/login" authentication-failure-url="/user/login?ng" 
 		authentication-success-handler-ref="customAuthenticationSuccessHandler"/>

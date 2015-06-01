@@ -1,9 +1,9 @@
 package core.jadopay;
 
-import java.util.List;
-
 import jado.model.Cart;
 import jado.service.CartService;
+
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,9 +27,6 @@ public class CartController {
 	@RequestMapping(value = "/cart/put", method = RequestMethod.POST)
 	public String putCartPage(Cart cart, HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
-		if(userId == null){
-			return "redirect:/shop/"+cart.getShopUrl();
-		}
 		cartService.putCart(cart, userId);
 		return "redirect:/shop/"+cart.getShopUrl()+"/info";
 	}

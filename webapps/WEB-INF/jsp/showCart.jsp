@@ -18,7 +18,7 @@
     </div> 
     <div id="main">
        <div class="main-header">
-            <div class="name">aaa@aaa.com님 반갑습니다</div>
+            <div class="name">${userId }님 반갑습니다</div>
             <div class="store-count">
                 <div class="title">장바구니에 담은 가게 개수</div>
                 <div class="amount">10</div>
@@ -31,13 +31,14 @@
         <div class="main-body">
             <div class="title">장바구니</div>
             <div class="product-container">
+                <c:forEach var="result" items="${items}" varStatus="status"> 
                 <form action="/pay/info" method="post">
                 <div class="product">
                     <div class="image"><img src="" alt=""></div>
-                    <div class="name">맛있는 햄버거</div>
-                    <div class="shop">태호네 샵&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
-                        <div class="price">단가 : 10000</div>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
-                        <div class="amount">수량 : 3</div>
+                    <div class="name">${result.name }</div>
+                    <div class="shop">${result.shopUrl }&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <%-- <div class="price">단가 : ${result.price }</div>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp; --%>
+                        <div class="amount">수량 : ${result.amount }</div>
                     </div>
                     <div class="paybtn">구매</div>
                 </div>
@@ -45,6 +46,7 @@
 				<input path="productId" value=""/>
 				<input path="productAmount"  value=""/>
                 </form>
+                </c:forEach>
             </div>
         </div>
     </div>
