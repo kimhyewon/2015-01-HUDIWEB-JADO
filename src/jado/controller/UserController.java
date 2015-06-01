@@ -92,7 +92,7 @@ public class UserController {
 		}
 		mailService.send(userId, MailTemplateStorage.Type.JOIN_VERIFY);
 		model.addAttribute("returnUrl", returnUrl);
-		return ModelAndViewUtils.renderToNotice(new Notice("Success", userId + " 님, 회원가입이 요청 이메일을 보냈습니다. "), model);
+		return ModelAndViewUtils.renderToNotice(new Notice("Success", userId + " 님, 회원 인증 요청 메일을 보냈습니다. "), model);
 	}
 
 	// 회원 정보 수정 요청
