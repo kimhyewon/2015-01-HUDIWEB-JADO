@@ -1,5 +1,6 @@
 package jado.controller;
 
+import jado.model.Cart;
 import jado.model.Category;
 import jado.model.FileInfo;
 import jado.model.Notice;
@@ -53,6 +54,7 @@ public class ProductController {
 		model.addAttribute("product", product);
 		model.addAttribute("comments", comments);
 		model.addAttribute("paymentInfo", new PaymentInfo());
+		model.addAttribute("cart", new Cart());
 		return "showProduct";
 	}
 
