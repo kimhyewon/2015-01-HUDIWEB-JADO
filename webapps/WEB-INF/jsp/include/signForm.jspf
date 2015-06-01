@@ -17,7 +17,7 @@
 				<h2>Sign Up</h2>
 			</c:when>
 			<c:otherwise>
-				<h2>Edit User</h2>
+				<h2>Edit Profile</h2>
 			</c:otherwise>
 			</c:choose>
 			<ul>
