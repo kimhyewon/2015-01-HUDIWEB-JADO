@@ -1,5 +1,7 @@
 package core.jadopay;
 
+import java.util.List;
+
 import jado.model.Cart;
 import jado.service.CartService;
 
@@ -27,12 +29,14 @@ public class CartController {
 	public String putCartPage(Cart cart, Model model, HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		cartService.putCart(cart, userId);
-		return "showCart";
+		return "redirect:/info";
 	}
 	
 	//보드에서 장바구니 페이지로
-	@RequestMapping(value = "/info", method = RequestMethod.GET)
-	public String viewCartPage() {
+	@RequestMapping(value = "/shop/{shopUrl}/info", method = RequestMethod.GET)
+	public String viewCartPage(HttpSession session) {
+		String userId = (String) session.getAttribute("userId");
+//		List<Cart> items = cartService.getCart(cart.getShopUrl(), userId));
 		return "showCart";
 	}
 

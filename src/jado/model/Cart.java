@@ -1,7 +1,7 @@
 package jado.model;
 
 
-public class Cart {
+public class Cart extends Product{
 	
 	private int cartId;
 	private String shopUrl;
@@ -10,7 +10,6 @@ public class Cart {
 	
 	private int amount;
 	private int isPay;
-	
 	
 	
 	public int getCartId() {
@@ -49,7 +48,5 @@ public class Cart {
 	public void setIsPay(int isPay) {
 		this.isPay = isPay;
 	}
-
-	
 	
 }
