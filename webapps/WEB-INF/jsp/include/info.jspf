@@ -9,14 +9,14 @@
 			</article>
 		</div>
 		<div class="col s12 m5 l5">
-			<article><img src="" alt="No Image"></article>
+			<article><img src="/img/infoImg1.png" alt="No Image"></article>
 		</div>
 		<div class="col shide m1 l1 dummy">dummy</div>
 	</section>
 	<section class="row">
 		<div class="col shide m1 l1 dummy">dummy</div>
 		<div class="col s12 m5 l5">
-			<article><img src="" alt="No Image"></article>
+			<article><img src="/img/infoImg2.png" alt="No Image"></article>
 		</div>
 		<div class="col s12 m5 l5">
 			<article>
@@ -35,7 +35,7 @@
 			</article>
 		</div>
 		<div class="col s12 m5 l5">
-			<article><img src="" alt="No Image"></article>
+			<article><img src="/img/infoImg3.png" alt="No Image"></article>
 		</div>
 		<div class="col shide m1 l1 dummy">dummy</div>
 	</section>
