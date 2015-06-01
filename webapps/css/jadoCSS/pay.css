@@ -9,21 +9,22 @@ html {
 }
 
 #payContainer .banner{
-	background-color:#E94A4B;
+	1background-color:#E94A4B;
 	width:100%;
 	height:50px;
 	line-height:50px;
 }
 
 #payContainer .banner span{
-	color:#fff;
+	color:black;
 	width:100%;
 	font-size:2.4rem;
 	padding:0px 10px; 
 }
 
 #payContainer .info{
-	background-color:#F6CBAB;
+	margin-top: 10px;
+	background-color:#F4F4F4;
 	width:100%;
 	height:80px;
 	line-height: 2.5rem;
@@ -31,13 +32,14 @@ html {
 }
  
 #payContainer .banner span{
-	color:#fff;
+	color:black;
 	width:100%;
 	font-size:2.5rem; 
 }
 
 #payContainer .payInfoTable {
-	margin:20px 0px;
+	margin:70px 0px;
+
 }
 
 #payContainer .payInfoTable thead {
@@ -96,9 +98,13 @@ html {
 	margin:0 auto;
 	border: 0px;
 	color:#fff;
-	background-color:#E94A4B;
+	background: #ffbf42;
 	display:block;
 	font-size:1.5rem;
+}
+
+select {
+	margin-top: 30px;
 }
 
 @media only screen and (min-width : 601px) {
