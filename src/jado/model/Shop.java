@@ -36,7 +36,6 @@ public class Shop {
 		this.footer = footer;
 	}
 	
-
 	public Boolean getIsMyShop() {
 		return isMyShop;
 	}
@@ -178,7 +177,7 @@ public class Shop {
 	}
 
 	public void updateTitle() {
-		title = url;
+		this.title = this.url;
 	}
 
 }
