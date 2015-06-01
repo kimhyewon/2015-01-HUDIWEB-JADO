@@ -42,7 +42,7 @@
                     </div>
                     <div class="paybtn">구매</div>
                 </div>
-                <input path="shopUrl" value="testUrl"/>
+                <input path="shopUrl" value="${result.id }"/>
 				<input path="productId" value=""/>
 				<input path="productAmount"  value=""/>
                 </form>

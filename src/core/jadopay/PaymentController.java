@@ -39,16 +39,11 @@ public class PaymentController {
 	}
 
 	@RequestMapping(value = "/info", method = RequestMethod.POST)
-	public String viewPaymentPage(@Valid PaymentInfo payinfo, BindingResult bindingResult, Model model, HttpSession session) {
+	public String viewPaymentPage(Integer cartId, Integer price, Integer amount, String shopUrl, Model model, HttpSession session) {
 		
-		logger.debug(payinfo.toString());
-		
-		if (bindingResult.hasErrors()) {
-			printBindingErrors(bindingResult);
-			return "jadoPay/payExample";
-		}
-		
-		PaymentProcessInfo payInfo = paymentService.getPaymentProcessInfo(payinfo, session);
+		PaymentProcessInfo payInfo = new PaymentProcessInfo(cartId, shopUrl, price * amount); 
+				
+//				paymentService.getPaymentProcessInfo(payinfo, session);
 		model.addAttribute("payInfo", payInfo);
 		return "jadoPay/payInfo";
 	}

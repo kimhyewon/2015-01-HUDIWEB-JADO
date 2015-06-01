@@ -90,7 +90,7 @@
 	</div>
 		
 		<input type="hidden" name="userId" value="${userId}" />
-		<input type="hidden" name="shopUrl" value="${payInfo.shopUrl}"/>
+		<input type="hidden" name="shopUrl" value="${payInfo.myShopUrl}"/>
 		<input type="hidden" name="productId" value="${payInfo.productId}"/>
 		<input type="hidden" name="price" type="hidden" value="${payInfo.price}" />
 		

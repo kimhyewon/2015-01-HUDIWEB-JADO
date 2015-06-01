@@ -17,6 +17,9 @@ public class PaymentProcessInfo extends PaymentInfo {
 	@NotNull
 	@Range(min = 1, max = 15000000)
 	private int price;
+	
+	private Integer cartId;
+	private String myShopUrl;
 
 	public PaymentProcessInfo() {
 	}
@@ -32,6 +35,23 @@ public class PaymentProcessInfo extends PaymentInfo {
 		this.bankName = bankName;
 	}
 
+	public PaymentProcessInfo(Integer cartId, String shopUrl, int finalPrice) {
+		this.cartId = cartId;
+		this.price = finalPrice;
+		this.myShopUrl = shopUrl;
+	}
+	public String getMyShopUrl() {
+		return myShopUrl;
+	}
+	public void setMyShopUrl(String myShopUrl) {
+		this.myShopUrl = myShopUrl;
+	}
+	public Integer getCartId() {
+		return cartId;
+	}
+	public void setCartId(Integer cartId) {
+		this.cartId = cartId;
+	}
 	public String getUserId() {
 		return userId;
 	}
