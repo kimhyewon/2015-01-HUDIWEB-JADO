@@ -67,7 +67,7 @@ insert into PRODUCT VALUES(null, 2, 'Pleats-droped<br>Shift Dress', 18000, 100,'
 insert into PRODUCT VALUES(null, 4, 'Shift Dress', 10000, 100,'/userImg/product/img/3.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
 insert into PRODUCT VALUES(null, 2, 'Shift Dress', 13000, 100,'/userImg/product/img/2.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
 insert into PRODUCT VALUES(null, 3, 'Shift Dress', 14000, 100,'/userImg/product/img/1.gif', '대박 좋아 좋아좋아', null);
---insert into CART_has_PRODUCT values('testShopUrl', 'user', 1, '1');
+-- insert into CART_has_PRODUCT values('testShopUrl', 'user', 1, '1');
 insert into PRODUCT VALUES(null, 7, 'Pleats-droped<br>Shift Dress', 14000, 100,'/userImg/product/img/9.jpg','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
 insert into PRODUCT VALUES(null, 8, 'Pleats-droped<br>Shift Dress', 12000, 100,'/userImg/product/img/8.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
 insert into PRODUCT VALUES(null, 9, 'Pleats-droped<br>Shift Dress', 15000, 100,'/userImg/product/img/7.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
@@ -78,4 +78,7 @@ insert into PRODUCT VALUES(null, 7, 'Shift Dress', 10000, 100,'/userImg/product/
 insert into PRODUCT VALUES(null, 8, 'Shift Dress', 13000, 100,'/userImg/product/img/2.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
 insert into PRODUCT VALUES(null, 9, 'Shift Dress', 14000, 100,'/userImg/product/img/1.gif', '대박 좋아 좋아좋아', null);
 
-insert into PAYMENT VALUES('testUrl', 'customer', 1, '국민', 12600, default);
+insert into CART VALUES('testUrl', 'customer', 1, 1, default, '2015-03-26 12:34:56');
+insert into CART VALUES('testUrl', 'customer', 2, 2, default, default);
+insert into CART VALUES('testUrl', 'customer', 3, 3, default, default);
+insert into PAYMENT VALUES('testUrl', 'customer', 1, '2015-03-26 12:34:56','국민', 12600, default);
