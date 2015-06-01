@@ -78,4 +78,12 @@ insert into PRODUCT VALUES(null, 7, 'Shift Dress', 10000, 100,'/userImg/product/
 insert into PRODUCT VALUES(null, 8, 'Shift Dress', 13000, 100,'/userImg/product/img/2.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
 insert into PRODUCT VALUES(null, 9, 'Shift Dress', 14000, 100,'/userImg/product/img/1.gif', '대박 좋아 좋아좋아', null);
 
-insert into PAYMENT VALUES('testUrl', 'customer', 1, '국민', 12600, default);
+insert into PAYMENT VALUES('testUrl', 'erin314@naver.com', 1, '국민', 12600, default);
+insert into PAYMENT VALUES('testUrl', 'erin314@naver.com', 2, '국민', 7500, default);
+insert into PAYMENT VALUES('testUrl', 'erin314@naver.com', 3, '국민', 50000, default);
+insert into PAYMENT VALUES('testUrl', 'erin314@naver.com', 4, '국민', 34000, default);
+insert into PAYMENT VALUES('testUrl', 'erin314@naver.com', 5, '국민', 12000, default);
+insert into PAYMENT VALUES('testUrl', 'erin314@naver.com', 6, '국민', 9000, default);
+insert into PAYMENT VALUES('testUrl', 'erin314@naver.com', 7, '국민', 22600, default);
+insert into PAYMENT VALUES('testUrl', 'erin314@naver.com', 8, '국민', 77700, default);
+insert into PAYMENT VALUES('testUrl', 'erin314@naver.com', 9, '국민', 25600, default);
