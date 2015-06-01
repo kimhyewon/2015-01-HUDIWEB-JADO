@@ -78,7 +78,7 @@ insert into PRODUCT VALUES(null, 7, 'Shift Dress', 10000, 100,'/userImg/product/
 insert into PRODUCT VALUES(null, 8, 'Shift Dress', 13000, 100,'/userImg/product/img/2.gif','OPS2099/Color Block<br>Pleats-droped<br>Shift Dress', null);
 insert into PRODUCT VALUES(null, 9, 'Shift Dress', 14000, 100,'/userImg/product/img/1.gif', '대박 좋아 좋아좋아', null);
 
-insert into CART VALUES('testUrl', 'customer', 1, 1, default, '2015-03-26 12:34:56');
-insert into CART VALUES('testUrl', 'customer', 2, 2, default, default);
-insert into CART VALUES('testUrl', 'customer', 3, 3, default, default);
-insert into PAYMENT VALUES('testUrl', 'customer', 1, '2015-03-26 12:34:56','국민', 12600, default);
+insert into CART VALUES(null, 'testUrl', 'customer', 1, 1, default);
+insert into CART VALUES(null, 'testUrl', 'customer', 2, 2, default);
+insert into CART VALUES(null, 'testUrl', 'customer', 3, 3, default);
+insert into PAYMENT VALUES(1,'국민', 12600, default);
