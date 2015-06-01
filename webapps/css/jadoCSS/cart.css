@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
 
+* {padding:0px; margin:0px;}
+
 .paybody {
     background-color: #F3F4F5   
 }
