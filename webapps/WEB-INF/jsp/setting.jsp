@@ -20,13 +20,9 @@
 			<%@ include file="include/shopCategory.jspf" %>
 		</div>
 
-
 		<div id = "body_con">	
 			<div id = "board_section" class="col s12 m9 l9">
 				<div id = "divide_line" class="row">
-					
-
-
 					<div id = "setting_con" class="row">
 						<div id = "board_name" class="row">기본 정보 설정</div>
 						<div id = "basic_info" class="col s12 m5 l6 " style="margin-top:30px;">
@@ -147,14 +143,10 @@
 										<img src="/img/shop_theme2.png" style="width:195px; height:250px;">	
 									</li>
 								</ul>	
-								<div id="thema_btn"><input type="submit" name="submit" value="저 장 하 기"/></div>
-							</form>
-							
-							
 						</div>
-						
+						<div id="thema_btn"><input type="submit" name="submit" value="저 장 하 기"/></div>
+						</form>
 					</div>
-
 
 					<div id ="setting_con" class="row center">
 						<div id = "board_name" class="row">게시판, 카테고리 설정</div>
@@ -204,18 +196,11 @@
 							</form>
 						</div>
 					</div>
-
-					
 					<div id = "setting_upload_button" class="row"><a href="/shop/${shop.url}">완 료</a></div>
-
 				</div>
 			</div>
 		</div>
 
-
-
-
-	
 </body>
 <script src="/js/jado.js"></script>
 <script src="/js/jadoJS/Setting.js"></script>
