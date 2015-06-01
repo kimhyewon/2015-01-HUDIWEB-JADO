@@ -1,6 +1,5 @@
 package jado.controller;
 
-import jado.dao.UserDao;
 import jado.model.Notice;
 import jado.model.Seller;
 import jado.service.UserService;
@@ -11,7 +10,6 @@ import java.security.spec.InvalidKeySpecException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
