@@ -1,5 +1,5 @@
 .formContainer div.col {
-	margin: 80px 0px;
+	margin-top: 80px;
 	background: rgba(255,255,255,0.3);
 	padding: 30px 40px;
 	border-radius: 12px;
@@ -7,14 +7,18 @@
 
 .formContainer h2 { font-size: 24px; text-align: left; margin-bottom: 10px;}
 
+.formContainer form {
+	text-align: left;
+}
+
 .formContainer form div:nth-child(3) {
 	visibility: hidden;
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 }
 #formUser ul { width: 100%; }
-
-#formSeller { height: 462px; }
+#formUser { height: 460px; }
+#formSeller { height: 460px; }
 #formSeller ul { width: 100%; }
 
 .formContainer li {
@@ -30,10 +34,12 @@
 	margin-left: 11px;
 	margin-top: 1px;
 }
-#formSeller li:nth-child(1) p:nth-child(1) { float:left; font-size: 18px; margin-top: 7px;}
-#formSeller li:nth-child(1) input { float:left; width: 50%; margin-left: 10px;}
-#formSeller li:nth-child(1) p:nth-child(2) { clear:both; font-size: 12px; color: red; margin: 10px 5px 20px 5px;}
-#formSeller li:nth-child(3) input { width: 180px; }
+#formSeller li:nth-child(1) { margin-top: 36px; height: 25px;}
+#formSeller li:nth-child(1) p { float:left; font-size: 15px; margin-top: 7px; }
+#formSeller li:nth-child(1) input { float:right; width: 60%; margin-left: 10px;}
+#formSeller li:nth-child(2) p { font-size: 12px; color: red; padding-top: 10px; margin-left: 10px;}
+#formSeller li:nth-child(3) { width: 99%;}
+#formSeller li:nth-child(4) input { float: right; width: 70%; }
 
 
 .formContainer input {
@@ -76,7 +82,8 @@
 
 .formContainer select {
 	background: #FFBF42;
-	width: 87px;
+	float: left;
+	width: 25%;
 	height: 33px;
 	line-height: 30px;
 	border: 0;
@@ -89,16 +96,28 @@
 }
 
 .formContainer input[type=submit] {
-	width: 70%;
 	height: 40px;
 	background: #FFBF42;
 	border: 0;
 	text-indent: 0;
 	color: #fff;
 	font-size: 16px;
-	margin-top: 30px;
+ 	width: 100%;
 }
-.formContainer a[name=delete] {
+
+.formContainer #joinButton {
+  	width: 22%;
+	margin-top: -75px;
+	margin-left: 22%;
+}
+
+.formContainer #editButton {
+  	width: 22%;
+	margin-top: -75px;
+	margin-left: 22%;
+}
+
+.formContainer #deleteButton {
 	display: inline-block;
 	width: 70%;
 	height: 30px;
@@ -108,10 +127,11 @@
 	margin-top: 10px;
 	border-radius: 5px;
 	padding-top: 10px;
-
 }
 
 @media only screen and (max-width: 600px) {
+	.formContainer form { text-align: center; }
+
 	#formUser {
 		margin: 0;
 		border-radius: 0;
@@ -121,6 +141,16 @@
 		margin: 0;
 		height: 300px;
 		border-radius: 0;
+	}
+
+	.formContainer #joinButton {
+	  	width: 300px;
+	  	margin-left: 0;
+	}
+
+	.formContainer #editButton {
+	  	width: 300px;
+	  	margin-left: 0;
 	}
 }
 

@@ -67,15 +67,6 @@
 					</c:choose>
 				</li>
 			</ul>
-			<c:choose>
-		    <c:when test="${empty userId}">
-				<input type="submit" name="submit" value="회 원  가 입">
-			</c:when>
-			<c:otherwise>
-				<input type="submit" name="submit" value="수 정  하 기">
-				<a name="delete" href="/user/delete">회 원 탈 퇴</a>
-			</c:otherwise>
-			</c:choose>
 		</div>
 		<div id="formSeller" class="col s12 m5 l4">
 			<ul>
@@ -84,11 +75,17 @@
 					<c:choose>
 				    <c:when test="${empty isSeller}">
 						<input type="text" name="shopUrl" placeholder="쇼핑몰 URL">
-						<p>주의: Shop URL은 한 번 정하면 바꾸실 수 없습니다.</p>
 					</c:when>
 					<c:otherwise>
 						<input type="text" name="shopUrl" value="${shop.url}" readonly>
 					</c:otherwise>
+					</c:choose>
+				</li>
+				<li>
+					<c:choose>
+				    <c:when test="${empty isSeller}">
+						<p>주의: 쇼핑몰 URL은 한 번 정하면 바꾸실 수 없습니다.</p>
+					</c:when>
 					</c:choose>
 				</li>
 				<li>
@@ -124,6 +121,16 @@
 			</ul>
 		</div>
 		<div class="col m1 l2 dummy">dummy</div>
+
+		<c:choose>
+	    <c:when test="${empty userId}">
+			<input id="joinButton" type="submit" name="submit" value="회 원  가 입">
+		</c:when>
+		<c:otherwise>
+			<input id="editButton" type="submit" name="submit" value="수 정  하 기">
+			<!--<a id="deleteButton" href="/user/delete">회 원 탈 퇴</a>-->
+		</c:otherwise>
+		</c:choose>
 
 		<input type="hidden" name="rsaPublicKeyExponent" value="${publicKeyExponent}" />
 		<input type="hidden" name="rsaPublicKeyModulus" value="${publicKeyModulus}" />

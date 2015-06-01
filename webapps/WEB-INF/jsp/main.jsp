@@ -14,9 +14,9 @@
 	<c:otherwise>
     	<%@ include file="include/main.jspf" %>
     	<%@ include file="include/info.jspf" %>
-        <div id="infoBlank"></div>
 	</c:otherwise>
 	</c:choose>
+    <%@ include file="include/footer.jspf" %>
 </body>
 
 <script src="/js/jado_lib.js"></script>

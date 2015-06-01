@@ -1,0 +1,11 @@
+#mainFooter {
+	height: 250px;
+	padding-top: 100px;
+	text-align: left;
+	color: #444;
+}
+
+#mainFooter a {
+	text-decoration: none;
+	color: #666
+}

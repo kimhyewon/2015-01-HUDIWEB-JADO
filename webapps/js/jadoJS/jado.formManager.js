@@ -14,14 +14,28 @@ FormManager.prototype.isNull = function(inputElement) {
 }
 
 FormManager.prototype.showSellerEnroll = function(element) {
+	
 	var chkBox = jado.util.getElement(element);
 	if (!chkBox) return;
+	
+	var joinButton = document.getElementById('joinButton');
+	var editButton = document.getElementById('editButton');
+	if (!joinButton && !editButton) return;
+	
 	chkBox.addEventListener("click", function() {
 		var target = jado.util.getElement(".formContainer");
 		if (chkBox.checked) {
+			if (joinButton)
+				joinButton.style.marginLeft = "39%";
+			if (editButton)
+				editButton.style.marginLeft = "39%";
 			target.classList.add('scrollSellerEnroll');
 		} else {
 			target.classList.remove('scrollSellerEnroll');
+			if (joinButton)
+				joinButton.style.marginLeft = "22%";
+			if (editButton)
+				editButton.style.marginLeft = "22%";
 		}
 	})
 };

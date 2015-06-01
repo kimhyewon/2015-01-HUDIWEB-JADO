@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div id="mainFooter">
+<footer>
+	<div class="row">
+		<div class="col s1 m1 l2 dummy">dummy</div>
+		<div class="col s10 m10 l8">
+			<div>
+				<span>©2015 NeShop</span>
+				<a href="">사이트 서비스 약관</a>
+				<a href="">개인정보취급방침</a>
+				<a href="">개발자</a>
+			</div>
+			<p>상호명: NeShop Inc. | 대표자: JADO | 주소: 경기도 성남시 분당구 삼평동 681 H스퀘어 N동 4층 NHN NEXT | 대표전화: +10 123-4567 | <a href="">도움말</a> | 이메일: <a href="">jadodeveloper@gmail.com</a></p>
+			<p>NeShop에 등록된 상품은 판매자들이 제공하고 판매하는 것이며, NeShop은 등록한 상품 정보 및 거래에 대한 어떠한 책임도 지지 않습니다.</p>
+		</div>
+		<div class="col s1 m1 l2 dummy">dummy</div>
+	</div>
+</footer>
+</div
