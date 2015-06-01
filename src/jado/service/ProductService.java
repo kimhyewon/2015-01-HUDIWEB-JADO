@@ -17,6 +17,7 @@ import jado.model.Product;
 import jado.model.ProductComment;
 
 @Service
+@Transactional
 public class ProductService {
 	@Autowired
 	private Upload upload;
