@@ -1,5 +1,7 @@
 package jado.service;
 
+import java.util.List;
+
 import jado.dao.CartDao;
 import jado.dao.MailAuthDao;
 import jado.model.Cart;
@@ -22,7 +24,9 @@ public class CartService {
 		cart.setCustomerId(userId);
 		cartDao.insert(cart);
 	}
-	
-	
-	
+
+	public List<Cart> getCart(String url, String userId) {
+		return cartDao.selectAllForCart(url, userId);
+	}
+
 }

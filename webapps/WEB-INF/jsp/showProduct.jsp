@@ -85,12 +85,12 @@ pageContext.setAttribute("lf", "\n");
 						<form action="/cart/put" method="post">
 
 							<!-- Shop Url <br> -->
-							<input type="hidden" path="shopUrl" value="${shop.url}"/>
+							<input type="hidden" name="shopUrl" value="${shop.url}"/>
 							<!-- Product Id<br> -->
-							<input type="hidden" path="productId" value="${product.id}"/>
+							<input type="hidden" name="productId" value="${product.id}"/>
 							
 							<!-- 수량<br> -->
-							<input type="hidden" path="amount" />
+							<input type="hidden" name="amount" value="1"/>
 							
 							<!-- <button>결제하기</button> -->
 							<button id = "buy_button" style="width:65%;border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px" /><a>장바구니</a>
