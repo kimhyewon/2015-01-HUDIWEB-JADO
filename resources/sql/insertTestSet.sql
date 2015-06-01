@@ -21,7 +21,7 @@ insert into USER_ROLE VALUES('user', 'ROLE_EMAIL_NOT_VERIFIED_USER');
 insert into USER_ROLE VALUES('customer', 'ROLE_CUSTOMER');
 insert into USER_ROLE VALUES('seller', 'ROLE_SELLER');
 insert into USER_ROLE VALUES('developer', 'ROLE_DEVELOPER');
-insert into USER_ROLE VALUES('erin314@naver.com', 'ROLE_SELLER');
+insert into USER_ROLE VALUES('erin314@naver.com', 'ROLE_CUSTOMER');
 
 insert into SHOP VALUES('testurl', 'HEY, JADO', '031-737-7979', default, default, 'footer', default, default, default, default);
 insert into SHOP VALUES('erin', 'HEY, JADO', '031-737-7979', default, default, 'footer', 2, default, default, default);

@@ -21,6 +21,7 @@ import core.mail.template.MailTemplate;
 import core.mail.template.MailTemplateStorage;
 
 @Service
+@Transactional
 public class MailAuthService {
 	private static final Logger logger = LoggerFactory.getLogger(MailAuthService.class);
 
