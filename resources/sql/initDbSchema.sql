@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS `jado_dev`.`SHOP` ;
 
 CREATE TABLE IF NOT EXISTS `jado_dev`.`SHOP` (
   `URL` VARCHAR(45) NOT NULL,
-  `TITLE` VARCHAR(100) NOT NULL DEFAULT '제목을 입력해 주세요',
+  `TITLE` VARCHAR(100) NOT NULL DEFAULT 'Shop title',
   `PHONE` VARCHAR(45) NOT NULL,
   `MAIN_URL` VARCHAR(256) NOT NULL DEFAULT '/userImg/shop/main/default.jpg',
   `PROFILE_URL` VARCHAR(45) NOT NULL DEFAULT '/userImg/shop/profile/default.png',

@@ -66,7 +66,6 @@ public class UserService {
 	}
 
 	private void insertShop(Shop shop) {
-		shop.updateTitle();
 		Shop tempShop = shopDao.selectByUrl(shop.getUrl());
 		if (tempShop != null) {
 			throw new DuplicateKeyException("이미 똑같은 URL이 존재 합니다");
@@ -91,7 +90,7 @@ public class UserService {
 			userDao.updateSeller(seller);
 		}
 	}
-
+	
 	private void updateShop(Shop shopFromEdit) {
 		Shop shop = shopDao.selectByUrl(shopFromEdit.getUrl());
 		if (shop.updateFromUserPage(shopFromEdit)) {
