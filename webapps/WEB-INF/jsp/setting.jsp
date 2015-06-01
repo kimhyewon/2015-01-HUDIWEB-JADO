@@ -181,7 +181,7 @@
 									<li>
 										<form action="/setting/api/category/delete">
 											<input type="hidden" name="id" value="${category.id}">
-											<input type="text" name="name" value="${category.name}">
+											<input type="text" name="name" value="${category.name}" readonly >
 											<input type="submit" name="submit" value="삭제하기">
 										</form>
 									</li>
