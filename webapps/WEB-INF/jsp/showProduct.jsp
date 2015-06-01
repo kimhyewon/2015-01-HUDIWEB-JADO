@@ -82,15 +82,9 @@ pageContext.setAttribute("lf", "\n");
 						<form action="/cart/put" method="post">
 
 							<!-- Shop Url <br> -->
-<<<<<<< HEAD
-							<input type="text" path="shopUrl" value="${shop.url}"/>
-							<!-- Product Id<br> -->
-							<input type="hidden" path="id" value="${product.id}"/>
-=======
 							<input type="hidden" name="shopUrl" value="${shop.url}"/>
 							<!-- Product Id<br> -->
 							<input type="hidden" name="productId" value="${product.id}"/>
->>>>>>> cc8fd0f2ac39fb768acb767b7fd6acfa577b02b5
 							
 							<!-- 수량<br> -->
 							<input type="hidden" name="amount" value="1"/>
