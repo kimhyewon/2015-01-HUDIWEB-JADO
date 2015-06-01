@@ -2,30 +2,21 @@ package core.jadopay;
 
 import jado.model.Cart;
 import jado.service.CartService;
-import jado.service.MailAuthService;
 
-import java.util.List;
-
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import core.mail.template.MailTemplateStorage.Type;
 
 @Controller
-@RequestMapping(value = "/shop/{shopUrl}/cart")
+//@RequestMapping(value = "/shop/{shopUrl}/cart")
+@RequestMapping(value="/cart")
 public class CartController {
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 	
@@ -37,14 +28,13 @@ public class CartController {
 	public String putCartPage(Cart cart, Model model, HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
 		cartService.putCart(cart, userId);
-		return "jadoPay/payInfo";
+		return "showCart";
 	}
 	
 	//보드에서 장바구니 페이지로
-	@RequestMapping(value = "/info", method = RequestMethod.POST)
-	public String viewCartPage(@PathVariable("shopUrl") String url, Model model, HttpSession session) {
-	
-		return "";
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public String viewCartPage() {
+		return "showCart";
 	}
 
 }

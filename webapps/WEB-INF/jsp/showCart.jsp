@@ -27,6 +27,7 @@
         <div class="main-body">
             <div class="title">장바구니</div>
             <div class="product-container">
+                <form action="/pay/info" method="post">
                 <div class="product">
                     <div class="image"><img src="" alt=""></div>
                     <div class="name">맛있는 햄버거</div>
@@ -36,16 +37,10 @@
                     </div>
                     <div class="paybtn">구매</div>
                 </div>
-                <div class="product">
-                    <div class="image"><img src="" alt=""></div>
-                    <div class="name">맛있는 햄버거</div>
-                    <div class="shop">태호네 샵&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
-                        <div class="price">단가 : 10000</div>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
-                        <div class="amount">수량 : 3</div>
-                    </div>
-                    <div class="paybtn">구매</div>
-                </div>
-                
+                <input path="shopUrl" value="testUrl"/>
+				<input path="productId" value=""/>
+				<input path="productAmount"  value=""/>
+                </form>
             </div>
         </div>
     </div>
