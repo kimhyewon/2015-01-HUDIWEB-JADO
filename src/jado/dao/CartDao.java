@@ -20,7 +20,7 @@ public class CartDao {
 	private JdbcTemplate jdbcTemplate;
 	
 	public void insert(final Cart cart) {
-		String sql = "insert into CART VALUES(?, ?, ?, ?, default, default);";
+		String sql = "insert into CART VALUES(null, ?, ?, ?, ?, default);";
 		jdbcTemplate.update(sql, cart.getShopUrl(), cart.getCustomerId(), cart.getProductId(), cart.getAmount());
 	}
 	

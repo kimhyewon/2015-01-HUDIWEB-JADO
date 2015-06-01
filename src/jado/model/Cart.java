@@ -2,13 +2,23 @@ package jado.model;
 
 
 public class Cart {
+	
+	private int cartId;
 	private String shopUrl;
 	private String customerId;
 	private int productId;
 	
 	private int amount;
 	private int isPay;
-	private String cartTime;
+	
+	
+	
+	public int getCartId() {
+		return cartId;
+	}
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
 	public String getShopUrl() {
 		return shopUrl;
 	}
@@ -38,12 +48,6 @@ public class Cart {
 	}
 	public void setIsPay(int isPay) {
 		this.isPay = isPay;
-	}
-	public String getCartTime() {
-		return cartTime;
-	}
-	public void setCartTime(String cartTime) {
-		this.cartTime = cartTime;
 	}
 
 	

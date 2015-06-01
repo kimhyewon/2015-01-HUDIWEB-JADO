@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-//@RequestMapping(value = "/shop/{shopUrl}/cart")
 @RequestMapping(value="/cart")
 public class CartController {
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
