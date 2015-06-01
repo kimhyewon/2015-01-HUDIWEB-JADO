@@ -189,7 +189,7 @@
 									<li>
 										<form action="/setting/api/category/delete">
 											<input type="hidden" name="id" value="${category.id}">
-											<input type="text" name="name" value="${category.name}">
+											<input type="text" name="name" value="${category.name}" readonly >
 											<input type="submit" name="submit" value="삭제하기">
 										</form>
 									</li>
@@ -204,10 +204,7 @@
 							</form>
 						</div>
 					</div>
-
-					
 					<div id = "setting_upload_button" class="row"><a href="/shop/${shop.url}">완 료</a></div>
-
 				</div>
 			</div>
 		</div>
