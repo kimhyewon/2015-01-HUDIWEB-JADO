@@ -22,6 +22,9 @@
 <div class="nav_content col s2 m2 l2">
 	<a href="/shop/${shop.url}/mypage">MYPAGE</a>
 </div>
+<div class="nav_content col s2 m2 l2">
+	<a href="/shop/${shop.url}/info">Cart</a>
+</div>
 <c:forEach var="board" items="${shop.boards}">
 	<div class="nav_content col s2 m2 l2">
 		<a href="/shop/${shop.url}/board/${board.id}"> ${board.name} </a>
