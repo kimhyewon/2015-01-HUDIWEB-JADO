@@ -38,7 +38,7 @@
 		<div class = "special_product col shide m3 l3"><img src="${shop.subImg1Url}" style="width:100%; height=100%;"></div>
 		<div class = "special_product col shide m3 l3"><img src="${shop.subImg2Url}" style="width:100%; height=100%;"></div>
 		<div class = "special_product col shide m3 l3"><img src="${shop.subImg3Url}" style="width:100%; height=100%;"></div>
-		<div id = "side_block" class="col shide m1 l1"><img src="/img/side_block.png" style="width:76%; height=70%;"></div>
+	<!-- 	<div id = "side_block" class="col shide m1 l1"><img src="/img/side_block.png" style="width:76%; height=70%;"></div> -->
 	</div>
 
 	<div id = "product_con" class="row">

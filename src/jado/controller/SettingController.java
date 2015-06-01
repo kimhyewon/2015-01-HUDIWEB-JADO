@@ -57,7 +57,7 @@ public class SettingController {
 		if (shop == null)
 			return "main";
 		model.addAttribute("shop", shop);
-		return "redirect:/shop";
+		return "redirect:/setting";
 	}
 
 	@RequestMapping(value = "/api/image", method = RequestMethod.POST)
@@ -73,13 +73,13 @@ public class SettingController {
 		} catch (IllegalStateException | IOException | NotExistFileException e) {
 			return ModelAndViewUtils.renderToNotice(new Notice("Sucess", "이미지에 문제가 있습니다."));
 		}
-		return new ModelAndView("redirect:/shop");
+		return new ModelAndView("redirect:/setting");
 	}
 	@RequestMapping(value = "/api/theme", method = RequestMethod.GET)
 	public String editTheme(Model model, int theme, HttpSession session) throws ServletException, IOException {
 		String userId = (String) session.getAttribute("userId");
 		shopService.settingEditTheme(theme, userId);
-		return "redirect:/shop";
+		return "redirect:/setting";
 	}
 
 	@RequestMapping(value = "/api/board/delete", method = RequestMethod.GET)

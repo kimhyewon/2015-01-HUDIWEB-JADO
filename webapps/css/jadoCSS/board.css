@@ -372,3 +372,79 @@
   margin-bottom: 30px;
   text-decoration: underline;
 }
+
+
+
+/*setting*/
+#setting_con {
+  padding-top: 8px;
+  margin-bottom: 100px;
+}
+
+#board_name {
+  margin-bottom: 35px;
+}
+
+.info_left {
+  float: left;
+  width: 70px;
+  line-height: 45px;
+}
+
+.info_right {
+  float: left;
+  line-height: 45px;
+}
+
+#info_line {
+  clear: both;
+  height: 45px;
+}
+
+#setting input[type=text] {
+   width: 200px;
+  height: 30px;
+  /*background: -webkit-linear-gradient(#f0f0f0,#fff,#fff,#fff);
+  background: -o-linear-gradient(#f0f0f0,#fff,#fff,#fff);
+  background: linear-gradient(#f0f0f0,#fff,#fff,#fff);*/
+  border-radius: 5px;
+  text-indent: 10px;
+  font-size: 12px;
+  border: #ddd solid 1px;
+}
+
+h3 {
+  margin-bottom: 20px;
+ }
+
+#thema_con {
+  padding-top: 30px;
+  padding-bottom: 40px;
+  border: 1px solid #DDDDDD;
+  border-radius: 10px;
+}
+
+.thema_select {
+  float: left;
+  width: 360px;
+  margin: 0 auto;
+}
+
+#thema_btn {
+  clear: both;
+  margin-top: 20px;
+
+}
+
+#setting_upload_button {
+  width: 200px;
+    height: 40px;
+    background: #ffbf42;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+#setting_upload_button a {
+  color: #fff;
+  line-height: 40px;
+}
