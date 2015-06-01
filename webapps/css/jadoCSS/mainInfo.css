@@ -5,9 +5,10 @@
 
 #mainInfo section { height: 350px; overflow: hidden; }
 
-#mainInfo article { font-size: 20px; margin-top: 150px;}
-#mainInfo h5 { font-size: 30px; color: #333; margin-top: -30px;}
+#mainInfo article { font-size: 20px; margin-top: 130px;}
+#mainInfo h5 { font-size: 30px; color: #333;}
 #mainInfo h6 { font-size: 15px; color: #777;}
+#mainInfo article img {margin-top: -20px;}
 @media only screen and (max-width : 601px) {
 	#mainInfo section { height: 500px;}
 	#mainInfo h5 { font-size: 20px; }
