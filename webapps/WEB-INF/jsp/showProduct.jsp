@@ -65,29 +65,26 @@ pageContext.setAttribute("lf", "\n");
 							</tr>
 						</table>
 						<!-- 복사해옴 시작 -->
-						<form:form modelAttribute="paymentInfo" cssClass="" action="/pay/info" method="post">
-
-							<!-- Shop Url <br> -->
-							<form:input type="hidden" path="shopUrl" value="${shop.url}"/>
-							<form:errors path="shopUrl"  cssClass=""   />
-							<!-- Product Id<br> -->
-							<form:input type="hidden" path="productId" value="${product.id}"/>
-							<form:errors path="productId"  cssClass=""   />
-							
-							<!-- 수량<br> -->
-							<form:input type="hidden" path="productAmount" />
-							<form:errors path="productAmount"  cssClass=""   />
-							
-							<!-- <button>결제하기</button> -->
-							<button id = "buy_button" style="width:65%;border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px" /><a>구매하기</a>
-						</form:form>
-						
 						<form action="/cart/put" method="post">
 
 							<!-- Shop Url <br> -->
 							<input type="hidden" path="shopUrl" value="${shop.url}"/>
 							<!-- Product Id<br> -->
 							<input type="hidden" path="productId" value="${product.id}"/>
+							
+							<!-- 수량<br> -->
+							<input type="hidden" path="productAmount" />
+							
+							<!-- <button>결제하기</button> -->
+							<button id = "buy_button" style="width:65%;border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px" /><a>구매하기</a>
+						</form>
+						
+						<form action="/cart/put" method="post">
+
+							<!-- Shop Url <br> -->
+							<input type="text" path="shopUrl" value="${shop.url}"/>
+							<!-- Product Id<br> -->
+							<input type="hidden" path="id" value="${product.id}"/>
 							
 							<!-- 수량<br> -->
 							<input type="hidden" path="amount" />
